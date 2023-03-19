@@ -1,0 +1,1261 @@
+
+
+
+
+                         SMTP/POP3 Email Engine
+
+                           Library for COBOL
+
+
+                               (SEE4CB)
+
+
+                             USERS MANUAL
+
+
+
+                             Version 3.1
+
+                           September 1, 1999
+
+
+
+
+                     This software is provided as-is.
+              There are no warranties, expressed or implied.
+
+
+
+
+                           Copyright (C) 1999
+                           All rights reserved
+
+
+
+                       MarshallSoft Computing, Inc.
+                           Post Office Box 4543
+                           Huntsville AL 35815
+
+
+                           Voice : 256-881-4630
+                             FAX : 256-880-0925
+                           email : info@marshallsoft.com
+                             web : www.marshallsoft.com
+
+                               _______
+                          ____|__     |                (R)
+                       --+       |    +-------------------
+                         |   ____|__  |  Association of
+                         |  |       |_|  Shareware
+                         |__|   o   |    Professionals
+                       --+--+   |   +---------------------
+                            |___|___|    MEMBER
+
+
+      MARSHALLSOFT is a registered trademark of MarshallSoft Computing.
+
+
+
+
+     SEE4CB Users Manual                                       Page 1
+
+                            C O N T E N T S
+
+
+
+        Chapter                                     Page
+
+
+       1.0 Introduction................................................3
+           1.1 Email Client Compatibility..............................5
+           1.2 User Support............................................5
+           1.3 ASP Ombudsman...........................................5
+           1.4 Installation............................................6
+           1.5 Uninstalling............................................6
+       2.0 Library Overview............................................7
+           2.1 Dynamic Link libraries..................................7
+           2.2 Compiling Programs......................................7
+       3.0 Email Basics................................................8
+           3.1 Your Email Account......................................8
+           3.2 Email Address Format....................................8
+           3.3 MIME Extensions.........................................8
+               3.3.1 Quoted-Printable Encoding.........................9
+               3.3.2 Binary Attachments................................9
+           3.4 Your SMTP/POP3 Host Name................................9
+           3.5 Windows 95 and Dial-up Networking.......................9
+       4.0 Theory of Operation........................................10
+       5.0 Application Notes..........................................11
+           5.1 Key Codes..............................................11
+           5.2 Embedded HTML..........................................11
+           5.3 Secure Email...........................................11
+           5.4 Verifying Users........................................11
+           5.5 Downloading Attachments................................12
+           5.6 Auto Dial..............................................12
+           5.7 Windows 95 and Dial-up Networking......................12
+           5.8 Error Messages.........................................13
+           5.9 Message Status.........................................13
+           5.10 Return Receipt Request................................13
+           5.11 Registration Applications.............................13
+       6.0 Versions of SEE............................................14
+           6.1 Shareware Version......................................14
+           6.2 Student Version........................................14
+           6.3 Professional Version...................................14
+       7.0 Using SEE with Other Languages.............................15
+       8.0 Problems...................................................15
+       9.0 Example Programs...........................................16
+      10.0 Legal Issues...............................................17
+           10.1 Registration..........................................17
+           10.2 Academic Discount.....................................17
+           10.3 License...............................................18
+           10.4 Warranty..............................................18
+      11.0 Summary....................................................19
+           11.1 Revision History......................................19
+           11.2 SEE4CB Function Summary...............................20
+           11.3 SEE4CB Error Return Code List.........................21
+
+
+
+
+
+     SEE4CB Users Manual                                       Page 2
+
+      1.0 Introduction
+
+      SEE4CB is the easiest way to write email applications using the
+      Fujitsi or MicroFocus COBOL Compiler. The SEE4CB documentation and
+      examples are all written for Fujitsu COBOL.
+
+      The SMTP/POP3 Email Engine (SEE) is a library of functions providing
+      direct and simple control of the SMTP (Simple Mail Transport
+      Protocol) and POP3 (Post Office 3) protocols.
+
+      A simple interface allows sending and receiving email, including
+      multiple MIME base64 and quoted-printable encoded attachments.
+      Knowledge of Winsock and TCP/IP is not needed. SEE4CB includes
+      multiple COBOL example programs.
+
+      With SEE4CB, you can write programs that easily:
+
+      (1) Send email with optional MIME attachments.
+      (2) Get the number of messages on your email server.
+      (3) Get the header lines from any email on your server, without
+          reading the entire email.
+      (4) Delete any email on the server without reading it first.
+      (5) Receive any email on your server including MIME attachments.
+      (6) Run up to 128 independent WIN32 threads concurrently.
+
+      Several example programs are included demonstrating SMTP and POP3
+      functions including a multi-threaded example.
+
+      SEE4CB can be used with Windows 95/98 and Windows NT. The SEE4CB DLL
+      (SEE32.DLL) can also be used from any Win32 language (Visual Basic,
+      ACCESS, EXCEL, COBOL Console Compiler, Delphi, Fujitsu COBOL,
+      ABSOFT Fortran, etc.) capable of calling the Windows API.
+
+      When comparing SEE against our competition, note that:
+
+      (1) SEE4CB is a standard Windows DLL (NOT an OCX or ActiveX control)
+          and is much smaller than a comparable OCX or ActiveX control.
+      (2) SEE4CB does NOT depend on ActiveX or Microsoft Foundation Class
+          (MFC) libraries or similar "support" libraries.
+      (3) SEE4CB is fully threadable.
+      (4) The SEE4CB functions can be called from applications not capable
+          of using controls.
+
+      We also have versions of SEE for C/C++ (SEE4C), Delphi (SEE4D),
+      Visual Basic (SEE4VB), Visual dBase (SEE4DB), Visual Foxpro (SEE4FP),
+      Fujitsu COBOL (SEE4CB), and ABSOFT Fortran (SEE4F). Note that all
+      versions use the same DLLs.
+
+
+
+
+
+
+
+
+
+
+
+     SEE4CB Users Manual                                       Page 3
+
+
+      1.0 Introduction (continued)
+
+      The following example demonstrates the use of some of the library
+      functions:
+
+      +-------------------------------------------------------------------+
+      | *> attach SEE                                                     |
+      | CALL "seeAttach" WITH STDCALL USING                               |
+      |     BY VALUE     NBR_CHANS     *> number of channels              |
+      |     BY VALUE     SEE_KEY_CODE  *> See KEYCODE.CBI                 |
+      | END-CALL.                                                         |
+      | *> connect to SMTP server                                         |
+      | DISPLAY "Calling seeConnectTo()..."                               |
+      | CALL "seeConnectTo" WITH STDCALL USING                            |
+      |     BY VALUE     IS_ZERO       *> channel                         |
+      |     BY REFERENCE SMTP_SERVER   *> SMTP server name                |
+      |     BY REFERENCE EMAIL_FROM    *> sender's email address          |
+      |     BY REFERENCE IS_ZERO       *> no Reply-To header              |
+      | END-CALL.                                                         |
+      | *> send email                                                     |
+      | DISPLAY "Calling seeSendEmail()..."                               |
+      | CALL "seeSendEmail" WITH STDCALL USING                            |
+      |     BY VALUE     IS_ZERO       *> channel                         |
+      |     BY REFERENCE EMAIL_TO      *> recipient                       |
+      |     BY REFERENCE IS_ZERO       *> no CC list                      |
+      |     BY REFERENCE IS_ZERO       *> no BCC list                     |
+      |     BY REFERENCE EMAIL_SUBJ    *> email subject                   |
+      |     BY REFERENCE EMAIL_MSG     *> text of message                 |
+      |     BY REFERENCE IS_ZERO       *> no attachment                   |
+      | END-CALL.                                                         |
+      | *> close and release SEE                                          |
+      | CALL "seeClose" WITH STDCALL USING                                |
+      |     BY VALUE     IS_ZERO       *> channel                         |
+      | END-CALL.                                                         |
+      | CALL "seeRelease" WITH STDCALL                                    |
+      | END-CALL.                                                         |
+      +----+--------------------------------------------------------------+
+
+      In the example program above, seeAttach is called to initialize
+      SEE4CB and seeSmtpConnect is called to connect to the SMTP mail host.
+      The SMTP server host name and your email address are required, while
+      the "Reply-To" entry (3rd arg) is optional.
+
+      seeSendEmail is then called, passing the addressee lists. The primary
+      addressee is given in the "To List". The CC ("Carbon Copy") lists
+      additional recipients, as does the BCC (Blind Carbon Copy) list. The
+      subject contains the email subject line. The message text is next. If
+      it starts with the '@' symbol, it is considered the name of the file
+      containing the email message. Last, the filename of any binary
+      attachment is specified. All fields in seeSendEmail are optional
+      except the first.
+
+      After returning from seeSendEmail, the seeClose function is called to
+      close the connection to the SMTP server, and lastly, seeRelease is
+      called to terminate all SEE4CB processing.
+
+
+     SEE4CB Users Manual                                       Page 4
+
+      1.1 Email Client Compatibility
+
+      The SMTP/POP3 Email Engine library has been tested against multiple
+      email clients, including Eudora (Lite & Pro), Microsoft Outlook,
+      Pegasus, Calypso, PM Mail 98, Actif Mail, and Netscape.
+
+      1.2 User Support
+
+      We want you to be successful in developing your applications using
+      SEE4CB! We are committed to providing the best library that we can.
+      If you have any suggestions or comments, please let us know.
+
+      If you are having a problem using SEE4CB, email us at
+
+         support@marshallsoft.com
+
+      You can also reach us at 256-881-4630 between 7:00 AM and 7:00 PM CST
+      Monday through Friday. You can also often get us on the weekend.
+
+      The latest versions of our products are available on our web site at
+
+         http://www.marshallsoft.com
+
+      and on our anonymous FTP site at
+
+         ftp://ftp.marshallsoft.com/marshallsoft
+
+      The MarshallSoft Computing newsletter "Comm Talk" is published
+      quarterly on our web site.  It discusses various communications
+      problems and solutions using our products as well as related
+      information.
+
+      1.3 ASP Ombudsman
+
+      MarshallSoft Computing, Inc. is a member of the Association of
+      Shareware Professionals (ASP).  ASP wants to make sure that the
+      shareware principle works for you.  If you are unable to resolve a
+      shareware-related problem with an ASP member by contacting the member
+      directly, ASP may be able to help. The ASP Ombudsman can help you
+      resolve a dispute or problem with an ASP member, but does not provide
+      technical support for members' products. Please write to the ASP
+      Ombudsman at 157-F Love Ave., Greenwood, IN 26142 USA, FAX
+      317-888-2195, or send email to omb@asp-shareware.org.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     SEE4CB Users Manual                                       Page 5
+
+      1.4 Installation
+
+
+      (1) Before installation of SEE4CB, your windows COBOL compiler
+          should already be installed on your system and tested.
+
+      (2) Start a command line window.
+
+      (3) Create your SEE4CB project directory, copy the SEE4CB archive,
+          then unzip the archive. For example:
+
+                MKDIR   SEE4CB
+                PKUNZIP SEE4CB31.ZIP SEE4CB
+
+      (4) Copy SEE32.DLL to either C:\WINDOWS (for Windows 95/98)
+          or C:\WINNT (for Windows NT). This can also be done by running
+          INSTALL.BAT.
+
+      (5) Edit each example program with your Internet parameters before
+          compiling.
+
+      1.5 Uninstalling
+
+      Uninstalling SEE4CB is very easy. SEE4CB does NOT modify the
+      registry. First, delete the SEE4CB project directory created when
+      installing SEE4CB. Second, delete SEE32.DLL from your Windows
+      directory, typically C:\WINDOWS for Windows 95/98 or C:\WINNT for
+      Windows NT. That's it!
+
+      Use UINSTALL.BAT to delete SEE32.DLL from your Windows directory.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     SEE4CB Users Manual                                       Page 6
+
+      2.0 Library Overview
+
+      2.1 Dynamic Link Libraries
+
+      SEE4CB uses a Win32 [SEE32.DLL] dynamic link library (DLL). A DLL is
+      characterized by the fact that it need not be loaded until required
+      by an application program and that only one copy of the DLL is
+      necessary regardless of the number of application programs that use
+      it. Contrast this to the traditional static library which is bound to
+      each and every application that uses it at link time.
+
+      Since SEE4CB is a DLL, only one copy of the SEE4CB code is loaded
+      into memory regardless of the number of applications programs that
+      use it. For example, more than one instance of the test program
+      MAILER can be started.  All copies of MAILER can run concurrently.
+
+      2.2 Compiling Programs
+
+      The Fujitsu COBOL Project Manager is used to compile and link the
+      example programs. When linking, remember to include SEE32.LIB in the
+      list of files to link.
+
+      Alternatively, the FCL.BAT file can be used to invoke the Fujitsu
+      compiler and linker from the command line
+
+         FCL MAILER.CBL
+         FCL READER.CBL
+         FCL STATUS.CBL
+         FCL SEEVER.CBL
+         FCL DRIVER.CBL
+
+      Also see section 9.0 "Example Programs" for more information on the
+      individual example programs.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     SEE4CB Users Manual                                       Page 7
+
+      3.0 Email Basics
+
+      3.1 Your Email Account
+
+      Your email account is hosted on a computer which has a permanent
+      connection to the Internet. Email is sent to you over the Internet using
+      the SMTP (Simple Mail Transport Protocol) and is stored on disk until
+      you retrieve it using the POP3 (Post Office Protocol 3) or IMAP
+      (Internet Message Access Protocol) protocol. POP3 is a subset of IMAP,
+      so the POP3 protocol can be used to email from a IMAP email server.
+
+      The SMTP/POP3 Email Engine (SEE) is used to send and receive email
+      using the SMTP and POP3 protocols.
+
+      3.2 Email Address Format
+
+      Email addresses are always specified as "xxx<yyy@zzz>" where
+
+         (1) xxx is the optional "real name".
+
+         (2) yyy@zzz is the official email address,
+             where yyy is your account name, and
+             zzz is where your email account is hosted.
+
+         (3) The brackets are required.
+
+      For example, my email address can be specified by any of the
+      following:
+
+         (1) <mike@marshallsoft.com>
+         (2) Mike<mike@marshallsoft.com>
+         (3) Mike Marshall <mike@marshallsoft.com>
+
+      Multiple email addresses can be strung together separated by commas,
+      as in:
+
+         "<mike@myisp.com>,<pam@myisp.com>,<lauren@myisp.com>"
+
+      See the sample programs for many examples of use.
+
+      3.3 MIME Extensions
+
+      Internet mail can only transport 7-bit ASCII characters. Multipurpose
+      Internet Mail Extensions (MIME) are used to allow the attachment of
+      binary data to an email message.
+
+      The standard MIME attachment types are "quoted-printable" and "base64".
+      The SMTP/POP3 Email Engine library supports both.
+
+
+
+
+
+
+
+
+
+
+     SEE4CB Users Manual                                       Page 8
+
+      3.3.1 Quoted-Printable Encoding
+
+      Quoted-Printable encoding is used for three primary purposes: (1) to
+      embed binary values into a email message, typically for use with
+      foreign alphabets, (2) to send email messages wider than 76
+      characters, and (3) to embed HTML text into the email message.
+
+      To enable Quoted-Printable encoding, call
+
+          seeIntegerParam(Chan SEE_QUOTED_PRINTABLE, QUOTED_PLAIN);
+
+      before calling seeSendEmail.
+
+      To embed HTML text into your email message, which can be rendered by
+      email clients capable of interpreting HTML (such as Outlook Express),
+      call
+
+          seeIntegerParam(Chan, SEE_QUOTED_PRINTABLE, QUOTED_HTML)
+
+      To disable Quoted-Printable encoding, call
+
+          seeIntegerParam(Chan, SEE_QUOTED_PRINTABLE, QUOTED_OFF);
+
+      3.3.2 Binary Attachments
+
+      Binary attachments are encoded using MIME base-64. Most all email
+      clients (such as made by Eudora, Netscape, and Microsoft) can decode
+      MIME base-64 attachments.
+
+      To attach a file to your email, you specify the filename as the last
+      argument of the seeSendEmail function. Refer to the reference manual
+      for more details. Multiple attachments are listed with commas
+      separating them, such as "file1.zip,file2.zip,file3.zip".
+
+      3.4 Your SMTP/POP3 Host Name
+
+      In order to send or receive email, you must know the name (or IP
+      address) of your mail server. All email client programs (Eudora,
+      etc.) must have this name in order to send email.
+
+      Typically, your email server name will be "mail.XXX.YYY" where
+      XXX.YYY is the name of the computer which hosts your email account.
+      If you aren't sure of your email host name, look in the setup of your
+      email client program or ask your system administrator.
+
+      Before compiling any example programs, you must edit each program
+      file with your email configuration.
+
+      3.5 Windows 95 and Dial-up Networking
+
+      If you are running Windows 95, you should install the latest Dial-up
+      Networking (DUN) patches from Microsoft. This applies to Windows 95
+      only. The patch can be found at
+
+      http://www.microsoft.com/windows/downloads/contents/
+        updates/w95dialupnetw/default.asp
+
+
+     SEE4CB Users Manual                                       Page 9
+
+      4.0 Theory Of Operation
+
+      The SMTP/POP3 Email Engine is state driven. This means that each
+      call to SEE functions (that access the server) is broken down into
+      sequential steps, each of which can be performed within a second or
+      two.
+
+      There are two ways in which SEE is used: (1) indirect use of the
+      state engine, and (2) direct use of the state engine.
+
+      4.1 Indirect Method
+
+      The first (or "indirect") way to use the SEE library is to allow all
+      SEE function calls to automatically call the SEE driver (seeDriver)
+      before returning. This is the default way that SEE operates.
+
+      The major advantage of this approach is that each SEE function
+      returns only after it has completely finished. The disadvantage of
+      this approach is that some functions may run for a considerable
+      amount of time during which time the calling application must wait.
+
+      All example programs except DRIVER use this approach.
+
+      4.2 Direct Method
+
+      The second (or "direct") way that the SEE state driver is used is to
+      call it (seeDriver) directly. In order to operate this way, the
+      function seeIntegerParam must be called which sets the AUTO_CALL flag
+      to off:
+
+         seeIntegerParam(Chan, SEE_AUTO_CALL_DRIVER, 0)
+
+      After the above statement is executed, the state driver (seeDriver)
+      must be called after all other SEE functions that access the server.
+
+         Code = seeSmtpConnect(...)
+         IF Code < 0 THEN
+           ' handle error here . . .
+         END IF
+         DO  'call the driver
+           Code = seeDriver()
+           IF Code < 0 THEN
+             ' handle error here . . .
+             EXIT DO
+           END IF
+           IF Code = 0 THEN
+             EXIT DO
+           END IF
+           ' do something here . . .
+         LOOP
+
+      The major advantage of the direct approach is that the calling
+      application can perform other work such as reporting the progress of
+      large downloads. The disadvantage is the extra code that must be
+      written to call seeDriver. See DRIVER.CBL for an example.
+
+
+
+     SEE4CB Users Manual                                       Page 10
+
+      5.0 Applications Notes
+
+      5.1 Key Codes
+
+      When you register SEE, you will receive a new set of DLL's and a key
+      code for your DLL's. Pass this keycode as the second argument to
+      seeAttach. The keycode will be found in the file KEYCODE.CBL. The
+      keycode for the shareware version is 0.
+
+      5.2 Embedded HTML
+
+      Some email client programs, such as Microsoft OutLook Express, embed
+      HTML (Hyper-Text Markup Language) into the text of their email. This
+      is NOT an attachment. You can see what the text should look like by
+      viewing it with your web browser.
+
+      Enable HTML quoting by calling
+
+         seeIntegerParam(Chan, SEE_QUOTED_PRINTABLE, QUOTED_HTML)
+
+      5.3 Secure Email
+
+      There are two ways to implement secure email using SEE4CB. The first
+      way is to use a package such as "Pretty Good Privacy" to encrypt your
+      message, optionally compress the file using PKZIP or similar product,
+      and then send the encrypted message as an attachment.
+
+      The second way to implement secure mail is to encrypt your message
+      with the encryption software of your choice, then convert the
+      (usually binary) encrypted message to ASCII using seeEncodeBuffer. On
+      the receive side, you must extract the coded text from the message,
+      decode it with seeDecodeBuffer, and then decrypt it with your
+      decryption software.
+
+      5.4 Verifying Users
+
+      The seeVerifyUser function can be used to verify an email account
+      with the SMTP server which hosts the email account.
+
+      However, some SMTP servers may refuse to connect to non-local
+      clients. Those that do connect may refuse to honor the verify
+      request. This means that a negative verify response does NOT mean
+      that the email address is necessarily incorrect.
+
+      See the VERUSR.CBL example program.
+
+
+
+
+
+
+
+
+
+
+
+
+
+     SEE4CB Users Manual                                       Page 11
+
+      5.5 Downloading Attachments
+
+      Specify a download directory when calling seeGetEmailFile so that you
+      don't overwrite any files in the current directory. This is an
+      important security precaution.
+
+      For example:
+
+         seeGetEmailFile(Chan, 1, "email.txt", ".\download", ".\download")
+
+      Another option is to enable filename prefixing by calling
+      seeIntegerParam(Chan, SEE_FILE_PREFIX, 1) which will prefix "1-",
+      "2-", etc to the filenames of all attachments.
+
+      5.6 Auto Dial
+
+      To allow Dial-Up Networking (DUN) to dial up your ISP when you access
+      the Winsock (WIN32 only):
+
+      (1) Open the DUN folder in "My Computer", and choose
+      "Connections/Settings" from menu bar. Uncheck "prompt for information
+      before dialing" and choose "Don't prompt to use Dial-Up Networking".
+
+      (2) Use the Windows REGEDIT program to change value "00 00 00 00" to
+      the value "00 00 00 01" in the Windows Registry for the entry
+      HKEY_CURRENT_USER/Software/Microsoft/Windows/CurrentVersion/Internet
+      Settings/EnableAutodial.
+
+      (3) Use the Windows REGEDIT program to change value "00 00 00 00" to
+      the value "00 00 00 01" in the Windows Registry for the entry
+      HKEY_CURRENT_USER/Software/Microsoft/Windows/CurrentVersion/Internet
+      Settings/EnableAutodisconnect.
+
+      (4) Use the Windows REGEDIT program to change value "14 00 00 00" to
+      the value "01 00 00 00" in the Windows Registry for the entry
+      HKEY_CURRENT_USER/Software/Microsoft/Windows/CurrentVersion/Internet
+      Settings/DisconnectIdleTime. This changes the idle time (until
+      disconnect) from 20 minutes (hex 14) to one minute.
+
+      Windows NT users can use the RAS dialer.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     SEE4CB Users Manual                                       Page 12
+
+      5.8 Error Messages
+
+      Error messages are listed in the file ERRORS.TXT. These messages can
+      also be found by calling seeErrorText at runtime.
+
+
+      5.9 Message Status
+
+      The POP3 server typically inserts the header line
+
+         Status: U
+
+      in the header area of newly received messages. Once the email message
+      has been read, the POP3 server changes this to
+
+         Status: R
+
+      5.10 Return Receipt Requested
+
+      If you want the recipient to acknowledge receipt of an email, use
+      seeStringParam to add the following header line
+
+         "Disposition-Notification-To: <YOUR_EMAIL_ADDR>"
+
+      For example:
+
+         seeStringParam(Chan, SEE_SET_HEADER,
+           "Disposition-Notification-To: <info@marshallsoft.com>")
+
+      5.11 Registration Applications
+
+      It is very straight-forward to create an application designed for
+      use by your customers to email registration information to you.
+
+      Most, if not all, SMTP servers will accept email from any IP address
+      provided that the addressee is on the server. This means that anyone
+      can use your SMTP server for email to your email account.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     SEE4CB Users Manual                                       Page 13
+
+      6.0 Versions of SEE
+
+      The SMTP/POP3 Email Engine (SEE) library is available in three
+      versions. All three versions have identical functionality.
+
+      6.1 Shareware Version
+
+      The shareware version can be differentiated from the other two
+      versions by:
+
+      (1) The shareware reminder screen is displayed at startup.
+
+      (2) The "X-OEM: " header in all outgoing email is branded with
+          "X-OEM: SHAREWARE VERSION [http://www.marshallsoft.com]"
+
+      (3) All email is followed by the following two lines:
+          "______________________________________________________________"
+          "MarshallSoft SMTP Engine. Programmers see www.marshallsoft.com"
+
+      The Shareware version may not be used for commercial purposes.
+
+      6.2 Student Version
+
+      The student version can be differentiated from the other two versions
+      by:
+
+      (1) There is no shareware reminder screen.
+
+      (2) The "X-OEM: " header in all outgoing email is branded with
+          "X-OEM: STUDENT VERSION [http://www.marshallsoft.com]"
+
+      (3) There are no lines added to the end of the email as in the
+          shareware version.
+
+      The Student version may not be used for commercial purposes.
+
+      6.3 Professional Version
+
+      The professional version can be differentiated from the other two versions
+      by:
+
+      (1) There is no shareware reminder screen.
+
+      (2) The "X-OEM: " header in all outgoing email is branded with
+          your company name.
+
+      (3) There are no lines added to the end of the email as in the
+          shareware version.
+
+      The professional version may be distributed with your application as
+      per the the software license.
+
+
+
+
+
+
+
+     SEE4CB Users Manual                                       Page 14
+
+      7.0 Using SEE with Other Languages
+
+      The SMTP/POP3 Email Engine DLL can be used with any application
+      written in any language capable of calling the Windows 32-bit API.
+
+      Also note that there are versions for C/C++ (SEE4C), Visual Basic
+      (SEE4VB), PowerBASIC (SEE4PB), Delphi (SEE4D), Visual FoxPro
+      (SEE4FP), Visual dBase (SEE4DB), COBOL (SEE4CB), and Fortran (SEE4F).
+
+      8.0 Problems
+
+      First, be sure you are passing the proper key code. See section 5.1.
+      Before attempting to run any of the example programs, you should
+      already be able to connect to the Internet (or your TCP/IP LAN) and
+      run your email client program, such as Eudora or Pegasus Mail.
+
+      If you cannot get your application to run properly, first compile and
+      run the example programs. If you call us to report a possible bug in
+      the library, the first thing we will ask is if the example programs
+      run correctly.
+
+      Be sure to test the code returned from SEE functions. Then, call
+      seeErrorText to get the text associated with the error code.
+
+      For example:
+
+      +-------------------------------------------------------------------+
+      |                                                                   |
+      | WORKING-STORAGE SECTION.                                          |
+      |  01  BUF_LEN  PIC 9(9) COMP-5 VALUE 80.                           |
+      |  01  BUFFER   PIC X(80).                                          |
+      |                                                                   |
+      | CALL "seeErrorText" WITH STDCALL USING                            |
+      |    BY VALUE     CHANNEL   *> channel (normally 0)                 |
+      |    BY VALUE     SEE_CODE  *> error code from previous call        |
+      |    BY REFERENCE BUFFER    *> buffer for error message             |
+      |    BY VALUE     BUF_LEN   *> size of above buffer                 |
+      | END-CALL                                                          |
+      |                                                                   |
+      +-------------------------------------------------------------------+
+
+
+      Another good idea is to turn on logging by calling
+
+         seeStringParam(Chan, SEE_LOG_FILE, logfilename)
+
+      If you encounter a problem that you cannot resolve, give us a call or
+      email us at support@marshallsoft.com.
+
+
+
+
+
+
+
+
+
+
+     SEE4CB Users Manual                                       Page 15
+
+      9.0 Example Programs
+
+      Before compiling the example programs, edit the include each program
+      file with your SMTP/POP3 host and email address. Refer to section 3.4
+      for more information on SMTP/POP3 server names.
+
+      9.1 SEEVER
+
+      SEEVER displays the SEE version number and the SEE registration
+      string. It does not require a connection. Compile this program first
+      to verify your installation of SEE4CB.
+
+      9.2 MAILER
+
+      MAILER emails a message, including an optional MIME attachment. All
+      necessary parameters are coded inside MAILER.CBL.
+
+      9.3 STATUS
+
+      STATUS reads the number of email messages waiting on your POP3
+      server, and displays the "DATE:", "FROM:", and "SUBJECT:" header
+      fields from each email.  All necessary parameters are coded inside
+      STATUS.CBL.
+
+      9.5 READER
+
+      READER reads an email message from your POP3 server, including any
+      MIME attachments. The email message is saved as a file. All necessary
+      parameters are coded inside READER.CBL.
+
+      9.6 DRIVER
+
+      DRIVER is similar to MAILER, except that it calls seeDriver directly,
+      which allows it to display the progress of the upload. All necessary
+      parameters are coded inside DRIVER.CBL.
+
+      For more information on the direct method (calling seeDriver
+      directly), see section 4.2 "Direct Method".
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     SEE4CB Users Manual                                       Page 16
+
+      10.0 Legal Issues
+
+      10.1 Registration
+
+      The professional version of SEE4CB may be registered for $95 plus $8
+      S&H ($14 outside of North America).
+
+      The professional version DLL is also branded with your company name.
+
+      To order, contact us as shown on the title page of this manual. All
+      prices are guaranteed for one year from the release date.
+
+      Multiple copy discounts (3 or more) and site licenses are available.
+      Please call for details.
+
+      We accept American Express, VISA, MasterCard, Discover, checks in US
+      dollars drawn on a US bank, International Postal Money Orders, and
+      purchase orders (POs) within the USA from recognized US schools and
+      companies listed in Dun & Bradstreet.
+
+      For credit card orders, be sure to include the account number, the
+      expiration date, the exact name on the card, and the complete card
+      billing address (the address to which the credit card bill is
+      mailed).
+
+      Print the file INVOICE.TXT if a "Pro Forma" invoice is needed. Note
+      that all ordering information collected, including email addresses,
+      is kept strictly confidential. The registered package includes:
+
+           o  Win32 SEE Library w/o shareware screens.
+           o  Printed Users Manual and Reference Manual.
+           o  Telephone and email support for one year.
+
+      The registered user will receive the latest version of SEE4CB shipped
+      by US second day priority mail (packet airmail overseas).  A 3.5"
+      HD diskette is provided.
+
+      10.2 Academic Discount
+
+      We offer an "academic price" of 40% off the normal price for prepaid
+      email orders to faculty and full time students currently enrolled in
+      any accredited high school, college, or university. To qualify for
+      the discount, your school must have a web site and you must have an
+      email address at your school.
+
+      When ordering, ask for the "academic discount", or enter "student
+      at" (or "faculty at") and your schools web site address (URL) in the
+      comments field of the order form on our web site order page . Your
+      order will be sent to your email address at your school.
+
+      This offer is not retroactive and cannot be used with any other
+      discount. Products bought with academic pricing can not be used for
+      any commercial purpose.
+
+
+
+
+
+     SEE4CB Users Manual                                       Page 17
+
+      10.3 License
+
+      MarshallSoft Computing, Inc. grants the registered user of SEE4CB the
+      right to use one copy of the SEE4CB DLL's on a single computer in the
+      development of any software product. The user may not use the library
+      on more than one computer at the same time.
+
+      The "student" ($57) registered DLL's may not be distributed under any
+      circumstances, nor may they be used for any commercial purpose.
+
+      The "professional" ($95) registered DLL's may be distributed (without
+      royalty) in object form only, as part of the user's compiled
+      application. The registered DLL's may NOT be distributed as part of
+      any software development system (compiler or interpreter) without our
+      express written permission.
+
+      When you register, you will be sent a "key code" which enables access
+      to the registered DLL's. You may NOT distribute or make known this
+      key code. (see section 5.1 "Key Code").
+
+      10.4 Warranty
+
+      THIS SOFTWARE, WHETHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT
+      LIMITED TO ANY IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+      A PARTICULAR PURPOSE, AND ALL SUCH WARRANTIES ARE EXPRESSLY AND
+      SPECIFICALLY DISCLAIMED. NEITHER MARSHALLSOFT COMPUTING, INC.  NOR
+      ANYONE ELSE WHO HAS BEEN INVOLVED IN THE CREATION, PRODUCTION, OR
+      DELIVERY OF THIS SOFTWARE SHALL BE LIABLE FOR ANY INDIRECT,
+      CONSEQUENTIAL, OR INCIDENTAL DAMAGES ARISING OUT OF THE USE OR
+      INABILITY TO USE SUCH SOFTWARE EVEN IF MARSHALLSOFT COMPUTING, INC.
+      HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES OR CLAIMS. IN NO
+      EVENT SHALL MARSHALLSOFT COMPUTING, INC.'S LIABILITY FOR ANY SUCH
+      DAMAGES EVER EXCEED THE PRICE PAID FOR THE LICENSE TO USE THE
+      SOFTWARE, REGARDLESS OF THE FORM OF THE CLAIM. THE PERSON USING THE
+      SOFTWARE BEARS ALL RISK AS TO THE QUALITY AND PERFORMANCE OF THE
+      SOFTWARE.
+
+      Some states do not allow the exclusion of the limit of liability for
+      consequential or incidental damages, so the above limitation may not
+      apply to you.
+
+      This agreement shall be governed by the laws of the State of Alabama
+      and shall inure to the benefit of MarshallSoft Computing, Inc.  and
+      any successors, administrators, heirs and assigns.  Any action or
+      proceeding brought by either party against the other arising out of
+      or related to this agreement shall be brought only in a STATE or
+      FEDERAL COURT of competent jurisdiction located in Madison County,
+      Alabama. The parties hereby consent to in personam jurisdiction of
+      said courts.
+
+
+
+
+
+
+
+
+
+     SEE4CB Users Manual                                       Page 18
+
+      11.0 Summary
+
+      11.1 Revision History
+
+      The SMTP/POP3 Email Engine DLLs (SEE16.DLL and SEE32.DLL) are written
+      in ANSI C. All language versions of SEE (C/C++, Delphi, Visual Basic,
+      COBOL, COBOL, Fortran) use the same identical DLLs.
+
+      Version 1.0: June 8, 1998.
+
+          o  Initial version.
+
+      Version 2.0: [COBOL version not released]
+
+          o  POP3 capability added.
+
+      Version 2.1: [COBOL version not released]
+
+          o  Time zone calculated automatically.
+          o  Fixed bug in seeClose.
+          o  Corrected POP3 problem when boundary definition on 2nd line.
+          o  Added support for alternate MIME boundaries.
+          o  Added seeVerifyUser function.
+          o  Added SEE_GET_REGISTRATION, SEE_GET_CONNECT_STATUS,
+             SEE_GET_ATTACH_COUNT, and SEE_GET_LAST_RESPONSE.
+          o  Added GETDOC, SEEVER, and VERUSR example programs.
+          o  SMTP performance improved.
+          o  Added seeEncodeBuffer and seeDecodeBuffer functions.
+          o  Added SEE_FILE_PREFIX and SEE_SET_REPLY parameters.
+
+      Version 3.0: [COBOL version not released]
+
+          o  Modified SEE to be fully threadable (adding seeAttach and
+             seeRelease).
+          o  Added seeGetEmailUID function.
+          o  Handles "inline" email text properly.
+          o  Optionally decodes unnamed attachments.
+          o  Added ability to add header lines (SEE_SET_HEADER).
+          o  Can use alternate ports for SMTP or POP3.
+          o  Win16 version can get time zone from TZ environment variable.
+          o  Quoted-printable messages can handle soft line breaks.
+          o  Quoted-printable message can handle embedded HTML text.
+
+      Version 3.1: September 1, 1999.
+
+          o  Support ISO-8859-1 (Q or B) encoded attachment filenames.
+          o  Support ISO-8859-1 (Q only) on subject line
+          o  SEE_SAVED_TO_MSG parameter added.
+          o  "+OK" line not written to email message file.
+          o  Added seeExtractLine function.
+
+
+
+
+
+
+
+
+     SEE4CB Users Manual                                       Page 19
+
+      11.2 SEE4CB Function Summary
+
+      Refer to the SEE4CB Reference Manual (SEE4CB_R.TXT) for detailed
+      information on the communications and support functions.  A one line
+      summary of each function follows.
+
+      There are 24 functions in the SEE library.
+
+      +-------------------+-----------------------------------------------+
+      |        seeAttach  |  Attaches SEE.                                |
+      |         seeClose  |  Closes SMTP/POP3 Email Engine.               |
+      |         seeDebug  |  Returns debug information.                   |
+      |  seeDecodeBuffer  |  Decodes base-64 buffer.                      |
+      |   seeDeleteEmail  |  Deletes email.                               |
+      |        seeDriver  |  Executes next SEE state.                     |
+      |  seeEncodeBuffer  |  Encodes base-64 buffer.                      |
+      |     seeErrorText  |  Get text associated with error code.         |
+      |   seeExtractLine  |  Extracts specied line by number.             |
+      |   seeExtractText  |  Extracts line containing specified text.     |
+      | seeGetEmailCount  |  Get number of emails waiting on server.      |
+      |  seeGetEmailFile  |  Read email file and save to disk.            |
+      |  seeGetEmailSize  |  Get size of email message on server.         |
+      | seeGetEmailLines  |  Read email lines into buffer.                |
+      |   seeGetEmailUID  |  Get email message user ID string.            |
+      |  seeIntegerParam  |  Sets SEE integer parameter.                  |
+      |   seePop3Connect  |  Connects to POP3 server.                     |
+      |       seeRelease  |  Releases SEE.                                |
+      |     seeSendEmail  |  Sends email and attachments.                 |
+      |   seeSmtpConnect  |  Connects to SMTP server.                     |
+      |    seeStatistics  |  Returns runtime statistics.                  |
+      |   seeStringParam  |  Sets SEE string parameter.                   |
+      | seeVerifyFormat   |  Check email address format.                  |
+      |   seeVerifyUser   |  Check email address with SMTP server.        |
+      +-------------------+-----------------------------------------------+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     SEE4CB Users Manual                                       Page 20
+
+      11.3 SEE4CB Error Return Code List
+
+      The complete list of SEE error codes follows.
+
+      +-----------------------+-----------------------------------------+
+      | SEE_NO_ERROR          | No error.                               |
+      | SEE_CANNOT_COMPLY     | Cannot comply. Not always an error.     |
+      +-----------------------+-----------------------------------------+
+      | SEE_ABORTED           | The DLL has been corrupted.             |
+      | SEE_ALREADY_ATTACHED  | seeAttach already called.               |
+      | SEE_ALREADY_CONNECTED | Already connected to server.            |
+      | SEE_ATTACH_PATH_NULL  | Attachment is missing.                  |
+      | SEE_BACK_OVERFLOW     | Response buffer has overflowed.         |
+      | SEE_BAD_ADDRESS_CHAR  | Bad character in email address.         |
+      | SEE_BAD_DOTTED        | Bad dotted address.                     |
+      | SEE_BUFFER_NULL_ARG   | Required buffer is missing.             |
+      | SEE_BAD_KEY_CODE      | Bad key code (2nd argument in seeAttach)|
+      | SEE_BUFFER_SIZE_ARG   | Buffer size argument is not positive.   |
+      | SEE_CANNOT_ATTACH     | Cannot access WINSOCK.                  |
+      | SEE_CANNOT_CREATE     | Cannot create file.                     |
+      | SEE_CANNOT_OPEN       | Cannot open file.                       |
+      | SEE_CHAN_OUT_OF_RANGE | Channel number out of range.            |
+      | SEE_CONNECT_ERROR     | Error attempting to connect.            |
+      | SEE_EMAIL_PATH_NULL   | Required file path is missing.          |
+      | SEE_EMPTY_ADDRESS     | EMPTY email address.                    |
+      | SEE_EOF               | End of file (socket has been closed).   |
+      | SEE_FILENAME_NULL_ARG | Required filename is missing.           |
+      | SEE_FROM_NULL_ARG     | FromPtr is NULL.                        |
+      | SEE_IS_BLOCKING       | Socket is currently blocking.           |
+      | SEE_MISSING_AT_CHAR   | Missing '@' character in email address. |
+      | SEE_MISSING_FROM      | Missing FROM email address.             |
+      | SEE_MISSING_LEFT      | Missing '<' delimiter in email address. |
+      | SEE_MISSING_RIGHT     | Missing '>' terminating email address.  |
+      | SEE_MSG_NBR_RANGE     | Message number out of range.            |
+      | SEE_NO_RECIPIENTS     | Must have at least one recipient.       |
+      | SEE_NO_SERVER         | Cannot find Smtp server.                |
+      | SEE_NOT_ATTACHED      | Must call seeAttach first.              |
+      | SEE_NOT_CONNECTED     | Not connected to server                 |
+      | SEE_NULL_POINTER      | Unexpected NULL pointer.                |
+      | SEE_PASS_NULL_ARG     | Required POP3 password argument missing.|
+      | SEE_POP3_ERROR        | Error returned by POP3 server.          |
+      | SEE_POP3_ONLY         | Must be connected to POP3 server.       |
+      | SEE_RCPT_NULL_ARG     | ToPtr is NULL.                          |
+      | SEE_SMTP_ERROR        | SMTP returned error.                    |
+      | SEE_SMTP_NULL_ARG     | SMTP Server not specified.              |
+      | SEE_SMTP_ONLY         | Must be connected to SMTP server.       |
+      | SEE_SOCK_READ_ERROR   | Socket read error.                      |
+      | SEE_SOCK_WRITE_ERROR  | Socket write error.                     |
+      | SEE_TIMED_OUT         | Socket timed out awaiting data.         |
+      | SEE_TOO_MANY_AT_CHARS | Too many '@' symbols in email address.  |
+      +-----------------------+-----------------------------------------+
+
+
+
+
+
+
+
+     SEE4CB Users Manual                                       Page 21
+

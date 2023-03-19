@@ -1,0 +1,195 @@
+000010     *> Fujitsu COBOL
+000020     *> SMTP/POP3 Email Engine (SEE) Library Declarations Ver 3.1
+000040     *>
+000060     SYMBOLIC CONSTANT
+000070       SEE_MIN_RESPONSE_WAIT IS  1
+000080       SEE_MAX_RESPONSE_WAIT IS  2
+000090       SEE_CONNECT_WAIT      IS  3
+000100       SEE_DISABLE_MIME      IS  4
+000110       SEE_MIN_LINE_WAIT     IS  5
+000120       SEE_MAX_LINE_WAIT     IS  6
+000130       SEE_QUOTED_PRINTABLE  IS  8
+000140       SEE_AUTO_CALL_DRIVER  IS  9
+000150       SEE_FILE_PREFIX       IS 10
+000160       SEE_MAX_SMTP_WAIT     IS 11
+000170       SEE_MAX_POP3_WAIT     IS 12
+000180       SEE_SLEEP_TIME        IS 13
+000190       SEE_DECODE_UNNAMED    IS 14
+000200       SEE_SMTP_PORT         IS 15
+000210       SEE_POP3_PORT         IS 16
+000220       SEE_MAX_LINE_LENGTH   IS 17
+000222       SEE_ALLOW_8BITS       IS 19
+000224       SEE_LOG_FILE          IS 20
+000226       SEE_HIDE_SAVED_MSG    IS 21
+000228       SEE_HIDE_TO_ADDR      IS 22
+000250       SEE_GET_ERROR_TEXT    IS  1
+000260       SEE_GET_COUNTER       IS  2
+000270       SEE_GET_RESPONSE      IS  3
+000280       SEE_GET_SOCK_ERROR    IS  4
+000290       SEE_GET_MESSAGE_BYTES_READ  IS 10
+000300       SEE_GET_ATTACH_BYTES_READ   IS 11
+000310       SEE_GET_TOTAL_BYTES_READ    IS 12
+000320       SEE_GET_MESSAGE_BYTES_SENT  IS 13
+000330       SEE_GET_ATTACH_BYTES_SENT   IS 14
+000340       SEE_GET_TOTAL_BYTES_SENT    IS 15
+000350       SEE_GET_VERSION             IS 16
+000360       SEE_GET_MSG_COUNT           IS 17
+000370       SEE_GET_MSG_SIZE            IS 18
+000380       SEE_GET_BUFFER_COUNT        IS 19
+000390       SEE_GET_CONNECT_STATUS      IS 20
+000400       SEE_GET_REGISTRATION        IS 21
+000410       SEE_GET_ATTACH_COUNT        IS 22
+000420       SEE_GET_LAST_RESPONSE       IS 23
+000430       SEE_GET_VERIFY_STATUS       IS 24
+000440       SEE_GET_SERVER_IP           IS 25
+000450       SEE_GET_BUILD               IS 26
+000460       SEE_GET_SOCKET              IS 27
+000470       SEE_GET_LOCAL_IP            IS 28
+000480       SEE_SET_REPLY               IS 50
+000490       SEE_SET_HEADER              IS 51
+000500       QUOTED_OFF                  IS 0
+000510       QUOTED_PLAIN                IS 1
+000520       QUOTED_HTML                 IS 2
+000525       QUOTED_RICH                 IS 3.
+000530     *>  
+000540     *>
+000550     *> CALL "seeAttach" WITH STDCALL USING
+000560     *>    BY VALUE     NBR_CHANS     *> number of channels
+000570     *>    BY VALUE     KEY_CODE      *> SEE key code
+000580     *> END-CALL
+000590     *>
+000600     *> CALL "seeClose" WITH STDCALL USING 
+000610     *>    BY VALUE     CHANNEL       *> channel
+000620     *> END-CALL
+000630     *>
+000640     *> CALL "seeDebug" WITH STDCALL USING 
+000650     *>    BY VALUE     CHANNEL       *> channel
+000660     *>    BY VALUE     INDEX         *> command index
+000670     *>    BY REFERENCE BUFFER        *> resultant buffer
+000680     *>    BY VALUE     BUFLEN        *> buffer length
+000690     *> END-CALL
+000700     *>
+000710     *> CALL "seeDecodeBuffer" WITH STDCALL USING
+000720     *>    BY REFERENCE CODED_BUF     *> buffer of base-64 coded chars
+000730     *>    BY REFERENCE CLEAR_BUF     *> buffer to put decoded chars
+000740     *>    BY VALUE     BUFLEN        *> buffer length
+000750     *>
+000760     *> CALL "seeDeleteEmail" WITH STDCALL USING
+000770     *>    BY VALUE     CHANNEL       *> channel
+000780     *>    BY VALUE     MSG_NBR       *> message number (1,2,...)
+000790     *>
+000800     *> CALL "seeDriver" WITH STDCALL USING
+000810     *>    BY VALUE     CHANNEL       *> channel
+000820     *> END-CALL
+000830     *>
+000840     *> CALL "seeEncodeBuffer" WITH STDCALL USING
+000850     *>    BY REFERENCE CLEAR_BUF     *> buffer of characters to encode
+000860     *>    BY REFERENCE CODED_BUF     *> buffer to put base-64 encoded
+000870     *>    BY VALUE     BUFLEN        *> buffer length
+000880     *>
+000890     *> CALL "seeErrorText" WITH STDCALL USING 
+000900     *>    BY VALUE     CHANNEL       *> channel
+000910     *>    BY VALUE     CODE          *> error code     
+000930     *>    BY REFERENCE BUFFER        *> resultant buffer
+000940     *>    BY VALUE     BUFLEN        *> buffer length
+000950     *> END-CALL
+000960     *>
+000962     *> CALL "seeExtractLine" WITH STDCALL USING 
+000964     *>    BY REFERENCE SOURCE        *> source buffer
+000966     *>    BY VALUE     LINE          *> line number (1,2,...)
+000968     *>    BY REFERENCE BUFFER        *> resultant buffer
+000970     *>    BY VALUE     BUFLEN        *> buffer length
+000972     *> END-CALL
+000974     *>
+000976     *> CALL "seeExtractText" WITH STDCALL USING 
+000978     *>    BY REFERENCE SOURCE        *> source buffer
+000990     *>    BY REFERENCE TEXT          *> text to match
+001000     *>    BY REFERENCE BUFFER        *> resultant buffer
+001010     *>    BY VALUE     BUFLEN        *> buffer length
+001020     *> END-CALL
+001030     *>
+001040     *> CALL "seeGetEmailCount" WITH STDCALL USING 
+001050     *>    BY VALUE     CHANNEL       *> channel
+001060     *> END-CALL
+001070     *>
+001080     *> CALL "seeGetEmailFile" WITH STDCALL USING 
+001090     *>    BY VALUE     CHANNEL       *> channel
+001100     *>    BY VALUE     MSG_NBR       *> message number (1,2,...)
+001110     *>    BY REFERENCE EMAIL_NAME    *> email filename
+001120     *>    BY REFERENCE EMAIL_DIR     *> email directory
+001130     *>    BY REFERENCE ATTACH_DIR    *> attachment directory
+001140     *> END-CALL
+001150     *>
+001160     *> CALL "seeGetEmailLines" WITH STDCALL USING 
+001170     *>    BY VALUE     CHANNEL       *> channel
+001180     *>    BY VALUE     MSG_NBR       *> message number (1,2,...)
+001190     *>    BY VALUE     NBR_LINES     *> number of lines (after headers)
+001200     *>    BY REFERENCE BUFFER        *> resultant buffer
+001210     *>    BY VALUE     BUFLEN        *> buffer length
+001220     *> END-CALL
+001230     *>
+001240     *> CALL "seeGetEmailSize" WITH STDCALL USING 
+001250     *>    BY VALUE     CHANNEL       *> channel
+001260     *>    BY VALUE     MSG_NBR       *> message number (1,2,...)
+001270     *> END-CALL
+001280     *>
+001290     *> CALL "seeGetEmailUID" WITH STDCALL USING 
+001300     *>    BY VALUE     CHANNEL       *> channel
+001310     *>    BY VALUE     MSG_NBR       *> message number (1,2,...) or -1 for all
+001320     *>    BY REFERENCE BUFFER        *> resultant buffer
+001330     *>    BY VALUE     BUFLEN        *> buffer length
+001340     *> END-CALL
+001350     *>
+001360     *> CALL "seeIntegerParam" WITH STDCALL USING 
+001370     *>    BY VALUE     CHANNEL       *> channel
+001380     *>    BY VALUE     INDEX         *> parameter index
+001390     *>    BY VALUE     VALUE         *> parameter value
+001400     *> END-CALL
+001410     *> 
+001420     *> CALL "seePop3ConnectTo" WITH STDCALL USING
+001430     *>    BY VALUE     CHANNEL       *> channel
+001440     *>    BY REFERENCE POP3_SERVER   *> POP3 server name
+001450     *>    BY REFERENCE POP3_USER     *> User name
+001460     *>    BY REFERENCE POP3_PASS     *> Password
+001470     *> END-CALL
+001480     *>
+001490     *> CALL "seeRelease" WITH STDCALL 
+001500     *> END-CALL
+001510     *>
+001520     *> CALL "seeSendEmail" WITH STDCALL USING
+001530     *>    BY VALUE     CHANNEL       *> channel
+001540     *>    BY REFERENCE EMAIL_TO      *> receipient
+001550     *>    BY REFERENCE IS_ZERO       *> no CC list
+001560     *>    BY REFERENCE IS_ZERO       *> no BCC list
+001570     *>    BY REFERENCE EMAIL_SUBJ    *> email subject
+001580     *>    BY REFERENCE EMAIL_MSG     *> text of email message (or filename)
+001590     *>    BY REFERENCE ATTACHMENT    *> no attachment
+001600     *> END-CALL
+001610     *> 
+001620     *> CALL "seeSmtpConnectTo" WITH STDCALL USING
+001630     *>    BY VALUE     CHANNEL       *> channel 
+001640     *>    BY REFERENCE SMTP_SERVER   *> SMTP server name
+001650     *>    BY REFERENCE EMAIL_FROM    *> sender's email address
+001660     *>    BY REFERENCE REPLY_TO      *> Reply-To header
+001670     *> END-CALL
+001680     *>
+001690     *> CALL "seeStatistics" WITH STDCALL USING
+001700     *>    BY VALUE     CHANNEL       *> channel 
+001710     *>    BY VALUE     INDEX         *> parameter name
+001720     *> END-CALL
+001730     *>     
+001740     *> CALL "seeStringParam" WITH STDCALL USING
+001750     *>    BY VALUE     CHANNEL       *> channel
+001760     *>    BY VALUE     INDEX         *> parameter name
+001770     *>    BY REFERENCE STRING        *> parameter string
+001780     *> END-CALL
+001790     *> 
+001800     *> CALL "seeVerifyFormat" WITH STDCALL USING
+001810     *>    BY REFERENCE EMAIL_ADDR    *> email address
+001820     *> END-CALL
+001830     *>
+001840     *> CALL "seeVerifyUser" WITH STDCALL USING
+001850     *>    BY VALUE     CHANNEL       *> channel
+001860     *>    BY REFERENCE EMAIL_ADDR    *> email address
+001870     *> END-CALL
+001880     *>

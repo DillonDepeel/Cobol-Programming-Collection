@@ -1,0 +1,9 @@
+SMTP/POP3 Email Engine for COBOL.
+(SEE4CB31.ZIP). September 1, 1999. Ver 3.1.
+Email from your COBOL application. Simple API
+allows sending & receiving email, including
+MIME attachments. Knowledge of Winsock and
+TCP/IP is not needed. Requires Fujitsu or
+Micro Focus COBOL. By MarshallSoft Computing,
+Inc. Registration is $95 ($57 students) + $8
+S&H ($14 overseas).

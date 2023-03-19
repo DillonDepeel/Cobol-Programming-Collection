@@ -1,0 +1,22 @@
+===== License for Use and Distribution =================
+
+MarshallSoft Computing, Inc. grants the registered user of SEE4CB the
+right to use one copy of the SEE4CB DLL's on a single computer in the
+development of any software product. The user may not use the library on
+more than one computer at the same time.
+
+The "student" ($57) registered DLL's may not be distributed under any
+circumstances, nor may they be used for any commercial purpose.
+
+The "professional" ($95) registered DLL's may be distributed (without
+royalty) in object form only, as part of the user's compiled
+application. The registed DLL's may NOT be distributed as part of any
+software development system (compiler or interpreter) without our
+express written permission.
+
+When you register, you will be sent a "key code" which enables access to
+the registered DLL's. You may NOT distribute or make known this key
+code.
+
+[END]
+

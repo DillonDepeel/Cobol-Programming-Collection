@@ -1,0 +1,60 @@
+                    *** PRO-FORMA INVOICE ***
+
+Product:  SMTP/POP3 Email Engine for COBOL (SEE4CB; Ver 3.1)
+
+Remit to:                          Ship To:
+
+MarshallSoft Computing, Inc.       Name _____________________________________
+Post Office Box 4543
+Huntsville AL                      Company __________________________________
+35815
+                                   Address __________________________________
+Voice: 256-881-463
+  FAX: 256-880-0925                City State _______________________________
+  
+                                   Postal Code ______________________________
+email: order@marshallsoft.com
+  web: www.marshallsoft.com        Country __________________________________
+  
+                                   Phone ____________________________________
+                                     
+                                   FAX ______________________________________
+                                   
+                                   Email_____________________________________
+
+Where did you first hear about SEE4CB ? _____________________________________
+
+We  accept MasterCard, VISA, American Express, and Discover (account number,
+expiration date, exact name on your card, and card billing address required),
+checks in US dollars drawn on a US bank, and written purchase orders (POs) 
+from recognized US schools and companies listed in Dun & Bradstreet.
+
+*** REGISTRATION ***
+
+     Student version: Please remit $57 plus $8 S&H ($14 overseas).
+Professional version: Please remit $95 plus $8 S&H ($14 overseas).
+ 
+Delivery: [ ] Email (Card holder's) __________________________
+          [ ] Airmail ($8 S&H or $14 outside of North America).
+           
+The professional version is branded with the purchaser's name or company. 
+Name to register SEE4CB to: ________________________________________________
+
+For credit card sales: [ ] AmEx   [ ] M/C   [ ] VISA   [ ] Discover
+
+ Credit Card Number:_________________________________ Expires:______________
+
+ Credit Card Holder Name:___________________________________________________
+
+ Credit Card Holder Addr:___________________________________________________
+
+ Credit Card Holder City:______________________ State:______ Postal:________
+
+The registered package is mailed first class US Mail and includes:
+
+  o  SEE4CB Win32 libraries w/o shareware screens.
+  o  Printed Users Manual.
+  o  Printed Reference Manual.
+  
+IMPORTANT: Software can only be emailed to the card holder's email address. 
+

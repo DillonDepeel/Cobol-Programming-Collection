@@ -1,0 +1,20 @@
+===== Installation =====================================
+
+(1) Before installation of SEE4CB, your Windows COBOL compiler should
+already be installed on your system and tested. 
+
+(2) Create your SEE project directory, copy the SEE archive, then unzip
+the archive. For example:
+
+      MKDIR   SEE4CB
+      PKUNZIP SEE4CB31.ZIP SEE4CB
+
+(3) Run INSTALL.BAT, which will copy SEE32.DLL to your windows directory.
+
+(4) Edit the example programs with your SMTP/POP3 parameters. Refer to
+the SEE4CB Users Manual (SEE4CB_U.TXT) for more details.
+
+(5) Compile, link, and execute the test programs.
+
+
+

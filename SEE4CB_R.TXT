@@ -1,0 +1,1682 @@
+
+
+
+
+                         SMTP/POP3 Email Engine
+
+                           Library for COBOL
+
+                                 (SEE4CB)
+
+
+                            REFERENCE MANUAL
+
+
+
+                               Version 3.1
+
+                            September 1, 1999
+
+
+
+
+                     This software is provided as-is.
+              There are no warranties, expressed or implied.
+
+
+
+
+                           Copyright (C) 1999
+                           All rights reserved
+
+
+
+                       MarshallSoft Computing, Inc.
+                           Post Office Box 4543
+                           Huntsville AL 35815
+
+
+                           Voice : 256-881-4630
+                             FAX : 256-880-0925
+                           email : info@marshallsoft.com
+                             web : www.marshallsoft.com
+
+                               _______
+                          ____|__     |                (R)
+                       --+       |    +-------------------
+                         |   ____|__  |  Association of
+                         |  |       |_|  Shareware
+                         |__|   o   |    Professionals
+                       --+--+   |   +---------------------
+                            |___|___|    MEMBER
+
+
+      MARSHALLSOFT is a registered trademark of MarshallSoft Computing.
+
+
+
+
+
+     SEE4CB Reference Manual                                   Page 1
+
+                            C O N T E N T S
+
+
+
+        Chapter                                     Page
+
+        Table of Contents.............................2
+
+        General Remarks...............................3
+
+        SEE Functions.................................4
+
+           seeAttach..................................4
+           seeClose...................................5
+           seeDebug...................................6
+           seeDecodeBuffer............................7
+           seeDeleteEmail.............................8
+           seeDriver..................................9
+           seeEncodeBuffer...........................10
+           seeErrorText..............................11
+           seeExtractLine............................12
+           seeExtractText............................13
+           seeGetEmailCount..........................14
+           seeGetEmailFile...........................15
+           seeGetEmailLines..........................16
+           seeGetEmailSize...........................17
+           seeGetEmailUID............................18
+           seeIntegerParam...........................19
+           seePop3Connect............................21
+           seeRelease................................22
+           seeSendEmail..............................23
+           seeSmtpConnect............................24
+           seeStatistics.............................25
+           seeStringParam............................26
+           seeVerifyFormat...........................27
+           seeVerifyUser.............................28
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     SEE4CB Reference Manual                                   Page 2
+
+
+      General Remarks
+
+
+      All functions return an integer code. Negative values are always
+      errors. See section "SEE Error Codes". Non-negative return codes are
+      never errors.
+
+      Note that all strings are null terminated. For example:
+
+      WORKING-STORAGE SECTION.
+       01  LOG_FILENAME.
+           05  FILLER PIC X(8) VALUE "test.log".
+           05  FILLER PIC X VALUE X'00'.
+
+      The functions in SEE32.DLL can be called from any application that is
+      capable of calling the Windows API.
+
+      Channels
+
+      SEE4CB is capable of running several channels or WIN32 threads
+      at the same time. For normal applications (without threads), call
+      seeAttach with 1 as the "number of channels" and pass zero (0) as the
+      channel number in functions that require a channel number.
+
+      MicroFocus COBOL
+
+      Although we do not have MicroFocus COBOL, we have had customers
+      report success with SEE4CB. The changes necessary include adding
+      SPECIAL-NAMES to program and calling each SEE function as shown
+      below.
+
+
+         ENVIRONMENT DIVISION.
+         CONFIGURATION SECTION.
+         SPECIAL-NAMES.
+              CALL-CONVENTION 66 IS dynamicNTStdCall.
+
+         CALL dynamicNTStdCall "seeAttach" USING
+            BY VALUE NBR_CHANS
+            BY VALUE KEY_CODE
+
+      You must also set up a pointer to the SEE DLL and create a pointer
+      for all parameters that are passed by REFERENCE so that the pointer
+      can be passed by VALUE. Refer to SEE32.MFI.
+
+         Set Ptr2DLL to entry "SEE32.DLL"
+         Set Ptr2String to address of Test-String
+
+      SEE32.MFI is the SEE function declaration file for MicroFocus.
+
+
+
+
+
+
+
+
+     SEE4CB Reference Manual                                   Page 3
+
+
+      +-----------+-------------------------------------------------------+
+      | seeAttach | Attach SMTP/POP3 Email Engine.                        |
+      +-----------+-------------------------------------------------------+
+
+        SYNTAX  CALL "seeAttach" WITH STDCALL USING
+                     BY VALUE NbrChans *> Number of channels or threads
+                     BY VALUE KeyCode  *> Key code value.
+                END-CALL
+
+       REMARKS  The seeAttach function must be the first SEE call made. Pass
+                the maximum number of channels or threads that will be in
+                use. Use NbrChans = 1 for non-threaded applications.
+
+                The 'Chan' parameter for subsequent calls to SEE functions
+                must be in the range of 0 to NbrChans-1.
+
+                In WIN32, up to 128 threads (numbered from 0 to 127) can be
+                started, each of which can be connected to a different
+                server and run independently.
+
+                When SEE is registered, you will receive a 'KeyCode' which
+                matches the 'KeyCode' within the registered DLL. For the
+                shareware version, the keycode is 0.
+
+       RETURNS  < 0 : An error has occurred. See the error list.
+
+       EXAMPLE
+
+                WORKING-STORAGE SECTION.
+                 01  NBR_CHANS    PIC S9(9) COMP-5 VALUE 1.
+
+                *> attach for use with non-threaded application
+                CALL "seeAttach" WITH STDCALL USING
+                   BY VALUE     NBR_CHANS     *> number of channels
+                   BY VALUE     SEE_KEY_CODE  *> See KEYCODE.CBI
+                END-CALL.
+
+      ALSO SEE seeSmtpConnect and seePop3Connect.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     SEE4CB Reference Manual                                   Page 4
+
+
+
+      +----------+--------------------------------------------------------+
+      | seeClose | Closes SMTP Email Engine.                              |
+      +----------+--------------------------------------------------------+
+
+
+        SYNTAX  CALL "seeClose" WITH STDCALL USING
+                     BY VALUE   CHANNEL   *> channel number
+                END-CALL.
+
+       REMARKS  The seeClose function closes the connection created by
+                calling seeSmtpConnect (or seePop3Connect). seeSmtpConnect
+                (or seePop3Connect) can be called again to open a
+                connection to another SMTP (or POP3) server if desired.
+
+                Normally, there is only one seeSmtpConnect (or
+                seePop3Connect) and one seeClose in your program.
+
+       RETURNS  < 0 : An error has occured. See the error list.
+
+       EXAMPLE
+
+
+                WORKING-STORAGE SECTION.
+                 01  CHANNEL      PIC S9(9) COMP-5 VALUE 0.
+
+                *> call after sending all email.
+
+                CALL "seeClose" WITH STDCALL USING
+                   BY VALUE   CHANNEL   *> channel number
+                END-CALL>
+
+      ALSO SEE  seeConnectTo.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     SEE4CB Reference Manual                                   Page 5
+
+
+      +----------+--------------------------------------------------------+
+      | seeDebug | Returns debug information.                             |
+      +----------+--------------------------------------------------------+
+
+        SYNTAX  CALL "seeDebug" WITH STDCALL USING
+                     BY VALUE Chan       *> Channel
+                     BY VALUE Index      *> Command index.
+                     BY REFERENCE Buffer *> Buffer to place text into.
+                     BY VALUE BufLen     *> Length of above Buffer.
+                  END-CALL
+
+       REMARKS  The seeDebug function returns debug information depending
+                on the value of Index.
+
+                      SEE_GET_REGISTRATION : Gets the registration string.
+                     SEE_GET_LAST_RESPONSE : Gets last server response.
+                         SEE_GET_SERVER_IP : Gets server IP address in
+                                             "dotted" notation.
+
+       RETURNS Length of text placed into 'Buffer'.
+
+       EXAMPLE
+
+                WORKING-STORAGE SECTION.
+                 01  CHANNEL      PIC S9(9) COMP-5 VALUE 0.
+                 01  RESULT.
+                     05  FILLER PIC X(80).
+                     05  FILLER PIC X VALUE X'00'.
+                 01  RESULT_LEN PIC S9(9) COMP-5 VALUE 80.
+
+                *> Get the registration string from SEE32.DLL.
+
+                MOVE SPACES TO RESULT
+                CALL "seeDebug" WITH STDCALL USING
+                  BY VALUE     CHANNEL       *> channel
+                  BY VALUE     SEE_GET_REGISTRATION
+                  BY REFERENCE RESULT        *> resultant buffer
+                  BY VALUE     RESULT_LEN    *> buffer length
+                END-CALL
+                DISPLAY RESULT
+
+      ALSO SEE  seeStatistics.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     SEE4CB Reference Manual                                   Page 6
+
+
+      +-----------------+-------------------------------------------------+
+      | seeDecodeBuffer | Decodes buffer using BASE64.                    |
+      +-----------------+-------------------------------------------------+
+
+        SYNTAX  CALL "seeDecodeBuffer" WITH STDCALL USING
+                     BY REFERENCE Coded *> Buffer of BASE64 coded chars.
+                     BY REFERENCE Clear *> Buffer to put decoded bytes.
+                     BY VALUE Length    *> Length of 'Coded' buffer.
+                END-CALL
+
+
+       REMARKS  The seeDecodeBuffer function decodes the buffer 'Coded'
+                of length 'Length' into 'Clear', returning the length in
+                'Clear'.
+
+                The buffer 'Coded' MUST contain BASE64 encoded text, as
+                created by seeEncodeBuffer.
+
+                The buffer 'Clear' will contain the ASCII or binary data
+                that was encoded.
+
+       RETURNS  Number of bytes placed in 'Clear'.
+
+       EXAMPLE
+
+                WORKING-STORAGE SECTION.
+                 01  CODED_BUF.
+                     05 FILLER PIC X(100).
+                 01  CLEAR_BUF.
+                     05 FILLER PIC X(100).
+                 01  LENGTH PIC S9(9) COMP-5 VALUE 100.
+
+                *> decode Base-64 chars in CODED_BUF
+                CALL "seeDecodeBuffer" WITH STDCALL USING
+                   BY REFERENCE CODED_BUF
+                   BY REFERENCE CLEAR_BUF
+                   BY VALUE Length
+                END-CALL
+
+      ALSO SEE  seeEncodeBuffer.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     SEE4CB Reference Manual                                   Page 7
+
+      +----------------+--------------------------------------------------+
+      | seeDeleteEmail | Deletes email from Server.                       |
+      +----------------+--------------------------------------------------+
+
+        SYNTAX  CALL "seeDeleteEmail" WITH STDCALL USING
+                     BY VALUE Chan     *> Channel
+                     BY VALUE MsgNbr   *> message number
+                 END-CALL
+
+       REMARKS  The seeDeleteEmail function deletes the email numbered
+                'MsgNbr' from the server.
+
+                Be careful! Once an email has been deleted from the
+                server, it cannot be recovered.
+
+       RETURNS  < 0 : An error has occurred. See the error list.
+
+       EXAMPLE
+
+                WORKING-STORAGE SECTION.
+                 01 CHANNEL PIC S9(9) COMP-5 VALUE 0.
+                 01 MSG_NBR PIC S9(9) COMP-5 VALUE 1.
+
+                 *> delete email message # 1
+                 CALL "seeDeleteEmail" WITH STDCALL USING
+                     BY VALUE CHANNEL  *> Channel
+                     BY VALUE MSG_NBR  *> message number
+                 END-CALL
+
+
+      ALSO SEE  seeGetEmailCount.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     SEE4CB Reference Manual                                   Page 8
+
+
+      +-----------+-------------------------------------------------------+
+      | seeDriver | Executes next SEE state.                              |
+      +-----------+-------------------------------------------------------+
+
+
+        SYNTAX  CALL "seeDriver" WITH STDCALL
+                     BY VALUE Channel   *> Channel number
+                END-CALL.
+
+       REMARKS  The seeDriver function executes the next state in SEE32.DLL
+                after calling seeConnectTo, seeSendEmail, or seeClose
+                provided that the AUTO_DRIVER_CALL flag is disabled.
+
+                The purpose of this function is to allow the programmer to
+                get control after the driver executes each state.
+
+       RETURNS  = 0 : The driver is done.
+                < 0 : An error has occured. See the error list.
+                > 0 : The returned value is the state just executed.
+
+       EXAMPLE
+
+                WORKING-STORAGE SECTION.
+                 01  CHANNEL  PIC 9(9) COMP-5 VALUE 0.
+                 01  SEE-CODE PIC 9(9) COMP-5.
+
+                DRIVER-LOOP.
+
+                  CALL "seeDriver" WITH STDCALL USING
+                    BY VALUE CHANNEL
+                  END-CALL.
+                  *> check results
+                  MOVE PROGRAM-STATUS TO SEE-CODE
+                  IF SEE-CODE < 0 THEN
+                    DISPLAY "Error returned from seeDriver"
+                    GO TO ERROR-EXIT
+                  END-IF.
+                  *> ready to execute next state ?
+                  IF SEE-CODE > 0 THEN
+                    GO TO DRIVER-LOOP
+                  END-IF.
+                  *> Done since SEE-CODE is 0
+
+      ALSO SEE  seeIntegerParam
+
+
+
+
+
+
+
+
+
+
+
+
+
+     SEE4CB Reference Manual                                   Page 9
+
+
+      +-----------------+-------------------------------------------------+
+      | seeEncodeBuffer | Encodes buffer using BASE64.                    |
+      +-----------------+-------------------------------------------------+
+
+        SYNTAX  CALL "seeEncodeBuffer" WITH STDCALL USING
+                     BY REFERENCE Clear   *> Buffer to put decoded bytes.
+                     BY REFERENCE Coded   *> Buffer to put BASE64 encoded.
+                     BY VALUE     Length  *> Length of 'Clear' buffer.
+                 END-CALL
+
+       REMARKS  The seeEncodeBuffer function encodes 'Clear' into
+                'Coded' using Base-64 encoding.
+
+                The 'Clear' buffer may contain any ASCII or binary data.
+
+                The 'Coded' buffer will contain 7-bit ASCII data broken
+                into lines of 76 characters followed by a carriage return
+                Chr$(13) and line feed Chr$(10). That is, 'Coded' will
+                contains multiple lines.
+
+       RETURNS  Number of bytes in 'Coded'.
+
+       EXAMPLE
+
+               WORKING-STORAGE SECTION.
+                 01  CODED_BUF.
+                     05 FILLER PIC X(100).
+                 01  CLEAR_BUF.
+                     05 FILLER PIC X(100).
+                 01  LENGTH PIC S9(9) COMP-5 VALUE 100.
+
+                *> encode (possibly binary) values in CLEAR_BUF.
+                CALL "seeEncodeBuffer" WITH STDCALL USING
+                   BY REFERENCE CLEAR_BUF
+                   BY REFERENCE CODED_BUF
+                   BY VALUE Length
+                END-CALL
+
+      ALSO SEE  seeIntegerParam, seeSmtpConnect, and seePop3Connect.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     SEE4CB Reference Manual                                   Page 10
+
+
+      +--------------+----------------------------------------------------+
+      | seeErrorText | Get text associated with error code.               |
+      +--------------+----------------------------------------------------+
+
+
+        SYNTAX  CALL "seeErrorText" WITH STDCALL USING
+                    BY VALUE     Chan   *> Channel number
+                    BY VALUE     Code   *> Error code returned by SEE.
+                    BY REFERENCE Buffer *> Buffer to place error text into.
+                    BY VALUE     BufLen *> Length of above Buffer.
+                END-CALL.
+
+       REMARKS  The seeErrorText function is used to get the error text
+                associated with an an error code as returned by
+                selConnectTo, seeSendEmail, seeClose, or seeDriver.
+
+                When an error occurs, seeErrorText can be used to get the
+                error text so that it can be displayed for the user.
+
+       EXAMPLE
+
+                WORKING-STORAGE SECTION.
+                 01  CHANNEL      PIC 9(9) COMP-5 VALUE 0.
+                 01  SEE-CODE     PIC 9(9) COMP-5.
+                 01  BUFFER       PIC X(80).
+                 01  BUF-LEN      PIC 9(9) COMP-5 VALUE 80.
+
+                CALL "seeErrorText" WITH STDCALL USING
+                  BY VALUE     CHANNEL
+                  BY VALUE     SEE-CODE
+                  BY REFERENCE BUFFER
+                  BY VALUE     BUF-LEN
+                END-CALL
+                DISPLAY BUFFER
+
+      ALSO SEE
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     SEE4CB Reference Manual                                   Page 11
+
+
+      +----------------+--------------------------------------------------+
+      | seeExtractLine | Extract specified line from buffer.              |
+      +----------------+--------------------------------------------------+
+
+
+        SYNTAX  CALL "seeExtractLine" WITH STDCALL USING
+                    BY REFERENCE Source   *> Text buffer to search.
+                    BY VALUE     Line     *> Line number (1,2,...) wanted.
+                    BY REFERENCE Buffer   *> Buffer for line if found.
+                    BY VALUE     BufSize  *> Size of 'Buffer'.
+                END-CALL.
+
+
+       REMARKS  The seeExtractLine function is used to extract line 'Line'
+                from buffer 'Source'. If found, the entire line is copied
+                to 'Buffer', up to a maximum of 'BufSize' bytes.
+
+                The primary purpose of seeExtractLine is to extract header
+                lines (by line number) from the buffer after calling
+                seeGetEmailLines. Recall that all lines returned by
+                seeGetEmailLines are terminated by a carriage return,
+                linefeed pair. Lines are numbered from 1 rather than 0.
+
+                The seeExtractLine does not require a connection to a SMTP
+                or POP3 server.
+
+       RETURNS  Number of bytes placed in 'Buffer'.
+
+       EXAMPLE
+
+               WORKING-STORAGE SECTION.
+                01  RESULT.
+                    05  FILLER PIC X(55).
+                    05  FILLER PIC X VALUE X'00'.
+                01  RESULT_LEN PIC S9(9) COMP-5 VALUE 55.
+                01  LINE_NBR   PIC S9(9) COMP-5
+                01  BIGBUF.
+                    05  FILLER PIC X(1000).
+                    05  FILLER PIC X VALUE X'00'.
+                01  BIGBUF_LEN PIC S9(9) COMP-5 VALUE 1000.
+
+               *> (assume just called seeGetEmailLines...)
+               MOVE SPACES TO RESULT
+               *> find header line 3
+               MOVE 3 TO LINE_NBR
+               CALL "seeExtractText" WITH STDCALL USING
+                 BY REFERENCE BIGBUF        *> source buffer
+                 BY VALUE     LINE_NBR      *> line number wanted
+                 BY REFERENCE RESULT        *> resultant buffer
+                 BY VALUE     RESULT_LEN    *> buffer length
+               END-CALL
+
+      ALSO SEE  seeGetEmailLines and seeExtractText.
+
+
+
+
+     SEE4CB Reference Manual                                   Page 12
+
+
+      +----------------+--------------------------------------------------+
+      | seeExtractText | Extract specified text from buffer.              |
+      +----------------+--------------------------------------------------+
+
+        SYNTAX  CALL "seeExtractText" WITH STDCALL USING
+                    BY REFERENCE Source   *> Text buffer to search.
+                    BY REFERENCE Text     *> Text searching for.
+                    BY REFERENCE Buffer   *> Buffer for line if found.
+                    BY VALUE     BufSize  *> Size of 'Buffer'.
+                END-CALL.
+
+       REMARKS  The seeExtractText function is used to search the text
+                buffer 'Source' for text 'Text'. If found, the entire line
+                is copied to 'Buffer', up to a maximum of 'BufSize' bytes.
+
+                The primary purpose of seeExtractText is to extract header
+                lines from the buffer after calling seeGetEmailLines.
+
+                The seeExtractText does not require a connection to a SMTP
+                or POP3 server.
+
+                For an example of use, see the STATUS sample program.
+
+       RETURNS  Number of bytes placed in 'Buffer'.
+
+       EXAMPLE
+
+               WORKING-STORAGE SECTION.
+                01  RESULT.
+                    05  FILLER PIC X(55).
+                    05  FILLER PIC X VALUE X'00'.
+                01  RESULT_LEN PIC S9(9) COMP-5 VALUE 55.
+                01  BIGBUF.
+                    05  FILLER PIC X(1000).
+                    05  FILLER PIC X VALUE X'00'.
+                01  BIGBUF_LEN PIC S9(9) COMP-5 VALUE 1000.
+
+               *> (assume just called seeGetEmailLines...)
+               MOVE SPACES TO RESULT
+               *> find header line with "From: "
+               CALL "seeExtractText" WITH STDCALL USING
+                 BY REFERENCE BIGBUF        *> source buffer
+                 BY REFERENCE FROM-TEXT     *> text to match
+                 BY REFERENCE RESULT        *> resultant buffer
+                 BY VALUE     RESULT_LEN    *> buffer length
+               END-CALL
+
+      ALSO SEE  seeGetEmailLines.
+
+
+
+
+
+
+
+
+
+     SEE4CB Reference Manual                                   Page 13
+
+      +------------------+------------------------------------------------+
+      | seeGetEmailCount | Get number of email messages on server.        |
+      +------------------+------------------------------------------------+
+
+        SYNTAX  CALL "seeGetEmailCount" WITH STDCALL USING
+                    BY VALUE Channel   *> Channel number
+                END-CALL
+
+
+       REMARKS  The seeGetEmailCount function returns the number of
+                messages waiting on the server, independent of whether
+                they have been previously read.
+
+                If you have disabled the driver AUTO_CALL capability,
+                the message count must be found by
+
+                   Count = seeStatistics(SEE_GET_MSG_COUNT)
+
+                after calling seeDriver until it returns 0. Refer to the
+                STATUS sample program for an example of use.
+
+       RETURNS  < 0 : An error has occurred. See the error list
+                >=0 : The number of email messages waiting (if AUTO_CALL
+                      was disabled).
+
+       EXAMPLE
+
+               CALL "seeGetEmailCount" WITH STDCALL USING
+                 BY VALUE Channel
+               END-CALL
+
+               IF PROGRAM-STATUS >= 0 THEN
+                 DISPLAY PROGRAM-STATUS " emails on server"
+               END-IF.
+
+      ALSO SEE  seeGetEmailLines.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     SEE4CB Reference Manual                                   Page 14
+
+      +-----------------+-------------------------------------------------+
+      | seeGetEmailFile | Read email message & save to a file.            |
+      +-----------------+-------------------------------------------------+
+
+        SYNTAX  CALL "seeGetEmailFile" WITH STDCALL USING
+                     BY VALUE     Channel    *> Channel
+                     BY VALUE     MsgNbr     *> header #
+                     BY REFERENCE EmailName  *> email filename
+                     BY REFERENCE EmailDir   *> directory for email
+                     BY REFERENCE AttachDir  *> directory for attachments
+                END-CALL
+
+       REMARKS  The seeGetEmailFile reads the email message 'MsgNbr',
+                saving it to disk as filename 'EmailName' in directory
+                'EmailDir', and saving MIME attachments to directory
+                'AttachDir'.
+
+                Be sure that the specified directories exist before calling
+                this function. Use '.' to specify the current directory.
+
+                Also note that a older file of the same name as being saved
+                will be overwritten by the newer file.
+
+       RETURNS  < 0 : An error has occurred. See the error list
+
+       EXAMPLE
+
+               WORKING-STORAGE SECTION.
+                01  EMAIL_DIR.
+                    05  FILLER PIC X(6) VALUE ".\".
+                    05  FILLER PIC X    VALUE X'00'.
+                01  ATTACH_DIR.
+                    05  FILLER PIC X(6) VALUE ".\".
+                    05  FILLER PIC X    VALUE X'00'.
+                01  NBR_MESSAGES PIC S9(9) COMP-5 VALUE 0.
+                01  COUNTER PIC S9(9) COMP-5 VALUE 1.
+
+               CALL "seeGetEmailFile" WITH STDCALL USING
+                  BY VALUE     CHANNEL
+                  BY VALUE     COUNTER       *> message number (1,2,...)
+                  BY REFERENCE EMAIL_NAME
+                  BY REFERENCE EMAIL_DIR
+                  BY REFERENCE ATTACH_DIR
+               END-CALL.
+
+      ALSO SEE  seeGetEmailLines.
+
+
+
+
+
+
+
+
+
+
+
+
+     SEE4CB Reference Manual                                   Page 15
+
+      +------------------+------------------------------------------------+
+      | seeGetEmailLines | Read lines from email message.                 |
+      +------------------+------------------------------------------------+
+
+        SYNTAX  CALL "seeGetEmailLines" WITH STDCALL USING
+                     BY VALUE     Channel   *> Channel
+                     BY VALUE     MsgNbr    *> message #
+                     BY VALUE     Lines     *> # lines
+                     BY REFERENCE Buffer    *> buffer for email
+                     BY VALUE     Size      *> size of buffer
+                END-CALL
+
+       REMARKS  The seeGetEmailLines function reads all header lines plus
+                the number of body lines specified by the 'Lines' argument
+                into 'Buffer', up to a maximum of 'Size' bytes.
+
+                The primary purpose of this function is to read the header
+                lines without having to read the entire message.
+
+                If you have disabled the driver AUTO_CALL capability,
+                the size must be found by
+
+                   Count = seeStatistics(Chan, SEE_GET_BUFFER_COUNT)
+
+                after calling seeDriver until it returns 0.
+
+                See the STATUS sample code for an example of use.
+
+       RETURNS  < 0 : An error has occurred. See the error list.
+                >=0 : The number of bytes read (if AUTO_CALL
+                      was disabled).
+
+       EXAMPLE
+
+               WORKING-STORAGE SECTION.
+                01  CHANNEL PIC S9(9) COMP-5 VALUE 0.
+                01  MSG_NBR PIC S9(9) COMP|5 VALUE 1.
+                01  IS_ZERO PIC S9(9) COMP-5 VALUE 0.
+                01  BIGBUF.
+                    05  FILLER PIC X(1000).
+                    05  FILLER PIC X VALUE X'00'.
+                01  BIGBUF_LEN PIC S9(9) COMP-5 VALUE 1000.
+
+               CALL "seeGetEmailLines" WITH STDCALL USING
+                 BY VALUE     CHANNEL
+                 BY VALUE     MSG_NBR
+                 BY VALUE     IS_ZERO
+                 BY REFERENCE BIGBUF
+                 BY VALUE     BIGBUF_LEN
+
+      ALSO SEE  seeGetEmailFile
+
+
+
+
+
+
+
+     SEE4CB Reference Manual                                   Page 16
+
+      +-----------------+-------------------------------------------------+
+      | seeGetEmailSize | Get size of email message in bytes.             |
+      +-----------------+-------------------------------------------------+
+
+        SYNTAX  CALL "seeGetEmailSize" WITH STDCALL USING
+                     BY VALUE Channel   *> Channel
+                     BY VALUE MsgNbr    *> message number
+                END-CALL
+
+       REMARKS  The seeGetEmailSize function returns the size in bytes of
+                the specified message # 'MsgNbr'.
+
+                seeGetEmailSize returns the size of the entire email
+                message, including any attachments. Note that attachments
+                will be encoded (MIME, UUENCODE, etc.), and thus take up
+                more room than after they are decoded.
+
+                If you have disabled the driver AUTO_CALL capability,
+                the size must be found by
+
+                   Count = seeStatistics(Chan, SEE_GET_MSG_SIZE)
+
+                after calling seeDriver until it returns 0.
+
+                See the READER sample code for an example of use.
+
+       RETURNS  < 0 : An error has occurred. See the error list
+                >=0 : The size of the email in bytes on the server
+                      (if AUTO_CALL was disabled).
+
+       EXAMPLE
+
+                WORKING-STORAGE SECTION.
+                 01  CHANNEL PIC S9(9) COMP-5 VALUE 0.
+                 01  MSG_NBR PIC S9(9) COMP-5 VALUE 1.
+
+                CALL "seeGetEmailSize" WITH STDCALL USING
+                  BY VALUE CHANNEL
+                  BY VALUE MSG_NBR
+                END-CALL
+
+      ALSO SEE  seeGetEmailCount.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     SEE4CB Reference Manual                                   Page 17
+
+      +----------------+--------------------------------------------------+
+      | seeGetEmailUID | Get user ID from the server.                     |
+      +----------------+--------------------------------------------------+
+
+        SYNTAX  CALL "seeGetEmailUID" WITH STDCALL USING
+                     BY VALUE     Chan     *> Channel
+                     BY VALUE     MsgNbr   *> message (-1 for all) #
+                     BY REFERENCE Buffer   *> Pointer to Buffer
+                     BY VALUE     BufLen   *> size of buffer
+                END-CALL
+
+       REMARKS  The seeGetEmailUID function is used to ask the POP3 server
+                for the unique user ID string for a particular email
+                message, or for all email messages on the server.
+
+                The UID string is always the same for a particular email
+                message, regardless of the email message number.
+
+                Most POP3 servers can provide such a unique ID string. A
+                few POP3 servers do not provide ID strings.
+
+       RETURNS  < 0 : An error has occurred. See the error list
+                >=0 : The number of bytes in moved into 'Buffer'.
+                      (if AUTO_CALL was disabled).
+
+       EXAMPLE
+
+
+      ALSO SEE  seeGetEmailCount.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     SEE4CB Reference Manual                                   Page 18
+
+
+      +-----------------+-------------------------------------------------+
+      | seeIntegerParam | Sets SEE integer parameter.                     |
+      +-----------------+-------------------------------------------------+
+
+
+        SYNTAX  CALL "seeIntegerParam" WITH STDCALL USING
+                    BY VALUE Channel    *> Channel
+                    BY VALUE ParmIndex  *> Parameter index (see below).
+                    BY VALUE ParmValue  *> Value of parameter to set.
+                END-CALL.
+
+       REMARKS The seeIntegerParam is used to set an integer parameter as
+                defined in SEE.H. For more information, refer to the Users
+                Manual. All times are in milliseconds.
+
+
+                        Parameter Name     Default
+                 SEE_MIN_RESPONSE_WAIT  :  100
+                 SEE_MAX_RESPONSE_WAIT  :  25000
+                     SEE_MIN_LINE_WAIT  :  0
+                     SEE_MAX_LINE_WAIT  :  25000
+                      SEE_CONNECT_WAIT  :  60000
+                  SEE_QUOTED_PRINTABLE  :  0
+                  SEE_AUTO_CALL_DRIVER  :  1
+                        SEE_FILE_PREFIX :  0
+                         SEE_SLEEP_TIME : 50
+
+                SEE_MIN_RESPONSE_WAIT is the delay before looking for the
+                server's response.
+
+                SEE_MAX_RESPONSE_WAIT is the time after which a
+                "time-out" error occurs if the server has not responded.
+
+                SEE_MIN_LINE_WAIT is the delay before checking if the
+                server is ready to accept the next line of input.
+
+                SEE_MAX_LINE_WAIT is the time after which a "time-out"
+                error is declared if the server has not responded.
+
+                SEE_CONNECT_WAIT is the maximum time allowed to complete a
+                connection to the SMTP server.
+
+
+                (continued on next page)
+
+
+
+
+
+
+
+
+
+
+
+
+
+     SEE4CB Reference Manual                                   Page 19
+
+
+
+                SEE_QUOTED_PRINTABLE controls whether messages are or are
+                not encoded as quoted-printable. Use QUOTED_OFF (0) to
+                disable quoting, QUOTED_PLAIN (1) to enable normal quoting,
+                QUOTED_HTML (2) to enabled quoting of embedded HTML
+                text, and QUOTED_RICH to enable rich text.
+
+                SEE_AUTO_CALL_DRIVER controls whether seeDriver is called
+                automatically (to completion) after seeSmtpConnect or
+                seePop3Connect has been called. Refer to the Users manual
+                for more details on the operation of seeDriver.
+
+                SEE_SLEEP_TIME is the time SEE sleeps when waiting on a
+                winsock.
+
+                SEE_FILE_PREFIX controls whether "1-", "2-", etc. is
+                prefixed to the filename of each attachment. If two
+                attachments are named FILEONE.ZIP and FILETWO.ZIP, they
+                will be saved as 1-FILEONE.ZIP and 2-FILETWO.ZIP.
+
+                Note that Windows 3.1 may truncate long filenames.
+
+                This feature should always be used unless you are
+                downloading to a directory specifically for downloaded
+                attachments.
+
+       EXAMPLE
+
+                CALL "seeIntegerParam" WITH STDCALL USING
+                  BY VALUE Channel               *> Channel
+                  BY VALUE SEE_AUTO_CALL_DRIVER  *> Disable auto call
+                  BY VALUE IS_ZERO               *> off (disabled)
+                END-CALL.
+
+      ALSO SEE  seeStringParam.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     SEE4CB Reference Manual                                   Page 20
+
+
+      +----------------+--------------------------------------------------+
+      | seePop3Connect | Connects to POP3 Server.                         |
+      +----------------+--------------------------------------------------+
+
+        SYNTAX  CALL "seePop3Connect" WITH STDCALL USING
+                     BY VALUE     Channel  *> Channel
+                     BY REFERENCE Pop3Ptr  *> Pop3 server name
+                     BY REFERENCE UserPtr  *> POP3 user name.
+                     BY REFERENCE PassPtr  *> POP3 password.
+                END-CALL
+
+       REMARKS  The seePop3Connect function establishes a connection with
+                the POP3 server as specified by the Server argument.
+
+                Your POP3 server name will typically be named
+                "mail.XXX.com" where XXX is your email address, such as
+                name@XXX.com. Your POP3 server name can also be found in
+                the setup information for your normal email client, such as
+                Eudora or Microsoft Outlook.
+
+                The POP3 server name can also be specified in dotted
+                decimal notation if wanted. For example "10.23.231.1".
+
+                SEE can not be connected to both the SMTP server and the
+                POP3 server at the same time. Call seeClose to terminate
+                one connection before connecting again.
+
+                Refer to the SEE4VB Users Manual for more information.
+
+       RETURNS  < 0 : An error has occurred. See the error list.
+
+       EXAMPLE
+
+                WORKING-STORAGE SECTION.
+                 01  CHANNEL    PIC 9(9) COMP-5 VALUE 0.
+                 01  POP3_SERVER.
+                     05  FILLER PIC X(15) VALUE "mail.hiwaay.net".
+                     05  FILLER PIC X VALUE X'00'.
+                 01  POP3_USER.
+                     05  FILLER PIC X(8) VALUE "billybob".
+                     05  FILLER PIC X VALUE X'00'.
+                 01  POP3_PASS.
+                     05  FILLER PIC X(6) VALUE "qwerty".
+                     05  FILLER PIC X VALUE X'00'.
+
+                  CALL "seePop3Connect" WITH STDCALL USING
+                     BY VALUE     CHANNEL     *> Channel
+                     BY REFERENCE POP3_SERVER *> Pop3 server name
+                     BY REFERENCE POP3_USER   *> POP3 user name.
+                     BY REFERENCE POP3_PASS   *> POP3 password.
+                END-CALL
+
+      ALSO SEE  seeSmtpConnect and seeClose.
+
+
+
+
+     SEE4CB Reference Manual                                   Page 21
+
+      +------------+------------------------------------------------------+
+      | seeRelease | Releases SEE.                                        |
+      +------------+------------------------------------------------------+
+
+        SYNTAX  CALL "seeRelease" WITH STDCALL
+                END-CALL
+
+       REMARKS  The seeRelease function releases the SEE system. This
+                should be the very last function called.
+
+                seeClose should be called for all channels before calling
+                seeRelease.
+
+       RETURNS  < 0 : An error has occurred. Call seeErrorText.
+
+       EXAMPLE
+
+                *> Initialize SEE for one channel (# 0).
+                Code = seeAttach(1, SEE_KEY_CODE)
+
+                *>
+                *> call any SEE function except seeAttach and seeRelease.
+                *>
+
+                *> close channel 0
+                Code = seeClose(0)
+                *> Terminate SEE
+                Code = seeRelease()
+
+      ALSO SEE seeAttach.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     SEE4CB Reference Manual                                   Page 22
+
+
+      +--------------+----------------------------------------------------+
+      | seeSendEmail | Sends email and attachments.                       |
+      +--------------+----------------------------------------------------+
+
+
+        SYNTAX  CALL "seeSendEmail" WITH STDCALL USING
+                    BY VALUE     Channel *> Channel number
+                    BY REFERENCE To      *> Recipient, separated by commas.
+                    BY REFERENCE CC      *> CC list, separated by commas.
+                    BY REFERENCE BCC     *> BCC list, separated by commas.
+                    BY REFERENCE Subj    *> Subject text.
+                    BY REFERENCE Msg     *> Message or message filename.
+                    BY REFERENCE Attach  *> File attachment.
+                END-CALL.
+
+       REMARKS  The seeSendEmail function is used to send email once a
+                conection has been made to your SMTP server after calling
+                seeConnectTo.
+
+                Note that all email addresses (in To, CC, and BCC strings)
+                must be bracketed, for example: <mike@marshallsoft.com>
+
+                The CC and BCC strings may contain multiple email
+                addresses, separted by commas. For example:
+
+                "Billy Bob<bbob@isp.com>,Buster<bm@isp.com>"
+
+                If the first character of the message (fifth argument) is
+                a '@', then it is considered as the filename which contains
+                the message to send.
+
+       RETURNS  < 0 : An error has occured. See the error list.
+
+       EXAMPLE
+
+                WORKING-STORAGE SECTION.
+                 01  EMAIL_TO.
+                     05  FILLER PIC X(23) VALUE "<mike@marshallsoft.com>".
+                     05  FILLER PIC X VALUE X'00'.
+                 01  EMAIL_SUBJ.
+                     05  FILLER PIC X(10) VALUE "COBOL Test".
+                     05  FILLER PIC X VALUE X'00'.
+                 01  EMAIL_MSG.
+                     05  FILLER PIC X(10) VALUE "@message.mai".
+                     05  FILLER PIC X VALUE X'00'.
+
+                CALL "seeSendEmail" WITH STDCALL USING
+                  BY VALUE     Channel       *> Channel
+                  BY REFERENCE EMAIL_TO      *> recipient
+                  BY REFERENCE IS_ZERO       *> no CC list
+                  BY REFERENCE IS_ZERO       *> no BCC list
+                  BY REFERENCE EMAIL_SUBJ    *> email subject
+                  BY REFERENCE EMAIL_MSG     *> text of message
+                  BY REFERENCE IS_ZERO       *> no attachment
+
+      ALSO SEE seeConnectTo
+
+     SEE4CB Reference Manual                                   Page 23
+
+
+      +----------------+--------------------------------------------------+
+      | seeSmtpConnect | Connects to SMTP server.                         |
+      +----------------+--------------------------------------------------+
+
+
+        SYNTAX  CALL "seeSmtpConnect" WITH STDCALL USING
+                    BY VALUE     Channel *> Channel
+                    BY REFERENCE Server  *> SMTP server.
+                    BY REFERENCE From    *> Your email address in brackets.
+                    BY REFERENCE ReplyTo *> Email address to reply to.
+                END-CALL.
+
+       REMARKS  The seeConnectTo function establishes a connection with the
+                SMTP server as specified by the Server argument.
+
+                Your SMTP server name will typically be named
+                "mail.XXX.com" where XXX is your email address, such as
+                name@XXX.com. Your SMTP server name can also be found in
+                the setup information for your normal email client, such as
+                Eudora or Microsoft Outlook.
+
+                The SMTP server name can also be specified in dotted
+                decimal notation if wanted. For example "10.23.231.1".
+
+                The From string is required and must be enclosed in "<>"
+                brackets, such as <mike@marshallsoft.com>.
+
+                The ReplyTo string is optional and is used for the
+                "Reply-To:" header line. If used, the email address must be
+                enclosed in "<>" brackets.
+
+
+       RETURNS  < 0 : An error has occured. See the error list.
+
+       EXAMPLE
+
+                WORKING-STORAGE SECTION.
+                 01  CHANNEL    PIC 9(9) COMP-5
+                 01  IS_ZERO    PIC 9(9) COMP-5 VALUE 0.
+                 01  SMTP_SERVER.
+                     05  FILLER PIC X(15) VALUE "mail.hiwaay.net".
+                     05  FILLER PIC X VALUE X'00'.
+                 01  EMAIL_FROM.
+                     05  FILLER PIC X(23) VALUE "<mike@marshallsoft.com>".
+                     05  FILLER PIC X VALUE X'00'.
+
+                *> connect to SMTP server
+                DISPLAY "Calling seeConnectTo()..."
+                CALL "seeConnectTo" WITH STDCALL USING
+                  BY VALUE     Channel       *> Channel
+                  BY REFERENCE SMTP_SERVER   *> SMTP server name
+                  BY REFERENCE EMAIL_FROM    *> sender's email address
+                  BY REFERENCE IS_ZERO       *> no Reply-To header
+
+      ALSO SEE  seeClose.
+
+
+     SEE4CB Reference Manual                                   Page 24
+
+
+      +---------------+---------------------------------------------------+
+      | seeStatistics | Returns runtime statistics.                       |
+      +---------------+---------------------------------------------------+
+
+
+        SYNTAX  CALL "seeStatistics" WITH STDCALL USING
+                    BY VALUE Channel *> Channel
+                    BY VALUE Index   *> Specifies which statistic.
+                END-CALL.
+
+       REMARKS  The seeStatistics function is used to return runtime
+                statistics in the SEE DLL. The values of Index are defined
+                in SEE.H as follows:
+
+                      SEE_GET_VERSION : Gets the SEE version number.
+                   SEE_GET_SOCK_ERROR : Gets last socket error.
+                      SEE_GET_COUNTER : Gets # times driver called.
+                     SEE_GET_RESPONSE : Gets last SMTP response code.
+                SEE_GET_MESSAGE_BYTES_READ : Gets # message bytes read.
+                 SEE_GET_ATTACH_BYTES_READ : Gets # attachment bytes read.
+                  SEE_GET_TOTAL_BYTES_READ : Gets total of above two.
+                SEE_GET_MESSAGE_BYTES_SENT : Gets # message bytes sent.
+                 SEE_GET_ATTACH_BYTES_SENT : Gets # attachment bytes sent.
+                  SEE_GET_TOTAL_BYTES_SENT : Gets total of above two.
+                         SEE_GET_MSG_COUNT : Gets # emails waiting.
+                          SEE_GET_MSG_SIZE : Gets size of email.
+                      SEE_GET_BUFFER_COUNT : Gets # bytes in buffer for
+                                             seeGetEmailLines.
+                    SEE_GET_CONNECT_STATUS : Returns TRUE if connected.
+                     SEE_GET_VERIFY_STATUS : Returns seeVerifyUser status.
+                      SEE_GET_ATTACH_COUNT : Gets # attachments received.
+
+                The number of message bytes sent will usually be larger
+                than your message size because of SMTP protocol overhead.
+
+                The number of attachment bytes sent will be at least
+                one-third larger than the actual attachment since every 3
+                bytes are encoded as 4 7-bit ASCII bytes before being
+                transmitted.
+
+                The purpose of "...BYTES_READ" and "...BYTES_SENT" is to
+                provide the ability to track the transmission progress of
+                large messages and attachments. See the READER example.
+
+       EXAMPLE
+
+                *> get total message & attachment bytes transmitted.
+
+                CALL "Statistics" WITH STDCALL USING
+                  BY VALUE  Channel
+                  BY VALUE  SEE_GET_TOTAL_BYTES_SENT  *> get bytes sent
+                END-CALL.
+
+
+      ALSE SEE  seeDriver, seeIntegerParam and seeStringParam.
+
+
+     SEE4CB Reference Manual                                   Page 25
+
+
+      +----------------+--------------------------------------------------+
+      | seeStringParam | Sets SEE string parameter.                       |
+      +----------------+--------------------------------------------------+
+
+
+        SYNTAX  CALL "seeStringParam" WITH STDCALL USING
+                    BY VALUE     Channel *> Channel
+                    BY VALUE     ParamName    *> Index of parameter.
+                    BY REFERENCE ParamString  *> Parameter string.
+                END-CALL.
+
+       REMARKS  The seeStringParam function is used to set a string
+                parameter as defined in SEE.H. For more information, refer
+                to the Users Manual.
+
+                   SEE_LOG_FILE   : Specifies the log filename.
+                   SEE_SET_REPLY  : Sets the "Reply To" string.
+                   SEE_SET_HEADER : Adds header line(s).
+
+                The log file is used to debug a SMTP or POP3 session. Be
+                advised that log files can be quite large. Don't use them
+                unless necessary.
+
+                Use SEE_SET_REPLY to change the "Reply-To:" header after
+                connecting to the server, just before sending an email.
+
+                Use SEE_SET_HEADER to add one or more header lines. Each
+                header line except the last should end with a carriage
+                return line feed pair.
+
+       EXAMPLE
+
+                WORKING-STORAGE SECTION.
+                 01  LOG_FILENAME.
+                     05  FILLER PIC X(8) VALUE "test.log".
+                     05  FILLER PIC X VALUE X'00'.
+
+                CALL "seeStringParam" WITH STDCALL USING
+                  BY VALUE     Channel
+                  BY VALUE     SEE_LOG_FILE
+                  BY REFERENCE LOG_FILENAME
+                END-CALL.
+
+      ALSO SEE seeIntegerParam
+
+
+
+
+
+
+
+
+
+
+
+
+
+     SEE4CB Reference Manual                                   Page 26
+
+
+      +-----------------+-------------------------------------------------+
+      | seeVerifyFormat | Check email address format.                     |
+      +-----------------+-------------------------------------------------+
+
+
+        SYNTAX  CALL "seeVerifyFormat" WITH STDCALL USING
+                    BY REFERENCE String   *> Email address to check.
+                END-CALL.
+
+       REMARKS  The seeVerifyFormat function is use to test an individual
+                email address for proper formatting. If this function
+                returns 0 or above, then the email address is properly
+                formatted. But, if this function returns a negative value,
+                the email address is either badly formatted, or it uses
+                characters (such as '%') that are not normally used as part
+                of an email address.
+
+                Note that left and right brackets ('<' and '>') must
+                surround the email address.
+
+       EXAMPLE
+
+                WORKING-STORAGE SECTION.
+                 01 EMAIL_ADDR.
+                    05 FILLER PIC X(26) VALUE "Billy Bob<beb@hisasp.com>".
+                    05 FILLER PIC X VALUE X'00'.
+
+                CALL "seeVerifyFormat" WITH STDCALL USING
+                  BY REFERENCE EMAIL_ADDR
+                END-CALL.
+
+      ALSO SEE seeErrorText
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     SEE4CB Reference Manual                                   Page 27
+
+
+      +---------------+---------------------------------------------------+
+      | seeVerifyUser | Verify email address.                             |
+      +---------------+---------------------------------------------------+
+
+        SYNTAX  CALL "seeVerifyUser" WITH STDCALL
+                     BY VALUE     Channel *> Channel
+                     BY REFERENCE Text    *> Email address to verify.
+                END-CALL
+
+       REMARKS  The seeVerifyUser function is used to verify an individual
+                email address with the email server which "owns" the email
+                address.
+
+                seeVerify will connect to the specified server and request
+                verification of the user. Some SMTP servers may refuse
+                connection of any client not directly connected to them or
+                may refuse all "verify user" requests. Web based email
+                servers such as hotmail.com may refuse all SMTP
+                connections.
+
+                Note that you connect to the remote SMTP server rather than
+                the SMTP server that you use to send email.
+
+                For example, to verify msc@traveller.com, you must first
+                connect to the SMTP server "mail.traveller.com" then call
+                SeeVerifyUser("msc").
+
+       EXAMPLE
+
+                WORKING-STORAGE SECTION.
+                 01 User.
+                    05 FILLER PIC X(3) VALUE "msc".
+                    05 FILLER PIC X VALUE X'00'.
+
+
+                CALL "seeVerifyUser" WITH STDCALL USING
+                     BY VALUE     Channel *> Channel
+                     BY REFERENCE User    *> Email address to verify.
+                END-CALL.
+
+                *> get result
+
+                IF PROGRAM-STATUS = 0 THEN
+                    DISPLAY "User NOT verified"
+                ELSE
+                    DISPLAY "User is verified"
+                END-IF.
+
+      ALSO SEE  seeErrorText and seeDebug.
+
+
+
+
+
+
+
+
+     SEE4CB Reference Manual                                   Page 28
+
+
