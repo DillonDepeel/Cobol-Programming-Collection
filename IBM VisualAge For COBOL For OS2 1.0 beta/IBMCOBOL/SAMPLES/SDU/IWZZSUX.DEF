@@ -1,0 +1,10 @@
+; **************************************************************
+; *  IWZZSUX.DEF                                               *
+; * Module definition file for IWZZSUX sample                  *
+; **************************************************************
+LIBRARY IWZZSUX INITINSTANCE TERMINSTANCE
+CODE  LOADONCALL
+DATA MULTIPLE NONSHARED
+EXPORTS
+   CONVERTTOUPPERLOWERCASECHAR
+

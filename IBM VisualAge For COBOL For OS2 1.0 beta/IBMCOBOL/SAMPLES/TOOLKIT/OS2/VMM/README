@@ -1,0 +1,87 @@
+
+
+VMM - Virtual Memory Management
+
+
+DESCRIPTION:
+
+  VMM demonstrates the use of virtual memory by using new memory-management
+  functions to allocate and set the attributes of memory.  Users can read or
+  write data into memory and reset the attributes using a dialog box.  The
+  memory manager protects or opens the virtual memory to read or write
+  operations according to the different attributes of each memory block.  To
+  free memory, the user enters the address of the memory.
+
+**
+ This application serves two distinct purposes. First, The Demo menu 
+ calls dialog boxes that demonstrate all of the controls available for
+ use in a dialog box.
+
+
+TASK:
+
+  Use of menus and dialogs to allocate and set attributes of memory.
+
+CONCEPT/FEATURE: 
+
+ It demonstrates the standard menus and dialogs that most PM
+ applications will contain. There is also a dialog box which
+ demonstrates the setting and removing of control Presentation Parameters.
+ Finally, the demo menu also has menu items that demonstrate the various 
+ types of message boxes that the system supports.
+
+SAMPLE LOCATION:
+
+ Inside the OS/2 Sample Programs folder (which inside the
+ VisualAge C++ Samples folder).
+
+Note:This sample is not provided in project form.
+
+SOURCE FILE LOCATION:
+
+ X:\ibmcpp\samples\toolkit\os2\vmm
+ where X: is the drive you installed the samples and document component
+ of VisualAge C++ for OS/2.
+
+
+HOW TO RUN THE SAMPLE:
+
+-From your OS/2 desktop:
+ Double-click on the sample's icon.
+
+-From an OS/2 command prompt:
+ To start a non-WorkPlace Shell sample program from an OS/2 command
+ prompt, type the name of the executable file and press Enter.  If you
+ have edited source code of a sample program and want to recompile,link,
+ and run the files, use the NMAKE tool. Your output is the executable
+ file.  For information about the NMAKE utility, see the
+ OS/2 Tools Reference.
+
+SOFTWARE/HARDWARE PREREQUISITES:
+
+
+- IBM VisualAge C++
+- OS/2 Warp
+- IBM or compatible 386 and up.
+
+REQUIRED FILES      DESCRIPTION
+
+  readme            This file
+  vmm.def           link definitions file
+  vmm.dlg           dialog resources
+  vmm.exe           sample executable
+  vmm.h
+  vmm.hlp           Help resources
+  vmm.ico
+  vmm.ipf
+  vmm.mak           MakeMake generated makefile
+  vmm.rc            Resource compiler input
+  vmm_dlg.c         Dialog procedures
+  vmm_help.c        Help manager interface routines
+  vmm_init.c        Initialization routines
+  vmm_main.c        Main() entry point
+  vmm_user.c        Miscellaneous procedures
+
+
+
+

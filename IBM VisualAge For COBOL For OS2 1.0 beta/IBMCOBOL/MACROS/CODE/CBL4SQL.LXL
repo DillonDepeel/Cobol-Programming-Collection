@@ -1,0 +1,6 @@
+/* CBL4SQL.LXL - IBM LPEX language-sensitive profile for OPM SQL COBOL/400. */
+TRACE OFF
+
+/* call default OPM COBOL/400 profile */
+'MACRO CBL400.LXL'
+

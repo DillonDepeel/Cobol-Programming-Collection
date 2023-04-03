@@ -1,0 +1,5 @@
+/* CXX.LXL - LPEX language-sensitive profile for C/C++ files. */
+trace o
+
+'MACRO C.LXL'
+

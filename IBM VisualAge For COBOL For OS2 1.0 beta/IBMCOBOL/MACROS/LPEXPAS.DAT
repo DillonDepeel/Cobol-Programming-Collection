@@ -1,0 +1,151 @@
+
+*******************************************************************************
+*                                                                             *
+* PRPAS - A Simple LPEX Parser for Pascal                                     *
+*                                                                             *
+*******************************************************************************
+*                                                                             *
+* This file contains a list of the Pascal key words and language symbols      *
+* that will be identified by the simple Pascal Parser.  It can easily be      *
+* modified to tailor the parser to the exact version of Pascal required.      *
+*                                                                             *
+*******************************************************************************
+*                                                                             *
+* The format of this file is:                                                 *
+*                                                                             *
+*   Blank lines or lines with a '*' in column 1 are comments and are ignored. *
+*                                                                             *
+*   The first set of non-comment lines is the key-word table, the second set  *
+*   is the table of built-in functions and procedures and the third set the   *
+*   language symbols.  Comments or blanks lines are not allowed in the        *
+*   tables.                                                                   *
+*                                                                             *
+*                                                                             *
+*******************************************************************************
+*                                                                             *
+*                    (C) Copyright IBM Corporation 1989                       *
+*                                                                             *
+*******************************************************************************
+
+
+*
+* First the key-word table.  This must be arranged in ascending ASCII order.
+*
+
+  AND
+  ARRAY
+  BEGIN
+  BOOLEAN
+  CASE
+  CHAR
+  CONST
+  DIV
+  DO
+  DOWNTO
+  ELSE
+  END
+  FALSE
+  FILE
+  FOR
+  FUNCTION
+  GOTO
+  IF
+  IN
+  INTEGER
+  LABEL
+  LSTRING
+  MOD
+  NIL
+  NOT
+  OF
+  OR
+  OTHERWISE
+  PACKED
+  PROCEDURE
+  PROGRAM
+  REAL
+  RECORD
+  REPEAT
+  SET
+  STRING
+  THEN
+  TO
+  TRUE
+  TYPE
+  UNTIL
+  VAR
+  WHILE
+  WITH
+  WORD
+  XOR
+
+
+*
+* Second the list of built-in functions and procedures, again arranged in
+* ascending ASCII order.
+*
+
+  ABS
+  ARCTAN
+  CHR
+  COS
+  DISPOSE
+  EOF
+  EOLN
+  EXP
+  GET
+  LN
+  NEW
+  ODD
+  ORD
+  PACK
+  PAGE
+  PRED
+  PUT
+  READ
+  READLN
+  RESET
+  REWRITE
+  SIN
+  SQR
+  SQRT
+  SUCC
+  UNPACK
+  WRITE
+  WRITELN
+
+
+*
+* Lastly the list of language symbols.  There are arranged in ascending ASCII
+* order of the first character.  Then in order of length, longest first.
+*
+* Note: Don't start these in column 1, or the '*' symbol would be taken as
+*       a comment!
+*
+
+   (.
+   (
+   )
+   *
+   +
+   ,
+   -
+   .)
+   ..
+   .
+   /
+   :=
+   :
+   ;
+   <=
+   <>
+   <
+   =
+   >=
+   >
+   [
+   ]
+   ^
+
+
+

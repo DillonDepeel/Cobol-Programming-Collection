@@ -1,0 +1,103 @@
+/****************************************************************************\
+*                                                                            *
+*  MODULE NAME: HMTAILRH.RC                                                  *
+*                                                                            *
+*        Hebrew-specific resources for HMTAILOR.RC (for Bi-Lingual Support). *
+*                                                                            *
+*        Copyright (c) IBM Corporation 1987, 1989, 1991                      *
+*                                                                            *
+*        All Rights Reserved                                                 *
+\****************************************************************************/
+
+#include "hmtailor.h"
+
+/*****************************************************************************\
+*                                                                            *
+*       HEBREW                                                               *
+*                                                                            *
+*       Note: Strings are encoded in codepage 862.                           *
+*                                                                            *
+\*****************************************************************************/
+MENU IDM_H_HM_MENU  LOADONCALL MOVEABLE DISCARDABLE
+BEGIN
+    SUBMENU  "~ôâòÖöâç",                      IDM_FILE
+       BEGIN
+          MENUITEM   "~áîô...\tCtrl+S",       IDM_SEARCH
+          MENUITEM   "Ñ~Éîë...",              IDM_PRINT
+          MENUITEM   "",                        -1,   MIS_SEPARATOR
+          MENUITEM   "á~åÖè áÉô\tCtrl+N",     IDM_VIEWPORT
+          MENUITEM   "",                        -1,   MIS_SEPARATOR
+          MENUITEM   "Ñ~íöó\tCtrl+Ins",       IDM_CLIP_COPY
+          MENUITEM   "",                        -1,   MIS_SEPARATOR
+          MENUITEM   "Ñíöó å~óÖÅï\tCtrl+F",   IDM_CLIP_CF
+          MENUITEM   "ÑÉ~Åó åóÖÅï\tCtrl+A",   IDM_CLIP_AF
+       END
+
+    SUBMENU  "~ÄîôòÖâÖö",                     IDM_OPTIONS
+       BEGIN
+          MENUITEM   "Ñ~òáÅ òéÑ Äáö\t+",      IDM_OPTION_EXPLEVEL
+          MENUITEM   "ÑòáÅ ëí~âì\t*",         IDM_OPTION_EXPBRANCH
+          MENUITEM   "ÑòáÅ ~Ñãå\tCtrl+*",     IDM_OPTION_EXPALL
+          MENUITEM   "~ñéñç ëíâì\t-",         IDM_OPTION_COLBRANCH
+          MENUITEM   "ñ~éñç Ñãå\tCtrl+-",     IDM_OPTION_COLALL
+          MENUITEM   "",                        -1,   MIS_SEPARATOR
+          MENUITEM   "~öÖãè\tCtrl+C",         IDM_TOC
+          MENUITEM   "",                        -1,   MIS_SEPARATOR
+          MENUITEM   "~íéÖÉâç ôêëóòÖ\tCtrl+H", IDM_VIEWPAGES
+          MENUITEM   "",                        -1,   MIS_SEPARATOR
+          MENUITEM   "~ëîòâÖö\tCtrl+L",       IDM_LIBRARIES
+          MENUITEM   "",                        -1,   MIS_SEPARATOR
+          MENUITEM   "~óÖÉç",                 IDM_PREVIOUS
+       END
+
+    SUBMENU  "~íÜòÑ",                         IDM_HELP
+       BEGIN
+        MENUITEM   "~éîöá íÜòÑ\tF11",         IDM_HELP_INDEX
+        MENUITEM   "íÜòÑ ~ãååâö\tF2",         IDM_GENERAL_HELP
+        MENUITEM   "~ôâéÖô ÅíÜòÑ\tShift+F10", IDM_USING_HELP
+        MENUITEM   "íÜòÑ åé~óôâç\tF9",        IDM_HELP_KEYS
+       END
+
+END
+
+
+/*************************************************************************/
+/* Cover page frame accel for help manager                               */
+/*************************************************************************/
+ACCELTABLE IDA_COVERPAGE_HM_ACCEL LOADONCALL MOVEABLE DISCARDABLE
+BEGIN
+
+   VK_INSERT,  IDM_CLIP_COPY, VIRTUALKEY, CONTROL
+   "á",        IDM_SEARCH, CHAR, CONTROL
+   "ö",        IDM_TOC, CHAR, CONTROL
+   "í",        IDM_VIEWPAGES, CHAR, CONTROL
+   "ó",        IDM_CLIP_CF, CHAR, CONTROL
+   "Å",        IDM_CLIP_AF, CHAR, CONTROL
+   "å",        IDM_VIEWPORT, CHAR, CONTROL
+   "ë",        IDM_LIBRARIES, CHAR, CONTROL
+
+   "j",        IDM_SEARCH, CHAR, CONTROL
+   ",",        IDM_TOC, CHAR, CONTROL
+   "g",        IDM_VIEWPAGES, CHAR, CONTROL
+   "e",        IDM_CLIP_CF, CHAR, CONTROL
+   "c",        IDM_CLIP_AF, CHAR, CONTROL
+   "k",        IDM_VIEWPORT, CHAR, CONTROL
+   "x",        IDM_LIBRARIES, CHAR, CONTROL
+
+   "J",        IDM_SEARCH, CHAR, CONTROL
+   "<",        IDM_TOC, CHAR, CONTROL
+   "G",        IDM_VIEWPAGES, CHAR, CONTROL
+   "E",        IDM_CLIP_CF, CHAR, CONTROL
+   "C",        IDM_CLIP_AF, CHAR, CONTROL
+   "K",        IDM_VIEWPORT, CHAR, CONTROL
+   "X",        IDM_LIBRARIES, CHAR, CONTROL
+
+   VK_F10,     IDM_USING_HELP, VIRTUALKEY, SHIFT
+   VK_F2,      IDM_GENERAL_HELP, VIRTUALKEY
+   VK_F9,      IDM_HELP_KEYS, VIRTUALKEY
+   VK_F11,     IDM_HELP_INDEX, VIRTUALKEY
+   VK_F1,      IDM_HELP_INDEX, VIRTUALKEY, SHIFT
+   VK_F2,      IDM_TUTORIAL, VIRTUALKEY, SHIFT
+   VK_SPACE,   IDM_CHILDVPSYSMENU, VIRTUALKEY, CONTROL
+END
+

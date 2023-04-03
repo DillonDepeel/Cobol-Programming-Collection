@@ -1,0 +1,7 @@
+/* IPF footnote    */
+trace o    
+'insert .*'
+'insert :fn id=????.'
+'insert :p.'
+'insert :efn.'
+

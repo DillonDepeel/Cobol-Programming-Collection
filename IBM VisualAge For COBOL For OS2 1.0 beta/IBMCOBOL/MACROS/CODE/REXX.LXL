@@ -1,0 +1,42 @@
+/* REXX.LXL - Language-sensitive editor profile for CODE/370 V1R2 MVS REXX. */
+TRACE OFF
+
+/* assume default 370 MVS profile - you may change to DFTVM.LXL or DFTOS2.LXL */
+'LXR DFTMVS.LXL'
+
+/* this is a REXX file */
+'SET DOCTYPE LX'
+
+/* REXX classes - DO NOT MODIFY!! */
+'SET CLASSES CODE SPACE COMMENT OPENCOMMENT ERROR LABEL'
+
+/* initial fonts settings */
+'SET FONT.!  BLACK/WHITE                  "Default style"'
+'SET FONT._  BLACK/WHITE                  "Layout blanks"'
+'SET FONT.K  BRIGHT BLUE/WHITE            "REXX keyword"'
+'SET FONT.L  BLACK/WHITE                  "String literal"'
+'SET FONT.H  RED/WHITE                    "Hexadecimal string"'
+'SET FONT.A  BLUE/WHITE                   "Alphanumerics"'
+'SET FONT.C  CYAN/WHITE                   "Comment"'
+'SET FONT.N  RED/WHITE                    "Number"'
+'SET FONT.S  BLUE/WHITE                   "Symbol"'
+'SET FONT.:  UNDERLINE BRIGHT BLUE/WHITE  "Label"'
+'SET FONT.E  REVERSE BRIGHT RED/WHITE     "Error"'
+
+/* bracket matching (uses LXMATCH.DLL) */
+'SET ACTION.C-M MATCH'
+
+/* update action bar */
+'SET ACTIONBAR.~View.SEPARATOR 3 ;'
+'SET ACTIONBAR.~View.~Labels 4 ;INCLUDE LABEL;SET EXCLUDE'
+'SET GROUP. LABEL'
+'SET HELP. 16058'
+'SET ACTIONBAR.~View.~Errors 5 ;INCLUDE ERROR;SET EXCLUDE'
+'SET GROUP. ERROR'
+'SET HELP. 16058'
+
+/* initial full parse, set incremental & full parse commands */
+'PRREXX ALL'
+'SET PARSER PRREXX'
+'SET FULLPARSE PRREXX REPARSE'
+

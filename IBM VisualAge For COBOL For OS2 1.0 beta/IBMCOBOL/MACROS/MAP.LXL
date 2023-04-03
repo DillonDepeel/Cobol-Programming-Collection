@@ -1,0 +1,30 @@
+/* MAP.LXL - IBM LPEX language-sensitive editor profile for C compiler map files. */
+TRACE OFF
+
+/* ASM-style document */
+'SET DOCTYPE ASM'
+
+/* initial ASM fonts settings */
+'SET FONT.C  CYAN/WHITE                   "Comment"'
+'SET FONT.E  WHITE/BRIGHT RED             "Error"'
+'SET FONT.F  BLUE/GREEN'                  /*"80386 mnemonic"*/
+'SET FONT.G  BRIGHT BLUE/BRIGHT CYAN'     /* globals set by ASISTASM.LX */
+'SET FONT.K  BLUE/WHITE'                  /*"Keyword"*/
+'SET FONT.L  PINK/WHITE'                  /*"Label"*/
+'SET FONT.M  BLUE/WHITE'                  /*"80286/8086 mnemonic"*/
+'SET FONT.N  BLUE/WHITE'                  /*"Numeric data proc (80X87)"*/
+'SET FONT.O  BLUE/WHITE'                  /*"Other"*/
+'SET FONT.P  BLUE/WHITE                   "Punctuation"'
+'SET FONT.Q  GREEN/WHITE'                 /*"Quoted string"*/
+'SET FONT.R  BLUE/WHITE'                  /*"Register"*/
+'SET FONT.T  BLUE/WHITE'                  /*"Title line"*/
+'SET FONT.U  RED/WHITE'                   /*"Numeric"*/
+'SET FONT._  BLACK/WHITE                  "Layout blanks"'
+
+/* prevent user changes */
+'SET BROWSE ON'
+
+/* invoke ASM initial parse, set ASM incremental parser */
+'PRSASM ALL'
+'SET PARSER PRSASM'
+

@@ -1,0 +1,92 @@
+/* A REXX macro which will open PL/I include files.                                    */
+ 
+/* This macro is a prototype and has a number of development needs:                    */
+/*  - the word INCLUDE must be on the same line as the name of the file.               */ 
+/*  - it assumes that the file's extension will be .inc it does not have any way of    */
+/*    predicting the contents of your 'extensions ' option when you actually compile   */
+/*  - it presumes that the environment variable IBM.SYSLIB will be set to the value it */
+/*    will have when you actually compile                                              */
+/*  - it searches the directories named by the IBM.SYSLIB environment varible to find  */
+/*    the include file.                                                                */
+ 
+/* Load the rexx utilities library. */
+call RxFuncAdd 'SysLoadFuncs', 'RexxUtil', 'SysLoadFuncs'
+call SysLoadFuncs
+ 
+'extract content' 
+'extract fonts  ' 
+ 
+hit_include = 0 ; 
+i = 1 ;
+do while ( i <= length(content) & hit_include = 0 ) ;
+   if datatype( substr(content,i,1) , 'Mixed Case' ) = 1 then
+     do ;
+       j = i ;       /* Remember where the word starts. */
+       word = '' ;
+       do while ( i <= length(content) & datatype( substr(content,i,1) , 'Mixed Case' ) = 1 ) ;
+         word = word || substr(content,i,1) ;
+         i = i + 1 ;
+       end ;
+ 
+       if translate(word) = 'INCLUDE' then 
+         /* Check that the parser thinks it's a keyword. */
+         if substr(fonts,  j , length(word) ) = 'IIIIIII' then
+           hit_include = 1 ;
+     end ;
+   else
+     do ;
+       /* Throw away non word characters. */
+       do while ( i <= length(content) & datatype( substr(content,i,1) , 'Mixed Case' ) = 0 ) ;
+         i = i + 1 ;
+       end ;
+     end ;
+end ;
+ 
+if hit_include = 0 then
+  do ; 
+    'msg Did not find an INCLUDE on this line.'
+    exit ;
+  end ;
+ 
+/* Throw away blank characters. */
+do while ( i <= length(content) & substr(content,i,1) = ' ' ) ;
+   word = word || substr(content,i,1) ;
+   i = i + 1 ;
+end ;
+ 
+/* Now we may have a comma separated list to process. */
+i = i - 1 ; 
+do until ( i > length( content ) | substr(content,i,1) ª= ',' )
+  i = i + 1 ;
+  /* Throw away blank characters. */
+  do while ( i <= length(content) & substr(content,i,1) = ' ' ) ;
+     word = word || substr(content,i,1) ;
+     i = i + 1 ;
+  end ;
+ 
+  /* Collect a word. */
+  word = '' ;
+  do while ( i <= length(content) & datatype( substr(content,i,1) , 'Alphanumeric' ) ) ;
+    word = word || substr(content,i,1) ;
+    i = i + 1 ;
+  end ;
+ 
+  filespec = SysSearchPath('IBM.SYSLIB' , word || '.inc' ) 
+ 
+  if filespec = '' then
+     'msg Unable to locate include file' word || '.inc' 
+  else
+     'lx' filespec
+ 
+  /* Throw away blank characters. */
+  do while ( i <= length(content) & substr(content,i,1) = ' ' ) ;
+     word = word || substr(content,i,1) ;
+     i = i + 1 ;
+  end ;
+ 
+ 
+end ;
+ 
+'msg Includes opened' ;
+exit  ;
+

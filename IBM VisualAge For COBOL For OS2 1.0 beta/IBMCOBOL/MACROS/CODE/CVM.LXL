@@ -1,0 +1,145 @@
+/* CVM.LXL - IBM LPEX language-sensitive editor profile for VM C/370. */
+TRACE OFF
+
+/* default 370 VM profile */
+'MACRO DFTVM.LXL'
+
+/* C document */
+'SET DOCTYPE C'
+
+/* C classes - DO NOT MODIFY!! */
+'SET CLASSES CODE SPACE ',
+'FWDLINK BWDLINK SEMICOLON FUNCTION BRACE ERROR COMMENT CONTROL'
+
+/* create our own menu items */
+MENU.1  = "~Options.Automatic_~indenting..."
+MENU.2  = "~Options.~Language_editing."
+MENU.3  = "~Options.~Language_editing.~Token_highlighting"
+MENU.4  = "~Options.~Language_editing.Automatic_~indenting"
+MENU.5  = "~Actions." || 'SEPARATOR'
+MENU.6  = "~Actions.C~ompile."
+MENU.7  = "~Actions.C~ompile.~Prompt..."
+MENU.8  = "~Actions.C~ompile.~No_prompt" || '\tCtrl+C'
+MENU.9  = "~Actions.~Debug" || '\tCtrl+D'
+MENU.10 = "~View." || 'SEPARATOR'
+MENU.11 = "~View.F~unctions"
+MENU.12 = "~View.~Outline_logic"
+MENU.13 = "~View.~Errors"
+MENU.14 = "~Help.C/370_~help"
+MENU.15 = "~Options.~Language_editing.~Lexical_errors"
+MENUITEMS = 15
+
+MENUCMD.   = ''
+MENUCMD.1  = '2 EVFEC370 AIDLG'
+MENUCMD.2  = '7'
+MENUCMD.3  = 'EVFEC370 TOKOPT'
+MENUCMD.4  = 'EVFEC370 AIOPT'
+MENUCMD.5  = '1'
+MENUCMD.6  = '2'
+MENUCMD.7  = '0 SAVEALL PROMPT START EVFLCLES "%FILENAME%"'
+MENUCMD.8  = '1 SAVEALL PROMPT START EVFLCLES "%FILENAME%" /P N'
+MENUCMD.9  = '3 START CODEDT'
+MENUCMD.10 = '3'
+MENUCMD.11 = '4 ;SET INCLUDE FUNCTION;SET EXCLUDE'
+MENUCMD.12 = '5 ;SET INCLUDE FUNCTION BRACE CONTROL;SET EXCLUDE'
+MENUCMD.13 = '6 ;SET INCLUDE ERROR;SET EXCLUDE'
+MENUCMD.14 = '6 EVFEC370 LANGHELP'
+MENUCMD.15 = 'EVFEC370 LEOPT'
+
+HELPID.   = 0
+HELPID.1  = 16093
+HELPID.2  = 16099
+HELPID.3  = 16100
+HELPID.4  = 16101
+HELPID.6  = 16084
+HELPID.7  = 16084
+HELPID.8  = 16084
+HELPID.9  = 16086
+HELPID.11 = 16057
+HELPID.12 = 16057
+HELPID.13 = 16057
+HELPID.14 = 16137
+HELPID.15 = 16108
+
+GROUPS. = ''
+GROUPS.8  = 'REMOTE'
+GROUPS.11 = 'FUNCTION'
+GROUPS.12 = 'FUNCTION BRACE CONTROL'
+GROUPS.13 = 'ERROR'
+
+DO I = 1 TO MENUITEMS
+   IF MENUCMD.I <> '' THEN DO
+      'SET ACTIONBAR.' || MENU.I MENUCMD.I
+      IF HELPID.I > 0 THEN
+         'SET HELP.' HELPID.I
+      IF GROUPS.I <> '' THEN
+         'SET GROUP.' GROUPS.I
+   END
+END
+
+MENUIDSTR = ' ACTIONBARID.' || MENU.3  'INTO ID3',    /* menu IDs for options */
+            ' ACTIONBARID.' || MENU.4  'INTO ID4',
+            ' ACTIONBARID.' || MENU.14 'INTO ID14',
+            ' ACTIONBARID.' || MENU.15 'INTO ID15'
+'EXTRACT' MENUIDSTR
+MENUIDSTR = ID3 ID4 ID14 ID15
+
+DROP MENU. MENUCMD. HELPID. MENUITEMS I GROUPS.         /* free excess memory */
+DROP ID3 ID4 ID14 ID15
+
+/* set up full & incremental parse */
+'SET FULLPARSE  SUBMIT READ STOP "Tokenizing file" EVFEC370 ALL'
+'SET PARSER     EVFEC370 PARSE'
+
+/* auto-indent */
+'SET SYNONYM.NEWLINE EVFEC370 AIEXIST'
+'SET SYNONYM.SPLITLINE MULT ;SPLITJOIN SPLIT;EVFEC370 AIEXIST'
+'SET SYNONYM.OPENLINE MULT ;INSERT;EVFEC370 AINEW'
+'SET ACTION.ENTER SPLITLINE'
+'SET ACTION.C-ENTER OPENLINE'
+
+/* compile, debug accelerator keys */
+'SET ACTION.C-C SAVEALL PROMPT START EVFLCLES "%FILENAME%" /P N'
+'SET ACTION.C-D START CODEDT'
+
+/* bracket matching */
+'SET ACTION.C-M MATCH'
+
+/* template insertion (first character = new line) */
+'SET GLOBAL.PROTO.C.if /if (?) {//   }/else {//   }'
+'SET GLOBAL.PROTO.C.for _for (?; ?; ?) {__   }'
+'SET GLOBAL.PROTO.C.while /while (?) {//   }'
+'SET GLOBAL.PROTO.C.do /do {/   ?/   } while (?);'
+'SET GLOBAL.PROTO.C.switch /switch (?) {/   case ?://      break;/   default://   }'
+'SET GLOBAL.PROTO.C.case /case ?://   break;'
+'SET GLOBAL.PROTO.C.main /main(int argc, char *argv[], char *envp)/{/   ? /}'
+'SET ACTION.C-R PROTO PROTO.C.'
+
+/* initial fonts settings */
+'SET FONT.!  BLACK/WHITE                  "Default style"'
+'SET FONT._  BLACK/WHITE                  "Layout blanks"'
+'SET FONT.K  BRIGHT BLUE/WHITE            "Keyword"'
+'SET FONT.I  BLACK/WHITE                  "Identifier"'
+'SET FONT.N  RED/WHITE                    "Constant"'
+'SET FONT.Q  PINK/WHITE                   "String literal"'
+'SET FONT.O  BLACK/WHITE                  "Operator"'
+'SET FONT.P  BLACK/WHITE                  "Punctuator"'
+'SET FONT.M  BLACK/WHITE                  "Continuation character"'
+'SET FONT.C  CYAN/WHITE                   "Comment"'
+'SET FONT.F  BLUE/WHITE                   "C library function"'
+'SET FONT.B  BLACK/WHITE                  "Brace"'
+'SET FONT.H  UNDERLINE BRIGHT BLUE/WHITE  "CPP directive"'
+'SET FONT.E  REVERSE BRIGHT RED/WHITE     "Lexical error"'
+'SET BASEFONT !'                          /* default style */
+
+'SET TABS 4 7 10 13 16 19 42 EVERY 3'
+
+/* init LS component: INIT HELP <default help id> <help lib> <LSX> <menu ids> */
+'EVFEC370 INIT HELP 37001 EVFECLSH.HLP CVM.LSX' MENUIDSTR
+'SET ACTION.F1 EVFEC370 HELP'
+
+/* do a full parse */
+'TRIGGER FULLPARSE'
+
+'MACRO NAVIG.LX'
+

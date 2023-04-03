@@ -1,0 +1,96 @@
+//
+//   COMPONENT_NAME: somi
+//
+//   ORIGINS: 27
+//
+//
+//   10H9767, 10H9769  (C) COPYRIGHT International Business Machines Corp. 1992,1994
+//   All Rights Reserved
+//   Licensed Materials - Property of IBM
+//   US Government Users Restricted Rights - Use, duplication or
+//   disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+//
+//  OperationDef: CORBA Interface for operation definitions
+//  See CORBA 7.5.6, pp.135-136
+#ifndef operatdf_idl
+#define operatdf_idl
+#include <containd.idl>
+#include <containr.idl>
+#include <somcls.idl>
+#include <paramdef.idl>
+#include <excptdef.idl>
+typedef string ContextIdentifier;
+// CORBA 7.5.6, pp.135-136
+interface OperationDef : Contained , Container
+{
+    enum OperationMode {NORMAL, ONEWAY};
+    struct OperationDescription {
+	Identifier    name;
+	RepositoryId  id;
+	RepositoryId  defined_in;
+	TypeCode      result;
+	OperationMode mode;
+	sequence<ContextIdentifier> contexts;
+	sequence<ParameterDef::ParameterDescription> parameter;
+	sequence<ExceptionDef::ExceptionDescription> exceptions;
+    };
+    // The inherited describe method returns an instance of this
+    // (OperationDescription) structure in the "value" member of the
+    // Description structure defined in the Contained interface.
+    // The inherited describe_contents method in the Container
+    // interface returns a sequence of these Description structures
+    // each carrying a reference to an OperationDescription structure
+    // in its "value" member.
+    attribute TypeCode result;
+    // The TypeCode of the receiving object.  The memory used to hold
+    // the TypeCode is contained in the receiving object, which retains
+    // ownership.  Hence, do not free the returned TypeCode.  If you want
+    // to obtain a separate copy, use the TypeCode_copy operation.
+    attribute OperationMode mode;
+    // The OperationMode of the receiving object;
+    attribute sequence<ContextIdentifier> contexts;
+    // The list of ContextIdentifiers associated with the
+    // receiving object.
+#ifdef __SOMIDL__
+  implementation {
+      releaseorder: _get_result, _set_result,
+		    _get_mode, _set_mode,
+		    _get_contexts, _set_contexts
+		    ;
+      callstyle = idl;
+      majorversion = 2;
+      minorversion = 1;
+      filestem = operatdf;
+      dllname = "somir.dll";
+      passthru C_h =
+	""
+	"    #include <somtcnst.h>"
+	"    #include <somir.h>"
+	"    #include <paramdef.h>"
+	"    #include <excptdef.h>"
+	""
+	"    #define ContextIdentifier string"
+	"    #define _IDL_SEQUENCE_ContextIdentifier _IDL_SEQUENCE_string"
+	"";
+      passthru C_xh =
+	""
+	"    #include <somtcnst.xh>"
+	"    #include <somir.xh>"
+	"    #include <paramdef.xh>"
+	"    #include <excptdef.xh>"
+	""
+	"    #define ContextIdentifier string"
+	"    #define _IDL_SEQUENCE_ContextIdentifier _IDL_SEQUENCE_string"
+	"";
+      result: noset;
+      mode: noset;
+      contexts: noset;
+      somInit: override;
+      somUninit: override;
+      somDumpSelf: override;
+      somDumpSelfInt: override;
+      describe: override;
+  };
+#endif /* __SOMIDL__ */
+};
+#endif	/* operatdf_idl */

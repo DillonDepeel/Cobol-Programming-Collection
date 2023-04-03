@@ -1,0 +1,12 @@
+/* This macro puts the contents of the current line  */
+/* in the command dialog so user can edit & then process  */
+'extract content'
+'set lineread.title Current line'
+'set lineread.prompt Enter a command'
+'lineread 255' content
+'extract lastkey'
+if lastkey = "ENTER" then do 
+'extract lastline'
+'lxn lxc' lastline
+end
+

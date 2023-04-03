@@ -1,0 +1,57 @@
+
+  WPSTUTOR - The Workplace Shell Tutorial Sample
+ 
+DESCRIPTION:
+
+  The WPSTUTOR sample displays the order in which object methods are
+  invoked by the Workplace Shell.  As a method for the sample object 
+  class is executed, the method's name and a description of its functions 
+  are displayed in a Presentation Manager window.  The sample saves its 
+  title and the icon title backwards.
+
+  This object class subclasses the WPDataFile class.  Most Workplace
+  Shell instance and class methods are overridden so that information 
+  about the methods can be displayed to the user.
+
+  This sample is designed to be more of a tutorial for Workplace Shell
+  programming than a programming example.
+
+  NOTE:  The SHOWDESC.EXE file should be renamed to SHOWDESC.BAK
+  (or something other than SHOWDESC.EXE) to turn off the sample.  
+  Rename the file back to SHOWDESC.EXE to turn the sample back on.
+
+SAMPLE LOCATION:
+
+ Inside the WPS Sample Programs inside the main VisualAge C++ for OS/2
+ folder on your OS/2 desktop.
+
+ Note: This sample is not provided in project form.
+
+SOURCE FILE LOCATION:
+
+ X:\ibmcpp\samples\toolkit\wps\wpstutor
+
+ where X: is the drive on which you installed the samples and 
+ document component of VisualAge C++ for OS/2.
+
+
+HOW TO RUN THE SAMPLE:
+
+-From your OS/2 desktop:
+ Double-click on the sample's icon.
+
+-From an OS/2 command prompt
+
+ To start the sample program, type the name of the executable 
+ file and press Enter.  If you have edited source code of a sample 
+ program and want to recompile, link, and run the files, use the 
+ NMAKE tool. Your output is the executable file.  For information 
+ about the NMAKE utility, see the OS/2 Tools Reference.
+
+
+SOFTWARE/HARDWARE PREREQUISITES:
+
+- IBM VisualAge C++
+- OS/2 Warp
+- IBM or compatible 386 and up.
+

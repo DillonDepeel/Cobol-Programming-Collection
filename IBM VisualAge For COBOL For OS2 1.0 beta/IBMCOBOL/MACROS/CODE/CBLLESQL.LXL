@@ -1,0 +1,9 @@
+/***************************************************************************/
+/* CBLLE400.LXL -  LANGUAGE SENSITIVE EDITOR PROFILE FOR ILE COBOL/400     */
+/***************************************************************************/
+TRACE OFF
+
+/* CALL ILE COBOL PROFILE. PROFILES ARE THE SAME */
+'LXR CBLLE400.LXL'
+                  
+

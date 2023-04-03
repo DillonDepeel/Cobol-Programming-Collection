@@ -1,0 +1,49 @@
+/********************************************************
+* MFO.LXL - LOAD MACRO FOR MAKE FILE OUTPUT             *
+*                                                       *
+* THIS MACRO IS INVOKED BY LPEX WHENEVER A FILE WITH AN *
+* EXTENSION OF .MFO IS EDITED. IT'S DESIGNED TO BE USED *
+* ON FILES WHICH CONSIST OF COMPILER MESSAGES E.G. THE  *
+* OUTPUT FROM A MAKE.                                   *
+* i.e. nmake /f test.mak test.dll >errors.mfo           *
+*      then setup association for *.mfo and MFO.LXL     *
+*      then edit errors.mfo                             *
+*                                                       *
+*       COPYRIGHT IBM CORPORATION 1993                  *
+*                                                       *
+********************************************************/
+
+'SET CLASSES DATA MESSAGE'
+'SET HIGHLIGHT MESSAGE'
+'SET PROTECT DATA'
+'SET ACTION.BUTTON1DOWN ;PRIMITIVE SETCURSOR;EMSG SELECT'
+'SET ACTION.BUTTON1DRAG ;PRIMITIVE SETCURSOR;EMSG EXPANDSEL'
+'SET ACTION.BUTTON1DOUBLE ;PRIMITIVE SETCURSOR;EMSG CLEAR;EMSG SELECT;SSHOW;EMSG PROCESS'
+'SET ACTION.F1 EMSG HELP'
+'SET ACTION.C-X EMSG NEXT'
+'SET ACTION.A-E EMSG ALL'
+'SET ACTION.C-E EMSG PROCESS'
+'SET SYNONYM.QUIT 4 LXI QQUIT'
+
+'SET ACTIONBAR.~Actions.SEPARATOR ;'
+'SET ACTIONBAR.~Actions.Select_~all_messages\tAlt+E EMSG ALL'
+'SET ACTIONBAR.~Actions.Dese~lect_all_messages EMSG CLEAR'
+'SET ACTIONBAR.~Actions.~Process_selected_messages\tCtrl+E EMSG PROCESS'
+'SET ACTIONBAR.~Actions.~Delete_selected_messages EMSG DELETE'
+'SET ACTIONBAR.~Edit.L~ocate.~Next_error\tCtrl+X EMSG NEXT'
+'SET ACTIONBAR.~Options.~Message_severity.~Information EMSG OPTSEV I'
+'SET ACTIONBAR.~Options.~Message_severity.~Warning     EMSG OPTSEV W'
+'SET ACTIONBAR.~Options.~Message_severity.~Error       EMSG OPTSEV E'
+'SET ACTIONBAR.~Options.~Message_severity.~Severe      EMSG OPTSEV S'
+'SET ACTIONBAR.~Options.~Message_severity.~Terminal    EMSG OPTSEV T'
+
+'EXTRACT ACTIONBARID.~Options.~Message_severity.~Information INTO ID_I'
+'EXTRACT ACTIONBARID.~Options.~Message_severity.~Warning     INTO ID_W'
+'EXTRACT ACTIONBARID.~Options.~Message_severity.~Error       INTO ID_E'
+'EXTRACT ACTIONBARID.~Options.~Message_severity.~Severe      INTO ID_S'
+'EXTRACT ACTIONBARID.~Options.~Message_severity.~Terminal    INTO ID_T'
+
+'SET GLOBAL.MFO_SEV_OPTIONS 11111'
+'EMSG INIT' ID_I ID_W ID_E ID_S ID_T
+
+

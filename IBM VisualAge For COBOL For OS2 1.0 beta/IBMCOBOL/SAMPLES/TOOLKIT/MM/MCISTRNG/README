@@ -1,0 +1,60 @@
+
+MCISTRNG - Media Control Interface String Test
+
+
+DESCRIPTION:
+
+ MCISTRNG serves as a powerful testing and debugging tool that
+ enables developers writing media drivers to control their devices
+ at the application level.
+
+ The String Test Sample illustrates how an application uses the
+ interpretive string interface provided by the media control
+ interface.
+
+ It also illustrates how notification messages are returned from
+ he media drivers to the application.
+
+TASK:
+
+ Sample program that allows developers to control multimedia
+ devices at the application level
+
+CONCEPT/FEATURE:
+
+ Multimedia device control
+
+SAMPLE LOCATION:
+
+ Inside the MM Sample Programs inside the main VisualAge C++ for OS/2
+ folder on your OS/2 desktop.
+
+ Note:This sample is not provided in project form.
+
+SOURCE FILE LOCATION:
+
+ X:\ibmcpp\samples\toolkit\mm\mcistrng
+
+ where X: is the drive you installed the samples and document component
+ of VisualAge C++ for OS/2.
+
+
+HOW TO RUN THE SAMPLE:
+
+-From your OS/2 desktop:
+ Double-click on the sample's icon.
+
+-From an OS/2 command prompt:
+ To start a non-WorkPlace Shell sample program from an OS/2 command
+ prompt, type the name of the executable file and press Enter.  If you
+ have edited source code of a sample program and want to recompile,link,
+ and run the files, use the NMAKE tool. Your output is the executable
+ file.  For information about the NMAKE utility, see the
+ OS/2 Tools Reference.
+
+SOFTWARE/HARDWARE PREREQUISITES:
+
+- IBM VisualAge C++
+- OS/2 Warp
+- IBM or compatible 386 and up.
+

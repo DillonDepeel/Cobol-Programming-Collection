@@ -1,0 +1,78 @@
+
+
+
+HANOI - Multithreaded Sample (Towers of Hanoi) 
+
+
+DESCRIPTION:
+
+HANOI implements the familiar "towers of Hanoi" puzzle.  When the sample
+program is started, the user sees three poles (A, B, and C).  Initially,
+pole A has on it a stack of disks starting with the largest disks
+on the bottom and succeeding smaller disks on the top.  The main thread
+handles the Presentation Manager interface and lets the user start or
+stop the Hanoi routine.  It also lets the user reset the number of
+working disks.  The second thread is created when START is selected
+from the Options menu.  This thread starts the recursive execution
+of the Hanoi algorithm, runs in the background, and moves and
+paints the disks.  All disks end up on pole C.
+
+TASK:
+Solve the Towers of Hanoi problem using multithreading.
+
+CONCEPT/FEATURE:
+This sample application was written to demonstrate the use of a multi-
+threaded program.  The main thread handles the PM interface,
+the second thread is started to do the recursive execution
+of the hanoi algorithm.
+
+SAMPLE LOCATION:
+Inside the OS/2 Sample Programs (which is inside the VisualAge C++ 
+Samples folder).
+
+Note:This sample is not provided in project form.
+
+SOURCE FILE LOCATION:
+
+X:\ibmcpp\samples\toolkit\os2\hanoi
+where X: is the drive you installed the samples and document component
+of VisualAge C++ for OS/2.
+
+
+HOW TO RUN THE SAMPLE:
+
+-From your OS/2 desktop:
+ Double-click on the sample's icon.
+
+-From an OS/2 command prompt:
+  To start a non-WorkPlace Shell sample program from an OS/2 command
+  prompt, type the name of the executable file and press Enter.  If you
+  have edited source code of a sample program and want to recompile,link,
+  and run the files, use the NMAKE tool.  Your output is the executable
+  file.  For information about the NMAKE utility, see the OS/2 Tools
+  Reference.
+
+
+SOFTWARE/HARDWARE PREREQUISITES:
+
+- IBM VisualAge C++
+- OS/2 Warp
+- IBM or compatible 386 and up.
+
+REQUIRED FILES      DESCRIPTIONS  
+
+  hanoi.c           The main() file
+  hanoi.def         Link definitions file
+  hanoi.dlg         Dialog resource file
+  hanoi.exe         The executable
+  hanoi.h
+  hanoi.hlp         Help file
+  hanoi.ico
+  hanoi.ipf
+  hanoi.mak         MakeMake generated makefile
+  hanoi.rc
+  readme            This file
+
+
+
+

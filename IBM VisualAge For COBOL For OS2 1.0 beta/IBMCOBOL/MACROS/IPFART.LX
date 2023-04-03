@@ -1,0 +1,8 @@
+/* Insert artwork tag */
+'purge'
+'insert .*'
+'insert :artwork name=''filename.ext'' align=left|right|center.'
+do i = 1 to 15
+   'primitive cursorright'
+end
+

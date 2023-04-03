@@ -1,0 +1,46 @@
+/*****************************************************************************/
+/* Copyright (c) IBM Corporation 1993  -  All Rights Reserved                */
+/*                                                                           */
+/* DFM/2 (program no. 5648-020)                                              */
+/* Version: 1.0                                                              */
+/* Release: 1.0                                                              */
+/*****************************************************************************/
+/* CHANGE ACTIVITY                                                           */
+/* Flag Reason      Level    Date   Origin    Comments                       */
+/* ------------------------------------------------------------------------- */
+/*                           930402 Mueller  : Initial Release               */
+/* IBM Deutschland Entwicklung GmbH, Boeblingen, Germany       GMU at SDFVM1 */
+/*****************************************************************************/
+
+/*****************************************************************************/
+/* Start of a sample ADL file for a view sequence                            */
+/* Note: This defines a 'reduced view' on the file described with            */
+/*       ADL file SAMPBASE.ADL, which means the application program          */
+/*       does not need to see all of the fields defined in the base          */
+/*       description. When a file is opened where a 'reduced view' is        */
+/*       defined, only read operations are allowed (GETAI flag of DDMOpen).  */
+/*****************************************************************************/
+ DECLARE
+  BEGIN;
+   letters:
+     SUBTYPE OF CHAR LENGTH(20) CCSID(00437);
+   EmplRecV:
+    SEQUENCE
+    BEGIN;
+     /* Pos. 1 - 20: LENGTH(20)    = 20 bytes */
+     LastName: letters;
+
+     /* Pos. 21 - 22: LENGTH(2)    =  2 bytes */
+     Initials: letters LENGTH(2);
+
+     /* Pos. 23 - 26: PRECISION(9) =  4 bytes */
+     Age:      BINARY BYTRVS(TRUE) PRECISION(9) SCALE(0) RADIX(10);
+
+     /* Pos. 27 - 29: PRECISION(5) =  3 bytes */
+     HatSize:  PACKED PRECISION(5) SCALE(3);
+    END;
+  END;
+/*****************************************************************************/
+/* End of a sample ADL file for a view sequence.                             */
+/*****************************************************************************/
+

@@ -1,0 +1,66 @@
+/********************************************************
+* SEU.LX: SEU/LPEX editor profile.                       *
+*                                                        *
+* This LX profile is called whenever the key behavior    *
+* for SEU is called. It sets up any defaults (including  *
+* key definitions and mouse actions required to make your*
+* LPEX session behave like an SEU session).              *
+*                                                        *
+* To have the SEU/LPEX profile saved, and invoked        *
+* automatically, use the Save key behavior option from   *
+* the key behavior option.                               *
+*                                                        *
+*         COPYRIGHT IBM CORPORATION 1989, 1995           *
+********************************************************/
+'MACRO LPEX'                                  /* Default key behaviour       */
+/* SEU key behaviour   */
+/* F1 = Help already   */
+/* F2 = Not used in SEU*/
+/* F3 = Exit already   */
+/* F4 = Prompt already */
+'SET ACTION.F5 ;ALL SET PREFIXENTRY;MSG    '  /* F5 = Clear msgs,prefix area */
+/* F6 = Not used in SEU*/
+'SET ACTION.F7 SCROLL SCREEN UP'              /* F7 = Page Up                */
+'SET ACTION.F8 SCROLL SCREEN DOWN'            /* F8 = Page Down              */
+/* F9 = Retrieve in SEU, but used for Command Log in CODE and LPEX           */
+/* F10= Cursor   in SEU, but used for goto-Menubar in CODE and OS/2          */
+/* F11= Prompt previous already */
+/* F12= Not used in SEU*/
+'SET ACTION.S-F1 DIALOG OPTIONS'              /* F13 = Editor Options dialog */
+'SET ACTION.S-F2 DIALOG FINDCHANGE'           /* F14 = Editor Find/Change dlg*/
+'SET ACTION.S-F3 DIALOG OPEN'                 /* F15 = Editor Open dialog    */
+'SET ACTION.S-F4 FIND VISIBLE NEXT'           /* F16 = Find next             */
+'SET ACTION.S-F5 DIALOG FINDCHANGE'           /* F17 = Editor Find/Change dlg*/
+/* F18= DBCS cnv in SEU*/
+'SET ACTION.S-F7   SCROLL SCREEN LEFT'        /* F19 = Page left             */
+'SET ACTION.S-F8   SCROLL SCREEN RIGHT'       /* F20 = Page right            */
+/* F21= CmdLine in SEU, but used for Issue Edit Command in CODE.             */
+/* F22= Not used in SEU*/
+/* F23= Select Prompt already*/
+'SET ACTION.S-F12  DIALOG ACTION'             /* F24 = Show key assignments  */
+'SET ACTION.ENTER ;PREFIXPROCESS ;PRIMITIVE PREVIOUSTAB'
+
+'MACRO SEUPRF'
+
+'EXTRACT VIEWNUM'
+'EXTRACT VIEWLIST'
+do while(viewlist \= '')
+   'GOVIEW NOACT VIEWNUM 'subword(viewlist,1,1)
+
+   'SET MENUCHECK.LP_LPEXKEYS  OFF'
+   'SET MENUCHECK.LP_EPMKEYS   OFF'
+   'SET MENUCHECK.LP_SEUKEYS   ON'
+   'SET MENUCHECK.LP_XEDITKEYS OFF'
+   'SET MENUCHECK.LP_ISPFKEYS  OFF'
+   'SET MENUCHECK.LP_CUSTOMIZE OFF'
+   'EXTRACT PREFIXDISPLAYFORMAT'
+   if PREFIXDISPLAYFORMAT = '' then
+      'SET PREFIXDISPLAYFORMAT 99999'
+   'SET PREFIXSHOW ON'
+   viewlist = delword(viewlist,1,1)
+end
+'GOVIEW NOACT VIEWNUM 'VIEWNUM
+
+'EXTRACT DOCNUM INTO DOCNUM'
+"SET GLOBAL.DOC" || DOCNUM || " 'MACRO SEU'"
+

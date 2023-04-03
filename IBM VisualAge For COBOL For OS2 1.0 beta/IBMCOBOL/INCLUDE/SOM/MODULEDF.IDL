@@ -1,0 +1,62 @@
+//
+//   COMPONENT_NAME: somi
+//
+//   ORIGINS: 27
+//
+//
+//   10H9767, 10H9769  (C) COPYRIGHT International Business Machines Corp. 1992,1994
+//   All Rights Reserved
+//   Licensed Materials - Property of IBM
+//   US Government Users Restricted Rights - Use, duplication or
+//   disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+//
+//  ModuleDef: CORBA Interface for module definitions
+//  See CORBA 7.5.3, p.133
+#ifndef moduledf_idl
+#define moduledf_idl
+#include <containd.idl>
+#include <containr.idl>
+#include <somcls.idl>
+// CORBA 7.5.3, p.133
+interface ModuleDef : Contained , Container
+{
+    struct ModuleDescription {
+	Identifier   name;
+	RepositoryId id;
+	RepositoryId defined_in;
+    };
+    // The inherited describe method returns an instance of this
+    // (ModuleDescription) structure in the "value" member of the
+    // Description structure defined in the Contained interface.
+    // The inherited describe_contents method in the Container
+    // interface returns a sequence of these Description structures
+    // each carrying a reference to a ModuleDescription structure
+    // in its "value" member.
+#ifdef __SOMIDL__
+  implementation {
+      callstyle = idl;
+      majorversion = 2;
+      minorversion = 1;
+      filestem = moduledf;
+      passthru C_h =
+	""
+	"    #include <somtcnst.h>"
+	"    #include <somir.h>"
+	"    #include <containd.h>"
+	"";
+      passthru C_xh =
+	""
+	"    #include <somtcnst.xh>"
+	"    #include <somir.xh>"
+	"    #include <containd.xh>"
+	"";
+      within: override;
+      describe: override;
+      somInit: override;
+      somUninit: override;
+      somDumpSelf: override;
+      somDumpSelfInt: override;
+  };
+#endif /* __SOMIDL__ */
+};
+#endif	/* moduledf_idl */

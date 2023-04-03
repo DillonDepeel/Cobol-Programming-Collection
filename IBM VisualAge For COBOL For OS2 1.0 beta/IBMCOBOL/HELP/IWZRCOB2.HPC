@@ -1,0 +1,192 @@
+ COB2 - COBOL Compiler and Linker Invocation, Version: <Beta>
+
+  Usage:
+     cob2 [options | files]...                                                |
+
+
+  The command cob2 invokes the COBOL compiler and linker. The syntax
+  of cob2 is flexible, accepting compiler and linker options in any
+  order on the command line. Likewise, if you want to compile multiple
+  files, the filenames can be specified at any position in the command
+  syntax.  However, all options and filenames should be separated by
+  spaces.
+
+
+  cob2 Options:
+  -------------
+     Options can be one or more of the following:
+
+     -B"xxx"   Pass xxx, a list of linker options, to the linker.
+
+     -c        Compile programs, but do not link them.
+
+     -g        Produce symbolic information used by the debugger.
+
+     -Gh       Include profile hooks for EXTRA performance monitoring.
+
+     -Ixxx     Add path xxx to the directories to be searched for
+               COPY files if library-name or SYSLIB are not
+               specified. To add multiple paths, use multitiple -I
+               options.
+
+
+     -qxxx     Use the option xxx (where xxx is any compiler option)
+               when running COB2.  If a series of options are            are
+               specified, they should be enclosed in quotes. Separate
+               options by blanks or commas.
+
+     -v        Display compile and link steps, and execute them.
+
+     -#        Display compile and link steps, but do not execute them.
+
+
+  cob2 Examples:
+  --------------
+     The following examples illustrate the use of COB2:
+
+     o   To compile the file "alpha.cbl", enter:
+             cob2 -c alpha.cbl
+         The compiled file is named "alpha.obj".
+
+     o   To compile "alpha.cbl" and "beta.cbl", enter:
+             cob2 -c alpha.cbl c:\mydir\beta.cbl
+         The compiled files are named "alpha.obj" and "beta.obj"
+         and are written to the current directory.
+
+     o   To link two files together, compile them without the -c
+         option.  For example, to compile and link "alpha.cbl" and
+         "beta.cbl" and generate "alpha.exe", enter:
+             cob2 alpha.cbl beta.cbl
+         This command creates "alpha.obj" and "beta.obj", then links
+         "alpha.obj", "beta.obj", and the COBOL libraries.  If the
+         link step is successful, it produces an executable program
+         named "alpha.exe".
+
+     o   In the following example:
+             cob2 alpha.obj beta.cbl mylib.lib gamma.exe
+         beta.cbl is compiled, and:
+             alpha.obj beta.obj mylib.lib gamma.exe
+         Is passed to the linker.  If linking is successful, the
+         executable "gamma.exe" is produced.
+
+     o   In the following example:
+             cob2 alpha.cbl alpha.def
+         Will generate "alpha.dll" (assuming a valid "alpha.def" file).
+
+
+  Usage Notes for cob2:
+  ---------------------
+     1.  Any options specified apply to all files on the command line.
+     2.  Only files with the .cbl extension are passed to the compiler;
+         cob2 passes all other files to the linker.
+     3.  The location of compiler input files defaults to the current
+         directory, unless a fully-qualified path is specified.
+     4.  The location of compiler output files is the always the current
+         directory.
+
+
+  COBOL Compiler Options Summary:
+  -------------------------------
+     You can specify compiler options at the command line using the
+     -q option of cob2. Select from the following COBOL compiler
+     options:
+
+     ADATA|NOADATA
+         Use ADATA to create a SYSADATA file.
+     BINARY(NATIVE|S370)
+         Determines how binary data is represented.
+     CALLINTERFACE(SYSTEM|OPTLINK|FAR16)
+         Indicate the call interface convention for CALLs.
+     COMPILE|NOCOMPILE(W|E|S)
+         Determines conditional compilation in regard to errors.
+     CURRENCY(literal)|NOCURRENCY
+         Use to replace the currency symbol ($).
+     DUMP|NODUMP
+         Use to produce a system dump at compile time.
+     ENTRYINTERFACE(SYSTEM|OPTLINK|FAR16)
+         Indicate the call interface for USING phrase of PROCEDURE
+         DIVISION or ENTRY statement.
+     EVENTS|NOEVENTS
+         Use EVENTS to create a SYSADATA file.
+     EXIT(INEXIT...)|NOEXIT
+         Use EXIT to allow compiler to accept user-defined exit modules.
+     FLAG|NOFLAG
+         Use FLAG to produce diagnostic messages conditional on a given
+         severity level.
+     FLAGSTD|NOFLAGSTD
+         Flags various language elements.
+     GCHARSIZE(n)
+         Use GCHARSIZE to indicate the number of bytes allowed for each
+         PICTURE G or PICTURE N MBCS character.
+     LIB|NOLIB
+         Specify LIB if your program uses COPY, BASIS, or REPLACE
+         statements.
+     LINECOUNT(nnn)
+         Specify the number of lines to be printed on each page of the
+         compilation listing.
+     LIST|NOLIST
+         Use LIST to produce a listing of the assembler-language
+         expansion of your source code.
+     MAP|NOMAP
+         Use MAP to produce a listing of the items you defined in the
+         DATA DIVISION.
+     NUMBER|NONUMBER
+         Use NUMBER if you want to relate source code line numbers to
+         error messages, MAP, LIST, or XREF listings.
+     NUMPROC(PFD|NOPOFD)
+         Use NUMPROC(NOPFD) if you want the compiler to process invalid
+         sign processing.
+     OBJECT|NOOBJECT
+         Use OBJECT to generate object modules to be used by the linkage
+         editor.
+     OPTIMIZE|NOOPTIMIZE
+         Use OPTIMIZE to reduce the run time of your program.
+     PGMNAME(MIXED|UPPER)
+         Determines how character-case will be handled.
+     QUOTE/APOST
+         Specify delimiter character for literals.
+     SEQUENCE|NOSEQUENCE
+         Use SEQUENCE to instruct the compiler to check the order of
+         statements by ASCII collating sequence.
+     SOURCE|NOSOURCE
+         Use SOURCE to get a listing of your source program.
+     SPACE(1|2|3)
+         Determine spacing in your source code listing.
+     SSRANGE|NOSSRANGE
+         Use SSRANGE to generate code that checks if subscript or
+         index references are out of range.
+     TERMINAL|NOTERMINAL
+         Use TERMINAL to send progress and diagnostic messages to the
+         terminal.
+     TEST|NOTEST
+         Use TEST to generate code that will work with the debugger.
+     THREAD|NOTHREAD
+         Use THREAD to generate a multi-threaded program.
+     TRUNC(STD|OPT|BIN)
+         Determines how arithmetic fields are truncated.
+     VBREF|NOVBREF
+         Use VBREF to get a cross-reference listing of verb types
+         and source program line numbers.
+     WORD(xxx)|NOWORD
+         Use WORD to specify an alternate COBOL reserved word table.
+     XREF(SHORT|FULL)|NOXREF
+         Use XREF to get a sorted cross-reference listing.
+     ZWB|NOZWB
+         Use ZWB to instruct the run-time to remove the sign from a
+         signed external decimal (DISPLAY) field when comparing this
+         field to an alphanumeric elementary field during execution.
+
+     *** For a detailed description of compiler options, please refer
+     to the Programmer's Guide.
+
+
+  Running COBOL Programs:
+     To run a COBOL program, first make sure that any needed environment
+     variables are set. Then type the name of the module on the command
+     line or execute a command file which invokes the module.  For
+     example, if
+            cob2 alpha.cbl beta.cbl
+     is successful, you can execute the program by typing:
+            alpha
+
+

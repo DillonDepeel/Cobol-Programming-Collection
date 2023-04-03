@@ -1,0 +1,575 @@
+.*CID Documentation Template
+.*
+.*Modify this template to provide your users with the information
+.*needed to install your product using Software Installer.
+.*
+.*Delete any of the codes or keywords that your product does not use.
+.*Document any unique codes or keywords that your product does use.
+.*
+.*The CID guidelines require you to document four topics:
+.*
+.*   1) How to transfer diskette images to hard disk.
+.*   2) How to create a response file for unattended installation.
+.*      A sample response file is optional, but recommended.
+.*   3) How to install your product using command line parameters.
+.*   4) What return codes your product uses.
+.*
+.*  This information can be in the read.me file.
+.*  It does not have to be all together or in the order listed here.
+.*
+.*  Refer to Configuration, Installation, and Distribution Enablement
+.*  Guidelines (SI0H-9666) for complete information on the CID
+.*  architecture.
+.*******************************
+.*
+.*   1) How to transfer diskette images to hard disk.
+.*
+.*******************************
+How to Install <Product Name> from a LAN Server
+
+If you have a license to install <product name> on several
+workstations, you can install it without using diskettes.
+Follow these steps:
+  o Create a directory on the LAN server to store the <product name>
+    files, for example:
+       MKDIR J:\ProductName
+  o Copy each <product name> diskette into this directory using
+    the XCOPY command, for example:
+       XCOPY a:*.* J:\ProductName /S
+  o Install <product name> by typing <installpn> at the command prompt
+    and pressing Enter.
+.*********************************************************************
+How to Install <Product Name> from a Diskette or CD-ROM
+
+To install <product name> onto your workstation from diskette or CD-ROM,
+for example,
+type <installpn> <parameters>, and press Enter.
+.*********************************************************************
+.*
+.*   2) How to create a response file for unattended installation.
+.*
+.*********************************************************************
+How to Create a Response File
+
+Response files are used to provide data that is normally entered manually
+when <product name> is installed.
+.******************************************
+Response File Format and Keywords
+.*Standard CID keyword values are default, blank, userprompt, null
+.*********************************************************************
+.*
+This product supports the following keywords:
+.*
+AUXn (conditionally required)
+Specifies the new default path for the auxiliary directory,
+where n is any number between 1 and 18.
+(Thus there are 18 possible auxiliary directories:
+AUX1, AUX2,...AUX18.)
+This keyword is used only for installation processing.
+
+This AUXn value is used in place of the AUXn keyword of the PATH entry of
+the package file.
+This keyword is required if you have specified an AUXn keyword
+in the PATH entry.
+.*
+CFGUPDATE (required)
+Specifies whether the CONFIG.SYS file is automatically updated.
+Valid values for this keyword are:
+
+         AUTO             Automatically updates CONFIG.SYS
+         MANUAL           Does not update CONFIG.SYS
+
+.*
+COMP
+Specifies the unique name of a component of the product
+for which passed information applies.
+There can be a maximum of 100 components.
+The COMP value must match the NAME keyword of the COMPONENT entry in the
+package file.
+NOTE:
+Do not use quotes around the component name, even when the name is more
+than one word with blanks between words.
+.*
+COPY
+Specifies the source and target files for a copy process.
+The format of this keyword is:
+
+  COPY = source_filespec target_filespec
+
+
+If the target_filespec already exists, it is overwritten.
+If either file specification is not valid, the copy is not done.
+.*
+DELETEBACKUP (required)
+Specifies whether to delete only the backup versions of the
+product or to delete the entire product.
+Valid values for this keyword are YES and NO.
+It is required because an existing
+dialog requests this information in the attended mode.
+
+If an unattended delete is attempted
+and the DELETEBACKUP is not present in the response file, the
+deletion fails with an EPFIE212 error.
+.*
+FILE (conditionally required)
+Provides the new default path for the file directory.
+This keyword is used only for installation processing.
+
+This FILE value is used in place of the FILE keyword of the PATH entry in
+the package file.
+This keyword is required if you have specified a FILE keyword in the PATH
+entry.
+.*
+INCLUDE
+Specifies which general response files to include with a specific
+response file.
+The format of this keyword is:
+
+  INCLUDE = filespec
+
+
+Where filespec is the general response file to be
+included.
+If the file specification contains any global characters
+(* or ?), the first file found that matches the
+specification is included.
+If the specification is not valid,
+no general response file is included.
+NOTE:
+You cannot have more than five levels of included response files.
+
+The following represents the maximum permitted five levels of
+response file incl
+
+LEVEL1.RSP includes LEVEL2.RSP
+  LEVEL2.RSP includes LEVEL3.RSP
+    LEVEL3.RSP includes LEVEL4.RSP
+      LEVEL4.RSP includes LEVEL5.RSP
+
+
+The following search order is used to find the general response files
+specified.
+ 1.The fully-qualified file specification, if specified with filespec
+ 2.The current directory
+ 3.The file name together with the /G: invocation parameter
+ 4.Each directory in the PATH environment variable
+ 5.Each directory in the DPATH environment variable
+.*
+OVERWRITE (required)
+Specifies whether to automatically overwrite files during
+installation.  Valid values for this keyword are YES and NO.
+This keyword is required for unattended processing.
+.*
+SAVEBACKUP (required)
+Specifies whether to save a backup version of the product when it
+is updated.  Valid values for this keyword are YES and NO.
+It is required for unattended processing because an existing
+dialog requests this information in the attended mode.
+.*
+USEREXIT
+Specifies the name of an exit that you want started.
+The format of this keyword is:
+
+  USEREXIT = filespec
+
+Where filespec is the name of a user exit.
+If the file specification contains any global characters
+(* or ?), the first executable found that matches the
+specification is started.  If the specification is not valid,
+no user exit is started.
+
+The following search order is used to find the specified user exit.
+ 1.The fully-qualified file specification, if specified with filespec
+ 2.The current directory
+ 3.Each directory in the PATH environment variable
+ 4.Each directory in the DPATH environment variable
+.*
+WORK (conditionally required)
+Provides the new default path for the data directory.
+
+This WORK value is used in place of the WORK keyword of the PATH entry in
+the package file.
+This keyword is required if you have specified a WORK keyword in the PATH
+entry.
+.*
+.*
+.****************************************************************
+Response File Details
+.*
+A response file is a flat ASCII file
+that consists of a series of lines separated by newline sequences
+(0x0A, 0x0D, or a combination of these two sequences).
+
+Each line in a response file has a maximum line length of 255 bytes.
+
+A response file has two kinds of lines:
+Comment lines
+Comment lines contain only white space characters
+or have either an asterisk (*) or a semicolon (;)
+as the first nonwhite space character on the line.
+Response lines
+Response lines are used by Software Installer
+to determine the options
+and configurations to install on the target system.
+
+Response lines have the following syntax:
+
+keyword = value
+
+Keywords cannot contain imbedded spaces.
+Keywords are not case-sensitive.
+You can group keywords together
+in value lists using the following syntax:
+
+keyword = (
+           keyword1 = value
+           keyword2 = value
+           .
+           .
+           keywordn = value
+          )
+
+.****************************************************************
+
+.***********************************
+.*
+.*   3) How to install your product using command line parameters.
+.*
+.***********************************
+Using Command Line Parameters
+.*Standard CID command line parameters are:
+.*/g:,/l1: to l5:,/r:,/s:/t:,/tu
+
+.****************************************************************
+
+If no parameters are specified when the executable file is started,
+the installation is attended.
+To install in an unattended mode, the /X parameter must be used.
+Unattended includes what is sometimes referred to as lightly attended.
+In the lightly attended mode, someone might have to start
+an executable file or insert diskettes.
+
+If the value of any of the parameters contains spaces,
+use double quotes to enclose the value.
+
+Values can be upper or lower case.
+Parameters can be in any order.
+.*
+
+<command> /A:<action>
+          /C:<catalog file name>
+          /G:<include path>
+          /L:<xpos,ypos>
+          /L1:<error log>
+          /L2:<history log>
+          /L3:<log file>
+          /L4:<log file>
+          /L5:<log file>
+          /O:<originating system>
+          /P:<product name>
+          /R:<response file>
+          /S:<source location>
+          /T:<install target directory>
+          /TU:<update CONFIG.SYS directory>
+          /X  <interactive_flag>
+
+.*
+
+The /A, /C, and /P parameters are required for an installation
+that is started with the EPFINSTS command.
+If the action is an install or an update, the /O is also required.
+.*
+The /A, /C, /L, /O, /P, /R, and /S parameters override values you have
+set in the IIRC.RC.
+Note:
+The drive/directory/filename path is required
+for all log parameters specified
+with the INSTALL.EXE or EPFIDLDS.EXE commands.
+The directories for log files must exist before starting the commands.
+.*
+.*********************************************************************
+Parameter Definitions
+.*
+The command prompt parameters are:
+.*
+/A:<action>
+Specifies the action of the EPFINSTS.EXE.
+If you use this parameter,
+the main window of the installation is not displayed.
+If you do not use this parameter,
+the installation starts normally with all windows displayed.
+Valid values for this parameter are:
+
+'D'  For delete
+'I'  For install
+'R'  For restore
+'U'  For update
+
+The installation program sets the EPFIACTION installation
+variable to the action.
+.*
+/C:<catalog file name>
+Specifies the name and location of the catalog file that
+you want to be opened automatically.
+
+If the catalog file is located on a host session, the
+host session ID must precede the catalog file name.  If the
+catalog file is located on a drive, a drive and directory must
+precede the catalog file name.
+The installation program sets the EPFICATALOG installation
+variable to the name of the catalog file.
+
+The following examples show how to use
+this parameter for each installation source.
+
+  o For Drive:   /C:A:\DISK1.ICF
+  o For MVS:    /C:B:EPF.V1R2M0.SEPFBENU(EPFICAT)
+  o For VM:     /C:"B:EPFICAT ENUEPF12 *"
+  o For VSE:    /C:B:LIB.SUBLIB.MEMBERNAME.MEMBERTYPE
+
+If only the host session ID is specified,
+for example, B:,
+the Open catalog window
+is displayed with B: as the default session or drive.
+.*
+/G:<include path>
+Specifies the drive and directory of the general response files
+that are included by the specific response file.
+The installation program sets the EPFIGENRESPDIR installation
+variable to the included path.
+Example:
+
+   /G:L:\XYZ
+
+.*
+/L:<xpos,ypos>
+Specifies the initial horizontal and vertical coordinates
+of the initial installation window on the Workplace Shell
+relative to the lower-left corner of the screen.
+If this parameter is specified,
+all previously saved default positions are overridden.
+The installation program sets the EPFIWNDCOORDS installation
+variable to the coordinates of the Installation and Maintenance window.
+.*
+/L1:<error log>
+Specifies the drive, path, and file name of the error log file.
+The installation program sets the EPFIERRORLOG installation
+variable to the name of the error log.
+
+The drive/directory/filename path is required.
+The directory for the log file must already exist.
+
+All lines logged to the error file are prefixed with a time stamp.
+The time stamp has the following format:
+
+YYYY-MM-DD HH:mm:SS:cc
+
+Where:
+
+ YYYY is the year.
+ MM is the month.
+ DD is the day.
+ HH is the hour.
+ mm is the minute.
+ SS is the second.
+ cc is the hundredth of a second.
+
+The date and time separators are the current user-defined settings in
+the Country object of the System Settings folder.
+The default separators are the hyphen and the colon, respectively.
+Example of using the /L1 parameter to create ERROR.LOG file in the
+C:\ABC\ directory:
+
+   /L1:C:\ABC\ERROR.LOG
+
+.*
+/L2:<history log>
+Specifies the drive, path, and file name of the history log file.
+The installation program sets the EPFIHISTORYLOG installation
+variable to the name of the history log.
+
+The drive/directory/filename path is required.
+The directory for the log file must already exist.
+
+If this parameter is not specified, no history log is maintained.
+
+All lines logged to the history file are prefixed with a time stamp.
+The time stamp has the following format:
+
+YYYY-MM-DD HH:mm:SS:cc
+
+Where:
+
+ YYYY is the year.
+ MM is the month.
+ DD is the day.
+ HH is the hour.
+ mm is the minute.
+ SS is the second.
+ cc is the hundredth of a second.
+
+The date and time separators are the current user-defined settings in
+the Country object of the System Settings folder.
+The default separators  are the hyphen and the colon, respectively.
+Example of using the /L2 parameter to create HISTORY.LOG file in the
+C:\ABC\ directory:
+
+   /L2:C:\ABC\HISTORY.LOG
+
+.*
+/L3:  /L4:  /L5:<log files>
+
+Each of these parameters specifies a drive, path,
+and file name of a log file.
+They are saved in installation variables EPFIL3LOG, EPFIL4LOG,
+and EPFIL5LOG for your use.
+
+The drive/directory/filename path is required.
+The directories for the log files must already exist.
+.*
+/O:<originating system>
+Specifies the originating system of the installation.
+Valid values are:
+
+  o DRIVE
+  o MVS
+  o VM
+  o VSE
+
+The installation program sets the EPFISOURCE installation
+variable to one of these values.
+.*
+/P:<product name>
+Provides the name of the product for the specified action.
+
+If you do not use this parameter, the installation
+comes up normally with all windows displayed.
+
+The <product name> should match the value of the NAME keyword
+of the PACKAGE entry in the catalog file.
+If your product name string includes any spaces, use double quotes
+around the string.  For example:
+
+   /p:"product name with spaces"
+
+The installation program sets the EPFIPRODUCT installation
+variable to the name of the product.
+.*
+/R:<response file>
+Specifies the drive, path, and file name
+of the specific response file.
+
+The following search order is used to find the response files.
+
+  1.The fully-qualified file specification
+  2.The current directory.
+    The current directory is the temporary directory
+    where epfinsts.exe is running.
+    The response file can
+    be placed in the current directory by packing it in INSTALL.IN_.
+  3.The file name together with the /G: invocation parameter
+  4.Each directory in the PATH environment variable
+  5.Each directory in the DPATH environment variable
+
+The installation program sets the EPFIRESPFILE installation
+variable to the response file.
+Example:
+
+   /R:L:\XYZ\RESPONSE.DAT
+
+.*
+/S:<source_location>
+Specifies the drive and path
+that contains the source files to install.
+The installation program sets the EPFISOURCEDIR installation
+variable to the source_location.
+Specifying this parameter overrides
+the value of the HOSTLOC keyword in the product's catalog
+file PACKAGE entry.
+If this parameter is not specified,
+the value of the HOSTLOC keyword is not overridden.
+Example:
+
+   /S:L:\XYZ
+
+.*
+/T:<install target directory>
+Specifies the drive and path
+where the product files are installed.
+This parameter only affects the value of the FILE directory
+(directory corresponding to the FILELABEL keyword).
+If this parameter is specified, it overrides the FILE paths
+that are specified in the response files and the package files.
+The installation program sets the EPFITARGETDIR installation
+variable to the install target directory.
+Example:
+
+   /T:C:\IBB
+
+.*
+/TU:<update target CONFIG.SYS directory>
+Specifies the drive and path of the target CONFIG.SYS to be updated.
+The installation program sets the EPFITARGETCNF installation
+variable to the update CONFIG.SYS target directory.
+If this parameter is not specified,
+the CONFIG.SYS files are updated as specified
+in the product's package file.
+Example:
+
+   /TU:C:\
+
+.*
+/X
+Specifies that the action is unattended.
+If you do not specify all of the information needed for the action
+to complete, an error occurs.
+When you specify the /X option, no progress indication is shown
+and all error messages are logged to the error file you specified using
+the /L1 parameter.
+
+If you do not specify this option, the user is prompted
+for any information that the EPFINSTS.EXE needs to complete the
+action.  In this attended mode of
+action, progress indication is shown and error messages are
+displayed to the user in secondary windows.
+The  installation program sets the EPFINONINTERACT installation
+variable to YES if the /X parameter is specified.
+
+.*****************************************************
+.*
+.*   4) What return codes your product uses.
+.*      Delete any codes your product does not use.
+.*      Change the 'y's in FF yy to match your product.
+.*****************************************************
+Return Codes from <Product Name> to a Controller
+<Product Name> returns the following return codes to a
+software distribution manager (SDM):
+
+  o Successful installation.
+
+        00 00    No messages were logged.
+
+  o Successful installation.
+    The workstation operating system will be restarted.
+    Do not call Software Installer again.
+
+         FE 00      No messages.
+         FE 04      Warning messages were logged.
+         FE 08      Error messages were logged.
+         FE 12      Severe error messages were logged.
+
+  o Successful installation.
+    Restarting the workstation operating system occurs.
+    Start the installation again.
+
+.*Change yy to the code your product uses and define its meaning.
+         FF yy      yy can vary from 00 to FF.
+
+  o Unexpected condition encountered during installation.
+
+         16 00      Incorrect invocation of installation program
+         16 04      Messages were logged.
+
+All return codes are two-byte hexadecimal values.
+
+

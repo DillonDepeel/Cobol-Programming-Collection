@@ -1,0 +1,91 @@
+
+
+BROWSE - WPS ASCII Hex File Browser
+
+
+DESCRIPTION:
+
+ The BROWSE sample displays file system objects in a hexadecimal or
+ text format a Presentation Manager window.  Open a view of an object
+ in the default format (hexadecimal) by dropping a file system
+ object on the Browse-O-Matic icon or by double clicking the left
+ mouse button and entering the name of a file to view.
+
+ A view of an object can be opened in either hex or text format by
+ selecting the Open Text View or Open Hex View from the Open menu
+ by clicking the right mouse button once on the Browse-O-Matic icon.
+ The default view format can be changed in the settings menu page by
+ selecting the Open menu, Settings, Menu notebook tab,  Open in Available menus,
+ Settings..., Default action, and selecting  Settings, Open Hex View,
+ or Open Text View.
+
+TASK:
+
+ Display a file in HEX or in TEXT
+
+CONCEPT/FEATURE:
+
+ Illustrate the use of PM within the WorkplaceShell
+
+SAMPLE LOCATION:
+
+ Inside the WPS Sample Programs inside the main VisualAge C++ for OS/2
+ folder on your OS/2 desktop.
+
+ Note: This sample is not provided in project form.
+
+SOURCE FILE LOCATION:
+
+ X:\ibmcpp\samples\toolkit\wps\browse
+
+ where X: is the drive you installed the samples and document component
+ of VisualAge C++ for OS/2.
+
+
+HOW TO RUN THE SAMPLE:
+
+-From your OS/2 desktop:
+  Double-click on the sample's icon.
+
+-From an OS/2 command prompt:
+ To start a non-WorkPlace Shell sample program from an OS/2 command
+ prompt, type the name of the executable file and press Enter.  If you
+ have edited source code of a sample program and want to recompile,link,
+ and run the files, use the NMAKE tool. Your output is the executable
+ file.  For information about the NMAKE utility, see the
+ OS/2 Tools Reference.
+
+
+SOFTWARE/HARDWARE PREREQUISITES:
+
+- IBM VisualAge C++
+- OS/2 Warp
+- IBM or compatible 386 and up.
+
+
+REQUIRED FILES      DESCRIPTIONS 
+
+  browcls.idl       Define foreign types
+  browse.$mm
+  browse.c          Implementation file
+  browse.def        SOM generated .def file
+  browse.dll        Output DLL
+  browse.h
+  browse.hlp        Help resource file
+  browse.ico
+  browse.idl        SOM Interface definition file
+  browse.ih
+  browse.ipf
+  browse.mak
+  browse.mak.txt
+  browse.map
+  browse.obj
+  browse.rc
+  browse.res
+  pmbrowse.c        Client Window Message Processor
+  pmbrowse.h
+  pmbrowse.obj
+  readme            This file
+
+
+

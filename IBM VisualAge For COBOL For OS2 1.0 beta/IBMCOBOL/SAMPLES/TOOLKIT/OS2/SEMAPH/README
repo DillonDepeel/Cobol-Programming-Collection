@@ -1,0 +1,84 @@
+
+
+SEMAPH - Semaphore
+
+
+DESCRIPTION:
+
+In the sample, several threads share access to the same resource.  Event
+semaphores are used to signal a thread to give up a resource. A mutex
+semaphore is used to guarantee that only one thread has access to the
+resource at a time. A mux semaphore provides a method to check
+multiple event semaphores.
+
+The event semaphore can be posted by the user, or run in auto mode,
+in which case  the event semaphore will be posted at fixed time
+intervals.  A mutex semaphore  is used to check for a stop event
+or for a user signal to give up the resource.
+
+Each thread can display as a different colored square similarly,
+the resource can display as a rectangle, the color of which is that
+of the first thread that owns it.
+
+TASK:
+Using semaphores, control access to shared resources.
+
+CONCEPT/FEATURE:
+Demonstrates the use of mutex and event semaphores.
+
+SAMPLE LOCATION:
+Inside the OS/2 Sample Programs folder (which is inside the 
+VisualAge C++ Samples folder).
+
+Note:This sample is not provided in project form.
+
+SOURCE FILE LOCATION:
+
+X:\ibmcpp\samples\toolkit\os2\sempah
+where X: is the drive you installed the samples and document component
+of VisualAge C++ for OS/2.
+
+
+HOW TO RUN THE SAMPLE:
+
+-From your OS/2 desktop:
+  Double-click on the sample's icon.
+
+-From an OS/2 command prompt:
+ To start a non-WorkPlace Shell sample program from an OS/2 command
+ prompt, type the name of the executable file and press Enter.  If you
+ have edited source code of a sample program and want to recompile,link,
+ and run the files, use the NMAKE tool.  Your output is the executable
+ file.  For information about the NMAKE utility, see the
+ OS/2 Tools Reference.
+
+
+SOFTWARE/HARDWARE PREREQUISITES:
+
+- IBM VisualAge C++
+- OS/2 Warp
+- IBM or compatible 386 and up.
+
+
+REQUIRED FILES      DESCRIPTIONS
+
+  readme            This file
+  semaph.c          The semaphore management routines
+  semaph.def        link definitions file
+  semaph.dlg        dialog resources
+  semaph.exe        The executable
+  semaph.h
+  semaph.HLP        help resources
+  semaph.ico
+  semaph.ipf
+  semaph.mak        MakeMake generated makefile
+  semaph.rc
+  sem_dlg.c         contains the dialog procedures
+  sem_help.c        Help manager interface routines
+  sem_init.c        Initialization routines
+  sem_main.c        The main() file
+  sem_pnt.c         Client window painting routines
+  sem_user.c        PM Message handling routines
+ 
+
+

@@ -1,0 +1,362 @@
+/*
+********************************************************************
+**                        SOFTWARE INSTALLER
+** 5621-434 (C) COPYRIGHT IBM CORP. 1989, 1995. ALL RIGHTS RESERVED.
+**               LICENSED MATERIALS - PROPERTY OF IBM
+********************************************************************
+*/
+#include "iirch.h"
+
+/*******************************************************************/
+/* Create a BITMAP line for each bitmap file that you want         */
+/* displayed in the main window when the user starts installation. */
+/* There can be up to 100 bitmap files displayed                   */
+/* (INST_BITMAP1 through INST_BITMAP100).                          */
+/* Only create BITMAP lines for the number of bitmaps you want     */
+/* displayed.                                                      */
+/*******************************************************************/
+BITMAP  INST_BITMAP1     iircinst.bmp
+BITMAP  INST_BITMAP2     iircarw.bmp
+BITMAP  INST_BITMAP3     iircexcl.bmp
+
+/*******************************************************************/
+/* Define the location of each bitmap using the coordinate         */
+/* specification in following table.                               */
+/* --------------------------------------------------------------- */
+/* All coordinates are relative to the upper-left corner           */
+/* of the main window.  A negative value for a coordinate, or a    */
+/* coordinate that is greater than the bounds of the main window,  */
+/* is not visible.                                                 */
+/*                                                                 */
+/* initx  - (required) The initial horizontal position             */
+/*          of the bitmap                                          */
+/* y      - (required) The vertical position of the bitmap         */
+/*                                                                 */
+/* Use the following parameters for moving a bitmap left or right. */
+/*                                                                 */
+/* endx   - (optional) The final horizontal position that the bit- */
+/*          map is moved to.  If endx is greater than initx, then  */
+/*          the bitmap is moved to the right the number of         */
+/*          increments indicated by mvinc until endx is reached.   */
+/*          If endx is less than initx, the bitmap is moved        */
+/*          to the left until endx is reached.                     */
+/*          If endx is omitted, the bitmap is not moved.           */
+/* mvinc  - (optional) The number of pels the bitmap is moved at   */
+/*          once.  This parameter determines the speed of the      */
+/*          bitmap movement from initx to endx.  It must always    */
+/*          be a positive integer.  If mvinc is omitted, and endx  */
+/*          is different than initx, an increment of 15 is used.   */
+/* slices - (optional) The number of horizontal segments to        */
+/*          divide the bitmap into.  If the number of slices       */
+/*          is greater than one, each slice of the bitmap is       */
+/*          displayed on the screen (one at a time) according to   */
+/*          the previously specified parameters.  The movement of  */
+/*          the bitmap starts with the top slice.                  */
+/* delay  - (optional) The amount of time, in tenths of a          */
+/*          second, to wait before displaying the next bitmap.     */
+/*          If this parameter is omitted, then the next bitmap is  */
+/*          displayed immediately.                                 */
+/*******************************************************************/
+
+STRINGTABLE
+   BEGIN
+      /* --------------------------------------------------------- */
+      /*                     initx   y    endx  mvinc slices delay */
+      /*                     -----  ----  ----  ----- ------ ----- */
+      INST_BITMAP1_COORDS,  " 1000,  15,    20,    7,    0,      5 "
+      INST_BITMAP2_COORDS,  "   -1,  62,    20,   20,    0,      5 "
+      INST_BITMAP3_COORDS,  "  330,  15,   330,    0,  100,     30 "
+   END
+
+/*******************************************************************/
+/* Define the appearance and characteristics of the main window    */
+/* using the following table.  All tokens in these strings are     */
+/* required.                                                       */
+/* --------------------------------------------------------------- */
+/*  EXIT_BUTTON_COORDS  - The initial position and size of the     */
+/*                        Exit push button.                        */
+/*  INST_WINDOW_SIZE    - The initial size of the Install window.  */
+/*                        The window is centered on the desktop.   */
+/*  INST_WINDOW_TITLETEXT - The title that appears on the title bar*/
+/*                          of the main window.  If this IIRC.RC   */
+/*                          is used for a non-English product, be  */
+/*                          sure you have translated the text in   */
+/*                          this string.                           */
+/*  INST_START_PD_TEXT    - The text displayed as the first choice */
+/*                          on the File pull-down menu.  If this   */
+/*                          IIRC.RC is used for a non-English      */
+/*                          product, you may omit this string      */
+/*                          and the text will default to the       */
+/*                          translated text from the Software      */
+/*                          Installer language-specific files. Or, */
+/*                          you can specify the language-specific  */
+/*                          text in this string.                   */
+/*  INST_BACKGROUND_COLOR - The color of the background of the     */
+/*                          main window.  Options are:             */
+/*                           WHITE        GREEN       DARKRED      */
+/*                           BLACK        CYAN        DARKPINK     */
+/*                           BACKGROUND   YELLOW      DARKGREEN    */
+/*                           BLUE         NEUTRAL     DARKCYAN     */
+/*                           RED          DARKGRAY    BROWN        */
+/*                           PINK         DARKBLUE    PALEGRAY     */
+/*******************************************************************/
+
+STRINGTABLE
+   BEGIN
+      /* --------------------------------------------------------- */
+      /*                            x       y     width     height */
+      /*                          ---     ---     -----     ------ */
+      EXIT_BUTTON_COORDS,        "542,    325,      75,        35"
+      INST_WINDOW_SIZE,          "630,    470"
+      INST_WINDOW_TITLETEXT,     "Installation"
+/*    INST_START_PD_TEXT,        "~Start install..."               */
+      INST_BACKGROUND_COLOR,     "darkcyan"
+   END
+
+/*******************************************************************/
+/* Use the following table to define the characteristics of the    */
+/* two information windows.                                        */
+/* In the following parameters, n is the number of the window      */
+/* where:                                                          */
+/* Information window 1 is displayed after the initial bitmap.     */
+/* Information window 2 is displayed after installation of         */
+/* the installation utility on the workstation.                    */
+/* --------------------------------------------------------------- */
+/*  INFOn_DISPLAY- 1 = Display the window.                         */
+/*                 0 = Do not display the window and ignore all    */
+/*                     other parameters in this table.             */
+/*  INFOn_TITLE  - The title that appears on the window.           */
+/*  INFOn_COORDS - The initial position and size of the window.    */
+/*  INFOn_FILE   - The file containing the information displayed   */
+/*                 in the window.  This file should be completely  */
+/*                 unqualified.  The file is searched for in the   */
+/*                 directory where EPFIDLDS program is running.    */
+/*                 If the file is not found, or if this            */
+/*                 parameter is omitted, the text specified        */
+/*                 by the INFOn_TEXTxx parameters is used.         */
+/*  INFOn_TEXTxx - The lines of text to display in the window.     */
+/*                 xx is 1 - 10.                                   */
+/*                 The text on these lines is concatenated         */
+/*                 and word wrapped.  Use \015 to specify          */
+/*                 that the following text is on a new line.       */
+/*******************************************************************/
+STRINGTABLE
+   BEGIN
+      /*************************************************************/
+      /* Information window 1 - displayed after initial bitmap.    */
+      /*************************************************************/
+      INFO1_DISPLAY, "1"        /* display = 1, do not display = 0 */
+      INFO1_TITLE,   "Instructions"
+      INFO1_COORDS,  "13, 130, 520, 280"    /* x, y, width, height */
+      INFO1_FILE,    "INFO1.TXT"
+      INFO1_TEXT1,   "Welcome to <Product Name>.  "
+      INFO1_TEXT2,   "\015\015The following windows will guide you through the installation of <Product Name>.  See the READ.ME on the first diskette for more information."
+      INFO1_TEXT3,   "\015\015Select Continue to start the installation.  Select Exit to stop the installation."
+
+      /*************************************************************/
+      /* Information window 2 - displayed after installation of the*/
+      /* Install Utility from a host system only.                  */
+      /*************************************************************/
+      INFO2_DISPLAY, "1"        /* display = 1, do not display = 0 */
+      INFO2_TITLE,   "Instructions"
+      INFO2_COORDS,  "13, 130, 520, 280"    /* x, y, width, height */
+      INFO2_FILE,    "INFO2.TXT"
+      INFO2_TEXT1,   "The Installation program has been successfully installed.  "
+      INFO2_TEXT2,   "If you want to continue to install the product, select the CONTINUE push button."
+   END
+
+/*******************************************************************/
+/* Use the following table to define the defaults for the dialogs  */
+/* used by the EPFINSTS.EXE program when installing from a host    */
+/* system.                                                         */
+/* You must include an INST_DESTINATION and SOURCE_DIALOG_POS      */
+/* and a <source>_DIALOG_POS and <source>_SOURCE_<file_location>   */
+/* for each source system.                                         */
+/* --------------------------------------------------------------- */
+/*  INST_DESTINATION   - The default destination directory that    */
+/*                       appears on all installation windows (MVS, */
+/*                       and VM).  Use double backslashes (\\) to  */
+/*                       represent a backslash.  This is required  */
+/*                       if INST_SOURCES includes a host system.   */
+/*  SOURCE_DIALOG_POS  - The initial position of the Installation  */
+/*                       source window.  This is required          */
+/*                       if INST_SOURCES includes a host system.   */
+/*  MVS_DIALOG_POS     - The initial position of the Install from  */
+/*                       MVS host window.                          */
+/*  MVS_SOURCE_DSN     - The name of the default source dataset    */
+/*                       that appears on the                       */
+/*                       Install from MVS host window.             */
+/*  VM_DIALOG_POS      - The initial position of the Install from  */
+/*                       VM host window.                           */
+/*  VM_SOURCE_MINIDISK - The default minidisk that appears on the  */
+/*                       Install from VM host window.  This must   */
+/*                       be a single character.  An '*' causes     */
+/*                       the CMS search order to be used.          */
+/*  VSE_DIALOG_POS     - The initial position of the Install from  */
+/*                       VSE host window.                          */
+/*  VSE_SOURCE_NAME    - The name of the default VSE source        */
+/*                       that appears on the Install from VSE      */
+/*                       host window.                              */
+/*  PROGRESS_DIALOG_POS- The initial position of the Initial       */
+/*                       Install - Progress window.                */
+/*******************************************************************/
+/*STRINGTABLE                                                      */
+/*   BEGIN                                                         */
+/*      INST_DESTINATION,      "C:\\INSTDIR"                       */
+/*      SOURCE_DIALOG_POS,     "0,  100"                           */
+/*      MVS_DIALOG_POS,        "5,  5"                             */
+/*      MVS_SOURCE_DSN,        "EPF.V1R2M0"                        */
+/*      VM_DIALOG_POS,         "5,   5"                            */
+/*      VM_SOURCE_MINIDISK,    "*"                                 */
+/*      VSE_DIALOG_POS,        "5,  5"                             */
+/*      VSE_SOURCE_NAME,       "EPF.V1R2M0"                        */
+/*      PROGRESS_DIALOG_POS,   "0,   100"                          */
+/*   END                                                           */
+
+/*******************************************************************/
+/* Use the following table to define the sources of the            */
+/* installation files.                                             */
+/* --------------------------------------------------------------- */
+/*  INST_SOURCES  - Specifies which sources appear on the          */
+/*                  Installation source window.  Any combination   */
+/*                  of MVS, VM, VSE, or DRIVE can be used.         */
+/*                  If only one source is specified, the window is */
+/*                  not displayed.                                 */
+/*  MVS_BASE_3Q   - The third qualifier in the name of the source  */
+/*                  MVS dataset that base (non-translateable)      */
+/*                  installation files are transferred from.       */
+/*                  See the following list of base files.          */
+/*  MVS_NLS_3Q    - The third qualifier in the name of the source  */
+/*                  MVS dataset that NLS (translateable)           */
+/*                  installation files are transferred from.       */
+/*                  See the following list of NLS files.           */
+/*  VM_BASE_TYPE  - The file type of the VM source files that base */
+/*                  (non-translateable) files are transferred from.*/
+/*  VM_NLS_TYPE   - The file type of the VM source files that NLS  */
+/*                  (translateable) files are transferred from.    */
+/*  VSE_BASE_Q    - The MEMBERNAME qualifier of base parts on a    */
+/*                  VSE system with the format of                  */
+/*                  LIB.SUBLIB.MEMBERNAME.MEMBERTYPE.              */
+/*  VSE_NLS_Q     - The MEMBERNAME qualifier of translated parts   */
+/*                  on a VSE system with the format of             */
+/*                  LIB.SUBLIB.MEMBERNAME.MEMBERTYPE.              */
+/*                                                                 */
+/*      Base files                    NLS files                    */
+/*      ------------                  ------------                 */
+/*      EPFINSTS.EXE                  EPFIMSG.MSG                  */
+/*      EPFIPRCS.EXE                  EPFIPII.DLL                  */
+/*      EPFIEXTS.DLL                  EPFIHPLB.HLP                 */
+/*      EPFIUPK2.EXE                                               */
+/*******************************************************************/
+STRINGTABLE
+   BEGIN
+/*    INST_SOURCES,   "DRIVE, VSE, MVS, VM"                        */
+      INST_SOURCES,   "DRIVE"
+/*    MVS_BASE_3Q,    "SEPFBASE"                                   */
+/*    MVS_NLS_3Q,     "SEPFBENU"                                   */
+/*    VM_BASE_TYPE,   "BASEPF11"                                   */
+/*    VM_NLS_TYPE,    "ENUEPF11"                                   */
+/*    VSE_BASE_Q,     " "                                          */
+/*    VSE_NLS_Q,      " "                                          */
+   END
+
+/*******************************************************************/
+/* Uncomment the following table when your product                 */
+/* is installed from a host system and you want language-unique    */
+/* names for Software Installer's PII, MSG, and HLP files for MVS  */
+/* dataset members, VM file names, or VSE file names.              */
+/* For example, you could specify language-unique names as:        */
+/*          EPFIPIJ.PII                                            */
+/*          EPFIMSJ.MSG                                            */
+/*          EPFIHPLJ.HLP                                           */
+/* The J character might designate these files as your Japanese    */
+/* files.                                                          */
+/* --------------------------------------------------------------- */
+/* MVS_RES_DLL_SOURCE  - The language specific MVS name for the    */
+/*                       EPFIPII.DLL                               */
+/* MVS_RES_MSG_SOURCE  - The language specific MVS name for the    */
+/*                       EPFIMSG.MSG                               */
+/* MVS_RES_HLP_SOURCE  - The language specific MVS name for the    */
+/*                       EPFIHPLB.HLP                              */
+/* VM_RES_DLL_SOURCE  -  The language specific VM name for the     */
+/*                       EPFIPII.DLL                               */
+/* VM_RES_MSG_SOURCE  -  The language specific VM name for the     */
+/*                       EPFIMSG.MSG                               */
+/* VM_RES_HLP_SOURCE  -  The language specific VM name for the     */
+/*                       EPFIHPLB.HLP                              */
+/* VSE_RES_DLL_SOURCE  - The language specific VSE MEMBERNAME for  */
+/*                       EPFIPII.DLL                               */
+/* VSE_RES_MSG_SOURCE  - The language specific VSE MEMBERNAME for  */
+/*                       EPFIMSG.MSG                               */
+/* VSE_RES_HLP_SOURCE  - The language specific VSE MEMBERNAME for  */
+/*                       EPFIHPLB.HLP                              */
+/*******************************************************************/
+/*STRINGTABLE                                                      */
+/*   BEGIN                                                         */
+/*     MVS_RES_DLL_SOURCE,  "EPFIPII"                              */
+/*     MVS_RES_MSG_SOURCE,  "EPFIMSG"                              */
+/*     MVS_RES_HLP_SOURCE,  "EPFIHPLB"                             */
+/*     VM_RES_DLL_SOURCE,   "EPFIPII"                              */
+/*     VM_RES_MSG_SOURCE,   "EPFIMSG"                              */
+/*     VM_RES_HLP_SOURCE,   "EPFIHPLB"                             */
+/*     VSE_RES_DLL_SOURCE,  "EPFIPII"                              */
+/*     VSE_RES_MSG_SOURCE,  "EPFIMSG"                              */
+/*     VSE_RES_HLP_SOURCE,  "EPFIHPLB"                             */
+/*   END                                                           */
+
+/*******************************************************************/
+/* Use this table to define the startup parameters that you want   */
+/* the installation utility started with.                          */
+/* You must change the as-shipped values of STARTPARM_CATALOG_x    */
+/* and STARTPARM_PRODUCT.                                          */
+/* --------------------------------------------------------------- */
+/*  STARTPARM_CATALOG_DRIVE The unqualified catalog file name      */
+/*                          if the installation source is DRIVE.   */
+/*  STARTPARM_CATALOG_MVS   The unqualified catalog file member    */
+/*                          name if the installation source is MVS.*/
+/*                          Member name only - the dataset name is */
+/*                          determined by what the user enters and */
+/*                          the value of MVS_NLS_3Q.               */
+/*  STARTPARM_CATALOG_VM    The unqualified catalog file name      */
+/*                          if the installation source is VM.      */
+/*                          File name only - the file type is      */
+/*                          determined by VM_NLS_TYPE.             */
+/*  STARTPARM_CATALOG_VSE   The unqualified catalog file MEMBERNAME*/
+/*                          if the installation source is VSE.     */
+/*                          The MEMBERTYPE is determined by what   */
+/*                          the user enters on the Host source     */
+/*                          window and VSE_NLS_Q.                  */
+/*  STARTPARM_PRODUCT       The name of the product                */
+/*                          as specified in the NAME keyword of    */
+/*                          the PACKAGE entry in the catalog file. */
+/*  STARTPARM_ACTION,       The action to be performed by the      */
+/*                          installation utility (i=install,       */
+/*                          u=update, d=delete, r=restore).        */
+/*  STARTPARM_POSITION      The initial position of the            */
+/*                          installation utility.                  */
+/*  STARTPARM_RESPFILE      The name of the workstation response   */
+/*                          file that the installation utility is  */
+/*                          started with.  You should uncomment    */
+/*                          this parameter and include the name of */
+/*                          the response file if your installation */
+/*                          uses one.  If you use a response file, */
+/*                          set this parameter to that file's name */
+/*                          and uncomment the line.                */
+/*******************************************************************/
+STRINGTABLE
+   BEGIN
+      STARTPARM_CATALOG_DRIVE, "CATALOG.ICF"
+/*    STARTPARM_CATALOG_MVS,   "CATALOG"                           */
+/*    STARTPARM_CATALOG_VM,    "CATALOG"                           */
+/*    STARTPARM_CATALOG_VSE,   "CATALOG"                           */
+      STARTPARM_PRODUCT,       "<Product Name>"
+      STARTPARM_ACTION,        "i"
+      STARTPARM_POSITION,      "10,  10"
+/*    STARTPARM_RESPFILE,      "RESPONSE.RSP"                      */
+   END
+
+/*******************************************************************/
+/* See the online Software Installer Reference for information     */
+/* about overriding parameters set in the IIRC.RC.                 */
+/*******************************************************************/
+

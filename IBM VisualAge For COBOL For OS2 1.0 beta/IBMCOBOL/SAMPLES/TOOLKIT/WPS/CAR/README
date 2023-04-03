@@ -1,0 +1,83 @@
+
+
+CAR - WPS WPDataFile Subclass C
+
+
+DESCRIPTION:
+
+ CAR and CARPP demonstrate how to create a Workplace Shell object
+ using basic object-oriented programming techniques and the
+ System Object Model (SOM), including:
+
+ - Initializing an object
+ - Adding settings pages to an object
+ - Saving and restoring the state of an object
+  - Modifying object context menus (adding and deleting menu items)
+ - Querying of object class data
+ - Processing context menu items
+ - Implementing settings page dialog processing
+
+CONCEPT/FEATURE:
+
+ Illustrate the use of PM within the WPS
+
+SAMPLE LOCATION:
+
+ Inside the WPS Sample Programs inside the main VisualAge C++ for OS/2
+ folder on your OS/2 desktop.
+
+ Note: This sample is not provided in project form.
+
+SOURCE FILE LOCATION:
+
+ X:\ibmcpp\samples\toolkit\wps\car
+
+ where X: is the drive you installed the samples and document component
+ of VisualAge C++ for OS/2.
+
+
+HOW TO RUN THE SAMPLE:
+
+-From your OS/2 desktop:  
+ Double-click on the sample's icon.
+
+-From an OS/2 command prompt:
+ Place the current directory on your INCLUDE path by typing
+
+ SET INCLUDE=%INCLUDE%X:\ibmcpp\samples\wps\car
+   
+ where X is the drive on which you installed the samples and 
+ document component of VisualAge C++ for OS/2.
+
+ Then, to start the sample program, type the name of the executable 
+ file and press Enter.  If you have edited source code of a sample 
+ program and want to recompile, link, and run the files, use the 
+ NMAKE tool. Your output is the executable file.  For information 
+ about the NMAKE utility, see the OS/2 Tools Reference.
+
+
+SOFTWARE/HARDWARE PREREQUISITES:
+
+- IBM VisualAge C++
+- OS/2 Warp
+- IBM or compatible 386 and up.
+
+
+REQUIRED FILES      DESCRIPTIONS  
+
+  car.c             Implementation file
+  car.def           SOM generated .def
+  car.dll           Output DLL
+  car.h
+  car.hlp           Help resource file
+  car.ico
+  car.idl           SOM Interface definition file
+  car.ih
+  car.mak           MakeMake generated makefile
+  car.mak.txt
+  car.rc            Resource Compiler input
+  cardef.h
+  readme            This file
+
+
+

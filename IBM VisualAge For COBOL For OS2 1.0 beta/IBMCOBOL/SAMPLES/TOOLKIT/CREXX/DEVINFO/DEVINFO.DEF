@@ -1,0 +1,19 @@
+; DEVINFO.DEF
+; This DEF file is used to create DEVINFO.DLL, which is a sample
+; program that shows how to create REXX subcommand handlers and
+; use the REXX variable pool.
+
+; The INITINSTANCE option forces the run-time set up to be done for
+; each process this DLL is used in.  This means that the DLL may be
+; loaded multiple times, and each will work.
+LIBRARY DEVINFO INITINSTANCE
+
+DESCRIPTION '@ Copyright IBM Corp. 1991 All Rights Reserved Licensed Materials-Property Of IBM.'
+PROTMODE
+DATA MULTIPLE NONSHARED LOADONCALL
+
+; Note that the exact case of the exported routine name given here
+; must match the case of the function as written in the source
+; program.
+EXPORTS
+       DevInfo

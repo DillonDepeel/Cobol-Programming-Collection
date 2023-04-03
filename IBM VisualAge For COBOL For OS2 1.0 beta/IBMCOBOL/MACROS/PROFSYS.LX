@@ -1,0 +1,88 @@
+/********************************************************
+* PROFSYS: LPEX system profile.                         *
+*                                                       *
+* This LX profile is called whenever a file is loaded   *
+* into storage for editing.  It sets up any defaults    *
+* (including key definitions and synonyms) required.    *
+*                                                       *
+* The call to PROFSYS can be avoided by specifying the  *
+* /NOSYS option for the LX command.                     *
+*                                                       *
+*         COPYRIGHT IBM CORPORATION 1989, 1994          *
+********************************************************/
+
+/* Set backspace, delete, and enter key assignments  */
+'SET ACTION.BACKSPACE BACK2'
+'SET ACTION.DEL    DELETE2'
+'SET ACTION.ENTER  SPLITLINE'
+'SET ACTION.C-ENTER OPENLINE'
+
+/* Synonyms */
+'SET SYNONYM./ FIND ANY '
+"SET SYNONYM.' FIND ASIS "
+'SET SYNONYM.-/ FIND UP ANY '
+"SET SYNONYM.-' FIND UP ASIS "
+'SET SYNONYM.: FIND ELEMENT '
+'SET SYNONYM.; MULT ;'
+'SET SYNONYM.. MARK FIND '
+'SET SYNONYM... MARK SET '
+'SET SYNONYM.? HELP'
+'SET SYNONYM.SELECT 3 BLOCK SET ELEMENT'
+'SET SYNONYM.BOTTOM 3 BOTTOM'
+'SET SYNONYM.NEXT 1 NEXT'
+'SET SYNONYM.PREV 1 PREV'
+'SET SYNONYM.QQUIT 2 QQUIT'
+'SET SYNONYM.QUERY 1 QUERY'
+'SET SYNONYM.CHANGE 1 CHANGE'
+'SET SYNONYM.SHOWFONT SHWFNT'
+
+/* common key behaviours */
+'SET SYNONYM.NEWLINE PRIMITIVE NEWLINE'
+'SET SYNONYM.SPLITLINE MULT ;SPLITJOIN SPLIT ;PRIMITIVE NEWLINE'
+'SET SYNONYM.OPENLINE MULT ;PRIMITIVE ENDLINE;SPLITJOIN SPLIT;PRIMITIVE NEWLINE'
+'SET SYNONYM.DELETE1 PRIMITIVE DELETECHAR'
+'SET SYNONYM.DELETE2 CUADEL'
+'SET SYNONYM.DELETE3 PRIMITIVE TRUNCATE'
+'SET SYNONYM.BACK1 PRIMITIVE RUBOUT'
+'SET SYNONYM.BACK2 CUABS'
+
+/* Set LPEX options */
+'SET AUTOCHECK ON'  /* AUTOMATIC CHECKPOINTING ON (default is OFF) */
+'SET FORMWIDTH 0'
+'SET IMPMACRO ON'   /* IMPLIED MACROS ON          (default is OFF) */
+'SET MESSAGELINE ON'
+'SET RULER ON'
+'SET STATUSLINE ON'
+'SET WRAP ON'
+'SET NOBLANKS ON'
+
+/* Set-up window pull-down for OS/2 shell  */
+'SET ACTIONBAR.~Windows.SEPARATOR ;'
+'SET ACTIONBAR.~Windows.OS/2_command_shell\tF9 LX "OS/2 command shell" /dt SHL'
+'SET HELP. 16123'
+
+/* Tool bar settings */
+'SET TOOLBAR.BITMAP_LPEXBMPS_5 DIALOG NEW'
+'SET HELP. Open a new file.'
+'SET TOOLBAR.BITMAP_LPEXBMPS_7 DIALOG OPEN'
+'SET HELP. Open a file.'
+'SET TOOLBAR.BITMAP_LPEXBMPS_13 LP_SAVE'
+'SET HELP. Save file.'
+'SET TOOLBAR.BITMAP_LPEXBMPS_11 DIALOG PRINT'
+'SET HELP. Print file.'
+'SET TOOLBAR.BITMAP_LPEXBMPS_2 CLIP CUT'
+'SET HELP. Cut block to clipboard.'
+'SET TOOLBAR.BITMAP_LPEXBMPS_1 CLIP COPY'
+'SET HELP. Copy block to clipboard.'
+'SET TOOLBAR.BITMAP_LPEXBMPS_9 CLIP PASTE'
+'SET HELP. Paste from clipboard.'
+'SET TOOLBAR.BITMAP_LPEXBMPS_3 DIALOG FINDCHANGE'
+'SET HELP. Find text.'
+'SET TOOLBAR.BITMAP_LPEXBMPS_4 DIALOG FONTS'
+'SET HELP. Fonts and colors dialog.'
+'SET TOOLBAR.BITMAP_LPEXBMPS_6 GODOC NEXT'
+'SET HELP. Next file.'
+'SET TOOLBAR.BITMAP_LPEXBMPS_10 GODOC'
+'SET HELP. Previous file.'
+
+

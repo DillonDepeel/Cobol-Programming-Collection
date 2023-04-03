@@ -1,0 +1,43 @@
+/******************************************************************************/
+/* USEREXIT.ADL                                                               */
+/* ADL source for the USER EXIT sample.                                       */
+/******************************************************************************/
+
+/*--------------------- DECLARE of the source data ---------------------------*/
+source: DECLARE
+BEGIN;
+   number_of_char: CONSTANT 10;
+   input1:         CHAR LENGTH( number_of_char );
+END;
+/*----------------------------------------------------------------------------*/
+
+/*--------------------- DECLARE of the target data ---------------------------*/
+target: DECLARE
+BEGIN;
+   output1: CHAR LENGTH( 20 );
+   output2: CHAR LENGTH( 20 );
+END;
+/*----------------------------------------------------------------------------*/
+
+/*--------------------- PLAN -------------------------------------------------*/
+user_exit_plan: PLAN ( input1:    INPUT,
+                       output1:   OUTPUT,
+                       output2:   OUTPUT )
+BEGIN;
+   CALL '<USEREXIT><ConvertToUpperOrLowerCaseChar>'
+                 (  input1,
+                    LENGTH( input1 ),
+                    TRUE,             /* Convert to upper case character.     */
+                    output1,
+                    LENGTH( output1 )
+                 );
+   CALL '<USEREXIT><ConvertToUpperOrLowerCaseChar>'
+                 (  input1,
+                    LENGTH( input1 ),
+                    FALSE,            /* Convert to lower case character.     */
+                    output2,
+                    LENGTH( output2 )
+                 );
+END;
+/*----------------------------------------------------------------------------*/
+

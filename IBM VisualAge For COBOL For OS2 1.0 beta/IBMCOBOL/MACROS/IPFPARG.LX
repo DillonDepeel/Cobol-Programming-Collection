@@ -1,0 +1,6 @@
+/* Insert a Parameter List */
+trace o    
+'insert .*'
+'insert :p.'
+'insert .*'
+

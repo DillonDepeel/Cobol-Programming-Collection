@@ -1,0 +1,5 @@
+/* RC.LXL - LPEX language-sensitive profile for OS/2 PM .RC files. */
+trace o
+
+'MACRO C.LXL'
+

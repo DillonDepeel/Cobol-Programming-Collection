@@ -1,0 +1,14 @@
+/******************************************************************************
+ * Delete Exit routine                                                        *
+ *                                                                            *
+ * This command is called when a line is deleted to ensure that the deleted   *
+ * line is not a show line.                                                   *
+ ******************************************************************************/
+
+ 'extract show'
+ if show = "ON" then
+    exit -5
+ else
+    exit 0
+
+

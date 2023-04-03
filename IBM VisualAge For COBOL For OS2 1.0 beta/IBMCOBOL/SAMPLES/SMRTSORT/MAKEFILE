@@ -1,0 +1,109 @@
+# --------------------------------------------------------
+#  Licensed Material -- Property of IBM
+#  5765-349
+#  (c) Copyright IBM Corporation 1995
+#  All rights reserved
+# --------------------------------------------------------
+
+# Change the following variable to point
+# at the SMARTsort top-level directory
+SMARTSORT  = d:\smrtsort             
+
+SAMPLE_DIR = $(SMARTSORT)\samples
+SAMPLE_BIN = $(SAMPLE_DIR)\bin
+SAMPLE_OUT = $(SAMPLE_DIR)\output
+SORT_INC   = $(SMARTSORT)\include
+
+#------------------------------------------------------------------------------*
+# Define compiler flag and linker flag macros.                                 *
+#------------------------------------------------------------------------------*
+macros  = /DOS2
+
+cmpflgs = /Q /C /I$(SORT_INC) $(macros) /Ti
+lnkflgs = /Q /B"/A:4 /E /F /M:FULL /NOI /NOL /BAT /W /DE"
+
+#------------------------------------------------------------------------------*
+# Define object files that will be created                                     *
+#------------------------------------------------------------------------------*
+SAMPLES = $(SAMPLE_DIR)\sample1.exe      \
+          $(SAMPLE_DIR)\sample2.exe      \
+          $(SAMPLE_DIR)\sample3.exe      \
+          $(SAMPLE_DIR)\sample4.exe      \
+          $(SAMPLE_DIR)\sample5.exe      \
+          $(SAMPLE_DIR)\sample6.exe      
+
+#-----------------------------------------------------------------------------*
+# Build sample code                                                           *
+#-----------------------------------------------------------------------------*
+all:  DIR_CHECK $(SAMPLES)
+
+#-----------------------------------------------------------------------------*
+# Ensure directories exist                                                    *
+#-----------------------------------------------------------------------------*
+DIR_CHECK:
+   @-if not exist $(SAMPLE_BIN)   mkdir $(SAMPLE_BIN)
+   @-if not exist $(SAMPLE_OUT)   mkdir $(SAMPLE_OUT)
+
+#-----------------------------------------------------------------------------*
+# Define dependency relationships for the object files                        *
+#-----------------------------------------------------------------------------*
+$(SAMPLE_DIR)\sample1.exe: $(SAMPLE_BIN)\sample1.obj 
+   cd                   $(SAMPLE_DIR)
+   icc.exe $(lnkflgs)   /Fe$*.exe /Fm$*.map                                   \
+                        $(SAMPLE_BIN)\sample1.obj                             \
+                        os2386.lib                                            \
+                        sample1.def
+                                                                                    
+$(SAMPLE_DIR)\sample2.exe: $(SAMPLE_BIN)\sample2.obj
+   cd                   $(SAMPLE_DIR)
+   icc.exe $(lnkflgs)   /Fe $*.exe /Fm$*.map                                  \
+                        $(SAMPLE_BIN)\sample2.obj                             \
+                        os2386.lib                                            \
+                        sample2.def
+
+$(SAMPLE_DIR)\sample3.exe: $(SAMPLE_BIN)\sample3.obj
+   cd                   $(SAMPLE_DIR)
+   icc.exe $(lnkflgs)   /Fe$*.exe /Fm$*.map                                   \
+                        $(SAMPLE_BIN)\sample3.obj                             \
+                        os2386.lib                                            \
+                        sample3.def
+
+$(SAMPLE_DIR)\sample4.exe: $(SAMPLE_BIN)\sample4.obj
+   cd                   $(SAMPLE_DIR)
+   icc.exe $(lnkflgs)   /Fe$*.exe /Fm$*.map                                   \
+                        $(SAMPLE_BIN)\sample4.obj                             \
+                        os2386.lib                                            \
+                        sample4.def
+
+$(SAMPLE_DIR)\sample5.exe: $(SAMPLE_BIN)\sample5.obj
+   cd                   $(SAMPLE_DIR)
+   icc.exe $(lnkflgs)   /Fe$*.exe /Fm$*.map                                   \
+                        $(SAMPLE_BIN)\sample5.obj                             \
+                        os2386.lib                                            \
+                        sample5.def
+
+$(SAMPLE_DIR)\sample6.exe: $(SAMPLE_BIN)\sample6.obj
+   cd                   $(SAMPLE_DIR)
+   icc.exe $(lnkflgs)   /Fe$*.exe /Fm$*.map                                   \
+                        $(SAMPLE_BIN)\sample6.obj                             \
+                        os2386.lib                                            \
+                        sample6.def
+
+$(SAMPLE_BIN)\sample1.obj: $(SAMPLE_DIR)\sample1.c 
+   icc.exe      $(cmpflgs) /Fo$*.obj $(SAMPLE_DIR)\sample1.c
+
+$(SAMPLE_BIN)\sample2.obj: $(SAMPLE_DIR)\sample2.c 
+   icc.exe      $(cmpflgs) /Fo$*.obj $(SAMPLE_DIR)\sample2.c
+ 
+$(SAMPLE_BIN)\sample3.obj: $(SAMPLE_DIR)\sample3.c 
+   icc.exe      $(cmpflgs) /Fo$*.obj $(SAMPLE_DIR)\sample3.c
+
+$(SAMPLE_BIN)\sample4.obj: $(SAMPLE_DIR)\sample4.c 
+   icc.exe      $(cmpflgs) /Fo$*.obj $(SAMPLE_DIR)\sample4.c
+
+$(SAMPLE_BIN)\sample5.obj: $(SAMPLE_DIR)\sample5.c 
+   icc.exe      $(cmpflgs) /Fo$*.obj $(SAMPLE_DIR)\sample5.c
+
+$(SAMPLE_BIN)\sample6.obj: $(SAMPLE_DIR)\sample6.c 
+   icc.exe      $(cmpflgs) /Fo$*.obj $(SAMPLE_DIR)\sample6.c
+

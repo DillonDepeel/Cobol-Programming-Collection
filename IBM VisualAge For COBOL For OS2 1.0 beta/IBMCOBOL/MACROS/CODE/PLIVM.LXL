@@ -1,0 +1,206 @@
+/********************************************************
+* PLIVM.LXL - load macro for PL/I files                 *
+*                                                       *
+* This macro is invoked by LPEX when a file with an     *
+* extension of .PLI is edited                           *
+*                                                       *
+********************************************************/
+/* call default 370 VM profile */
+'LXR DFTVM.LXL'
+
+/* this is a PLI file */
+'SET DOCTYPE PLI'
+
+/* Space is deliberately first. Thus it takes over the default class of DATA. */
+'SET CLASSES SPACE COMMENT CODE ERROR FLOW COMMENTONLY PROC PERCENT INCLUDE EXTENSION EXEC'
+
+/* Set up new items in the ActionBar. */
+'SET ACTIONBAR.~Options.Automatic_~indenting... 2 EVFPPRS AIDLG'
+'SET HELP. 16093'
+'SET ACTIONBAR.~Options.~Language_editing. 5'
+'SET HELP. 16099'
+'SET ACTIONBAR.~Options.~Language_editing.~Token_highlighting  EVFPPRS TOKOPT'
+'SET HELP. 16100'
+'SET ACTIONBAR.~Options.~Language_editing.Automatic_~indenting EVFPPRS AIOPT'
+'SET HELP. 16101'
+'SET ACTIONBAR.~Options.~Language_editing.~Syntax_assist   EVFPPRS  SYNAOPT'
+'SET HELP. 16088'
+'SET ACTIONBAR.~Actions.SEPARATOR 1'
+'SET ACTIONBAR.~Actions.C~ompile. 2'
+'SET HELP. 16084'
+'SET ACTIONBAR.~Actions.C~ompile.~Prompt... 0 SAVEALL PROMPT START EVFLCLES "%FILENAME%"'
+'SET HELP. 16084'
+'SET ACTIONBAR.~Actions.C~ompile.~No_prompt\tCtrl+C 1 SAVEALL PROMPT START EVFLCLES "%FILENAME%" /P N'
+'SET HELP. 16084'
+'SET GROUP. REMOTE'
+'SET ACTIONBAR.~Actions.~Debug\tCtrl+D 3 START CODEDT'
+'SET HELP. 16086'
+
+/* Now extract the menu id's for these two items. Later in this macro */
+/* they are sent into the parser so that it can check and uncheck them. */
+'EXTRACT ACTIONBARID.~Options.~Language_editing.~Token_highlighting  INTO ID_TOKEN_HIGHLIGHTING'
+'EXTRACT ACTIONBARID.~Options.~Language_editing.Automatic_~indenting INTO ID_AUTOMATIC_INDENTING'
+'EXTRACT ACTIONBARID.~Options.~Language_editing.~Syntax_assist       INTO ID_SYNTAX_ASSIST'
+
+/* Set up the subsetting views on the View pull down. */
+
+/* This is a bit contrived. Uncheck will uncheck all of the menu items whose id's are mentioned in the global variable constructed from set global.doc' || docnum || '.menu_ids' */
+/* Mnucheck will check the named item. The name MUST EXACTLY match the set actionbar value. OR IT WON'T WORK. */
+'SET ACTIONBAR.~View.SEPARATOR 2'
+'SET ACTIONBAR.~View.~All 3 ;UNCHECK DOC ;MNUCHECK ~View.~All ;SET INCLUDE ;SET EXCLUDE ;VIEWNAME  '
+'SET HELP. 16059'
+'SET ACTIONBAR.~View.~Errors 4 ;UNCHECK DOC ;MNUCHECK ~View.~Errors ;SET INCLUDE ERROR ;SET EXCLUDE ;VIEWNAME Errors'
+'SET HELP. 16059'
+'SET GROUP. ERROR'
+'SET ACTIONBAR.~View.~Procedures 5 ;UNCHECK DOC ;MNUCHECK ~View.~Procedures ;INCLUDE PROC ;SET EXCLUDE ;VIEWNAME Procedures'
+'SET HELP. 16059'
+'SET GROUP. PROC'
+'SET ACTIONBAR.~View.~Outline_Logic_(Flow) 6 ;UNCHECK DOC ;MNUCHECK ~View.~Outline_Logic_(Flow) ;INCLUDE FLOW ;SET EXCLUDE ;VIEWNAME Outline'
+'SET HELP. 16059'
+'SET GROUP. FLOW'
+'SET ACTIONBAR.~View.~Compress_Spaces 7 ;UNCHECK DOC ;MNUCHECK ~View.~Compress_Spaces ;SET INCLUDE ;SET EXCLUDE SPACE ;VIEWNAME Compress'
+'SET HELP. 16059'
+'SET ACTIONBAR.~View.C~omments 8 ;UNCHECK DOC ;MNUCHECK ~View.C~omments ;SET INCLUDE COMMENTONLY COMMENT ;SET EXCLUDE ;VIEWNAME Comments'
+'SET HELP. 16059'
+'SET GROUP. COMMENTONLY COMMENT'
+'SET ACTIONBAR.~View.~Block_Comments_only 9 ;UNCHECK DOC ;MNUCHECK ~View.~Block_Comments_only ;SET INCLUDE COMMENTONLY ;SET EXCLUDE ;VIEWNAME Block_Comments'
+'SET HELP. 16059'
+'SET GROUP. COMMENTONLY'
+'SET ACTIONBAR.~View.Preprocessor_only 10 ;UNCHECK DOC ;MNUCHECK ~View.Preprocessor_only ;SET INCLUDE PERCENT ;SET EXCLUDE ;VIEWNAME Preprocessor'
+'SET HELP. 16059'
+'SET GROUP. PERCENT'
+'SET ACTIONBAR.~View.~Includes 11 ;UNCHECK DOC ;MNUCHECK ~View.~Includes ;SET INCLUDE INCLUDE ;SET EXCLUDE ;VIEWNAME Includes'
+'SET HELP. 16059'
+'SET GROUP. INCLUDE'
+'SET ACTIONBAR.~View.E~xtensions 12 ;UNCHECK DOC ;MNUCHECK ~View.E~xtensions ;SET INCLUDE EXTENSION ;SET EXCLUDE ;VIEWNAME Extensions'
+'SET HELP. 16059'
+'SET GROUP. EXTENSION'
+'SET ACTIONBAR.~View.~SQL/CICS 13 ;UNCHECK DOC ;MNUCHECK ~View.~SQL/CICS ;SET INCLUDE EXEC ;SET EXCLUDE ;VIEWNAME EXEC'
+'SET HELP. 16059'
+'SET GROUP. EXEC'
+
+/* Initially we see the Document view, check the View/All menu item. */
+'MNUCHECK ~View.~All'
+
+/* Now extract the menu-id's for all those things and save them in a global
+related to the docnum. */
+/* The UNCHECK macro will use them to uncheck all of the view menu items. */
+/* Again the names MUST EXACTLY match the set actionbar value. OR IT WON'T WORK.
+*/
+
+MENU_IDS = '' ;
+'EXTRACT ACTIONBARID.~View.~All                    INTO ID'
+MENU_IDS = MENU_IDS || ' ' || ID ;
+'EXTRACT ACTIONBARID.~View.~Errors                 INTO ID'
+MENU_IDS = MENU_IDS || ' ' || ID ;
+'EXTRACT ACTIONBARID.~View.~Procedures             INTO ID'
+MENU_IDS = MENU_IDS || ' ' || ID ;
+'EXTRACT ACTIONBARID.~View.~Outline_Logic_(Flow)   INTO ID'
+MENU_IDS = MENU_IDS || ' ' || ID ;
+'EXTRACT ACTIONBARID.~View.~Compress_Spaces        INTO ID'
+MENU_IDS = MENU_IDS || ' ' || ID ;
+'EXTRACT ACTIONBARID.~View.C~omments               INTO ID'
+MENU_IDS = MENU_IDS || ' ' || ID ;
+'EXTRACT ACTIONBARID.~View.~Block_Comments_only    INTO ID'
+MENU_IDS = MENU_IDS || ' ' || ID ;
+'EXTRACT ACTIONBARID.~View.Preprocessor_only       INTO ID'
+MENU_IDS = MENU_IDS || ' ' || ID ;
+'EXTRACT ACTIONBARID.~View.~Includes               INTO ID'
+MENU_IDS = MENU_IDS || ' ' || ID ;
+'EXTRACT ACTIONBARID.~View.E~xtensions             INTO ID'
+MENU_IDS = MENU_IDS || ' ' || ID ;
+'EXTRACT ACTIONBARID.~View.~SQL/CICS               INTO ID'
+MENU_IDS = MENU_IDS || ' ' || ID ;
+
+'EXTRACT DOCNUM INTO DOCNUM'
+'SET GLOBAL.DOC' || DOCNUM || '.MENU_IDS' MENU_IDS ;
+DROP MENU_IDS DOCNUM ;
+
+/* set fonts for PL/I parser */
+/*'LOADFONTS LPEXFNTS'             * load the Italic, Bold and Smallcaps fonts */
+                                  /* a no-op if already loaded this session */
+                                  /*
+'SET FACE.ITALIC LPEXFONTS ITALIC'       /* create the italic logical font */
+'SET FACE.BOLD   LPEXFONTS BOLD'         /* and the bold one */
+'SET FACE.SMALLCAPS LPEXFONTS SMALLCAPS' /* and the smallcaps one */
+                                  */
+
+/* Set Symbolic Fonts */
+'SET FONT.A BLACK/WHITE                  "Variable and Procedure names"'
+'SET FONT.B BRIGHT PINK/WHITE            "Built in functions"'
+'SET FONT.C CYAN/WHITE                   "Comments"'
+'SET FONT.E WHITE/BRIGHT RED             "Errors"'
+'SET FONT.F BRIGHT BLUE/WHITE            "Flow of control keywords"'
+'SET FONT.G GREY/WHITE                   "Words not available at this language level"'
+'SET FONT.I UNDERLINE BRIGHT BLUE/WHITE  "Include keyword"'
+'SET FONT.K BRIGHT BLUE/WHITE            "Key words"'
+'SET FONT.L GREEN/WHITE                  "Literals"'
+'SET FONT.N RED/WHITE                    "Numbers"'
+'SET FONT.P BRIGHT BLUE/WHITE            "Proc and Entry keywords"'
+'SET FONT.S BLUE/WHITE                   "Language symbols"'
+'SET FONT._ BLACK/WHITE                  "Layout spaces"'
+'SET FONT.?  BRIGHT GREEN/GREEN          "Outside margins"'
+'SET FONT.Q UNDERLINE BRIGHT BLUE/WHITE  "Preprocessor keywords"'
+'SET FONT.R UNDERLINE        BLUE/WHITE  "Preprocessor semicolons and '?'"'
+'SET FONT.T BRIGHT BLUE/WHITE            "exec, cics and sql keywords"'
+'SET FONT.U black/white                  "Proc, and Entry labels"'
+'SET FONT.X CYAN/WHITE                   "SQL reserved words"'
+'SET FONT.! black/white                  "Default for unscanned text"'
+
+ /* Assume mainframe margins of 2 and 72. */
+
+'SET GLOBAL.OPTIONS.PLI MAXTOKENS(600),MARGINS(2,72,1),OR(''|''),NOT(''~^''),NAMES(''L#@$''),LANGLVL(SAA2),INCLUDE ( EXT ( ''  '' INC , PLI COP ) )'
+/*t = time('R') ; */
+'EVFPPRS ALL'                               /* do an initial parse */
+/*t = time('E') ;*/
+/*say 'Initial parse took' t 'seconds'*/
+'SET PARSER EVFPPRS CURRENT'                /* set up the parser for future changes */
+
+/* Send the tokeniser the menu id's it needs for checking and unchecking items. */
+'EVFPPRS INIT' ID_TOKEN_HIGHLIGHTING  ID_AUTOMATIC_INDENTING ID_SYNTAX_ASSIST
+
+/* Conserve memory - these are no longer needed. */
+DROP ID_TOKEN_HIGHLIGHTING  ID_AUTOMATIC_INDENTING ID_SYNTAX_ASSIST
+
+
+                     /* set up rest of syntax assist */
+
+'GLOBAL.PIF /If ? /Then/   Do ;//   End ;/Else/   Do ;//   End ;'
+'GLOBAL.PDO /Do ? ;/   /End;'
+'GLOBAL.PSELECT /Select ( ? ) ;//When ( ? )/   Do ;/   /   End ;//Otherwise/   Do ;/   /   End ;//End ;'
+
+/* Assistance for some specific routines. */
+'GLOBAL.PXN11 \XN11SDTE = Start_Date ;\XN11EDTE = End_Date ;\XN11SPAN = The_period ;\XN11UNIT = ''Y'' ;\CALL XN11 ( XN11PARAM ) ;\IF XN11UNIT = '' ''\THEN CALL XN202 ( ''FAILURE IN DATE ARITHMETIC'' ) ;\'
+'GLOBAL.PXN151 \CALL XN151 ( ''Valid_Status'' , GU   , PcbPtr , ADDR( Ioarea )\           , ADDR ( Ssa1 )\           , ADDR ( Ssa2 )\           ) ;\'
+                  /*  End of code extracted from assistpl.lx  */
+
+'SET ACTION.C-M EVFPMAT' ;
+
+'SET ACTION.C-X PROTO P' ;
+'SET ACTION.C-S-N NEXT CLASS PROC' ;
+'SET ACTION.C-S-P PREV CLASS PROC' ;
+
+'SET ACTION.C-UP SCROLL UP 5' ;
+'SET ACTION.C-DOWN SCROLL DOWN 5' ;
+
+'SET TABS 2 EVERY 3' ;
+
+'SET ACTION.C-A-LEFT  BLOCK SHIFT LEFT  3'
+'SET ACTION.C-A-RIGHT BLOCK SHIFT RIGHT 3'
+
+/* Set up context sensitive help. */
+'SET ACTION.F1 LXR EVFPPRS HELP'
+
+/* Set up automatic indentation. */
+'SET SYNONYM.OPENLINE MULT ;INSERT ;EVFPPRS AINEW'
+
+/* Set up one key include opening */
+'SET ACTION.A-O  EVFPPRS OPENINC'
+
+/* Compile accelerator key */
+'SET ACTION.C-C SAVEALL PROMPT START EVFLCLES "%FILENAME%" /P N'
+/* Debug accelerator key */
+'SET ACTION.C-D START CODEDT'
+
+'LXR NAVIG.LX'
+

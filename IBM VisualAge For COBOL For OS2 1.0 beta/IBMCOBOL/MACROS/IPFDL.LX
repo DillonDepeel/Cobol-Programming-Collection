@@ -1,0 +1,11 @@
+/* Insert a Definition List */
+trace o    
+'insert .*'
+'insert :dl tsize=10 break=all|fit|none compact headhi=? dbscale=?.'
+'insert :dthd.Term heading'
+'insert :ddhd.Description heading'
+'insert :dt.Term'
+'insert :dd.Definition description'
+'insert :edl.'
+'insert .*'
+

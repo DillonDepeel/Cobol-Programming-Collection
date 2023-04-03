@@ -1,0 +1,28 @@
+DECLARE
+BEGIN; /* declare */
+   /*defaults*/
+   DEFAULT CHAR CCSID(0) JUSTIFY(0) LENGTH(1) UNITLEN(8);
+   DEFAULT PACKED COMPLEX(FALSE) CONSTRAINED(FALSE) FIT(0) PRECISION(
+      15) SCALE(0) SGNLOC(0) SGNMNS(x'D') SGNPLS(x'C') SIGNED(TRUE);
+   
+   COBOLREC: SEQUENCE                           /* size: 48 */ 
+      BEGIN; /*sequence*/
+         INITIALS: CHAR LENGTH(3) CCSID(500);   /* size: 24 */ 
+         NUMBER: PACKED PRECISION(5);           /* size: 24 */ 
+      END; /*sequence*/
+END; /* declare */
+
+DECLARE
+BEGIN; /* declare */
+   /*defaults*/
+   DEFAULT BINARY BYTRVS(FALSE) COMPLEX(FALSE) CONSTRAINED(FALSE) FIT(
+      0) PRECISION(31) RADIX(2) SCALE(0) SGNCNV(1) SIGNED(TRUE);
+   DEFAULT CHARSFX CCSID(0) MAXALC(TRUE) MAXLEN(1) UNITLEN(8);
+   
+   CREC: SEQUENCE                               /* size: 48 */ 
+      BEGIN; /*sequence*/
+         INITIALS: CHARSFX MAXLEN(4) CCSID(850); /* size: 32 */ 
+         NUMBER: BINARY PRECISION(15) BYTRVS(TRUE); /* size: 16 */ 
+      END; /*sequence*/
+END; /* declare */
+

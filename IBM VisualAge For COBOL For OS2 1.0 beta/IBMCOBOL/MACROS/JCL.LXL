@@ -1,0 +1,76 @@
+/* JCL.LXL - IBM LPEX language-sensitive editor profile for JCL. */
+TRACE OFF
+
+/* JCL document */
+'SET DOCTYPE JCL'
+
+/* set up full & incremental parse */
+'SET FULLPARSE EVFEJCL ALL'
+'SET PARSER    EVFEJCL PARSE'
+
+/* initial fonts settings */
+'SET FONT.!  BLACK/WHITE                  "Default style"'
+'SET FONT._  BLACK/WHITE                  "Blank or unparsed characters"'
+'SET FONT./  BRIGHT GREY/WHITE            "JCL statement prefix"'
+'SET FONT.C  CYAN/WHITE                   "Comment"'
+'SET FONT.Z  BLACK/WHITE                  "Sequence numbers"'
+'SET FONT.J  BLACK/WHITE                  "Job name"'
+'SET FONT.S  BLACK/WHITE                  "Step name"'
+'SET FONT.R  BLACK/WHITE                  "Proc name"'
+'SET FONT.P  BLACK/WHITE                  "Proc step name"'
+'SET FONT.D  BLACK/WHITE                  "DD name"'
+'SET FONT.O  RED/WHITE                    "Operation field"'
+'SET FONT.K  BRIGHT BLUE/WHITE            "Keyword"'
+'SET FONT.B  BRIGHT BLUE/WHITE            "Subkeyword"'
+'SET FONT.Y  BRIGHT BLUE/WHITE            "Keyword - symbolic"'
+'SET FONT.X  BLACK/WHITE                  "Symbolic value"'
+'SET FONT.V  BLACK/WHITE                  "Parameter value"'
+'SET FONT.I  BLACK/WHITE                  "In-stream data"'
+'SET FONT.M  RED/WHITE                    "Command statement"'
+'SET FONT.L  PINK/WHITE                   "Control statement"'
+'SET FONT.Q  BLACK/WHITE                  "Quoted string"'
+'SET FONT.*  BLACK/WHITE                  "Delimiter"'
+'SET FONT.(  BLACK/WHITE                  "First level parenthesis"'
+'SET FONT.)  BLACK/WHITE                  "Second level parenthesis"'
+'SET FONT.,  BLACK/WHITE                  "Comma"'
+'SET FONT.=  BLACK/WHITE                  "Equal sign"'
+'SET FONT..  BLACK/WHITE                  "Period"'
+'SET FONT.E  REVERSE BRIGHT RED/WHITE     "Error"'
+'SET BASEFONT !'                          /* default style */
+
+/* update action bar */
+'SET ACTIONBAR.~Options.~Language_editing. 4'
+'SET HELP. 16099'
+'SET ACTIONBAR.~Options.~Language_editing.~Token_highlighting EVFEJCL TOKOPT'
+'SET HELP. 16100'
+'EXTRACT ACTIONBARID.~Options.~Language_editing.~Token_highlighting INTO MENUID'
+
+'SET GLOBAL.JCL_TOKEN_HILITE 1'
+
+/* initialize LS component: EVFEJCL INIT menuid [JES2 | JES3] [ESA | XA] */
+'EVFEJCL INIT' MENUID 'JES3 ESA'
+
+/* view options */
+'SET ACTIONBAR.~View.SEPARATOR 2 ;'
+'SET ACTIONBAR.~View.~JOB_statements 3 ;SET INCLUDE JOB;SET EXCLUDE'
+'SET GROUP. JOB'
+'SET HELP. 16059'
+'SET ACTIONBAR.~View.E~XEC_statements 4 ;SET INCLUDE EXEC;SET EXCLUDE'
+'SET GROUP. EXEC'
+'SET HELP. 16059'
+'SET ACTIONBAR.~View.DD_stat~ements 5 ;SET INCLUDE DD;SET EXCLUDE'
+'SET GROUP. DD'
+'SET HELP. 16059'
+'SET ACTIONBAR.~View.~PROC_statements 6 ;SET INCLUDE PROC;SET EXCLUDE'
+'SET GROUP. PROC'
+'SET HELP. 16059'
+'SET ACTIONBAR.~View.E~rrors 7 ;SET INCLUDE ERROR;SET EXCLUDE'
+'SET GROUP. ERROR'
+'SET HELP. 16059'
+
+/* set tabs, insert off, do a full parse */
+'SET TABS 3 11 16 20 30 40 50 60 72 EVERY 3'
+'SET INSERTING OFF'
+
+'TRIGGER FULLPARSE'
+

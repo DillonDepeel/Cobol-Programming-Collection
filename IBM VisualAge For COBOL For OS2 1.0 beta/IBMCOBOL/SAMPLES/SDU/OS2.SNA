@@ -1,0 +1,297 @@
+/*****************************************************************************/
+/* Copyright (c) IBM Corporation 1993  -  All Rights Reserved                */
+/*                                                                           */
+/*                                                                           */
+/* Sample Network Definition File for OS/2                                   */
+/* ---------------------------------------                                   */
+/*                                                                           */
+/* This is a SAMPLE of a Node Definitions File                               */
+/* for the OS/2 ES Communications Manager                                    */
+/* (the configuration.NDF file normally residing in c:\cmlib\appn)           */
+/* for use with IBM Distributed FileManager (DFM/2) for OS/2.                */
+/*                                                                           */
+/* Note:                                                                     */
+/* This is a node definitions file for a HOST-based Tokenring network.       */
+/* A non-host-based node definitions file is different.                      */
+/*                                                                           */
+/*****************************************************************************/
+/*                                                                           */
+/* DFM/2 (program no. 5648-020)                                              */
+/* Version: 1.0                                                              */
+/* Release: 1.0                                                              */
+/*                                                                           */
+/* DISCLAIMER OF WARRANTIES:                                                 */
+/* The following is a sample created by IBM Corporation. It is not part of   */
+/* any standard or IBM product and is provided to you solely for the purpose */
+/* of assisting you in the definition of your environment.                   */
+/* It is provided "AS IS", without warranty of any kind. IBM shall not be    */
+/* liable for any damages arising out of your use of this sample code, even  */
+/* if they have been advised of the possiblity of such damages.              */
+/* BUT STILL:                                                                */
+/* If you have a proposal about how to make this sample more useful          */
+/* we would appreciate your comments.                                        */
+/*****************************************************************************/
+/* CHANGE ACTIVITY                                                           */
+/* Flag Reason      Level    Date   Origin    Comments                       */
+/* ------------------------------------------------------------------------- */
+/*                           930402 Mueller  : Initial Release               */
+/* IBM Deutschland Entwicklung GmbH, Boeblingen, Germany       GMU at SDFVM1 */
+/*****************************************************************************/
+/*****************************************************************************/
+/*                                                                           */
+/* Modify this file as needed.                                               */
+/* ==> Locate all '%....%' variables (strings starting and ending with '%')  */
+/*     and replace them with the appropriate values for your environment.    */
+/*        The meaning of these variables is briefly explained at the end     */
+/*        of this file.                                                      */
+/*     Note: The %..% notation has been used here as in OS/2 .cmd files.     */
+/*     However, there is NO automatic replacement of these variables,        */
+/*     you have to do it manually.                                           */
+/*                                                                           */
+/*****************************************************************************/
+
+/* Definition of your workstation */
+  DEFINE_LOCAL_CP  FQ_CP_NAME(%netid%.%loc_node_name%)
+                   DESCRIPTION(My PS/2)
+                   CP_ALIAS(%loc_node_alias%)
+                   NAU_ADDRESS(INDEPENDENT_LU)
+                   NODE_TYPE(EN)
+                   NODE_ID(X'%loc_node_ID%')
+                   HOST_FP_SUPPORT(YES);
+
+/* Host */
+  DEFINE_LOGICAL_LINK  LINK_NAME(LINK0001)
+                       DESCRIPTION(Host link)
+                       FQ_ADJACENT_CP_NAME(%netid%.CP000002 )
+                       ADJACENT_NODE_TYPE(LEN)
+                       DLC_NAME(IBMTRNET)
+                       ADAPTER_NUMBER(0)
+                       DESTINATION_ADDRESS(X'%rmt_tokrng_addr%')
+                       CP_CP_SESSION_SUPPORT(NO)
+                       ACTIVATE_AT_STARTUP(NO)
+                       LIMITED_RESOURCE(NO)
+                       LINK_STATION_ROLE(USE_ADAPTER_DEFINITION)
+                       SOLICIT_SSCP_SESSION(YES)
+                       EFFECTIVE_CAPACITY(USE_ADAPTER_DEFINITION)
+                       COST_PER_CONNECT_TIME(USE_ADAPTER_DEFINITION)
+                       COST_PER_BYTE(USE_ADAPTER_DEFINITION)
+                       SECURITY(USE_ADAPTER_DEFINITION)
+                       PROPAGATION_DELAY(USE_ADAPTER_DEFINITION)
+                       USER_DEFINED_1(USE_ADAPTER_DEFINITION)
+                       USER_DEFINED_2(USE_ADAPTER_DEFINITION)
+                       USER_DEFINED_3(USE_ADAPTER_DEFINITION);
+
+/* AS/400 */
+  DEFINE_LOGICAL_LINK  LINK_NAME(LINK0003)
+                       DESCRIPTION(AS/400 link)
+                       FQ_ADJACENT_CP_NAME(%netid%.CP000004 )
+                       ADJACENT_NODE_TYPE(LEN)
+                       DLC_NAME(IBMTRNET)
+                       ADAPTER_NUMBER(0)
+                       DESTINATION_ADDRESS(X'%rmt_tokrng_addr%')
+                       CP_CP_SESSION_SUPPORT(NO)
+                       ACTIVATE_AT_STARTUP(NO)
+                       LIMITED_RESOURCE(NO)
+                       LINK_STATION_ROLE(USE_ADAPTER_DEFINITION)
+                       SOLICIT_SSCP_SESSION(NO)
+                       EFFECTIVE_CAPACITY(USE_ADAPTER_DEFINITION)
+                       COST_PER_CONNECT_TIME(USE_ADAPTER_DEFINITION)
+                       COST_PER_BYTE(USE_ADAPTER_DEFINITION)
+                       SECURITY(USE_ADAPTER_DEFINITION)
+                       PROPAGATION_DELAY(USE_ADAPTER_DEFINITION)
+                       USER_DEFINED_1(USE_ADAPTER_DEFINITION)
+                       USER_DEFINED_2(USE_ADAPTER_DEFINITION)
+                       USER_DEFINED_3(USE_ADAPTER_DEFINITION);
+
+/* 4680 Store System */
+  DEFINE_LOGICAL_LINK  LINK_NAME(LINK0011)
+                       DESCRIPTION(4680 Store System Link)
+                       FQ_ADJACENT_CP_NAME(%netid%.%4680_cp_name%)
+                       ADJACENT_NODE_TYPE(LEN)
+                       DLC_NAME(IBMTRNET)
+                       ADAPTER_NUMBER(0)
+                       DESTINATION_ADDRESS(X'%rmt_tokrng_addr%')
+                       CP_CP_SESSION_SUPPORT(NO)
+                       ACTIVATE_AT_STARTUP(NO)
+                       LIMITED_RESOURCE(USE_ADAPTER_DEFINITION)
+                       LINK_STATION_ROLE(USE_ADAPTER_DEFINITION)
+                       SOLICIT_SSCP_SESSION(NO)
+                       EFFECTIVE_CAPACITY(USE_ADAPTER_DEFINITION)
+                       COST_PER_CONNECT_TIME(USE_ADAPTER_DEFINITION)
+                       COST_PER_BYTE(USE_ADAPTER_DEFINITION)
+                       SECURITY(USE_ADAPTER_DEFINITION)
+                       PROPAGATION_DELAY(USE_ADAPTER_DEFINITION)
+                       USER_DEFINED_1(USE_ADAPTER_DEFINITION)
+                       USER_DEFINED_2(USE_ADAPTER_DEFINITION)
+                       USER_DEFINED_3(USE_ADAPTER_DEFINITION);
+
+/* Identification of your workstation as known at other systems */
+/* You may want several of these statements.
+   The local LU-name is normally a concatenation of the local Node-name
+   and a consecutive number */
+  DEFINE_LOCAL_LU  LU_NAME(%loc_lu_name%)
+                   DESCRIPTION(LU-name of my PS/2)
+                   LU_ALIAS(APPCLU  )
+                   NAU_ADDRESS(INDEPENDENT_LU);
+
+/* CICS/DDM MVS System DDMCICS1 */
+  DEFINE_PARTNER_LU  FQ_PARTNER_LU_NAME(%netid2%.%cics_rmt_lu_name%)
+                     DESCRIPTION(CICS/DDM MVS System DDMCICS1)
+                     PARTNER_LU_ALIAS(DDMCICS1)
+                     PARTNER_LU_UNINTERPRETED_NAME(%cics_rmt_lu_name%)
+                     MAX_MC_LL_SEND_SIZE(32767)
+                     CONV_SECURITY_VERIFICATION(NO)
+                     PARALLEL_SESSION_SUPPORT(YES);
+
+/* MVS/ESA */
+  DEFINE_PARTNER_LU  FQ_PARTNER_LU_NAME(%netid3%.%mvsesa_rmt_lu_name%)
+                     DESCRIPTION(MVS/ESA)
+                     PARTNER_LU_ALIAS(MVSESA)
+                     PARTNER_LU_UNINTERPRETED_NAME(%mvsesa_rmt_lu_name%)
+                     MAX_MC_LL_SEND_SIZE(32767)
+                     CONV_SECURITY_VERIFICATION(NO)
+                     PARALLEL_SESSION_SUPPORT(YES);
+
+/* AS/400 System M1 */
+  DEFINE_PARTNER_LU  FQ_PARTNER_LU_NAME(%netid%.%as400_rmt_lu_name%)
+                     DESCRIPTION(AS/400 System M1)
+                     PARTNER_LU_ALIAS(OS400M1)
+                     PARTNER_LU_UNINTERPRETED_NAME(%as400_rmt_lu_name%)
+                     MAX_MC_LL_SEND_SIZE(32767)
+                     CONV_SECURITY_VERIFICATION(NO)
+                     PARALLEL_SESSION_SUPPORT(YES);
+
+/* 4680 Store System */
+  DEFINE_PARTNER_LU  FQ_PARTNER_LU_NAME(%netid%.%4680_rmt_lu_name%)
+                     DESCRIPTION(4680 Store System)
+                     PARTNER_LU_ALIAS(OS4680)
+                     PARTNER_LU_UNINTERPRETED_NAME(%4680_rmt_lu_name%)
+                     MAX_MC_LL_SEND_SIZE(32767)
+                     CONV_SECURITY_VERIFICATION(NO)
+                     PARALLEL_SESSION_SUPPORT(YES);
+
+/* CICS/DDM MVS System DDMCICS1 */
+  DEFINE_PARTNER_LU_LOCATION  FQ_PARTNER_LU_NAME(%netid2%.%cics_rmt_lu_name%)
+                              DESCRIPTION(CICS/DDM MVS System DDMCICS1)
+                              WILDCARD_ENTRY(NO)
+                              FQ_OWNING_CP_NAME(%netid%.CP000002 )
+                              LOCAL_NODE_NN_SERVER(NO);
+
+/* MVS/ESA */
+  DEFINE_PARTNER_LU_LOCATION  FQ_PARTNER_LU_NAME(%netid3%.%mvsesa_rmt_lu_name%)
+                              DESCRIPTION(MVS/ESA)
+                              WILDCARD_ENTRY(NO)
+                              FQ_OWNING_CP_NAME(DEIBMFD.CP000002 )
+                              LOCAL_NODE_NN_SERVER(NO);
+
+/* AS/400 */
+  DEFINE_PARTNER_LU_LOCATION  FQ_PARTNER_LU_NAME(%netid%.%as400_rmt_lu_name%)
+                              DESCRIPTION(AS/400 System M1)
+                              WILDCARD_ENTRY(NO)
+                              FQ_OWNING_CP_NAME(%netid%.CP000004 )
+                              LOCAL_NODE_NN_SERVER(NO);
+
+/* 4680 Store System */
+  DEFINE_PARTNER_LU_LOCATION  FQ_PARTNER_LU_NAME(%netid%.%4680_rmt_lu_name%)
+                              WILDCARD_ENTRY(NO)
+                              FQ_OWNING_CP_NAME(%netid%.%4680_cp_name%)
+                              LOCAL_NODE_NN_SERVER(NO);
+
+/* Mode for 4680 Store System, MVS/ESA, and CICS */
+  DEFINE_MODE  MODE_NAME(APPCLU62)
+               DESCRIPTION(Mode for 4680 Store System, MVS, and CICS)
+               COS_NAME(#CONNECT)
+               DEFAULT_RU_SIZE(NO)
+               MAX_RU_SIZE_UPPER_BOUND(1920)
+               RECEIVE_PACING_WINDOW(7)
+               MAX_NEGOTIABLE_SESSION_LIMIT(32767)
+               PLU_MODE_SESSION_LIMIT(64)
+               MIN_CONWINNERS_SOURCE(32);
+
+/* Mode for AS/400 */
+  DEFINE_MODE  MODE_NAME(QPCSUPP )
+               DESCRIPTION(Mode for AS/400)
+               COS_NAME(#CONNECT)
+               DEFAULT_RU_SIZE(NO)
+               MAX_RU_SIZE_UPPER_BOUND(512)
+               RECEIVE_PACING_WINDOW(12)
+               MAX_NEGOTIABLE_SESSION_LIMIT(32767)
+               PLU_MODE_SESSION_LIMIT(10)
+               MIN_CONWINNERS_SOURCE(2);
+
+/* Default settings */
+  DEFINE_DEFAULTS  IMPLICIT_INBOUND_PLU_SUPPORT(NO)
+                   DESCRIPTION(Defaults)
+                   DEFAULT_MODE_NAME(BLANK)
+                   MAX_MC_LL_SEND_SIZE(32767)
+                   DEFAULT_TP_OPERATION(NONQUEUED_AM_STARTED)
+                   DEFAULT_TP_PROGRAM_TYPE(BACKGROUND)
+                   DEFAULT_TP_CONV_SECURITY_RQD(NO)
+                   MAX_HELD_ALERTS(10);
+
+/* CICS */
+  CNOS  FQ_PARTNER_LU_NAME(%netid2%.%cics_rmt_lu_name%)
+        LOCAL_LU_ALIAS(APPCLU  )
+        MODE_NAME(APPCLU62)
+        SET_NEGOTIABLE(NO)
+        PLU_MODE_SESSION_LIMIT(64)
+        MIN_CONWINNERS_SOURCE(0)
+        MIN_CONWINNERS_TARGET(0)
+        AUTO_ACTIVATE(0);
+
+/* MVS/ESA */
+  CNOS  FQ_PARTNER_LU_NAME(%netid3%.%mvsesa_rmt_lu_name%)
+        LOCAL_LU_ALIAS(APPCLU  )
+        MODE_NAME(APPCLU62)
+        SET_NEGOTIABLE(NO)
+        PLU_MODE_SESSION_LIMIT(64)
+        MIN_CONWINNERS_SOURCE(0)
+        MIN_CONWINNERS_TARGET(0)
+        AUTO_ACTIVATE(0);
+
+/* AS/400 */
+  CNOS  FQ_PARTNER_LU_NAME(%netid%.%as400_rmt_lu_name%)
+        LOCAL_LU_ALIAS(APPCLU  )
+        MODE_NAME(QPCSUPP )
+        SET_NEGOTIABLE(NO)
+        PLU_MODE_SESSION_LIMIT(64)
+        MIN_CONWINNERS_SOURCE(64)
+        MIN_CONWINNERS_TARGET(0)
+        AUTO_ACTIVATE(0);
+
+/* 4680 Store System */
+  CNOS  FQ_PARTNER_LU_NAME(%netid%.%4680_rmt_lu_name%)
+        LOCAL_LU_ALIAS(APPCLU  )
+        MODE_NAME(APPCLU62)
+        SET_NEGOTIABLE(NO)
+        PLU_MODE_SESSION_LIMIT(3)
+        MIN_CONWINNERS_SOURCE(1)
+        MIN_CONWINNERS_TARGET(1)
+        AUTO_ACTIVATE(0);
+
+/******************************************************************************
+Meaning of the %...% variables:
+
+%netid% , %netidx%    Network Id
+                      (different ones are distinguished by appended number x)
+%loc_node_name%       Local Node Name (of your PS/2)
+%loc_node_alias%      Local Node Alias (of your PS/2)
+%loc_node_ID%         Local Node Id (of your PS/2)
+%rmt_tokrng_addr%     Tokenring address of the remote system
+CP000002, CP000004, %4680_cp_name%  Control point names
+                                    used for reference within this file
+%loc_lu_name%         Local Logical Unit Name (of your PS/2)
+%xxx_rmt_lu_name%     Logical Unit Name of the remote partner system xxx
+
+%os2_tokrng_addr%  Token Ring Address of your PS/2.
+                  Not needed in this file, but needed for the configuration
+                  of the partner (target) systems.
+                  You find the Token Ring Address of your PS/2
+                  in the configuration file for your system
+                  as the adapter address for the Token Ring adapter.
+                  The configuration of a PS/2 can normally be viewed after
+                  power-on, in a machine-dependent way.
+                  The easiest way is to look into the OS/2 file
+                  LANTRAN.LOG, which is normally located in c:\IBMCOM.
+******************************************************************************/
+

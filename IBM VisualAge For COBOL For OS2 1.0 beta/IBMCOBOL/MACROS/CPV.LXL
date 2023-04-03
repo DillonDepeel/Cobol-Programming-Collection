@@ -1,0 +1,5 @@
+/* CPV.LXL - LPEX language-sensitive profile for C++ VB files. */
+trace o
+
+'MACRO C.LXL'
+

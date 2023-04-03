@@ -1,0 +1,120 @@
+#define  INCL_PM
+#define  INCL_WIN
+#include <os2.h>
+#include "pmrexx.h"
+#include "rxhdluse.h"
+
+rcinclude pmrxhlp.rc
+
+ICON    RXHOST_WIN pmrexx.ico
+POINTER 1 pmrexx.ico
+
+
+ACCELTABLE RXHOST_WIN PRELOAD
+BEGIN
+  VK_F3,    PMRXA_EXIT,        VIRTUALKEY
+  "S",      PMRXA_SAVE,        CHAR,        CONTROL
+END
+
+STRINGTABLE
+BEGIN
+    PROGRAM_NAME             "PMREXX"
+    RXHM_PROC_ENDED          "The REXX procedure has ended.\n"
+    BAD_NUM_PARMS            "Invalid Number of Parameters.\nYou must at least specify a procedure name."
+    PMRXHB_FILEMASK          "*.*"
+    RXHA_MSGBOXHDR           "PMREXX: Error"
+    RXHM_PROC_NOT_FOUND      "The procedure file could not be found."
+
+    RETRY                    "Retry"
+    CANCEL                   "Cancel"
+    ABORT                    "Abort"
+    IGNORE                   "Ignore"
+    OK                       "OK"
+    YES                      "Yes"
+    NO                       "No"
+    BENTER                   "Enter"
+
+
+    RXH_APP_ERROR            "A system call has returned an error."
+    RXH_READ_ERROR           "Error reading the file."
+    RXH_WRITE_ERROR          "Error writing to the File."
+    RXH_OPEN_ERROR           "Error Opening the File."
+    RXH_BAD_PATH             "The requested path does not exist."
+    RXH_TOO_MANY_OPEN        "There are too many open files."
+    RXH_ACCESS_DENIED        "The System has denied access."
+    RXH_INV_ACCESS           "Invalid Access Attempt."
+    RXH_NOT_DISK             "Not a DOS Disk."
+    RXH_SHARE_VIOL           "Sharing Violation."
+    RXH_SHARE_BUFF_EXC       "The Sharing Buffer has been exceeded."
+    RXH_CANNOT_MAKE          "The System cannot make the file handle."
+    RXH_DRIVE_LOCKED         "The requested Drive is locked."
+    RXH_DISK_FULL            "The requested Disk is full."
+    RXH_OUTOF_MEM            "The system is out of memory."
+    RXH_NOT_READY            "The requested device is not ready."
+    RXH_WRITE_PROT           "The disk has been write protected."
+    RXH_NAME_LONG            "The file name or extension is too long."
+    RXH_BAD_NAME             "The file name contains an incorrect character."
+    RXH_ERRC_OUTRES          "The system cannot allocate the resource."
+    RXH_ERRC_TEMPSIT         "Temporary situation"
+    RXH_ERRC_AUTH            "Authorization failed"
+    RXH_ERRC_INTRN           "Internal Error"
+    RXH_ERRC_HRDFAIL         "Device hardware failure"
+    RXH_ERRC_SYSFAIL         "System failure"
+    RXH_ERRC_APPERR          "Probable Application Error"
+    RXH_ERRC_NOTFND          "Item not located"
+    RXH_ERRC_BADFMT          "Bad format for call or data"
+    RXH_ERRC_LOCKED          "Resource or data is locked"
+    RXH_ERRC_MEDIA           "Incorrect media--CRC error"
+    RXH_ERRC_ALREADY         "Resource/action already exists/has been done"
+    RXH_ERRC_UNK             "Unclassified"
+    RXH_ERRC_CANT            "Cannot perform action"
+    RXH_ERRC_TIME            "Time-out"
+    RXH_ERRL_UNK             "Unknown Error"
+    RXH_ERRL_DISK            "A Disk Error has occurred"
+    RXH_ERRL_NET             "A Network Error has occurred"
+    RXH_ERRL_SERDEV          "A Serial Device Error has occurred"
+    RXH_ERRL_MEM             "A Memory Error has occurred"
+    RXH_WERRL_SHELL          "A Shell Error has occurred"
+    RXH_WERRL_GPI            "A Graphics Error has occurred"
+    RXH_WERRL_PM             "A Presentation Manager Error has occurred"
+    RXH_WERRL_UNK            "Unknown Error"
+    RXH_WERRC_UNK            "Unclassified"
+
+    BACKPATH_DELIMETER       "\\"
+    DRIVE_DELIMETER          ":"
+
+    MSG_FILE                 "OSO001.MSG"
+    SYS_ERROR_TEXT           "      System Error %d "
+    RXH_TITLE                "%s: %s"
+    RXH_WARNING              "%s - Warning"
+    RXH_CRITICAL             "%s - Critical Error"
+    RXH_ERRORTITLE           "%s - Error"
+    RXH_NOTIFICATION         "%s - Notification"
+    RXHD_EXISTS              "%s already exists.\n  Do you want to overwrite it?"
+
+    SAVE_QUIT                "%s has changed.\n Do you want to save it?"
+    SAVE                     "Save"
+    PMRXHB_SAVETITLE         "Save PMREXX Output Window As"
+    NOCHANGE                 "%s has not changed.\n It will not be saved."
+    RX_UNTITLED              "Output"
+END
+
+DLGTEMPLATE PMREXX_CUALOGO LOADONCALL MOVEABLE DISCARDABLE
+BEGIN
+    DIALOG "About PM/REXX", PMREXX_CUALOGO, 60, 40, 241, 113,
+                FS_NOBYTEALIGN | FS_DLGBORDER | WS_CLIPSIBLINGS | WS_SAVEBITS,
+                FCF_TITLEBAR
+    BEGIN
+        CONTROL "Operating System/2", -1, 70, 85, 100, 8,
+                WC_STATIC, SS_TEXT | DT_CENTER | WS_VISIBLE
+        CONTROL "PM/REXX", -1, 44, 65, 150, 8,
+                WC_STATIC, SS_TEXT | DT_CENTER | WS_VISIBLE
+        CONTROL "Version 2.00", -1, 45, 55, 150, 8,
+                WC_STATIC, SS_TEXT | DT_CENTER | WS_VISIBLE
+        CONTROL "(C) Copyright IBM Corp. 1989, 1992.  All rights reserved.", -1, 2, 35, 240, 8,
+                 WC_STATIC, SS_TEXT | DT_CENTER | WS_VISIBLE
+        CONTROL "OK", DID_OK, 101, 4, 38, 12, WC_BUTTON, BS_PUSHBUTTON |
+                BS_DEFAULT | WS_GROUP | WS_TABSTOP | WS_VISIBLE
+        CONTROL RXHOST_WIN, -1, 15, 85, 20, 20, WC_STATIC, SS_ICON | WS_VISIBLE
+    END
+END

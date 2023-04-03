@@ -1,0 +1,10 @@
+; ******************************************************************************
+; * USEREXIT.DEF                                                               *
+; * Module definition file for USER EXIT sample.                               *
+; ******************************************************************************
+LIBRARY USEREXIT INITINSTANCE TERMINSTANCE
+CODE LOADONCALL
+DATA MULTIPLE NONSHARED
+EXPORTS
+   ConvertToUpperOrLowerCaseChar
+

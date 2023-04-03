@@ -1,0 +1,88 @@
+
+
+DRAGDRP - Direct Manipulation
+
+
+DESCRIPTION:
+DRAGDROP demonstrates how to move files between directories with the
+dragging techniques of direct manipulation.  This sample program creates
+a list box that contains a scrollable list of the current directory.
+
+To change the current directory, select the WINDOW option and enter
+the new directory name and press Enter.  The sample program must be
+started twice so there are two running instances of the sample.  Then,
+using a mouse, the user:
+
+- Changes the directory file list in the first sample.
+- Selects a file name from the second sample.
+- Drags the file name (with mouse button 2) to the directory in
+  the first sample.
+- Drops the file name on the directory in the first sample.
+
+The file is now moved to the chosen directory of the first sample.
+
+TASK:
+Provide direct manipulation between listboxes
+
+CONCEPT/FEATURE:
+Sample program to illustrate Direct Manipulation
+
+SAMPLE LOCATION:
+Inside the PM Sample Programs folder (which is inside the VisualAge C++ 
+Samples folder).
+
+Note:This sample is not provided in project form.
+
+SOURCE FILE LOCATION:
+
+X:\ibmcpp\samples\toolkit\pm\dragdrop
+where X: is the drive you installed the samples and document component
+of VisualAge C++ for OS/2.
+
+
+HOW TO RUN THE SAMPLE:
+
+-From your OS/2 desktop:
+ Double-click on the sample's icon.
+
+-From an OS/2 command prompt:
+To start a non-WorkPlace Shell sample program from an OS/2 command
+prompt, type the name of the executable file and press Enter.  If you
+have edited source code of a sample program and want to recompile,link,
+and run the files, use the NMAKE tool. Your output is the executable
+file.  For information about the NMAKE utility, see the
+OS/2 Tools Reference.
+
+
+SOFTWARE/HARDWARE PREREQUISITES:
+
+- IBM VisualAge C++
+- OS/2 Warp
+- IBM or compatible 386 and up.
+
+REQUIRED FILES      DESCRIPTIONS
+
+  dragdlg.ipf       Help resource file
+  dragdrag.c        Direct Manipuation support routines
+  dragdrop.c        Main() entry point, initial window creation routines
+  dragdrop.def
+  dragdrop.dlg      Dialog resources
+  dragdrop.exe      Sample Executable
+  dragdrop.h
+  dragdrop.hlp
+  dragdrop.ico
+  dragdrop.ipf      Help resource file
+  dragdrop.mak      MakeMake generated makefile
+  dragdrop.ptr      Resource to change the mouse pointer
+  dragdrop.rc
+  dragfile.ipf
+  dragheap.c        Heap memory support routines
+  draghelp.c        Help manager interface routines
+  draghelp.h
+  draghelp.ipf
+  draghelp.rc
+  dragmenu.ipf
+  dragwnd.ipf
+  readme            This file
+
+

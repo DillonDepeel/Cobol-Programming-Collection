@@ -1,0 +1,74 @@
+
+
+EAEDIT - Extended Attributes Editor
+
+
+DESCRIPTION:
+
+This program implements an extended attributes editor that retrieves,
+modifies, or sorts files by their extended attribute value.  The sample
+lets the user select an extended attribute extended attribute type
+from a table.
+
+TASK:
+Allows you to edit a file's extended attributes.
+
+CONCEPT/FEATURE:
+The Extended Attributes Editor demonstrates a multithreaded application.
+Included in this file are all of the PM interface procedures for the
+dialog boxes and a standard client window.
+
+SAMPLE LOCATION:
+Inside the OS/2 Sample Programs (which is inside the VisualAge C++ 
+Samples folder).
+
+Note:This sample is not provided in project form.
+
+SOURCE FILE LOCATION:
+
+X:\ibmcpp\samples\toolkit\os2\eaedit
+where X: is the drive you installed the samples and document component
+of VisualAge C++ for OS/2.
+
+
+HOW TO RUN THE SAMPLE:
+
+-From your OS/2 desktop:
+ Double-click on the sample's icon.
+
+-From an OS/2 command prompt:
+ To start a non-WorkPlace Shell sample program from an OS/2 command
+ prompt, type the name of the executable file and press Enter.  If you
+ have edited source code of a sample program and want to recompile,link,
+ and run the files, use the NMAKE tool.  Your output is the executable
+ file. For information about the NMAKE utility, see the
+ OS/2 Tools Reference.
+
+
+SOFTWARE/HARDWARE PREREQUISITES:
+
+- IBM VisualAge C++
+- OS/2 Warp
+- IBM or compatible 386 and up.
+
+REQUIRED FILES      DESCRIPTIONS
+
+  eas.c             The main() program
+  eas.def           link definitions and import/export file
+  eas.dlg           The dialog resource file
+  eas.exe           The executable
+  eas.h
+  eas.hlp           Help resource file
+  eas.ico
+  eas.ipf           IPF compile input file
+  eas.mak           MakeMake generated makefile
+  eas.rc
+  eas1.bmp          EAEditor bitmap
+  easea.c           Extended Attribute manipulation subroutines
+  easfile.c         Open file routines
+  eashelp.c         Help manager interface routines
+  easinit.c         Initialization routines file
+  readme            This file
+
+
+

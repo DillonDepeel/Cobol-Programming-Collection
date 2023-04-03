@@ -1,0 +1,39 @@
+/*
+ *   COMPONENT_NAME: somk
+ *
+ *   ORIGINS: 27
+ *
+ *
+ *   10H9767, 10H9769  (C) COPYRIGHT International Business Machines Corp. 1992,1994
+ *   All Rights Reserved
+ *   Licensed Materials - Property of IBM
+ *   US Government Users Restricted Rights - Use, duplication or
+ *   disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+ */
+/* @(#) somk/somtypes.xh 2.6 9/1/94 18:10:47 [10/20/94 10:52:04] */
+
+/*
+ */
+
+/*
+ *    SOMTYPES.XH
+ *    SOM types for C++
+ *    Multiple Inheritance Version
+ */
+#ifndef somtypes_xh
+#define somtypes_xh
+#define somtypes_h
+
+/* SOM base types */
+#include <sombtype.h>
+
+/* SOM primitive classes */
+class SOMObject;
+class SOMClass;
+class SOMClassMgr;
+
+/* SOM implementation types */
+#include <somitype.h>
+
+
+#endif  /* somtypes_xh */

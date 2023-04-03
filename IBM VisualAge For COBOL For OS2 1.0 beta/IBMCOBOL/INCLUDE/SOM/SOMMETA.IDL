@@ -1,0 +1,155 @@
+//
+//   COMPONENT_NAME: somu
+//
+//   ORIGINS: 27
+//
+//
+//   10H9767, 10H9769  (C) COPYRIGHT International Business Machines Corp. 1992,1994
+//   All Rights Reserved
+//   Licensed Materials - Property of IBM
+//   US Government Users Restricted Rights - Use, duplication or
+//   disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+//
+#ifndef sommeta_idl
+#define sommeta_idl
+#include <somcls.idl>
+//******************************************************************************
+//
+// This IDL defines SOMMCooperative and SOMMCooperativeRedispatched. These
+// interfaces provide core functionality upon which cooperative metaclasses are
+// built. Generally, any metaclass whose instances may be subclassed should be
+// cooperative. 
+//
+// A cooperative metaclass follows these guidelines:
+// 
+// 	1. Only the four following methods may be overridden:
+//		a. somInit, 
+//		b. somInitMIClass, 
+//		c. somClassReady, and
+//		d. somUninit
+//
+//      2. If it is necessary to "override" any methods other than the above
+//         four methods, then the metaclass should inherit (directly or
+//         indirectly) from SOMMCooperative or SOMMCooperativeRedispatched,
+//         and should use the cooperative methods provided for this purpose.
+//         Generally, these methods are invoked by a class on itself during
+//         execution of somInitMIClass code defined by its metaclass. The
+//         SOM Users Guide documentation explains the use of these methods.
+//
+//******************************************************************************
+//
+// -- Define the Metaclass Cooperation Framework interfaces
+//
+interface SOMMMetaCooperative; 
+interface SOMMCooperative : SOMClass {
+	somMethodProc** sommAddCooperativeInstanceMethod(in somId methodId, 
+							 in somMethodProc* methodProc);
+	// Install a cooperative override in the receiver's mtab. The returned
+	// result is the location of the method procedure pointer that must be
+	// invoked by methodProc to continue the cooperation chain.
+	somMethodProc** sommAddCooperativeClassMethod(in somId methodId, 
+						      in somMethodProc* methodProc);
+	// Install a cooperative override in the receiver's class's mtab. The
+	// returned result is the location of the method procedure pointer that
+	// must be invoked by methodProc to continue the cooperation chain.
+	void sommRequestFirstCooperativeInstanceMethodCall(in somId methodId, 
+							   in somMethodProc* coopProc, 
+							   inout somMethodProc** chainProcAddrAddr);
+	// Request a cooperative override in the receiver's mtab. Similar to 
+	// sommAddCooperativeInstanceMethod, but the method requires that the 
+	// coopProc be the first invoked for the set of methods.  The coopProc
+	// argument is is the address of the cooperative method procedure being
+	// registered, and the chainProcAddrAddr argument is the address of the
+	// caller's variable into which the address of the somMethodProc* that
+	// will continue the cooperation chain will be placed (if the 
+	// sommSatisfyRequests method call is successful).
+	void sommRequestFirstCooperativeClassMethodCall(in somId methodId,
+							in somMethodProc* coopProc,
+							inout somMethodProc** chainProcAddrAddr);
+	// Request a cooperative override in the receiver's class's mtab. 
+	// Similar to sommAddCooperativeClassMethod, but requires that the 
+	// coopProc be the first invoked for the set of methods.  The coopProc
+	// argument is is the address of the cooperative method procedure being
+	// registered, and the chainProcAddrAddr argument is the address of the
+	// caller's variable into which the address of the somMethodProc* that
+	// will continue the cooperation chain will be placed (if the 
+	// sommSatisfyRequests method call is successful).
+	void sommRequestFinalClassMethodCall(in somId methodId, 
+					     in somMethodProc* methodProc);
+	// Allows a class to request that the indicated methodProc be called 
+	// to provide the "final" semantics for the indicated class method.
+	// This request is only provided for class methods, since the final 
+	// semantics for instance methods is determined by a class designer 
+	// (not the metaclass).
+	boolean sommSatisfyRequests();
+	// There may be conflicts between different metaclasses in the case of
+	// requests. To handle this, the request methods incrementally add to a 
+	// hidden "request block". When sommSatisfyRequests is issued, the 
+	// request block is checked to see if any new requests conflict with 
+	// previously-granted requests. If so, none of the requests are granted
+	// and FALSE is returned. Otherwise all the new requests are granted, 
+	// and TRUE is returned.
+	implementation {
+		callstyle = oidl;
+                majorversion = 2;
+                minorversion = 1;
+		functionprefix = SOMMCooperative;
+		metaclass = SOMMMetaCooperative;
+		releaseorder: 	sommRequestFinalClassMethodCall, 
+				sommAddCooperativeClassMethod, 
+		                sommAddCooperativeInstanceMethod,
+				sommRequestFirstCooperativeInstanceMethodCall,
+				sommSatisfyRequests, 
+		                sommRequestFirstCooperativeClassMethodCall;
+		somDefaultInit: override, init;
+		somInitMIClass: override;
+	        somClassReady: override; // processes delayed AddFirstCooperativeMethodCall;
+	};
+};
+//*****************************************************************************
+//
+// A SOM programmer that wants to place redispatch stubs in the metaclass's
+// instances' instance method tables in order to receive control when methods
+// are dispatched should:
+//
+//	1. Define the metaclass by inheriting (directly or indirectly)
+//	   from SOMMCooperativeRedispatched. This will automatically install
+// 	   redispatch stubs in the instance method tables of all classes whose
+//         metaclass is (or is dirived from) the defined metaclass, and 
+//         automatically handle all details associated with method dispatch
+//         (including correct handling of parent method calls).
+//
+//	2. Use sommAddCooperativeInstanceMethod to register a method procedure
+//         to cooperate on somDispatch.
+//
+//*****************************************************************************
+interface SOMMCooperativeSistered : SOMMCooperative {
+   readonly attribute SOMClass somSisterClass;
+   // The fundamental characteristic of the sisterClass instance
+   // method table is that it has *no* redispatch stubs in it.
+   implementation {
+      callstyle = oidl;
+      majorversion = 2;
+      minorversion = 1;
+      functionprefix = SOMMCooperativeSistered;
+      releaseorder: _get_somSisterClass;
+      somMethodProc** doAddStaticMethod;
+      somMethodProc** doOverrideSMethod;
+      somMethodProc** doDispatch;
+      somMethodProc** doGetMethodData;
+      somDefaultInit: override, init;
+      somInitMIClass: override;
+   };
+};
+interface SOMMCooperativeRedispatched : SOMMCooperativeSistered {
+   implementation {
+      callstyle = oidl;
+      majorversion = 2;
+      minorversion = 1;
+      functionprefix = SOMMCooperativeRedispatched;
+      somMethodProc** doAddStaticMethod;
+      somMethodProc** doOverrideSMethod;
+      somInitMIClass: override;
+   };
+};
+#endif // sommeta_idl

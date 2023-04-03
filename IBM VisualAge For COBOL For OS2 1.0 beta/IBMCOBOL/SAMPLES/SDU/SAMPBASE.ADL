@@ -1,0 +1,47 @@
+/*****************************************************************************/
+/* Copyright (c) IBM Corporation 1993  -  All Rights Reserved                */
+/*                                                                           */
+/* DFM/2 (program no. 5648-020)                                              */
+/* Version: 1.0                                                              */
+/* Release: 1.0                                                              */
+/*****************************************************************************/
+/* CHANGE ACTIVITY                                                           */
+/* Flag Reason      Level    Date   Origin    Comments                       */
+/* ------------------------------------------------------------------------- */
+/*                           930402 Mueller  : Initial Release               */
+/* IBM Deutschland Entwicklung GmbH, Boeblingen, Germany       GMU at SDFVM1 */
+/*****************************************************************************/
+
+/*****************************************************************************/
+/* Start of a sample ADL file for a base sequence.                           */
+/*****************************************************************************/
+ DECLARE
+  BEGIN;
+   letters:
+     SUBTYPE OF CHAR LENGTH(20) CCSID(00037);
+   EmplRecB:
+    SEQUENCE
+    BEGIN;
+     /* Pos. 1 - 6:   PRECISION(6) =  6 bytes */
+     EmpNbr: ZONED PRECISION(6) SCALE(0) ZONENC(x'F');
+
+     /* Pos. 7 - 26:  LENGTH(20)   = 20 bytes */
+     LastName: letters;
+
+     /* Pos. 27 - 28: LENGTH(2)    =  2 bytes */
+     Initials: letters LENGTH(2);
+
+     /* Pos. 29 - 48: LENGTH(20)   = 20 bytes */
+     Address:  letters;
+
+     /* Pos. 49 - 50: PRECISION(4) =  2 bytes */
+     Age:      BINARY PRECISION(4) BYTRVS(FALSE) SCALE(0) RADIX(10);
+
+     /* Pos. 51 - 53: PRECISION(5) =  3 bytes */
+     HatSize:  PACKED PRECISION(5) SCALE(3);
+    END;
+  END;
+/*****************************************************************************/
+/* End of a sample ADL file for a base sequence.                             */
+/*****************************************************************************/
+

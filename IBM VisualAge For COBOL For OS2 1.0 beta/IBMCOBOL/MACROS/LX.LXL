@@ -1,0 +1,76 @@
+/* LX.LXL - LPEX language-sensitive editor profile for REXX. */
+TRACE OFF
+/* this is a REXX file */
+'SET DOCTYPE LX'
+
+/* REXX, LX classes - DO NOT MODIFY!! */
+'SET CLASSES CODE SPACE COMMENT OPENCOMMENT ERROR LABEL ACTION FONT GLOBAL KEY PARM SET SYNONYM TABS'
+                       
+
+/* initial fonts settings */
+'SET FONT.!  BLACK/WHITE                  "Default style"'
+'SET FONT._  BLACK/WHITE                  "Layout blanks"'
+'SET FONT.K  BRIGHT BLUE/WHITE            "REXX keyword"'
+'SET FONT.L  BLACK/WHITE                  "String literal"'
+'SET FONT.H  RED/WHITE                    "Hexadecimal string"'
+'SET FONT.A  BLUE/WHITE                   "Alphanumerics"'
+'SET FONT.C  CYAN/WHITE                   "Comment"'
+'SET FONT.N  RED/WHITE                    "Number"'
+'SET FONT.S  BLUE/WHITE                   "Symbol"'
+'SET FONT.:  UNDERLINE BRIGHT BLUE/WHITE  "Label"'
+'SET FONT.E  REVERSE BRIGHT RED/WHITE     "Error"'
+
+/* bracket matching (uses LXMATCH.DLL) */
+'SET ACTION.C-M MATCH'
+
+/* update action bar */
+'SET ACTIONBAR.~View.SEPARATOR 2 ;'
+'SET ACTIONBAR.~View.A~ctions 3 ;SET INCLUDE ACTION;SET EXCLUDE;SET VIEWNAME Actions'
+'SET GROUP. ACTION'
+'SET HELP. 16058' 
+'SET ACTIONBAR.~View.E~rrors 4 ;SET INCLUDE ERROR;SET EXCLUDE;SET VIEWNAME Errors'
+'SET GROUP. ERROR'
+'SET HELP. 16058'
+'SET ACTIONBAR.~View.Fo~nts 5 ;SET INCLUDE FONT;SET EXCLUDE;SET VIEWNAME Fonts'
+'SET GROUP. FONT'
+'SET HELP. 16058'
+'SET ACTIONBAR.~View.~Globals 6 ;SET INCLUDE GLOBAL;SET EXCLUDE;SET VIEWNAME Globals'
+'SET GROUP. GLOBAL'
+'SET HELP. 16058'
+'SET ACTIONBAR.~View.~Keys 7 ;SET INCLUDE KEY;SET EXCLUDE;SET VIEWNAME Keys'
+'SET GROUP. KEY'
+'SET HELP. 16058'
+'SET ACTIONBAR.~View.~Labels 8 ;SET INCLUDE LABEL;SET EXCLUDE;SET VIEWNAME Labels'
+'SET GROUP. LABEL'
+'SET HELP. 16058'
+'SET ACTIONBAR.~View.~Parameters 9 ;SET INCLUDE PARM;SET EXCLUDE;SET VIEWNAME Parameters'
+'SET GROUP. PARM'
+'SET HELP. 16058' 
+'SET ACTIONBAR.~View.S~ettings 10 ;SET INCLUDE SET;SET EXCLUDE;SET VIEWNAME Settings'
+'SET GROUP. SET'
+'SET HELP. 16058'
+'SET ACTIONBAR.~View.S~ynonyms 11 ;SET INCLUDE SYNONYM;SET EXCLUDE;SET VIEWNAME Synonyms'
+'SET GROUP. SYNONYM'
+'SET HELP. 16058'
+'SET ACTIONBAR.~View.Ta~bs 12 ;SET INCLUDE TABS;SET EXCLUDE;SET VIEWNAME Tabs'
+'SET GROUP. TABS'
+'SET HELP. 16058'
+
+'SET ACTION.C-C ;SET INCLUDE LABEL;SET EXCLUDE;SET VIEWNAME Labels'
+
+/* template insertion (_ for new line)                        */
+'SET GLOBAL.PROTO.R.action _'''SET ACTION.? ?''''
+'SET GLOBAL.PROTO.R.font _'''SET FONT.?  ?'/'?  '[" ? "]' ''''
+'SET GLOBAL.PROTO.R.key _'''SET KEY.? ?''''
+'SET GLOBAL.PROTO.R.global _'''SET GLOBAL.? ?''''
+'SET GLOBAL.PROTO.R.parm _'''SET ? ?''''
+'SET GLOBAL.PROTO.R.syn _'''SET SYNONYM.? ?''''
+'SET GLOBAL.PROTO.R.tab _'''SET TABS ? '[?] [...]' EVERY ?''''
+'SET GLOBAL.PROTO.R.set _/* SET {ACTION, FONT, KEY, GLOBAL, PARM, SYN, TAB} */'
+'SET ACTION.C-R PROTO PROTO.R.'
+
+/* initial full parse, set incremental & full parse commands */
+'PRLX ALL'
+'SET PARSER PRLX'
+'SET FULLPARSE PRLX REPARSE'
+

@@ -1,0 +1,12 @@
+/* Setup NAVIG tool. */
+
+'SET ACTIONBAR.~View.Na~vigator.~Open NAVIGD OPEN'
+
+'SET ACTIONBAR.~View.Na~vigator.Open_with_~externals NAVIGD OPEN HEADERS'
+'SET ACTIONBAR.~View.Na~vigator.Open_~Group NAVIGD GROUP'
+'SET ACTIONBAR.~View.Na~vigator.Set_~INCLUDE_path NAVIGD INCLUDE'
+
+'SET ACTIONBAR.~View.Na~vigator.~Refresh NAVIGD REFRESH'
+
+'NAVIGD'
+

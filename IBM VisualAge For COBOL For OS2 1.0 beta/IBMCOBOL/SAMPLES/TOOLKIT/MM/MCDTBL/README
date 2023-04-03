@@ -1,0 +1,93 @@
+ /**********************************************************/
+ /*   Copyright (c) IBM Corporation  1992, 1995            */
+ /**********************************************************/
+
+
+MCDTBL - Media Control Driver Command Tables
+
+
+DESCRIPTION:
+
+ Before an Media Control Driver (MCD) can interpret a string command, 
+ the MDM must use a command table to change the string into an equivalent
+ procedural command.  Represented as resources to the driver, command
+ tables are created using the RCDATA type of resource.  The resource
+ number of the RCDATA block is the device type number.  MCDTBL contains
+ command tables for each of the following devices:
+
+ - CD-ROM/XA
+ - CD Audio
+ - Wave Audio
+ - Sequencer
+ - Digital Video
+ - Amp Mixer
+ - Videodisc
+
+
+ If you want to support device-specific messages, you must create a
+ device-specific command table.
+
+TASK:
+
+ Provide a general model on how MCD command tables are set up.
+
+CONCEPT/FEATURE:
+
+ Template for coding an MCD
+
+SAMPLE LOCATION:
+
+ Inside the MM Sample Programs inside the main VisualAge C++ for OS/2
+ folder on your OS/2 desktop.
+
+ Note:This sample is not provided in project form.
+
+SOURCE FILE LOCATION:
+
+ X:\ibmcpp\samples\toolkit\mm\mcdtbl
+
+ where X: is the drive you installed the samples and document component
+ of VisualAge C++ for OS/2.
+
+
+HOW TO RUN THE SAMPLE:
+
+-From your OS/2 desktop:
+ Double-click on the sample's icon.
+
+-From an OS/2 command prompt:
+ To start a non-WorkPlace Shell sample program from an OS/2 command
+ prompt, type the name of the executable file and press Enter.  If you
+ have edited source code of a sample program and want to recompile,link,
+ and run the files, use the NMAKE tool. Your output is the executable
+ file.  For information about the NMAKE utility, see the
+ OS/2 Tools Reference.
+
+
+SOFTWARE/HARDWARE PREREQUISITES:
+
+
+- IBM VisualAge C++
+- OS/2 Warp
+- IBM or compatible 386 and up.
+
+The following files are the command tables shipped with the MMPM/2 product.
+
+ mdmcmd.rc - Base commands command table
+
+ ampcmd.rc - Ampmix command table
+
+ lvdcmd.rc - Laserdisc command table
+
+ seqcmd.rc - Sequencer command table
+
+ xacmd.rc  - CD/XA command table
+
+ wavcmd.rc - Waveform Audio command table
+
+ cdcmd.rc  - CD command table
+
+ smvcmd.rc - Software Motion Video command table
+
+ For more information on the table layout and fields see the MMPM/2 documentation.
+

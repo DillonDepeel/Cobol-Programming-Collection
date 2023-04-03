@@ -1,0 +1,83 @@
+/********************************************************
+* CL400.LXL - LOAD MACRO FOR CL FILES                   *
+*                                                       *
+* THIS MACRO IS INVOKED BY LPEX WHEN A FILE WITH        *
+* SOURCE TYPE CL IS EDITED (UNLESS THE /ASIS OR /NOPRO  *
+* OPTIONS ARE USED. IT SETS UP THE CL EMPHASIS PARSER   *
+* AND FONTS FOR A COLOUR DISPLAY.                       *
+*                                                       *
+*          COPYRIGHT I B M CORPORATION 1989             *
+*                                                       *
+* SAH/04.12.89/CUSTOMIZED FOR ECD TESTING               *
+*                                                       *
+********************************************************/
+
+/* CALL DEFAULT AS/400 PROFILE */
+'LXR DFT400.LXL'
+
+/* SET FONTS FOR CL PARSER */
+
+'SET FONT.A  BLACK/WHITE                 "Alphanumerics"'
+'SET FONT.B  BRIGHT GREEN/WHITE          "Built-ins"'
+'SET FONT.C  CYAN/WHITE                  "Comments"'
+'SET FONT.E  WHITE/BRIGHT RED            "Errors"'
+'SET FONT.G  UNDERLINE BRIGHT BLUE/WHITE "Language construct"'
+'SET FONT.I  GREEN/WHITE                 "Literals"'
+'SET FONT.K  CYAN/WHITE                  "Keywords"'
+'SET FONT.L  BRIGHT GRAY/WHITE           "Labels"'
+'SET FONT.M  BRIGHT BLUE/WHITE           "Commands"'
+'SET FONT.N  RED/WHITE                   "Numerials"'
+'SET FONT.P  BROWN/WHITE                 "Parameters"'
+'SET FONT.S  BLUE/WHITE                  "Special symbols"'
+'SET FONT.V  MAGENTA/WHITE               "Special values"'
+'SET FONT._  BLACK/WHITE                 "Layout space"'
+
+'SET DOCTYPE CL'
+'SET CLASSES SPACE MESSAGE ERROR COMMENT CODE CONTROL CONTINUATION'
+'PARSER EVFLCL'      /* SET UP THE PARSER FOR FUTURE CHANGES */
+'SET FULLPARSE SUBMIT READ STOP "Parsing file" EVFLCL ALL'
+
+'SET ACTION.F4  EVFLCL PROMPT'
+'SET ACTION.F1  EVFLCL COMMANDHELP'
+
+'SET ACTIONBAR.~Edit.SEPARATOR 6 ;'
+'SET ACTIONBAR.~Edit.Pro~mpt\tF4 7 EVFLCL PROMPT'
+'SET GROUP. WRITEABLE'
+'SET HELP. 16036'
+
+'SET ACTIONBAR.~Actions.SEPARATOR 1;'
+'SET ACTIONBAR.~Actions.~Syntax_check_selection 2 SUBMIT READ STOP "Syntax check selection" EVFLCL BLOCK'
+'SET HELP. 16081'
+'SET ACTIONBAR.~Actions.Syntax_check_~file 3 SUBMIT READ STOP "Syntax check file" EVFLCL FILE'
+'SET HELP. 16082'
+
+'SET ACTIONBAR.~Options.~Language_editing. 7'
+'SET HELP. 16099'
+'SET ACTIONBAR.~Options.~Language_editing.~Token_highlighting EVFLCL TOKEN'
+'SET HELP. 16100'
+'SET ACTIONBAR.~Options.~Language_editing.~Syntax_checking EVFLCL SYNTAX'
+'SET HELP. 16102'
+
+'SET ACTIONBAR.~View.~Control 2 ;INCLUDE CONTROL;SET EXCLUDE'
+'SET GROUP. CONTROL'
+'SET HELP. 16056'
+'SET ACTIONBAR.~View.C~omments 3 ;INCLUDE COMMENT;SET EXCLUDE'
+'SET GROUP. COMMENT'
+'SET HELP. 16056'
+
+'EXTRACT ACTIONBARID.~Options.~Language_editing.~Token_highlighting INTO ID_TH'
+'SET GLOBAL.CL_TOK_MENU_ID' ID_TH
+'EXTRACT ACTIONBARID.~Options.~Language_editing.~Syntax_checking INTO ID_SC'
+'SET GLOBAL.CL_SYN_MENU_ID' ID_SC
+
+'SET TABS 12 14 EVERY 8'
+
+'SET GLOBAL.CL_TOKEN_HILITE 1'
+'SET GLOBAL.CL_AUTO_SYNTAX 1'
+
+'EVFLCL INIT'
+'TRIGGER FULLPARSE'
+
+/* set language specific prefix commands */
+'SET ACTIONPREFIX.P ;SET PREFIXENTRY;EVFLCL PROMPT'
+

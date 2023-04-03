@@ -1,0 +1,7 @@
+SDI
+cpx=35 cpy=55 cpw=61 cph=45
+pbDisplayResLo=1000 pbDisplayResHi=64000
+tocDesktop
+tocx=0 tocy=55 tocw=35 toch=45
+ExitButtonRes=9999
+

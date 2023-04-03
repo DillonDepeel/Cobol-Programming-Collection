@@ -1,0 +1,44 @@
+/***********************************************************
+* CMD.LXL - load macro for CMD files (OS/2 command files). *
+* See LX.LXL for full details.                             *
+***********************************************************/
+trace o
+
+/* this is a REXX file */
+'SET DOCTYPE CMD'
+
+/* REXX classes - DO NOT MODIFY!! */
+'SET CLASSES CODE SPACE COMMENT OPENCOMMENT ERROR LABEL'
+
+/* initial fonts settings */
+'SET FONT.!  BLACK/WHITE                  "Default style"'
+'SET FONT._  BLACK/WHITE                  "Layout blanks"'
+'SET FONT.K  BRIGHT BLUE/WHITE            "REXX keyword"'
+'SET FONT.L  BLACK/WHITE                  "String literal"'
+'SET FONT.H  RED/WHITE                    "Hexadecimal string"'
+'SET FONT.A  BLUE/WHITE                   "Alphanumerics"'
+'SET FONT.C  CYAN/WHITE                   "Comment"'
+'SET FONT.N  RED/WHITE                    "Number"'
+'SET FONT.S  BLUE/WHITE                   "Symbol"'
+'SET FONT.:  UNDERLINE BRIGHT BLUE/WHITE  "Label"'
+'SET FONT.E  REVERSE BRIGHT RED/WHITE     "Error"'
+
+/* bracket matching (uses LXMATCH.DLL) */
+'SET ACTION.C-M MATCH'
+
+/* update action bar */
+'SET ACTIONBAR.~View.SEPARATOR 2 ;'
+'SET ACTIONBAR.~View.~Labels 3 ;INCLUDE LABEL;SET EXCLUDE;VIEWNAME Labels'
+'SET GROUP. LABEL'
+'SET HELP. 16058'
+'SET ACTIONBAR.~View.~Errors 4 ;INCLUDE ERROR;SET EXCLUDE;VIEWNAME Errors'
+'SET GROUP. ERROR'
+'SET HELP. 16058'
+
+'SET ACTION.C-C ;SET INCLUDE LABEL;SET EXCLUDE;VIEWNAME Labels'
+
+/* initial full parse, set incremental & full parse commands */
+'PRREXX ALL'
+'SET PARSER PRREXX'
+'SET FULLPARSE PRREXX REPARSE'
+

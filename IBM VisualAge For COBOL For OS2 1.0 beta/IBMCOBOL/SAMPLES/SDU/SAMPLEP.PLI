@@ -1,0 +1,344 @@
+*PROCESS langlvl(saa2) source dft(nodescriptor) gn limits(extname(31));
+
+ test:proc options(main);
+   /***************************************************************************/
+   /*                                                                         */
+   /* PRODUCT   = Data Description and Conversion for OS/2                    */
+   /*                                                                         */
+   /* SOURCE FILE NAME = TEST.PLI                                             */
+   /*                                                                         */
+   /* DESCRIPTIVE NAME = ADL Declaration Translator, CPB, and CPEX sample     */
+   /*                                                                         */
+   /* FUNCTION =  This TEST.PLI program parses the adl file TEST.ADL using the*/
+   /*             FMTPRS function and return the appropriate ADL declare and  */
+   /*             plan space.  It then invokes FMTCRCP to create conversion   */
+   /*             plan from the encoded ADL declare and plan space.  With the */
+   /*             conversion plan, TEST.PLI invokes the FMTCPXI to initialize */
+   /*             conversion plan executor, calls FMTCPXC to executes the     */
+   /*             conversion plan CNVREC to convert EBCDIC string to ASCII    */
+   /*             string, and finally calls FMTCPXT to terminate and release  */
+   /*             resources.                                                  */
+   /*             In summary, TEST.PLI exercises FMTPRS, FMTCRCP, FMTCPXI,    */
+   /*             FMTCPXC, and FMTCPXT functions to accomplish the task of    */
+   /*             convert EBCDIC string to ASCII string as specified by the   */
+   /*             TEST.ADL.                                                   */
+   /*                                                                         */
+   /* NOTES =                                                                 */
+   /*                                                                         */
+   /*   DEPENDENCIES = OS/2 Release 2.0 or later                              */
+   /*                                                                         */
+   /*   RESTRICTIONS = None                                                   */
+   /*                                                                         */
+   /* ENTRY POINTS = test()                                                   */
+   /*                                                                         */
+   /*                                                                         */
+   /***************************************************************************/
+
+   /***************************************/
+   /* Program variables                   */
+   /***************************************/
+   DCL ADLDECL  CHAR(9) VARZ;
+   DCL CCSID1 FIXED BIN(31,0);
+   DCL ADLFILELEN FIXED BIN(31,0);
+   DCL ADLFILENAM CHAR(9) VARZ;
+   DCL CCSID2 FIXED BIN(31,0);
+   DCL XLROPTLEN FIXED BIN(31,0);
+   DCL XLROPTNAME CHAR(9) VARZ;
+   DCL LSTOPTLEN FIXED BIN(31,0);
+   DCL LSTOPTNAME CHAR(9) VARZ;
+   DCL LSTLEN FIXED BIN(31,0);
+   DCL LSTNAME CHAR(9) VARZ;
+   DCL ADLDCLLEN FIXED BIN(31,0);
+   DCL ADLDCLSPC CHAR(8000) CONTROLLED;
+   DCL CCSID3 FIXED BIN(31,0);
+
+   /***************************************/
+   /* Mapping CNSTKN and FMTCTOK in fmt.h */
+   /***************************************/
+
+   DCL 1 CNSTKN UNALIGNED,
+        2 ULLENGTH FIXED BIN(31,0),
+        2 USCLASS  FIXED BIN(15,0),
+        2 ABVALUE  CHAR(16) VARZ;
+   DCL PCNSTKN POINTER;
+   DCL ADLPLNLEN FIXED BIN(31,0);
+   DCL ADLPLNSPC CHAR(8000) CONTROLLED;
+
+   DCL 1 FMTADLCA UNALIGNED,
+        2 LLENGTH FIXED BIN(31,0),
+        2 LEXID   FIXED BIN(31,0),
+        2 USSEVCOD FIXED BIN(15,0),
+        2 PLANID,
+          3 USLENGTH FIXED BIN(15,0),
+          3 UCHDATA CHAR(255),
+        2 LPLANSTMT FIXED BIN(31,0),
+        2 INPERRDTA,
+          3 USLENGTH FIXED BIN(15,0),
+          3 UCHDATA CHAR(255),
+        2 SRCFLDID,
+          3 USLENGTH FIXED BIN(15,0),
+          3 UCHDATA CHAR(255),
+        2 TRGFLDID,
+          3 USLENGTH FIXED BIN(15,0),
+          3 UCHDATA CHAR(255);
+
+   DCL 1 FMTCTOK UNALIGNED,
+        2 CONDITION_ID,
+          3 USMSGSEV FIXED BIN(15,0),
+          3 USMSGNO  FIXED BIN(15,0),
+        2 FCASE BIT(2),
+        2 FSEVERITY BIT(3),
+        2 FCONTROL BIT(3),
+        2 UCHFACILITY_ID CHAR(3),
+        2 PL_S_INFO UNION,
+          3 ULADLEXLD FIXED BIN(31,0),
+          3 PADLCOMMAREA POINTER,
+          3 PUSEREXITCTOK POINTER ;
+
+   DCL PFMTCTOK POINTER;
+
+   /***************************************/
+   /* Program variables                   */
+   /***************************************/
+
+   DCL 1 X ,
+        2 C CHAR(5);
+
+   DCL 1 Y ,
+        2 C CHAR(10);
+
+   DCL 1 PPADLDCLSPCLIST POINTER;
+   DCL 1 PPDEFAULTADLPLNSPCLIST POINTER;
+   DCL 1 PPUSERADLPLNSPCLIST POINTER;
+   DCL 1 CNVPLNSPC CHAR(8000) CONTROLLED;
+
+   DCL 1 ULCNVPLNSPCHDL FIXED BIN(31,0);
+   DCL 1 PULCNVPLNSPCHDL POINTER;
+
+   DCL 1 PINPUTDATA POINTER;
+   DCL 1 PPINPUTDATA POINTER;
+   DCL 1 POUTPUTDATA POINTER;
+   DCL 1 PPOUTPUTDATA POINTER;
+
+   /***************************************/
+   /* Prototype for DDC API               */
+   /***************************************/
+
+   DCL FMTPRS entry( char(*) varz byaddr,fixed bin(31) byvalue,
+                       fixed bin(31) byvalue,char(*) varz byaddr,
+                       fixed bin(31) byvalue,
+                       fixed bin(31) byvalue,char(*) varz byaddr,
+                       fixed bin(31) byvalue,char(*) varz byaddr,
+                       fixed bin(31) byvalue,char(*) varz byaddr,
+                       fixed bin(31) byvalue,char(*) byaddr,
+                       fixed bin(31) byvalue,
+                       pointer byvalue,
+                       fixed bin(31) byvalue,char(*) byaddr,
+                       pointer byvalue)
+                       external('FMTPRS')
+                       options(linkage(system));
+
+   DCL FMTCRCP entry( fixed bin(31) byvalue,
+                      pointer byaddr,
+                      fixed bin(31) byvalue,
+                      pointer byvalue,
+                      fixed bin(31) byvalue,
+                      pointer byaddr,
+                      fixed bin(31) byvalue,
+                      char(*) byaddr,
+                      fixed bin(31) byvalue,
+                      pointer byvalue)
+                      external('FMTCRCP')
+                      options(linkage(system));
+
+   DCL FMTCPXI entry( char(*) byaddr,
+                      pointer byvalue,
+                      pointer byvalue)
+                      external('FMTCPXI')
+                      options(linkage(system));
+
+   DCL FMTCPXC entry( fixed bin(31) byvalue,
+                      fixed bin(31) byvalue,
+                      char(*) byaddr,
+                      fixed bin(31) byvalue,
+                      pointer byvalue,
+                      fixed bin(31) byvalue,
+                      pointer byvalue,
+                      pointer byvalue)
+                      external('FMTCPXC')
+                      options(linkage(system));
+
+   DCL FMTCPXT entry( fixed bin(31) byvalue,
+                      pointer byvalue)
+                      external('FMTCPXT')
+                      options(linkage(system));
+
+   ALLOCATE ADLDCLSPC;
+   ALLOCATE ADLPLNSPC;
+
+   ADLDECL = '2B12000301886D01'X;
+   CCSID1 = 0;
+   ADLFILELEN = 8;
+   ADLFILENAM = "test.adl";
+   CCSID2 = 0;
+   XLROPTLEN = 8;
+   XLROPTNAME = "AUTOSKIP";
+   LSTOPTLEN = 4;
+   LSTOPTNAME = "LIST";
+   LSTLEN = 8;
+   LSTNAME = "test.lsp";
+   ADLDCLLEN = 8000;
+   ADLDCLSPC = REPEAT('00'X,4000);
+   CCSID3 = 0;
+   CNSTKN.ULLENGTH = 0;
+   CNSTKN.USCLASS  = 0;
+   CNSTKN.ABVALUE  = "THIS IS A TEST";
+   PCNSTKN = ADDR(CNSTKN);
+   ADLPLNLEN = 8000;
+   ADLPLNSPC = REPEAT('00'X,4000);
+   PFMTCTOK = ADDR(FMTCTOK);
+
+   fetch FMTPRS title('FMTB/FMTPRS');
+   call FMTPRS(ADLDECL,
+                 CCSID1,
+                 ADLFILELEN,
+                 ADLFILENAM,
+                 CCSID2,
+                 XLROPTLEN,
+                 XLROPTNAME,
+                 LSTOPTLEN,
+                 LSTOPTNAME,
+                 LSTLEN,
+                 LSTNAME,
+                 ADLDCLLEN,
+                 ADLDCLSPC,
+                 CCSID3,
+                 PCNSTKN,
+                 ADLPLNLEN,
+                 ADLPLNSPC,
+                 PFMTCTOK);
+   if FMTCTOK.CONDITION_ID.USMSGNO ^= 0 then
+     do;
+       display('error in parsing the ADL file.');
+       display('The condition token has the following contents:');
+       put edit ('Message Severity :',FMTCTOK.CONDITION_ID.USMSGSEV)
+                (skip,a(40),f(7));
+       put edit ('Message Number   :',FMTCTOK.CONDITION_ID.USMSGNO)
+                (skip,a(40),f(7));
+       goto exit;
+     end;
+   else
+     do;
+       display('no error in parsing the ADL file.');
+     end;
+
+   ALLOCATE CNVPLNSPC;
+   CNVPLNSPC = REPEAT('00'X,4000);
+   FMTCTOK.PL_S_INFO.PADLCOMMAREA = ADDR(FMTADLCA);
+
+   PPADLDCLSPCLIST = ADDR(ADLDCLSPC);
+   PPDEFAULTADLPLNSPCLIST = ADDR(ADLPLNSPC);
+   PPUSERADLPLNSPCLIST = NULL();
+
+   fetch FMTCRCP title('FMTC/FMTCRCP');
+   call FMTCRCP(1,
+                PPADLDCLSPCLIST,
+                0,
+                NULL,
+                1,
+                PPDEFAULTADLPLNSPCLIST,
+                8000,
+                CNVPLNSPC,
+                0,
+                PFMTCTOK);
+   if FMTCTOK.CONDITION_ID.USMSGNO ^= 0 then
+     do;
+       display('error in conversion plan builder.');
+       display('The condition token has the following contents:');
+       put edit ('Message Severity :',FMTCTOK.CONDITION_ID.USMSGSEV)
+                (skip,a(40),f(7));
+       put edit ('Message Number   :',FMTCTOK.CONDITION_ID.USMSGNO)
+                (skip,a(40),f(7));
+       goto exit;
+     end;
+   else
+     display('no error in conversion plan builder.');
+
+   PULCNVPLNSPCHDL = ADDR(ULCNVPLNSPCHDL);
+   fetch FMTCPXI title('FMTD/FMTCPXI');
+   call FMTCPXI(CNVPLNSPC,
+                PULCNVPLNSPCHDL,
+                PFMTCTOK);
+   if FMTCTOK.CONDITION_ID.USMSGNO ^= 0 then
+     do;
+       display('error in initialize conversion plan executor.');
+       display('The condition token has the following contents:');
+       put edit ('Message Severity :',FMTCTOK.CONDITION_ID.USMSGSEV)
+                (skip,a(40),f(7));
+       put edit ('Message Number   :',FMTCTOK.CONDITION_ID.USMSGNO)
+                (skip,a(40),f(7));
+       goto exit;
+     end;
+   else
+     display('no error in initialize conversion plan executor.');
+
+   X.C = 'D3D4D5D6D7'X;
+
+   PINPUTDATA = ADDR(X);
+   PPINPUTDATA = ADDR(PINPUTDATA);
+   POUTPUTDATA = ADDR(Y);
+   PPOUTPUTDATA = ADDR(POUTPUTDATA);
+
+   fetch FMTCPXC title('FMTD/FMTCPXC');
+   call FMTCPXC(ULCNVPLNSPCHDL,
+                6,
+                "CNVREC",
+                1,
+                PPINPUTDATA,
+                1,
+                PPOUTPUTDATA,
+                PFMTCTOK);
+   if FMTCTOK.CONDITION_ID.USMSGNO ^= 0 then
+     do;
+       display('error in conversion plan executor convert.');
+       display('The condition token has the following contents:');
+       put edit ('Message Severity :',FMTCTOK.CONDITION_ID.USMSGSEV)
+                (skip,a(40),f(7));
+       put edit ('Message Number   :',FMTCTOK.CONDITION_ID.USMSGNO)
+                (skip,a(40),f(7));
+       goto exit;
+     end;
+   else
+     display('no error in conversion plan executor convert.');
+
+
+   fetch FMTCPXT title('FMTD/FMTCPXT');
+   call FMTCPXT(ULCNVPLNSPCHDL,
+                PFMTCTOK);
+   if FMTCTOK.CONDITION_ID.USMSGNO ^= 0 then
+     do;
+       display('error in terminate conversion plan executor.');
+       display('The condition token has the following contents:');
+       put edit ('Message Severity :',FMTCTOK.CONDITION_ID.USMSGSEV)
+                (skip,a(40),f(7));
+       put edit ('Message Number   :',FMTCTOK.CONDITION_ID.USMSGNO)
+                (skip,a(40),f(7));
+       goto exit;
+     end;
+   else
+     do;
+       display('no error in terminate conversion plan executor.');
+       put edit ('Expected output for Y.C =               LMNOP')
+                (skip,a(45));
+       put edit ('Y.C = ',Y.C)
+                (skip,a(40),a);
+     end;
+
+   exit:
+
+   FREE ADLDCLSPC;
+   FREE ADLPLNSPC;
+   FREE CNVPLNSPC;
+
+ end test;
+

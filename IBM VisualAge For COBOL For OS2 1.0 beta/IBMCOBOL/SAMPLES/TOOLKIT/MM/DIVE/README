@@ -1,0 +1,59 @@
+
+DIVE  - Direct Interface Video Extensions
+
+
+DESCRIPTION:
+
+ Direct Interface Video Extensions (DIVE) provide optimized
+ blitting performance for motion video subsystems and applications
+ that perform rapid screen updates in the OS/2 PM and full-screen
+ environments.
+
+ Using DIVE interfaces, applications can either write directly to
+ video memory or use the DIVE blitter.
+ The DIVE blitter will take advantage of acceleration hardware
+ when present and applicable to the function being performed.
+
+TASK:
+
+ A sample for using the DIVE APIs
+
+CONCEPT/FEATURE:
+
+ Direct Interface Video Extensions demonstration
+
+SAMPLE LOCATION:
+
+ Inside the MM Sample Programs inside the main VisualAge C++ for OS/2
+ folder on your OS/2 desktop.
+
+ Note:This sample is not provided in project form.
+
+SOURCE FILE LOCATION:
+
+ X:\ibmcpp\samples\toolkit\mm\dive
+
+ where X: is the drive you installed the samples and document component
+ of VisualAge C++ for OS/2.
+
+
+HOW TO RUN THE SAMPLE:
+
+-From your OS/2 desktop:
+ Double-click on the sample's icon.
+
+-From an OS/2 command prompt:
+ To start a non-WorkPlace Shell sample program from an OS/2 command
+ prompt, type the name of the executable file and press Enter.  If you
+ have edited source code of a sample program and want to recompile,link,
+ and run the files, use the NMAKE tool. Your output is the executable
+ file.  For information about the NMAKE utility, see the
+ OS/2 Tools Reference.
+
+
+SOFTWARE/HARDWARE PREREQUISITES:
+
+- IBM VisualAge C++
+- OS/2 Warp
+- IBM or compatible 386 and up.
+

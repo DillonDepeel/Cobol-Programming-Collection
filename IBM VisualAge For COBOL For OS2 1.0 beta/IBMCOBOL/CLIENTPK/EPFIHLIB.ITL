@@ -1,0 +1,4486 @@
+.************************************************************************
+.*                        SOFTWARE INSTALLER
+.* 5621-434 (C) COPYRIGHT IBM CORP. 1989, 1995. ALL RIGHTS RESERVED.
+.*               LICENSED MATERIALS - PROPERTY OF IBM
+.*
+.* Note to U.S. Government Users - Documentation related to restricted
+.* rights - Use, duplication or disclosure is subject to restrictions set
+.* forth in GSA ADP Schedule Contract with IBM Corp.
+.*
+.* Refer to your Licensing Agreement with IBM for the terms and
+.* conditions affecting the use of this source material.
+.*
+.* File name:    EPFIHLIB.ITL
+.* Contents:     Help panels for Software Installer for OS/2
+.************************************************************************
+:userdoc.
+:prolog.
+:title.Software Installer Helps EPFIHLIB.ITL
+:tline.5621-434 (C) COPYRIGHT IBM CORP
+:tline.1989, 1995. ALL RIGHTS RESERVED.
+:tline.LICENSED MATERIALS - PROPERTY OF IBM.
+:tline.Software Installer Help Panels
+:etitle.
+:eprolog.
+:body.
+.**********************************************************************
+.* The following symbols are used to define the various names used
+.* throughout the help panels that referred to documents and product
+.* names that we were unsure of at the time of this writing.
+.**********************************************************************
+.nameit symbol=online text='online documentation
+.**********************************************************************
+.* The following two symbols are used together to form the phrase:
+.* "OS/2" (trademark of IBM) Communications Interface panel
+.* They appear as "&os2. &comm." in the text and if replaced, should
+.* be replaced as such.
+.**********************************************************************
+.nameit symbol=os2 text='&odq.OS&slash.2&cdq. (trademark of IBM)
+.nameit symbol=comm text='Communications Interface panel
+.****************************************************************************
+.*  Installation and Maintenance - (General help)
+.****************************************************************************
+:h1 name=INSTALL res=5028.Installation and Maintenance Utility
+:isyn root=ins.product installation&maintenance installation maintenance
+:isyn root=ins.install maintain
+:i1 roots='ins'.Installation and Maintenance
+:p.
+Use the :hp2.Installation and Maintenance Utility:ehp2. window
+to install, update, restore, or delete a product.
+:p.
+Select :hp2.Open catalog:ehp2. from the File pull-down
+to obtain a list of
+products you can work with
+on a particular system.  After you have obtained a list, select a product
+from the list, and you can do one of the following&colon.
+:ul compact.
+:li.:link reftype=hd res=5009.Install:elink.
+:li.:link reftype=hd res=5010.Update:elink.
+:li.:link reftype=hd res=5011.Restore:elink.
+:li.:link reftype=hd res=5012.Delete:elink.
+:eul.
+:eh1.
+
+.**********************************************************************
+.*  "File" pull-down (contextual help) -
+.**********************************************************************
+:h2 name=IL0 res=5100.File
+:isyn root=list.listing select product open
+:i1 id=Il0.File
+:p.
+Select the :hp2.File:ehp2. menu to&colon.
+:ul compact.
+:li.Open or refresh a product list
+:li.Exit the installation and maintenance utility
+:eul.
+
+.**********************************************************************
+.*  "Open catalog..." on "File" pull-down (contextual help) -
+.**********************************************************************
+:h3 name=IL1 res=5101.Open catalog
+:isyn root=open.begin get files application
+:i1 id=IL1.Open
+:i2 refid=IL1.Host
+:i2 refid=IL1.Drive
+:p.
+Select :hp2.Open catalog:ehp2. from the File
+menu to open a catalog of installable products.
+You must open a product
+list before you can install or update a product.
+:p.
+When you select :hp2.Open catalog:ehp2. you are given a choice of
+opening a catalog from a host operating system or from a drive.
+
+.**********************************************************************
+.*  "Open catalog / Host..." on "File" pull-down (contextual help) -
+.**********************************************************************
+:h3 name=IL2 res=5102.Open host catalog
+:p.
+Select :hp2.Host:ehp2. to open a product list from
+an MVS, VM or VSE system.
+:p.
+When you select :hp2.Host:ehp2., a window prompts you
+for&colon.
+:ul compact.
+:li.A host session
+:li.The host operating system that you want to query the catalog from
+:li.The name of the catalog file that you want to download from the host
+:eul.
+
+.**********************************************************************
+.*  "Open catalog / Drive..." on "File" pull-down (contextual help) -
+.**********************************************************************
+:h3 name=IL3 res=5103.Open drive catalog
+:p.
+Select :hp2.Drive:ehp2. to open a catalog of installable products from
+a diskette drive, a CD ROM drive, a LAN drive, or an AS/400 PC support folder.
+:p.
+When you select :hp2.Drive:ehp2., a window prompts you
+for&colon.
+:ul compact.
+:li.The drive you want to install a product from
+:li.The directory and file name of the catalog that you want to open
+:eul.
+
+.****************************************************************
+.*  "Exit..." on "List" pull-down (contextual help) -
+.**********************************************************************
+:h3 name=IL4 res=5104.Exit
+:isyn root=exit.exit exiting leave quit logoff
+:i1 roots='exit'.Exit installation and maintenance utility
+:i1.Exit
+:p.
+Select :hp2.Exit:ehp2. from the File
+menu to exit the installation and maintenance utility.
+
+.**********************************************************************
+.*  "Details" pull-down (contextual help) -
+.**********************************************************************
+:h2 name=ID0 res=5004.Details
+:isyn root=info.information detail detailing
+:i1 roots='info'.Details
+:p.
+Select the :hp2.Details:ehp2. menu to see&colon.
+:ul compact.
+:li.A description of the selected product
+:li.The status and service level of the selected product
+on the workstation
+:li.The disk space required to install the selected product.
+:eul.
+.****************************************************************
+.*  "Product Description..." on "Details" pull-down (contextual help) -
+.****************************************************************
+:h3 name=ID1 res=5005.Product description
+:i1 id='info'.Product description
+:p.
+Select :hp2.Product description:ehp2. from the
+Details menu to see general information
+about the selected product.
+:p.
+Selecting this choice queries the source for a product description and
+displays the description in a window.
+
+.****************************************************************
+.*  "PWS Status..." on "Details" pull-down (contextual help) -
+.****************************************************************
+:h3 name=ID2 res=5006.Product status
+:i1.Product status
+:p.
+Select :hp2.Product status:ehp2. from the
+Details
+menu to see the following information about the selected
+product&colon.
+:ul compact.
+:li.Product name
+:li.Product number
+:li.Version, release, and modification currently installed on the
+workstation
+:li.Feature currently installed on the workstation
+:li.Components, if any, installed on the workstation
+:li.Service levels installed on the workstation
+:li.Drive and directories that the product is installed in
+:eul.
+:p.
+The product status choice can be selected only
+if the selected product is installed.
+
+.**************************************************************
+.*  "Disk Space..." on "Details" pull-down (contextual help) -
+.****************************************************************
+:h3 name=ID3 res=5007.Disk space
+:i1.Disk space
+:p.
+Select :hp2.Disk space:ehp2. from the Details menu
+to see&colon.
+:ul compact.
+:li.Amount of space required to install the selected product
+:li.Total amount of disk space available on your workstation drives
+:li.If installation is possible on a selected workstation drive
+:eul.
+:nt.
+If you are planning to update a product, the product may require less
+disk space than indicated because some files may overwrite existing
+versions.
+:ent.
+
+.**********************************************************************
+.*  "Action" pull-down (contextual help) -
+.**********************************************************************
+:h2 name=IA0 res=5008.Action
+:p.
+Select the :hp2.Action:ehp2. menu to&colon.
+:ul compact.
+:li.Install the selected product
+:li.Update the selected product to a new service level
+:li.Restore a previously saved service level of the selected product
+:li.Delete the selected product from the workstation
+:eul.
+
+.**********************************************************************
+.*  "Install..." on "Action" pull-down (contextual help) -
+.**********************************************************************
+:h3 name=IA1 res=5009.Install
+:isyn root=inst.information install
+:i1 roots='inst'.Install
+:i1.Product information
+:p.
+Select :hp2.Install:ehp2. from the Action
+menu to install the selected product.
+:p.
+When you select :hp2.Install:ehp2., the following
+occurs&colon.
+:ol.
+:li.A confirmation window displays information about the product you
+selected to install.
+:li.Another window is displayed requesting the names of the directories
+you want to install the product in and the components you want to
+install (if the product contains components).
+:li.A progress window is displayed and the
+product is installed in the specified directories.
+:li.The :link reftype=hd res=5010.Update:elink. and
+:link reftype=hd res=5012.Delete:elink. pull&hyphen.down
+choices for the selected product are made available.
+:eol.
+:p.
+The Install choice is available if any components
+of the selected product are not yet installed.
+
+.**********************************************************************
+.*  "Update..." on "Action" pull-down (contextual help)
+.**********************************************************************
+:h3 name=IA2 res=5010.Update
+:i1.Update
+:p.
+Select :hp2.Update:ehp2. from the Action menu
+to update an installed product to a more recent
+service level.
+:p.
+When you select :hp2.Update:ehp2.&colon.
+:ol.
+:li.A confirmation window displays information about the product you
+selected to update.
+:li.A progress window is displayed
+and the product is updated in the directories that you specified during
+the initial installation.
+:li.The :link reftype=hd res=5011.Restore:elink. pull-down choice becomes
+available for the updated product if a backup was saved.
+:eol.
+:p.
+The Update choice is available only for products that have
+been installed or that have at least one component installed.
+
+.**********************************************************************
+.*  "Restore..." on "Action" pull-down (contextual help) -
+.**********************************************************************
+:h3 name=IA3 res=5011.Restore
+:i1.Restore
+:p.
+Select :hp2.Restore:ehp2. from the Action menu
+to restore the selected product to the previous
+service level.
+:p.
+When you select :hp2.Restore:ehp2.&colon.
+:ol.
+:li.A confirmation window displays information about the product you
+selected to restore.
+:li.A progress window appears and
+files from the previous service level replace the files in the currently
+installed service level.
+:li.The Restore pull-down choice for the selected product is
+made unavailable.
+:eol.
+:p.
+The Restore choice is only available if the selected product
+has been installed and updated with the :hp2.Save a backup version:ehp2.
+option selected.
+
+.**********************************************************************
+.*  "Delete..." on "Action" pull-down (contextual help) -
+.**********************************************************************
+:h3 name=IA4 res=5012.Delete
+:isyn root=delete.remove leave cut erase eradicate
+:i1 roots='delete'.Delete
+:p.
+Select :hp2.Delete:ehp2. from the Action
+menu to delete the selected product from the workstation.
+If the product contains components, specific components can be selected
+for deletion.
+:p.
+This action also allows any backup versions to be deleted
+without deleting the current version.
+:p.
+When you select :hp2.Delete:ehp2.&colon.
+:ol.
+:li.A confirmation window displays information about the product you
+selected to delete.
+If the product contains components,
+the components that you want to delete can be
+selected.
+:li.A progress window appears and
+all files that are associated with the selected product
+(or components of the product) are deleted.
+If you select the :hp2.Delete only the backup versions:ehp2. check box,
+only the backup version of the product is deleted.
+:li.The :link reftype=hd res=5010.Update,:elink. Delete, and
+:link reftype=hd res=5011.Restore:elink. pull-down choices for the
+selected product are made unavailable if the entire product has been
+deleted.
+:li.The :link reftype=hd res=5009.Install:elink. pull-down choice for
+the selected product is made available.
+:eol.
+:p.
+The Delete choice is available when any component of the
+selected product is installed.
+
+.**********************************************************************
+.*  "View" pull-down (contextual help) -
+.**********************************************************************
+:h2 name=IV0 res=5016.View
+:p.
+Select the :hp2.View:ehp2. menu
+to change the list of products displayed in the main window list.  You
+can&colon.
+:ul.
+:li.Display a list of all the products that are in the catalog that is
+currently open
+:li.Display a list of products that have at least one component
+installed
+:li.Display a list of only the installed products that have been updated
+:li.Display the product list in the order that it appears in the
+catalog file
+:li.Sort the product list in ascending alphabetical order (A to Z)
+:li.Sort the product list in descending alphabetical order (Z to A)
+:eul.
+
+.**********************************************************************
+.*  "Current Catalog" on "View" pull-down (contextual help) -
+.**********************************************************************
+:h3 name=IV1 res=5017.Current catalog
+:i1.View current catalog
+:p.
+Select :hp2.Current catalog:ehp2. from the View menu
+to look at all the products that are in the catalog that is currently
+opened.
+Products in this catalog that are already installed or updated are
+displayed in this list.  Products that are installed or updated that are
+not in the current catalog are not displayed in this list.
+
+.**********************************************************************
+.*  "Installed" on "View" pull-down (contextual help) -
+.**********************************************************************
+:h3 name=IV2 res=5018.Installed products
+:i1.View installed products
+:p.
+Select :hp2.Installed products:ehp2. from the View menu
+to look at the products that have at least one component installed.
+All installed products are displayed in this list regardless of which
+source or operating system they were installed from.
+Once installed, a product appears in the Installed products view even
+if the product
+is no longer listed in the currently opened catalog.
+This allows it to be deleted or
+restored (if a backup was saved on Update).
+
+.**********************************************************************
+.*  "Updated" on "View" pull-down (contextual help) -
+.**********************************************************************
+:h3 name=IV3 res=5019.Updated products
+:i1.View updated products
+:p.
+Select :hp2.Updated products:ehp2. from the View menu
+to look at only the products that have at least one component installed
+and updated.
+All installed products that have been updated are displayed in this list,
+regardless of which source or operating system they were installed from.
+
+.**********************************************************************
+.*  "Catalog order" on "View" pull-down (contextual help) -
+.**********************************************************************
+:h3 name=IV6 res=5059.Catalog order
+:i1.Catalog order product sort
+:p.
+Select :hp2.Catalog order:ehp2. from the View menu
+to display the products in the product list in the same
+order that they appear in the catalog file.
+:p.
+If the list is in the Installed products or Updated
+products view, then products not in the currently open catalog will
+be displayed first in the list followed by the products that are in the
+catalog in the order that they occur.
+
+.**********************************************************************
+.*  "Ascending order" on "View" pull-down (contextual help) -
+.**********************************************************************
+:h3 name=IV4 res=5020.Ascending order
+:i1.Ascending order product sort
+:p.
+Select :hp2.Ascending order:ehp2. from the View menu
+to display the product list in ascending alphabetical order (A
+to Z).
+
+.**********************************************************************
+.*  "Descending order" on "View" pull-down (contextual help) -
+.**********************************************************************
+:h3 name=IV5 res=5021.Descending order
+:i1.Descending order product sort
+:p.
+Select :hp2.Descending order:ehp2. from the View menu
+to display the product list in descending alphabetical order (Z
+to A).
+
+.**********************************************************************
+.*  "Help" pull-down (contextual help) -
+.**********************************************************************
+:h2 name=IH0 res=5022.Help
+:i1 roots='help'.Help
+:p.
+Select this action to get to the
+following help&colon.
+:p.
+:dl tsize=2 break=all compact.
+:dt.:link reftype=hd res=5023.Help for help:elink.
+:dd.Gets help on using the online help facility
+:dt.:link reftype=hd res=5024.General help:elink.
+:dd.Gets help on application windows
+:dt.:link reftype=hd res=5025.Keys help:elink.
+:dd.Gets help on valid keys
+:dt.:link reftype=hd res=5026.Help index:elink.
+:dd.Displays an index of help topics
+:edl.
+
+.**********************************************************************
+.*  "Using help" on "Help" pull-down (contextual help) -
+.**********************************************************************
+:h3 name=IH1 res=5023.Using help
+:i1 roots='hlphlp'.Using help
+:p.
+Select this
+pull&hyphen.down choice to see a description of the types of help
+provided for this application and to learn how to get help.
+
+.**********************************************************************
+.*  "General help..." on "Help" pull-down (contextual help) -
+.**********************************************************************
+:h3 name=IH2 res=5024.General help
+:i1 roots='exthlp'.General help
+:p.
+Select this pull&hyphen.down choice
+to get an overview of the current window.
+
+.**********************************************************************
+.*  "Keys help..." on "Help" pull-down (contextual help) -
+.**********************************************************************
+:h3 name=IH3 res=5025.Keys help
+:p.
+Select this pull&hyphen.down choice to get help for the key definitions.
+
+.**********************************************************************
+.*  "Help index..." on "Help" pull-down (contextual help) -
+.**********************************************************************
+:h3 name=IH4 res=5026.Help index
+:i1 roots='hlpindx'.Help index
+:p.
+Select this
+pull&hyphen.down choice to use the help index.  You can use the index in
+two ways&colon.
+:ul compact.
+:li.To select a topic from a list of all help topics
+:li.To search for a topic by selecting :hp2.Search:ehp2. from the
+Services menu
+:eul.
+
+.**********************************************************************
+.*  Keys Help - (General help)
+.**********************************************************************
+:h3 name=KEYSHELP res=5029.Keys help
+:i1 roots='keyhlp'.Keys help
+:p.
+Select this pull&hyphen.down choice
+to get help for the key definitions.
+:p.
+Select a topic to get keys help on&colon.
+:ul compact.
+:li.:link reftype=hd res=2060.Help keys:elink.
+:li.:link reftype=hd res=2070.System keys:elink.
+:li.:link reftype=hd res=2080.Window keys:elink.
+:li.:link reftype=hd res=2090.Editing keys:elink.
+:li.:link reftype=hd res=2095.Application keys:elink.
+:eul.
+
+.**********************************************************************
+.*  Help keys - (General help)
+.**********************************************************************
+:h3 name=helpkeys res=2060.Help keys
+:i2 refid=helpkeys.Help keys
+:p.
+These are the help window key definitions&colon.
+:dl tsize=2 break=all compact.
+:dt.:hp2.F1:ehp2.
+:dd.Gets help
+:dt.:hp2.F2:ehp2.
+:dd.Gets general help (from within any help window)
+:dt.:hp2.F9:ehp2.
+:dd.Goes to a list of keys (from within any help window)
+:dt.:hp2.F11:ehp2. or :hp2.Shift&plus.F1:ehp2.
+:dd.Goes to the help index (from within any help window)
+:dt.:hp2.Esc:ehp2.
+:dd.Displays the previous window
+:dt.:hp2.Shift&plus.F10:ehp2.
+:dd.Gets using help
+:dt.:hp2.Alt&plus.F6:ehp2.
+:dd.Switches from help to the application window and back
+:dt.:hp2.Alt&plus.F4:ehp2.
+:dd.Exits help
+:edl.
+
+.**********************************************************************
+.*  System Keys- (General help)
+.**********************************************************************
+:h3 name=syskeys res=2070.System keys
+:i2 refid=syskeys.System keys
+:p.
+These are the system key definitions&colon.
+:dl tsize=2 break=all compact.
+:dt.:hp2.F1:ehp2.
+:dd.Gets help
+:dt.:hp2.F3:ehp2.
+:dd.Closes a program window
+:dt.:hp2.F10:ehp2.
+:dd.Goes to or from the menu bar
+:dt.:hp2.Arrow keys:ehp2.
+:dd.Move among the choices on the menu bar and pull&hyphen.down menus
+:dt.:hp2.End:ehp2.
+:dd.Goes to the last choice in a pull&hyphen.down menu
+:dt.:hp2.Esc:ehp2.
+:dd.Cancels a pull&hyphen.down menu or the system menu
+:dt.:hp2.Home:ehp2.
+:dd.Goes to the first choice in a pull&hyphen.down menu
+:dt.:hp2.PgUp:ehp2.
+:dd.Scrolls the contents of the window up one screen
+:dt.:hp2.PgDn:ehp2.
+:dd.Scrolls the contents of the window down one screen
+:dt.:hp2.Underlined letter (mnemonic):ehp2.
+:dd.Calls the associated action
+:dt.:hp2.Alt:ehp2.
+:dd.Goes to or from the menu bar
+:dt.:hp2.Alt&plus.Esc:ehp2.
+:dd.Switches to the next program, including full&hyphen.screen programs
+:dt.:hp2.Alt&plus.Tab:ehp2.
+:dd.Switches to the next program that runs in a window
+:dt.:hp2.Alt&plus.F4:ehp2.
+:dd.Closes the window
+:dt.:hp2.Alt&plus.F5:ehp2.
+:dd.Restores the window
+:dt.:hp2.Alt&plus.F6:ehp2.
+:dd.Changes the active window in an application
+:dt.:hp2.Alt&plus.F7:ehp2.
+:dd.Moves the window
+:dt.:hp2.Alt&plus.F8:ehp2.
+:dd.Sizes the window
+:dt.:hp2.Alt&plus.F9:ehp2.
+:dd.Minimizes the window
+:dt.:hp2.Alt&plus.F10:ehp2.
+:dd.Maximizes the window
+:dt.:hp2.Ctrl&plus.Esc:ehp2.
+:dd.Switches to the task list
+:dt.:hp2.Ctrl&plus.F6:ehp2.
+:dd.Changes the active secondary window in an application
+:dt.:hp2.Shift&plus.Esc:ehp2. or :hp2.Alt&plus.Spacebar:ehp2.
+:dd.Goes to or from the system menu
+:dt.:hp2.Shift&plus.Esc:ehp2. or :hp2.Alt:ehp2.
+:dd.Goes to or from the system menu of a text window
+:edl.
+
+.**********************************************************************
+.*  Pop-Up window keys (General help)
+.**********************************************************************
+:h3 name=popupkeys res=2080.Window keys
+:i2 refid=windkeys.Window keys
+:p.
+These are the window key definitions&colon.
+:dl tsize=2 break=all compact.
+:dt.:hp2.Enter:ehp2.
+:dd.Completes the action in the window
+:dt.:hp2.Esc:ehp2.
+:dd.Cancels the window
+:dt.:hp2.Spacebar:ehp2.
+:dd.Sets a check box on or off or performs the task associated with
+the selected push button
+:dt.:hp2.Tab:ehp2.
+:dd.Moves to the next entry field, selection field, or hypertext phrase
+:edl.
+
+.**********************************************************************
+.*  Editing Keys Help - (General help)
+.**********************************************************************
+:h3 name=editkeys res=2090.Editing keys
+:i2 refid=editkeys.Editing keys
+:p.
+These are the editing key definitions&colon.
+:dl tsize=2 break=all compact.
+:dt.:hp2.Backspace (left arrow delete):ehp2.
+:dd.Deletes the character to the left of the cursor
+:dt.:hp2.Del:ehp2. or :hp2.Delete:ehp2.
+:dd.Deletes the character to the right of the cursor
+:dt.:hp2.End:ehp2. or :hp2.Ctrl&plus.Right arrow key:ehp2.
+:dd.Moves to the end of a field
+:dt.:hp2.Home:ehp2. or :hp2.Ctrl&plus.Left arrow key:ehp2.
+:dd.Moves to the beginning of a field
+:dt.:hp2.Ctrl&plus.Ins:ehp2.
+:dd.Copies the selected text to the clipboard
+:dt.:hp2.Shift&plus.Print Screen:ehp2.
+:dd.Prints the information currently displayed
+:edl.
+
+.**********************************************************************
+.*  Application Keys Help - (General help)
+.**********************************************************************
+:h3 name=Appkeys res=2095.Application keys
+:i2 refid=appkeys.Application keys
+:p.
+These are the application keys definition&colon.
+:dl tsize=2 break=all compact.
+:dt.:hp2.F1:ehp2.
+:dd.Gets help
+:dt.:hp2.F3:ehp2.
+:dd.Ends the installation
+:dt.:hp2.Ctrl&plus.D:ehp2.
+:dd.Displays a description of the selected product
+:dt.:hp2.Ctrl&plus.H:ehp2.
+:dd.Opens a product catalog from a host
+:dt.:hp2.Ctrl&plus.I:ehp2.
+:dd.Installs the selected product
+:dt.:hp2.Ctrl&plus.K:ehp2.
+:dd.Displays the disk space required by the selected product
+:dt.:hp2.Ctrl&plus.O:ehp2.
+:dd.Opens a product catalog from a drive
+:dt.:hp2.Ctrl&plus.R:ehp2.
+:dd.Restores a previous service level of the selected product
+:dt.:hp2.Ctrl&plus.S:ehp2.
+:dd.Displays the workstation status of the selected product
+:dt.:hp2.Ctrl&plus.U:ehp2.
+:dd.Updates the selected product
+:dt.:hp2.Delete:ehp2.
+:dd.Deletes the selected product
+:edl.
+
+.**********************************************************************
+.*  Text selection Keys Help - (General help)
+.**********************************************************************
+:h3 name=textkeys res=2100.Text selection keys
+:i2 refid=textkeys.Text selection keys
+:p.
+These are the text selection key definitions&colon.
+:dl tsize=2 break=all compact.
+:dt.:hp2.Shift&plus.arrow:ehp2.
+:dd.Selects text or extends a selection in the direction of the arrow
+:dt.:hp2.Shift&plus.Home:ehp2.
+:dd.Selects text or extends a selection to the beginning
+of the current line
+:dt.:hp2.Shift&plus.End:ehp2.
+:dd.Selects text or extends a selection to the end of the current line
+:dt.:hp2.Shift&plus.Ctrl&plus.Right:ehp2.
+:dd.Selects text or extends a selection to the beginning of the next word
+:dt.:hp2.Shift&plus.Ctrl&plus.Left:ehp2.
+:dd.Selects text or extends a selection to the beginning of the previous
+word
+:edl.
+
+.**********************************************************************
+.* Help push button, FIELD HELP PANEL - This panel appears for a help
+.*request when the cursor focus is on the "Help" push button.
+.**********************************************************************
+:h2 name=IHLPB res=5065.Help
+:p.
+Select this push button to display the help
+information about the field the cursor is in.
+
+.**********************************************************************
+.*  "Cancel" push button on all dialogs (contextual help) -
+.**********************************************************************
+:h1 name=ICNPB res=5030.Cancel
+:isyn root=cancel.quit stop
+:i1 roots='stop'.Cancel push button
+:p.
+Select this push button
+to exit the window without committing any changes.
+:p.
+If the operation is in progress and you select :hp2.Cancel,:ehp2.
+the operation immediately stops and the window closes.
+:eh1.
+
+.**********************************************************************
+.*  "Open host catalog" dialog (General help) -
+.**********************************************************************
+:h1 name=IL100 res=5080.Open host catalog
+:p.
+Use the Open host catalog window to query a list of available
+products from an MVS, VM or VSE system.
+:p.
+To open a product list:
+:ol.
+:li.Select the ID of the host session you want to communicate with
+in the Host session list box.
+:li.Select the :hp2.Host operating system:ehp2. radio button that
+corresponds to the operating system that is running on the host.
+:li.Type the name of the catalog file to be opened in the
+Filename combination box.  If the catalog file you want
+to open has been previously opened, you can select it from
+the combination box drop&hyphen.down list.
+:li.Select the :hp2.Open:ehp2. push button to begin the open
+process.  The catalog file is queried from the host.
+If the open is successful, this window goes away and the opened
+product list is displayed in the main window.
+:eol.
+:eh1.
+
+.**********************************************************************
+.*  "Host Session:" list box of Open host catalog dialog (contextual help)
+.**********************************************************************
+:h2 name=IL101 res=5081.Host session
+:p.
+Use the Host session list in the Open host catalog window
+to select the Communications Manager host session identifier that
+you want to use for downloading (for example, A, B, or C).
+The first item in the list box is the default.
+
+.**********************************************************************
+.*  "MVS" or "VM" radio buttons of Open host catalog dialog (contextual help)
+.**********************************************************************
+:h2 name=IL102 res=5082.Host operating system
+:p.
+Select the :hp2.MVS:ehp2., :hp2.VM:ehp2., or :hp2.VSE:ehp2. radio button in the
+Open host catalog window that corresponds to the operating system
+that is running on the host system you specified in the
+Host session list box.
+MVS is the default.
+
+.**********************************************************************
+.*  "Catalog filename" combination box of Open host catalog dialog (contextual help)
+.**********************************************************************
+:h2 name=IL103 res=5083.Catalog filename
+:p.
+Use the Filename field to enter a catalog file name
+or select the catalog file name from the drop&hyphen.down
+list of the catalog that you want to open.  Only previously
+opened catalog files appear in the drop&hyphen.down list.
+:p.
+When a catalog file name is selected from the drop&hyphen.down
+list, the static field above the combination box is updated
+to display a brief description of the catalog file.
+:p.
+The catalog file name entered in this field must be
+a valid MVS, VM, or VSE
+filename, depending on which host operating system
+radio button is selected.
+:ul.
+:li.Sample MVS catalog file names:
+:sl compact.
+:li.PROJ.GROUP.TYPE(CATALOG)
+:li.EPF.V1R2M0.SEPFBENU(EPFICAT)
+:esl.
+:li.Sample VM catalog file names:
+:sl compact.
+:li.CATALOG ICF A
+:li.EPFICAT ENUEPF12 *
+:esl.
+:li.Sample VSE catalog file names:
+:sl compact.
+:Li.LIBRARY.SUBLIBRARY.MEMBER NAME.MEMBER TYPE
+:LI.EPF.VIR2M0.SEPFBENU.CATALOG
+:esl.
+:eul.
+
+.**********************************************************************
+.*  "Description" push button of the Open host catalog dialog
+.*(contextual help)
+.**********************************************************************
+:h2 name=IL104 res=5084.Description
+:p.
+Select the :hp2.Description:ehp2. push button in the Open host catalog
+window to display a brief description of the catalog file that currently
+appears in the Filename field.
+The description is queried from the host session you selected in the
+Host session list box.
+
+.**********************************************************************
+.*  "Open" push button of Open dialog (contextual help) -
+.**********************************************************************
+:h2 name=IL105 res=5085.Open
+:p.
+Select the :hp2.Open:ehp2. push button in the Open host catalog
+window to open the product catalog from the Host session you
+specified.
+Ensure that&colon.
+:ol compact.
+:li.You are logged onto the host session selected in the Host
+session list box and that the host session is ready to accept
+input.
+:li.The Host operating system radio button corresponds to the
+operating system that is running on the host session you specified.
+:eol.
+:p.
+After you select this push button, the catalog file is downloaded from
+the host session you specified, the catalog file is parsed, and the
+product list is built and displayed.
+
+.**********************************************************************
+.*  "Open drive catalog" dialog (General help)
+.**********************************************************************
+:h1 name=IL400 res=5090.Open drive catalog
+:p.
+Use the Open drive catalog window to query a list of available
+products from a diskette drive, a CD ROM drive, a LAN drive,
+or an AS/400 PC support folder.
+:p.
+To open a product list:
+:ol.
+:li.Select the drive that contains the catalog file you want
+to open from the Drive combination box.
+The Filename combination box is
+updated with a list of all previously opened catalog
+files that exist on the drive.
+:li.Type the name of the catalog file to be opened in the
+Filename combination box.  If the catalog file you want
+to open has been previously opened and still exists, you can
+select it from the combination box drop&hyphen.down list.
+:li.Select the :hp2.Open:ehp2. push button to begin the open
+process.  The catalog file is queried from the drive.
+If the open is successful, this window goes away and the opened
+product list is displayed in the main window.
+:eol.
+:eh1.
+
+.**********************************************************************
+.*  "Drive" list box of Open drive catalog dialog (contextual help)
+.**********************************************************************
+:h2 name=IL401 res=5091.Drive
+:p.
+Select the drive that contains the catalog file.
+:p.
+The combination box displays all drives
+that are connected to the workstation.
+
+.**********************************************************************
+.* "Catalog filename" combination box of Open drive catalog dialog (contextual help)
+.**********************************************************************
+:h2 name=IL402 res=5092.Catalog filename
+:p.
+Type a catalog file name in the Filename field
+or select the catalog file name from the drop&hyphen.down
+list of the catalog that you want to open.  Only previously
+opened catalog files that still exist on the selected drive
+appear in the drop&hyphen.down list.
+:p.
+When you select a catalog file name from the drop&hyphen.down
+list, the static field above the combination box is updated
+to display a brief description of the catalog file, if one exists.
+:p.
+The catalog file name you enter in this field must be a valid
+OS&slash.2:link refid=tm1 reftype=fn.*:elink.
+:fn id=tm1.Trademark of IBM.:efn.
+file name :hp2.without a drive specification:ehp2..
+:p.
+Sample catalog file names:
+:sl compact.
+:li.\packages\epficat.icf
+:li.\catalog.icf
+:esl.
+
+.**********************************************************************
+.*  "Description" push button of Open drive catalog dialog (contextual
+.*help)
+.**********************************************************************
+:h2 name=IL403 res=5093.Description
+:p.
+Select the :hp2.Description:ehp2. push button in the Open drive catalog
+window to display a brief description of the catalog file that currently
+appears in the Filename field.
+The description is queried from the drive selected in the Drive list box.
+
+.**********************************************************************
+.* "Description" push button of Open drive catalog dialog (contextual
+.*help)
+.**********************************************************************
+:h2 name=IL404 res=5094.Search
+:p.
+Select the :hp2.Search:ehp2. push button in the Open drive catalog
+window to search the selected drive for a list of catalog files.
+
+.**********************************************************************
+.*  "Open" push button of Open drive catalog dialog (contextual help)
+.**********************************************************************
+:h2 name=IL405 res=5095.Open
+:p.
+Select the :hp2.Open:ehp2. push button in the Open drive catalog window
+to open the product catalog from the Drive you specified.
+:p.
+After you select this push button, the catalog file is read from the
+selected drive and processed.  Then the product list is built and
+displayed.
+
+.**********************************************************************
+.*  "PWS Status" dialog - (General help)
+.**********************************************************************
+:h1 name=ID200 res=5035.Product status
+:p.
+Use the Product status window to see information about a
+product that is currently installed on the workstation.  The following
+information is displayed&colon.
+:dl tsize=2 break=all compact.
+:dt.:hp2.Product name:ehp2.
+:dd.The name of the selected product that is currently installed on the
+workstation
+:dt.:hp2.Product number:ehp2.
+:dd.The official product number assigned to the selected product
+:dt.:hp2.Version:ehp2.
+:dd.The version, release, and modification number of the selected product
+:dt.:hp2.Feature:ehp2.
+:dd.The feature number of the selected product
+:dt.:hp2.Directories installed in:ehp2.
+:dd.The directories where the product is installed
+:edl.
+:p.The service level of the product can be determined by selecting the
+:hp2.Service level:ehp2. push button.  The Service level window is then
+displayed.
+:eh1.
+
+.**********************************************************************
+.*  "Cancel" button on "PWS Status" dialog - (contextual help)
+.**********************************************************************
+:h2 name=ID201 res=5060.Cancel
+:p.
+Select the :hp2.Cancel:ehp2. push button in the Product status window
+to close the window and return to the main window.
+
+.**********************************************************************
+.*  "Disk Space" dialog (General help)
+.**********************************************************************
+:h1 name=ID300 res=5036.Disk space
+:p.
+Use the Disk space window to check the disk space needed to
+install the selected product.
+:p.
+This window also allows you to check the
+amount of space available on any of the workstation hard disks, and it
+reports whether installation is possible on the specified drive.
+:p.
+To see whether you can install a product on a hard disk&colon.
+:ol compact.
+:li.Select the :hp2.hard disk:ehp2. in the Drive list box
+:li.Read the message next to the Drive list box to determine
+if you have enough available space to install the product on the selected
+hard disk
+:eol.
+:nt.Updating the product may require less disk space than indicated if
+the installation and maintenance utility overwrites some existing files
+during the update.
+So, even though the window may show there is not enough workstation
+disk space to install the selected product, you can still attempt to
+update the product.
+:ent.
+:p.
+The fields in the Disk space window are&colon.
+:dl tsize=2 break=all compact.
+:dt.:hp2.Product name:ehp2.
+:dd.The name of the selected product
+:dt.:hp2.Bytes needed:ehp2.
+:dd.The amount of space needed to install the selected product
+:dt.:hp2.Bytes available:ehp2.
+:dd.The amount of space available on the workstation drive specified
+:dt.:hp2.Installation possible:ehp2.
+:dd.A message indicating that you can install the selected product
+on the drive specified
+:dt.:hp2.Installation not possible:ehp2.
+:dd.A message indicating that you cannot install the selected product
+on the drive specified
+:edl.
+:eh1.
+
+.**********************************************************************
+.*  Available bytes list box of Disk Space dialog (contextual help)
+.**********************************************************************
+:h2 name=ID301 res=5037.Available space
+:p.
+Use the Available space list box in the Disk space window
+to look at the amount of unused space on each workstation hard disk.
+Use this
+list to determine which drive you want to install the product on.
+:p.
+When you select a drive, the status message next
+to the list box is updated.
+This message indicates whether there
+is enough disk space available on the selected
+drive to allow you to install the product.
+
+.**********************************************************************
+.*  "Cancel" push button of Disk Space dialog (contextual help) -
+.**********************************************************************
+:h2 name=ID302 res=5038.Cancel
+:p.
+Select the :hp2.Cancel:ehp2. push button in the Disk space window
+to close the Disk space window.
+
+.**********************************************************************
+.*  "Change directories to selected drive" check box of Disk Space dialog
+.*  (contextual help)
+.**********************************************************************
+:h2 name=ID303 res=5033.Change directories
+:p.
+Select this check box to change all drive letters for the directories
+on the Install&hyphen.directories window to the drive letter you selected
+in the available space list box.
+
+.**********************************************************************
+.*  "OK" push button of Disk Space dialog (contextual help)
+.**********************************************************************
+:h2 name=ID304 res=5034.OK
+:p.
+Select the :hp2.OK:ehp2. push button to return to the
+Install-directories window with the action indicated by the
+:hp2.Change directories to selected drive:ehp2. checkbox.
+:p.
+Before selecting :hp2.OK:ehp2.&colon.
+:ol.
+:li.Select a drive with enough space for the components
+you are installing.
+:li.Select the :hp2.Change directories to selected drive:ehp2.
+checkbox to update the directories fields in the Install-directories
+window.
+:eol.
+
+.**********************************************************************
+.*  "Install" dialog (General help) -
+.**********************************************************************
+:h1 name=IA100 res=5039.Install
+:p.
+Use the Install window to see the following information about the product
+that you selected to install&colon.
+:p.
+:dl tsize=2 break=all compact.
+:dt.:hp2.Product name:ehp2.
+:dd.The name of the product
+:dt.:hp2.Product number:ehp2.
+:dd.The official product number assigned to the product
+:dt.:hp2.Version:ehp2.
+:dd.The version, release, and modification number of the product
+:dt.:hp2.Feature:ehp2.
+:dd.The feature number of the product
+:edl.
+:p.
+This window also allows you to set options to have your CONFIG.SYS file
+automatically updated, if needed, by the product, and to indicate whether files
+should automatically be overwritten without prompting if files currently
+exist with the same names as the product files.
+:p.
+Select :hp2.OK:ehp2. to install the product
+or select :hp2.Cancel:ehp2. to exit the window and return to the main menu.
+:eh1.
+
+.**********************************************************************
+.*  "Update CONFIG.SYS" checkbox on the "Install" dialog (contextual help)
+.**********************************************************************
+:h2 name=IO1 res=5014.Update CONFIG.SYS
+:i1.Update CONFIG.SYS
+:p.
+Select the :hp2.Update CONFIG.SYS:ehp2. check box
+to have the needed variables added to or modified in your CONFIG.SYS file
+to include the directories that the product is installed in.
+:nt.A backup of your original CONFIG.SYS file is saved
+in CONFIG.BAK in the drive and path of the CONFIG.SYS being modified.
+:ent.
+:p.If you do not select this choice, you must manually update
+your CONFIG.SYS file.
+Refer to the product's installation instructions for additional information
+on how to update your CONFIG.SYS file.
+
+.**********************************************************************
+.*  "Overwrite Files" checkbox on "Install" dialog (contextual help)
+.**********************************************************************
+:h2 name=IO2 res=5015.Overwrite files
+:i1.Overwrite files
+:p.
+Select the :hp2.Overwrite files:ehp2. check box in the Install window to
+automatically replace all workstation files that have the same name
+and location as product files being installed.
+:p.
+If you do not check this choice, the installation and maintenance utility prompts
+you before overwriting an existing workstation file.
+
+.**********************************************************************
+.*  "OK..." push button of Install dialog (contextual help) -
+.**********************************************************************
+:h2 name=IA101 res=5040.OK
+:p.
+Select the :hp2.OK:ehp2. push button in the Install
+window to install the selected product.
+:p.
+When you select :hp2.OK,:ehp2. the Installation and
+Maintenance Utility does the following&colon.
+:ol.
+:li.Transfers and parses the package file for the product, which provides
+information to the installation and maintenance utility about how to
+install the product.
+:li.Prompts you for the directories where you want to place the product files.
+:eol.
+
+.**********************************************************************
+.*  "Install - File Errors" dialog (General help) -
+.**********************************************************************
+:h1 name=IA110 res=5041.Install&hyphen.File Errors
+:isyn root=errors.product_errors file_errors
+:i1 roots='errors'.Install&hyphen.File errors
+:p.
+Use the Install&hyphen.File Errors window to see the errors
+found in the transferred catalog or package file.
+:p.
+:hp5.System administrators&colon.:ehp5.
+:ol compact.
+:li.Switch to the source location.
+:li.Edit the catalog or package file to correct the errors.
+:li.Select :hp2.Retry.:ehp2.
+:eol.
+:p.
+:hp5.Users&colon.:ehp5.
+:p.
+Print the errors by selecting the :hp2.Print:ehp2. push button, and
+then contact your system administrator or product distributor.
+:eh1.
+
+.**********************************************************************
+.*  "Retry" push button on Install - File Errors dialog
+.*  (contextual help) -
+.**********************************************************************
+:h2 name=IA111 res=5042.Retry
+:p.
+Select the :hp2.Retry:ehp2. push button in the Install&hyphen.File
+Errors window to transfer and parse the catalog or package file again.
+:p.
+Select :hp2.Retry:ehp2. after you edit the catalog or package file
+at the source to ensure that your changes have corrected the problem.
+
+.**********************************************************************
+.*  "Print" push button of Setup Package File Errors dialog (contextual help)
+.**********************************************************************
+:h2 name=IA112 res=5043.Print
+:p.
+Select the :hp2.Print:ehp2. push button in the File Errors
+window to print the displayed parse errors on the workstation
+printer.
+:p.
+Make sure that the workstation printer is on.
+
+.**********************************************************************
+.*  "Install - Directories" dialog (General help) -  no components
+.**********************************************************************
+:h1 name=IA120 res=5044.Install&hyphen.directories
+:isyn root=dirsnc.setup set_directories
+:i1 roots='dirsnc'.Install-directories no components
+:p.
+Use the Install&hyphen.directories window
+to specify the directories you want to install the product in.
+:p.
+You can change the file directories to customize where the files
+are transferred to on your workstation.  Remember that the hard
+disks you specified in the directories must have enough space
+available to store the transferred files.
+:p.
+After you specify the directories, select the :hp2.Install:ehp2.
+push button to start the installation.
+:p.
+You can determine the amount of disk space a product requires
+and the amount of disk space available for all your hard drives by
+selecting the :hp2.Disk space:ehp2. push button.
+:eh1.
+
+.**********************************************************************
+.*  "Install - Directories" dialog (General help) -  components & Dirs
+.**********************************************************************
+:h2 name=IA130 res=5061.Install&hyphen.directories
+:isyn root=dirscd.setup set_directories
+:i1 roots='dirscd'.Install-directories components and directories
+:p.
+Use the Install&hyphen.directories window
+to specify the directories you want to install the product in.
+:p.
+You can change the directories to customize where the files are transferred
+to on your workstation.  Remember that the hard disks specified in the
+directories must have enough space available to store the transferred files.
+:p.
+Use the list box to select the components of the product you want to
+install.  You must select at least one component to continue.
+:p.
+After selecting the components, you can install them by selecting the
+:hp2.Install:ehp2. push button.  You can also see how much disk space
+is required to install the selected components by selecting the :hp2.Disk space:ehp2.
+push button.
+
+.**********************************************************************
+.*  "Install - Directories" dialog (General help) -  components
+.**********************************************************************
+:h2 name=IA140 res=5062.Install&hyphen.directories
+:isyn root=dirscnd.setup set_directories
+:i1 roots='dirscnd'.Install-directories components and no dirs
+:p.
+One or more of the product's components have already been installed
+in the specified directories.  Use this window to install additional
+components of a product in these same directories.
+:p.
+Use the list box to select the additional components of the product
+you want to install.  You must select at least one component to continue.
+:p.
+Select the :hp2.Install:ehp2. push button to install the selected
+components.
+To see how much disk space is required to install the selected components,
+select the :hp2.Disk space:ehp2. push button.
+
+.**********************************************************************
+.*  "File Dir:" entry field of Setup Directories dialog (contextual help) -
+.**********************************************************************
+:h2 name=IA121 res=5045.Directory
+:p.
+Use the directory fields in the Install&hyphen.directories
+window to enter the directories where you want the product files
+installed.
+:p.
+The maximum directory length is 128 characters.
+:ul.
+:li.Valid sample directories&colon.
+:sl compact.
+:li.C&colon.&bslash.IBMRM
+:li.D&colon.&bslash.
+:li.D&colon.\TOOLS\KEDIT
+:esl.
+:li.Sample directories that are not valid&colon.
+:sl compact.
+:li.&bslash.IBMRM
+:li.C&colon.&bslash.TOOLONGPATH
+:li.C&colon.&bslash.IBMRM&bslash.
+:esl.
+:eul.
+
+.**********************************************************************
+.*  "Disk Space" entry field of Setup Directories dialog
+.*  (contextual help) -
+.**********************************************************************
+:h2 name=IA124 res=5048.Disk Space
+:p.
+Select the :hp2.Disk space:ehp2. push button in the
+Install&hyphen.directories window to see the amount of disk space
+required to install the product and the amount of free space available
+on each workstation hard disk.
+
+.**********************************************************************
+.*  "Install" push button of Setup-Directories dialog (contextual help)
+.**********************************************************************
+:h2 name=IA125 res=5049.Install
+:p.
+Select the :hp2.Install:ehp2. push button in the
+Install&hyphen.directories window to begin installing the product
+in the specified directories.
+
+.**********************************************************************
+.*  "Component List box" of Setup-Directories dialog (contextual help) -
+.**********************************************************************
+:h2 name=IA126 res=5063.Component
+:p.
+Use the :hp2.Component:ehp2. list box in the Install&hyphen.directories
+window to look at a list of the installable components
+for the selected product if your product has components.
+:p.
+Select the components you want to install.  Next, select
+the :hp2.Install:ehp2. push button to begin installation
+or select the :hp2.Disk space:ehp2. push button to see how much workstation
+disk space the selected components require.
+
+.**********************************************************************
+.*  "Update" dialog (General help)
+.**********************************************************************
+:h1 name=IA200 res=5050.Update
+:p.
+Use the Update window to see the following information about
+the product that you selected to update&colon.
+:dl tsize=2 break=all compact.
+:dt.:hp2.Product name:ehp2.
+:dd.The name of the product
+:dt.:hp2.Product number:ehp2.
+:dd.The official product number assigned to the product
+:dt.:hp2.Version:ehp2.
+:dd.The version, release, and modification number of the product
+:dt.:hp2.Feature:ehp2.
+:dd.The feature number of the product
+:edl.
+:p.
+Select :hp2.Update CONFIG.SYS:ehp2. to automatically update your
+CONFIG.SYS file.
+:p.Select :hp2.Save a backup version:ehp2. to save backup copies of files
+that have changed into a backup directory.  This option enables the
+Restore action so that the current service level can
+be restored at a later date.
+You can execute a restore if the new service level for
+the product results in some undesired behavior.
+Do :hp1.not:ehp1. select this option if disk space is not available to store the
+backup files.
+:nt.
+The backup version of the product files can be deleted later by using
+the :hp2.Delete:ehp2. choice on the Action pull-down.
+:ent.
+:p.
+Select :hp2.Update:ehp2. to update the product or select :hp2.Cancel:ehp2. to
+exit the window.  If the product has components, the update affects
+all installed components for which an update exists.  You can look at a
+list of the installed components in the Product status window.
+:eh1.
+
+.**********************************************************************
+.*  "Save files in backup subdirectory" checkbox of Update dialog
+.*  (contextual help) -
+.**********************************************************************
+:h2 name=IA201 res=5051.Save a backup version
+:p.
+Select the :hp2.Save a backup version:ehp2. check box in the
+Update window to save a backup version of any files that are
+replaced during the update.
+:p.
+Selecting this option enables you to restore the current version of the
+product after the update is done. Do :hp1.not:ehp1. select this option if disk
+space is not available to store these backup files.
+:nt.
+If this option is selected, the saved backup can be deleted at
+a later date by using the Delete only the backup versions
+option on the Delete window.
+:ent.
+
+.**********************************************************************
+.*  "OK..." push button of Update dialog (contextual help) -
+.**********************************************************************
+:h2 name=IA202 res=5052.Update
+:p.
+Select the :hp2.Update:ehp2. push button in the Update
+window to update the selected product.
+:p.
+When you select :hp2.Update:ehp2., the installation and maintenance utility
+does the following&colon.
+:ol compact.
+:li.Transfers and parses the package file for the product
+:li.Begins to update the product by replacing the product files with the
+newer level files
+:eol.
+
+.**********************************************************************
+.*  Progress Indicator of "Install" dialog or "Update" dialog (General help)
+.**********************************************************************
+:h2 name=IPI00 res=5053.Progress (Install or Update)
+:i1.Progress indicator. install or update
+:p.
+Use the Progress window to look at the progress of
+files being transferred during an install or update.
+This window contains&colon.
+:dl tsize=2 break=all compact.
+:dt.:hp2.Title line:ehp2.
+:dd.The product name and component of the product being installed
+or updated
+:dt.:hp2.Progress box:ehp2.
+:dd.Information on the progress of the installation or update
+:dt.:hp2.Status:ehp2.
+:dd.The current status of the
+installation or update.  The possible values for this field are:
+:dl tsize=2 break=all compact.
+:dt.:hp2.Processing:ehp2.
+:dd.The installation and maintenance utility is performing a task that may
+take an extended period of time
+:dt.:hp2.Error occurred:ehp2.
+:dd.An error occurred.  Press the :hp2.Stop:ehp2. push button to cancel
+the installation or update
+:dt.:hp2.Transferring:ehp2.
+:dd.The program is transferring files
+:dt.:hp2.Unpacking:ehp2.
+:dd.Files are being decompressed
+:dt.:hp2.Deleting files:ehp2.
+:dd.Files are being deleted after you selected :hp2.Stop:ehp2. during the
+installation or update
+:dt.:hp2.Restoring files:ehp2.
+:dd.Files are being restored to the previous service level after you selected
+:hp2.Stop:ehp2.
+:edl.
+:p.
+:dt.:hp2.Elapsed time:ehp2.
+:dd.The time that has elapsed since the file transfer began
+:dt.:hp2.Thermometer:ehp2.
+:dd.A graphic representation of the number of files
+already transferred
+:dt.:hp2.Files box:ehp2.
+:dd.Information about the file that is
+currently being transferred
+:dt.:hp2.Source:ehp2.
+:dd.The name of the file at the source
+:dt.:hp2.Target:ehp2.
+:dd.The name of the target file on the workstation
+:edl.
+
+.**********************************************************************
+.*  "Stop" push button on "Install" and "Update" progress indicator dialogs
+.*  (contextual help) -
+.**********************************************************************
+:h2 name=IPI01 res=5058.Stop
+:p.
+Select the :hp2.Stop:ehp2. push button on the Progress window
+to stop the install or update.
+
+.**********************************************************************
+.*  "Restore" dialog (General help)
+.**********************************************************************
+:h1 name=IA300 res=5054.Restore
+:p.
+Use the Restore window to see the following information about the product
+that you selected to restore to the previous service level&colon.
+:p.
+:dl tsize=2 break=all compact.
+:dt.:hp2.Product name:ehp2.
+:dd.The name of the product
+:dt.:hp2.Product number:ehp2.
+:dd.The official product number assigned to the product
+:dt.:hp2.Version:ehp2.
+:dd.The version, release, and modification number of the product
+:dt.:hp2.Feature:ehp2.
+:dd.The feature number of the product
+:edl.
+:p.
+Restore removes the last service level applied and returns the
+product to its previous level.  If the product has components,
+Restore removes the last service level from those components that
+have backups and returns them to their previous levels.  Any component
+without a backup is left at its current level.
+:p.
+You can look at the applied service levels for this product or its components
+by selecting the :hp2.Service level:ehp2. push button on the Product
+status window.
+:p.
+Select :hp2.Restore:ehp2. to restore the product
+to the previous service level, or select :hp2.Cancel:ehp2. to exit the window.
+:eh1.
+
+.**********************************************************************
+.*  "OK" push button of Restore dialog (contextual help)
+.**********************************************************************
+:h2 name=IA301 res=5055.Restore
+:p.
+Select the :hp2.Restore:ehp2. push button in the Restore window
+to restore the product to the previous service level.
+:p.
+When you select :hp2.Restore,:ehp2. the installation and maintenance utility
+copies the back up files of the previous service level over the current service
+level files.
+:p.
+:warning. Selecting :hp2.Restore:ehp2. overwrites the current service level.
+:ewarning.
+
+.**********************************************************************
+.*  "Delete" dialog (General help)
+.**********************************************************************
+:h1 name=IA400 res=5056.Delete
+:p.
+Use the Delete window to see the following information about the product that
+you selected to delete&colon.
+:p.
+:dl tsize=2 break=all compact.
+:dt.:hp2.Product name:ehp2.
+:dd.The name of the product
+:dt.:hp2.Product number:ehp2.
+:dd.The official product number assigned to the product
+:dt.:hp2.Version:ehp2.
+:dd.The version, release, and modification number of the product
+:dt.:hp2.Feature:ehp2.
+:dd.The feature number of the product
+:edl.
+:p.Select the :hp2.Delete:ehp2. push button to delete the product and any
+backup versions of the product.
+:p.If you select the :hp2.Delete only the backup versions:ehp2. check box,
+only the backup version of the product will be deleted.  The current version
+will not be deleted in this case.
+:eh1.
+
+.**********************************************************************
+.*  "OK" push button of Delete window (General help) -
+.**********************************************************************
+:h2 name=IA401 res=5057.Delete
+:p.
+Select the :hp2.Delete:ehp2. push button in the Delete window
+to delete the selected product or components.
+:p.
+:warning.  Selecting :hp2.Delete:ehp2. destroys both the current and any
+saved backup levels of the selected product unless you also select the
+:hp2.Delete only the backup versions:ehp2. check box.
+:ewarning.
+
+.**********************************************************************
+.*  "Description" window General help
+.**********************************************************************
+:h1 name=IT101 res=5064.Description
+:i1 id='info1'.Description
+:p.
+Use this window to look at a description of a catalog file or a product.
+You can vertically scroll the
+window by using the scroll bar or the arrow keys.  You
+can also size the window, in which case the text within the window
+is automatically reflowed to the new window size.
+:eh1.
+
+.**********************************************************************
+.*  "Directories Installed In" groupbox  (on Product Status dialog)
+.**********************************************************************
+:h2 name=ID202 res=5066.Directories installed in
+:p.
+This section of the window lists the directories that the product was
+installed in.  You cannot edit the fields, but you can scroll them
+so that paths that are too long to be displayed in the available space can be
+seen.
+
+.**********************************************************************
+.*  "Service Level" push button  (on Product Status dialog)
+.**********************************************************************
+:h2 name=ID203 res=5067.Service level
+:p.
+This push button displays the Service level window so you can determine the
+service level of the product.
+
+.**********************************************************************
+.*  "Service Level" push button  (on Product Status dialog with Components)
+.**********************************************************************
+:h2 name=ID252 res=5070.Service level
+:p.
+This push button displays the Service level window so you can determine the
+service level of the selected component.
+:p.
+This push button is disabled until a component is selected in the
+Currently installed list box.
+
+.**********************************************************************
+.*  "Components" list box         (on Product Status dialog with Components)
+.**********************************************************************
+:h2 name=ID251 res=5069.Currently installed components
+:p.
+This list box contains the components that have been installed for the specified
+product.  Select a component in the list and then select the :hp2.Service
+level:ehp2. push button if you want to see the current service level of a
+component.
+
+.**********************************************************************
+.*  "Product Status" dialog w/Components - (General help)
+.**********************************************************************
+:h1 name=ID250 res=5068.Product status
+:p.
+Use the Product status window to look at information about a
+product that is currently installed on the workstation.  The following
+information is displayed&colon.
+:dl tsize=2 break=all compact.
+:dt.:hp2.Product name:ehp2.
+:dd.The name of the selected product that is currently installed on the
+workstation
+:dt.:hp2.Product number:ehp2.
+:dd.The official product number assigned to the selected product
+:dt.:hp2.Version:ehp2.
+:dd.The version, release, and modification number of the selected product
+:dt.:hp2.Feature:ehp2.
+:dd.The feature number of the selected product
+:dt.:hp2.Components currently installed:ehp2.
+:dd.The names of the components that have already been installed
+on the workstation for the product
+:dt.:hp2.Directories installed in:ehp2.
+:dd.The directories where the product was installed
+:edl.
+:p.You can determine the service level of any component by
+selecting the component in the Currently installed list box
+and then selecting the :hp2.Service level:ehp2. push button.  The Service
+level window is then displayed.
+:eh1.
+
+.**********************************************************************
+.*  "Service Level" dialog  - General help
+.**********************************************************************
+:h2 name=ID280 res=5110.Service level
+:i1.Service level
+:p.
+This window displays a list of the service levels that have been applied
+to the indicated product or component, along with the date
+each one was applied (by the Update action) and the location that
+it was applied from.
+:p.The displayed information can be printed by selecting the :hp2.Print:ehp2.
+push button.
+
+.**********************************************************************
+.*  "Container" on the 'Service Level' dialog
+.**********************************************************************
+:h2 name=ID281 res=5111.Service level list
+:p.
+This is a list of service levels that have been applied to the indicated
+product
+or component.  The list also contains the date that each level was applied
+(by the Update action) and the origin of each service level
+update.
+:p.
+The origins that can be displayed are:
+:dl tsize=7.
+:dt.MVS
+:dd.The service level was applied from an MVS host system.
+:dt.VM
+:dd.The service level was applied from a VM host system.
+:dt.VSE
+:dd.The service level was applied from a VSE host system.
+:dt.Drive
+:dd.The service level was applied from a diskette drive, a CD ROM drive,  LAN drive,
+or AS/400 PC support folder.
+:edl.
+
+.**********************************************************************
+.*  "Print" push button on the 'Service Level' dialog
+.**********************************************************************
+:h2 name=ID282 res=5112.Print
+:p.
+Prints a record of the service level information currently displayed on
+the Service level window.
+
+.**********************************************************************
+.*  "Cancel" push button on the 'Service Level' dialog
+.**********************************************************************
+:h2 name=ID283 res=5113.Cancel
+:p.
+Select the :hp2.Cancel:ehp2. push button to close the Service level window
+and return to the Product status window.
+
+.**********************************************************************
+.*  "Search" dialog
+.**********************************************************************
+:h1 name=IL300 res=5071.Search
+:p.
+Use the Search window to search the system for catalog files.
+:p.
+To search for catalog files&colon.
+:ol.
+:li.Select the drive that you want to search from the
+Drive combination box.
+When you select a drive, the
+Directories and File list boxes are
+updated to reflect the directories and file names on the
+selected drive.
+:li.If you want to specify a file qualification to search for, enter
+a file name in the Catalog filename entry field that
+contains wildcard characters.
+The default qualification is *.ICF.
+:li.Begin searching by selecting the directory
+that you want to search in the :hp2.Directories:ehp2. list box.
+Selecting the directory causes the File
+list box to be updated with a list of files from
+the directory that matches the specified file qualification.
+:p.
+Continue selecting directories until you find the
+catalog file you want in the :hp2.File:ehp2. list box.
+:li.Select the desired catalog file from the :hp2.File:ehp2.
+list box.
+:li.Select :hp2.OK:ehp2..
+The catalog file name you selected is placed in the Open drive
+catalog window.
+:eol.
+:eh1.
+
+.**********************************************************************
+.*  "Catalog filename" entry field on the 'Search' dialog
+.**********************************************************************
+:h2 name=IL301 res=5072.Catalog filename
+:p.
+Use this entry field to enter the name of the catalog file
+you want to open.
+You can use wildcard characters in the catalog file name.
+:p.
+You can also specify a catalog file name by selecting an
+item in the File list box.
+
+.**********************************************************************
+.*  "Drive" combinationbox on the 'Search' dialog
+.**********************************************************************
+:h2 name=IL302 res=5073.Drive
+:p.
+This combination box specifies the drive that is to be searched.
+If you select a new drive from the list of drives, the
+Directories and File list boxes are updated
+to reflect the directories and files that exist on the selected
+drive.
+
+.**********************************************************************
+.*  "File" list box on the 'Search' dialog
+.**********************************************************************
+:h2 name=IL303 res=5074.File
+:p.
+This list box contains a list of the files that exist on the drive
+and directory you are searching.
+The file names contained in this list box
+match the wildcard specification that appears in the
+Catalog filename entry field.
+You can specify the catalog file you want to open by selecting
+an item in this list.
+:p.
+You can scroll the File list box horizontally
+and vertically.
+
+.**********************************************************************
+.*  "Directory" list box on the 'Search' dialog
+.**********************************************************************
+:h2 name=IL304 res=5075.Directory
+:p.
+This list box contains a list of the directories on the drive you want
+to search.
+You can scroll the Directory list box horizontally and vertically.
+:p.
+To use this list box, select the directory that you want
+to search.
+The files in that directory appear in the File list box.
+Selecting a directory
+also causes the subdirectories in it to be displayed
+in the Directories list box.
+
+.**********************************************************************
+.*  "OK" push button on the 'Search' dialog
+.**********************************************************************
+:h2 name=IL305 res=5076.OK
+:p.
+Select this push button to return to the Open drive catalog window.
+The catalog file name you selected is placed in the filename field.
+
+.**********************************************************************
+.*  "Insert disk" dialog General help
+.**********************************************************************
+:h1 name=II100 res=5130.Insert disk
+:p.
+The Insert disk window is used for products
+that have more than one installation diskette.
+This window appears on top of the current window whenever a new
+disk needs to be inserted during a drive installation.
+:eh1.
+
+.**********************************************************************
+.*  Help for the "Drive" combination box on the "Insert disk" dialog
+.**********************************************************************
+:h2 name=II101 res=5131.Drive
+:p.
+Use this drop&hyphen.down combination box to specify the drive
+where you insert the requested diskette.
+The box contains a list of all available drives.
+The drive selected by default is the one currently being used.
+If you have two diskette drives, you can insert
+two diskettes and use this combination box to switch between drives.
+
+.**********************************************************************
+.*  Help for the "Continue" push button on the "Insert disk" dialog
+.**********************************************************************
+:h2 name=II102 res=5132.Continue
+:p.
+Select this push button to continue with the installation or update.
+The selected drive is checked to ensure it contains
+the requested disk.
+If it does not, this window is displayed again.
+
+.***************************************************************
+.*  "Delete only backups" checkbox on "Delete" dialog (contextual help) -
+.**********************************************************************
+:h2 name=IA402 res=5160.Delete only the backup versions
+:i1.Delete only the backup versions
+:p.
+Select the :hp2.Delete only the backup versions:ehp2. check box on the Delete
+window to delete only the backup versions of the selected product or
+components.  The files for the current version will not be deleted.
+:p.
+This check box is disabled if there is no backup version to delete.
+
+.**********************************************************************
+.*  "Delete" dialog (with Components)  (General help) -
+.**********************************************************************
+:h1 name=IA450 res=5170.Delete
+:p.
+Use the Delete window to look at the following information about the
+product that you selected to delete&colon.
+:dl tsize=2 break=all compact.
+:dt.:hp2.Product name:ehp2.
+:dd.The name of the product
+:dt.:hp2.Product number:ehp2.
+:dd.The official product number assigned to the product
+:dt.:hp2.Version:ehp2.
+:dd.The version, release, and modification number of the product
+:dt.:hp2.Feature:ehp2.
+:dd.The feature number of the product
+:dt.:hp2.Components:ehp2.
+:dd.The list of installed components for the selected product
+:edl.
+:p.Use the list to select the components to be deleted, then
+select the :hp2.Delete:ehp2. push button to delete the selected components.
+Any backup versions of the selected components will also be deleted.
+:p.If you select the :hp2.Delete only the backup versions:ehp2. check box,
+only the backup versions of the selected components will be deleted.  The
+current version will not be deleted in this case.
+:eh1.
+
+.**********************************************************************
+.*  "Component List box" on Delete dialog (contextual help) -
+.**********************************************************************
+:h2 name=IA451 res=5171.Components
+:p.
+Use the Component list box in the Delete
+window to select the installed components to be deleted for
+the selected product.
+:p.
+Each selected component in the list is deleted, along with any
+backup versions of the components, unless the :hp2.Delete only the
+backup versions:ehp2. check box is selected.  Select
+the components in the list, then
+select the :hp2.Delete:ehp2. push button to begin deleting the components.
+
+.**********************************************************************
+.*  "Select All" push button  (General help) -
+.**********************************************************************
+:h2 name=ISAPB res=5031.Select all
+:p.
+The :hp2.Select all:ehp2. push button selects all items displayed in
+the list box.
+This push button is disabled if all the components in the list
+box are selected.
+.* **************************************************************************
+.* Select All push button
+.*************************************************************
+:h2 name=ISAPC res=5032.Deselect all
+:p.
+The :hp2.Deselect all:ehp2. push button deselects all items displayed and selected in
+the list box.
+This push button is disabled if none of the components is selected.
+.**********************************************************************
+.* "Progress Indicator" (graphical nofiles) - General help
+.**********************************************************************
+:h1 name=IP200 res=5114.Progress (Restore or Delete)
+:i1.Progress indicator, restore or delete
+:p.
+Use the Progress window to look at the progress of
+files being restored or deleted.
+This window contains&colon.
+:dl tsize=2 break=all compact.
+:dt.:hp2.Title line:ehp2.
+:dd.The product name and component of the product being restored
+or deleted
+:dt.:hp2.Progress box:ehp2.
+:dd.Information on the progress of the operation
+:dt.:hp2.Status:ehp2.
+:dd.The current status of the restore or
+delete.  The possible values for this field are:
+:dl tsize=2 break=all compact.
+:dt.:hp2.Processing:ehp2.
+:dd.The installation and maintenance utility is executing a task that can
+take an extended period of time
+:dt.:hp2.Error occurred:ehp2.
+:dd.An error occurred.  Press the :hp2.Stop:ehp2. push button to cancel
+the operation
+:dt.:hp2.Deleting files:ehp2.
+:dd.The program is deleting the product files
+:dt.:hp2.Restoring files:ehp2.
+:dd.Files are being restored to the previous service level
+:edl.
+:p.
+:dt.:hp2.Elapsed time:ehp2.
+:dd.The time that has elapsed since the
+operation began
+:dt.:hp2.Thermometer:ehp2.
+:dd.A graphic representation of the number of files
+already restored or deleted
+:edl.
+:eh1.
+
+.**********************************************************************
+.*  "Descriptions" push button (on Install dialogs)
+.**********************************************************************
+:h2 name=IA131 res=5180.Descriptions
+:p.
+The :hp2.Descriptions:ehp2. push button displays a Descriptions window
+that contains a brief description of each selected component in the list box.  If
+a description is not available, the window is displayed with
+text stating that the description is not available to be displayed.
+:p.
+The :hp2.Descriptions:ehp2. push button is only available when a component is selected.
+
+.**********************************************************************
+.*  "Stop" push button on (No Files) graphical progress indicator
+.*  used by Restore and Delete                (contextual help) -
+.**********************************************************************
+:h2 name=IP201 res=5115.Stop
+:p.
+Select the :hp2.Stop:ehp2. push button on the Progress window
+to stop the restore or delete.
+
+.****************************************************************
+.* Main help for Error messages (General help)
+.****************************************************************
+:h1 name=ERROR res=10000.Error messages
+:p.&rbl.
+:eh1.
+
+.**********************************************************************
+.*  EPFIE107: The package file 'filename' cannot be found or cannot be
+.*            opened.
+.*         (General help)
+.**********************************************************************
+:h2 name=IHM107 res=107.Help for EPFIE107
+:p.
+:hp7.Explanation:ehp7.
+:p.
+The installation and maintenance utility cannot find the package file
+specified in the catalog file, or it cannot
+open the package file after it was transferred to the workstation.
+:p.
+:hp7.Response:ehp7.
+:p.
+:hp5.Users:ehp5.
+:p.
+Ensure that you have access to the data set (MVS), are linked to the
+mini disk (VM), have the correct diskette inserted, or have accessed
+the LAN drive that contains the product files.  Select
+:hp2.Retry:ehp2. to try the transfer again.  If the error persists,
+report the error to your system administrator.
+:p.
+Select :hp2.Cancel:ehp2. to remove the message and return to the previous
+window.
+:p.
+:hp5.System administrators:ehp5.
+:p.
+Check that the package file for this product exists
+at the source and that the Package entry in the catalog file is pointing to the
+correct package file.  Correct any errors, and try again.
+:p.
+Select :hp2.Cancel:ehp2. to remove the message and return to the previous
+window.
+
+.**********************************************************************
+.*  EPFIE111: Unable to connect to the host session 'x:'. Make sure the
+.*session exists and is not in use.       (General help)
+.**********************************************************************
+:h2 name=IHM111 res=111.Help for EPFIE111
+:p.
+:hp7.Explanation:ehp7.
+:p.
+An error occurred while the installation and maintenance utility
+initialized communications with the host.
+:p.
+:hp7.Response:ehp7.
+:ol.
+:li.Select :hp2.Cancel:ehp2. to remove the message and return to the
+previous window.
+:li.Check that the host session specified in the Open host catalog window
+is active and ready to accept input.
+If you are attempting an Install or Update action,
+open the host catalog again using the :hp2.Open host catalog:ehp2. choice on the
+File menu.
+:li.Try the operation again.
+:eol.
+
+.**********************************************************************
+.*  EPFIE112: Unable to download 'xxxx' - the file is in use or locked.
+.*            (General help)
+.**********************************************************************
+:h2 name=IHM112 res=112.Help for EPFIE112
+:p.
+:hp7.Explanation:ehp7.
+:p.
+The installation and maintenance utility cannot transfer the specified
+file.  The corresponding workstation file is in use.
+:p.
+:hp7.Response:ehp7.
+:p.
+Do one of the following&colon.
+:ul.
+:li.Close the workstation application that is using the file, and select
+:hp2.Retry:ehp2..
+:li.If the file being transferred is a
+Workplace Shell:link refid=tm1 reftype=fn.*:elink.
+object or class DLL,
+you must de-register the class and start your workstation again to free the file.
+:li.Select :hp2.Cancel:ehp2. to cancel the installation or update of this
+product.
+:eul.
+
+.**********************************************************************
+.*  EPFIE113: The host is not responding. Switch to the host session and make
+.*     sure that the host is in a ready state.   - (General help)
+.**********************************************************************
+:h2 name=IHM113 res=113.Help for EPFIE113
+:p.
+:hp7.Explanation:ehp7.
+:p.
+The host session specified in the Open host catalog window is
+not responding to the installation and maintenance utility commands.
+:p.
+:hp7.Response:ehp7.
+:p.
+:ul.
+:li.Switch to the host session and verify that the host session is available
+and ready to accept commands.
+:li.Ensure that you selected the correct host operating system in the Open
+host catalog window.  You can select one of the following&colon.
+:dl tsize=8 break=none compact.
+:dt.:hp2.Cancel:ehp2.
+:dd.Cancels the entire operation
+:dt.:hp2.Retry:ehp2.
+:dd.Issues the RECEIVE commands again
+:edl.
+:eul.
+
+.**********************************************************************
+.*  EPFIE114: 'file' cannot be found on the host. (General help)
+.**********************************************************************
+:h2 name=IHM114 res=114.Help for EPFIE114
+:p.
+:hp7.Explanation:ehp7.
+:p.
+The installation and maintenance utility cannot find a specified file
+at the source.
+:p.
+:hp7.Response:ehp7.
+:p.
+:hp5.Users:ehp5.
+:p.
+Ensure that the file exists at the source and select :hp2.Retry:ehp2.
+or select :hp2.Cancel:ehp2..
+:p.
+If the problem persists, contact your system administrator.
+:p.
+:hp5.System administrators:ehp5.
+:p.
+Ensure that the file exists at the source and that the catalog and
+package files for the product point to the correct files.
+
+.**********************************************************************
+.*  EPFIE115: The backup package file 'filename' was not found.  Unable to
+.*            restore (or delete) the product. (General help)
+.**********************************************************************
+:h2 name=IHM115 res=115.Help for EPFIE115
+:p.
+:hp7.Explanation:ehp7.
+:p.
+The installation and maintenance utility cannot find the information
+necessary to delete or restore the selected product.
+Most likely, the product files were deleted without using the Delete or
+Restore actions of the installation and maintenance utility.
+:p.
+:hp7.Response:ehp7.
+:ol.
+:li.Select :hp2.Cancel:ehp2. to cancel the Restore
+or Delete.
+:li.If the product files are still on your hard drive, you can
+delete them using the OS&slash.2:link refid=tm1 reftype=fn.*:elink.
+DELETE command.
+To restore the product, copy the files from the backup
+subdirectory using the OS&slash.2 COPY command.
+:eol.
+
+.**********************************************************************
+.*  EPFIE116: Cannot restore or delete the last service level. Package file
+.*            errors were found. (General help)
+.**********************************************************************
+:h2 name=IHM116 res=116.Help for EPFIE116
+:p.
+:hp7.Explanation:ehp7.
+:p.
+The installation and maintenance utility found errors while attempting to
+parse the backed&hyphen.up package file.
+:p.
+A valid package file is required to restore or delete the installed
+service level.
+:p.
+:hp7.Response:ehp7.
+:ol.
+:li.Select :hp2.Cancel:ehp2. to cancel the Delete or
+Restore.
+:li.To delete the product, manually delete the files using the
+OS&slash.2:link refid=tm1 reftype=fn.*:elink.
+DELETE command.  To
+restore the product, manually copy the files from the backup
+subdirectory using the OS&slash.2 COPY command.
+:eol.
+
+.**********************************************************************
+.*  EPFIW124: Cannot delete file 'filename'. File not found. (General help)
+.**********************************************************************
+:h2 name=IHM124 res=124.Help for EPFIW124
+:p.
+:hp7.Explanation:ehp7.
+:p.
+The installation and maintenance utility cannot find the file specified
+in the package file to be deleted.
+As a result, it has not been deleted.
+:p.
+This will not interfere with the installation or update.
+:p.
+:hp7.Response:ehp7.
+:p.
+Select :hp2.OK:ehp2. to continue the operation.
+
+.**********************************************************************
+.*  EPFIQ125: You have aborted the installation.  The current version of the
+.*            product is inoperable.  Do you want to delete the files
+.*            already downloaded? (General help)
+.**********************************************************************
+:h2 name=IHM125 res=125.Help for EPFIQ125
+:p.
+:hp7.Explanation:ehp7.
+:p.
+Due to cancellation or an error, the installation and maintenance utility
+transferred only part of the files necessary to run the product.
+:p.
+:hp7.Response:ehp7.
+:p.
+Select one of the following&colon.
+:dl tsize=2 break=all compact.
+:dt.:hp2.Yes:ehp2.
+:dd.Deletes the transferred files.  Select :hp2.Yes:ehp2. if you do
+not want to try the installation again.
+:dt.:hp2.No:ehp2.
+:dd.Leaves the files on the workstation.  The transferred files do
+not have to be transferred again when installation is restarted.
+Select :hp2.No:ehp2. if you want to try the installation again.
+:p.
+When you restart the install utility again, it will continue to
+download the files that were not previously downloaded.
+:edl.
+
+.**********************************************************************
+.*  EPFIW127: 'xxxx' cannot be deleted because the disk specified is not
+.*             formatted. (General help)
+.**********************************************************************
+:h2 name=IHM127 res=127.Help for EPFIW127
+:p.
+:hp7.Explanation:ehp7.
+:p.
+The installation and maintenance utility cannot access the file specified
+because it exists on a disk whose format is not readable.
+:p.
+:hp7.Response:ehp7.
+:ol compact.
+:li.Select :hp2.Cancel:ehp2. to stop the operation.
+:li.Ensure that the specified file is properly formatted.
+:li.Start the operation again.
+:eol.
+
+.**********************************************************************
+.*  EPFIW128: Cannot delete 'xxxx'.  File is in use.
+.*            (General help)
+.**********************************************************************
+:h2 name=IHM128 res=128.Help for EPFIW128
+:p.
+:hp7.Explanation:ehp7.
+:p.
+The installation and maintenance utility cannot delete the workstation file
+specified because it is in use.
+:p.
+:hp7.Response:ehp7.
+:ol.
+:li.Select :hp2.Cancel:ehp2. to remove this message.
+:li.Ensure that the product you are attempting to install,
+update, delete, or restore is not running.
+If the file being transferred is a
+Workplace Shell:link refid=tm1 reftype=fn.*:elink.
+object or class DLL,
+you must de-register the class and restart your workstation to free the file.
+:li.Wait until the specified file is free,
+or end the program that is using the file.
+:li.Start the operation again.
+:eol.
+
+.**********************************************************************
+.*  EPFIE129: Out of hard disk space.              - (General help)
+.**********************************************************************
+:h2 name=IHM129 res=129.Help for EPFIE129
+:p.
+:hp7.Explanation:ehp7.
+:p.
+There is insufficient space on the hard disk to transfer
+any more files.
+:p.
+:hp7.Response:ehp7.
+:ol.
+:li.Make space on the hard disk by removing unnecessary files.
+:li.Select :hp2.Update:ehp2. or :hp2.Install:ehp2.
+from the Action menu to start the transfer again.
+:p.
+If you are attempting an update, you may want to cancel the selection of
+the :hp2.Save a backup version:ehp2. check box when you try
+the update again to save space on the hard disk.
+:eol.
+:p.
+or
+:ol.
+:li.Select :hp2.Cancel:ehp2. to end the install or update.
+:li.Install the product on a different drive, or remove unnecessary
+files from the current drive.
+:eol.
+
+.**********************************************************************
+.*  EPFIE130: 'filename' cannot be accessed because the disk specified is not
+.*            formatted. (General help)
+.**********************************************************************
+:h2 name=IHM130 res=130.Help for EPFIE130
+:p.
+:hp7.Explanation:ehp7.
+:p.
+The installation and maintenance utility cannot transfer the specified
+file because the target workstation disk is not readable or is not
+formatted with the correct file system.  This can be caused if a file with
+a High Performance File System &lparen.HPFS&rparen. name or extension is
+transferred to a drive formatted with the FAT file system.
+:p.
+:hp7.Response:ehp7.
+:ol compact.
+:li.Select the :hp2.Retry:ehp2. push button.
+:li.Format the hard disk again if the error persists or select a different
+drive as the target location.
+:eol.
+
+.**********************************************************************
+.*  EPFIE131: Cannot access 'filename'.  The workstation file is in use.
+.*            (General help)
+.**********************************************************************
+:h2 name=IHM131 res=131.Help for EPFIE131
+:p.
+:hp7.Explanation:ehp7.
+:p.
+Another program is using the workstation target file of the transfer.
+The installation and maintenance utility cannot overwrite the file.
+:p.
+:hp7.Response:ehp7.
+:ol compact.
+:li.Ensure that the program you are installing or updating is not running.
+:li.End any programs that are accessing the file.
+If the file being transferred is a
+Workplace Shell:link refid=tm1 reftype=fn.*:elink.
+object or class DLL,
+you must de-register the class and restart your workstation to free the file.
+:li.Select :hp2.Retry.:ehp2.
+:eol.
+
+.**********************************************************************
+.*  EPFIE132: An error occurred while attempting to create the %1 directory.
+.*     - (General help)
+.**********************************************************************
+:h2 name=IHM132 res=132.Help for EPFIE132
+:p.
+:hp7.Explanation:ehp7.
+:p.
+The installation and maintenance utility was not able to create the
+directories in the reported path.  A file with the specified name may
+already exist.
+:p.
+:hp7.Response:ehp7.
+:ol.
+:li.Select :hp2.Cancel:ehp2. to stop the operation.
+:li.Ensure that sufficient disk space is available on the
+reported hard drive to create the directories.
+:li.Depending on which of the following conditions caused the error,
+apply the corrective response&colon.
+:ul.
+:li.A directory named EPFICAT.PKG exists as a subdirectory in the
+<boot_drive>&colon.\OS2\SYSTEM\$EPFINST path or in the
+<boot_drive>&colon.%EPFINSTDIR% path
+if the installation variable EPFINSTDIR is set.
+:ul.
+:li.Delete the EPFICAT.PKG from the $EPFINST directory with the
+ OS/2 DEL command.
+:li.Remove the EPFICAT.PKG directory with the OS/2 RD command.
+:eul.
+:li.A file with the same name as one of the directories already exists.
+:ul.
+:li.Ensure that a file with the target directory name does not already
+exist.
+:eul.
+:li.The EPFINSTDIR environment variable is set to an incorrect
+directory name.
+:ul.
+:li.Ensure that the directory names are valid for the type of
+file system on the drive.
+:eul.
+:eul.
+:li.Try the action again.
+:eol.
+.**********************************************************************
+.*  EPFIQ133: Cannot recover to a stable service level. (General help)
+.**********************************************************************
+:h2 name=IHM133 res=133.Help for EPFIQ133
+:p.
+:hp7.Explanation:ehp7.
+:p.
+You are attempting to cancel the delete or restore operation in the
+middle of execution.  Doing this would leave the product in an unstable
+state.  If you proceed with the cancellation, do
+not use the product until you install or update it again.
+:p.
+:hp7.Response:ehp7.
+:p.
+Select one of the following&colon.
+:dl tsize=5 break=none compact.
+:dt.:hp2.Yes:ehp2.
+:dd.Cancels the operation
+:dt.:hp2.No:ehp2.
+:dd.Continues with the delete or restore in progress
+:edl.
+
+.**********************************************************************
+.*  EPFIE134: Cannot access the profile file         (General help)
+.**********************************************************************
+:h2 name=IHM134 res=134.Help for EPFIE134
+:p.
+:hp7.Explanation:ehp7.
+:p.
+The installation and maintenance utility cannot read the
+specified profile file.  Information that is critical for the
+current operation is stored in this file.
+:p.
+Without this
+information the operation cannot be performed.
+:p.
+:hp7.Response:ehp7.
+:ol.
+:li.Select :hp2.Cancel:ehp2. to cancel the operation.
+:li.Make sure the specified file is not locked by another process
+and try the operation again.  If the error persists,
+delete the profile file, and try the
+operation again.
+:eol.
+
+.**********************************************************************
+.*  EPFIE137: An error occurred while attempting to back up the file '%1'.
+.*      -  (General help)
+.**********************************************************************
+:h2 name=IHM137 res=137.Help for EPFIE137
+:p.
+:hp7.Explanation:ehp7.
+:p.
+The installation and maintenance utility cannot copy the specified file
+to the backup directory.  This could be because&colon.
+:ul compact.
+:li.There is insufficient disk space to back up the specified file
+:li.The specified file already exists and is in use
+:li.The backup directory could not be created
+:eul.
+:p.
+:hp7.Response:ehp7.
+:ol.
+:li.Select :hp2.Cancel:ehp2. to cancel the operation.
+:li.Ensure that there is sufficient disk space available on the drive
+containing the backup directory.
+:li.Try the update again.
+:eol.
+
+.**********************************************************************
+.*  EPFIW138: Cannot update the date and time of 'filename'. (General help)
+.**********************************************************************
+:h2 name=IHM138 res=138.Help for EPFIW138
+:p.
+:hp7.Explanation:ehp7.
+:p.
+An error occurred while the installation and maintenance utility attempted
+to set the date and time of the transferred
+file to the date and time specified in the package file.
+:p.
+The date and time do not need to be set for the installation to be
+successful.  The date and time of the file has been set to the current
+system date and time.
+:p.
+:hp7.Response:ehp7.
+:p.
+Select :hp2.OK:ehp2. to continue.
+
+.**********************************************************************
+.*  EPFIQ139: 'filename.ext' already exists on the workstation. Overwrite the file?
+.*   (General help)
+.**********************************************************************
+:h2 name=IHM139 res=139.Help for EPFIQ139
+:p.
+:hp7.Explanation:ehp7.
+:p.
+To transfer the specified file, the installation and maintenance utility
+needs to replace an existing workstation file.
+:p.
+:hp7.Response:ehp7.
+:p.
+Select one of the following&colon.
+:dl tsize=2 break=all compact.
+:dt.:hp2.Yes:ehp2.
+:dd.Replaces the existing workstation file, and continues with the
+installation or update.
+:dt.:hp2.No:ehp2.
+:dd.Does not replace the existing file.  Processing continues.
+:edl.
+
+.**********************************************************************
+.*  EPFIE140: 'xxxx' is not a valid path. (General help)
+.**********************************************************************
+:h2 name=IHM140 res=140.Help for EPFIE140
+:p.
+:hp7.Explanation:ehp7.
+:p.
+The path you entered is not a valid path
+name.
+:p.
+:hp7.Response:ehp7.
+:ol.
+:li.Select :hp2.Cancel:ehp2. to return to
+the Install&hyphen.directories window.
+:li.Correct the path.  Ensure that&colon.
+:ul compact.
+:li.The path contains a valid hard drive
+:li.The directory names are all less than or equal to 8 characters
+(unless the drive is formatted with the HPFS file system)
+:li.The path does not end with a back slash &lpar.&bsl.&rpar.
+:eul.
+:li.Select the :hp2.Install:ehp2. push button to try again.
+:eol.
+
+.**********************************************************************
+.*  EPFIW141: Cannot update the file mode of 'filename'. (General help)
+.**********************************************************************
+:h2 name=IHM141 res=141.Help for EPFIW141
+:p.
+:hp7.Explanation:ehp7.
+:p.
+An error occurred while the installation and maintenance utility
+attempted to set the read&hyphen.only
+or hidden attribute of the specified file.  Setting this
+information is not required to successfully install the product.
+The attribute has not been set.
+:p.
+:hp7.Response:ehp7.
+:p.
+Select :hp2.OK:ehp2. to continue with the operation.
+
+.**********************************************************************
+.*  EPFIE142: Error copying the file 'filename' to the 'subdirectory'
+.*            directory. (General help)
+.**********************************************************************
+:h2 name=IHM142 res=142.Help for EPFIE142
+:p.
+:hp7.Explanation:ehp7.
+:p.
+An operating system error occurred while installing, updating, or restoring
+the specified files. This could be because&colon.
+:ul compact.
+:li.Insufficient disk space is available to copy the files.
+:li.One or more of the files being copied already exists and is in use.
+:eul.
+:p.
+:hp7.Response:ehp7.
+:ol.
+:li.Check the amount of disk space on the hard disk that the product is
+installed on.
+:li.Ensure that the product is not currently running.
+:li.Try the operation again.
+:eol.
+
+.**********************************************************************
+.*  EPFIE144: An error occurred while attempting to load the user exit DLL
+.*            'xxxx'. User exits will not be executed.  (General help)
+.**********************************************************************
+:h2 name=IHM144 res=144.Help for EPFIE144
+:p.
+:hp7.Explanation:ehp7.
+:p.
+The installation and maintenance utility cannot load or find
+the DLL needed to continue.
+:p.
+:hp7.Response:ehp7.
+:ol.
+:li.Select :hp2.OK:ehp2. to remove the message.
+:li.Check that the specified DLL is in a directory in the LIBPATH.  If
+the install transfers the DLL, it may be necessary to add
+a period and semicolon &lparen..;&rparen.
+to the beginning of the LIBPATH statement in the CONFIG.SYS file
+&lparen.for example,
+LIBPATH=:hp2.&period.&semi.:ehp2.C&colon.&bsl.OS2&bsl.DLL&semi.&rparen..
+:li.Start the workstation again, and then try the installation again.
+:p.If the DLL is part of the installation and maintenance utility,
+ensure that it is on the same directory as all the other installation files.
+:eol.
+
+.**********************************************************************
+.*  EPFIE145: User Exit error.  Function 'xxxx' was not found in the exit DLL
+.*            'xxxx'. (General help)
+.**********************************************************************
+:h2 name=IHM145 res=145.Help for EPFIE145
+:p.
+:hp7.Explanation:ehp7.
+:p.
+The installation and maintenance utility cannot find the function
+specified in an EXIT keyword of a FILE entry within the specified DLL.
+:p.
+:hp7.Response:ehp7.
+:p.
+:hp5.Users:ehp5.
+:p.This problem is most likely caused by a problem with the product you
+are attempting to install or update.  Contact your system administrator.
+:p.
+:hp5.System administrators:ehp5.
+:ol compact.
+:li.Select :hp2.OK:ehp2. to remove the message.
+:li.Check the validity of the package file.
+:li.If the error persists, contact the product service representative.
+:eol.
+
+.**********************************************************************
+.*  EPFIE147: The path 'xxxx' does not specify a hard drive. (General help)
+.**********************************************************************
+:h2 name=IHM147 res=147.Help for EPFIE147
+:p.
+:hp7.Explanation:ehp7.
+:p.
+The specified path does not contain a valid hard drive.
+:p.
+:hp7.Response:ehp7.
+:ol compact.
+:li.Select :hp2.Cancel:ehp2. to return to the
+Install&hyphen.directories window.
+:li.Add the appropriate drive to the path.
+:li.Select the :hp2.Install:ehp2. push button to try again.
+:eol.
+
+.**********************************************************************
+.*  EPFIE148: The path 'xxxx' does not specify a valid hard drive.
+.*            (General help)
+.**********************************************************************
+:h2 name=IHM148 res=148.Help for EPFIE148
+:p.
+:hp7.Explanation:ehp7.
+:p.
+The disk specified in the path does not exist or
+is not a hard disk.
+:p.
+:hp7.Response:ehp7.
+:ol.
+:li.Select :hp2.Cancel:ehp2. to return to the
+Install&hyphen.directories window.
+:li.Change the drive specification of the path.
+:li.Select the :hp2.Install:ehp2. push button to try again.
+:eol.
+
+.**********************************************************************
+.*  EPFIE149: The path 'xxxx' cannot contain any global characters (i.e. '*'
+.*            or '?') (General help)
+.**********************************************************************
+:h2 name=IHM149 res=149.Help for EPFIE149
+:p.
+:hp7.Explanation:ehp7.
+:p.
+You cannot use wildcard characters &lparen.? and
+&asterisk.&rparen. in the path specifications for this window.
+:p.
+:hp7.Response:ehp7.
+:ol.
+:li.Select :hp2.Cancel:ehp2. to return to the
+Install&hyphen.directories window.
+:li.Remove these characters from the path.
+:li.Select :hp2.Install:ehp2. to try again.
+:eol.
+
+.**********************************************************************
+.*  EPFIE150: Cannot download 'filename'. Directory overflow occurred.
+.*            (General help)
+.**********************************************************************
+:h2 name=IHM150 res=150.Help for EPFIE150
+:p.
+:hp7.Explanation:ehp7.
+:p.
+The installation and maintenance utility cannot transfer the file specified
+because there are too many files in the directory.
+:p.
+:hp7.Response:ehp7.
+:ol compact.
+:li.Delete unnecessary files from the directory.
+:li.Select :hp2.Retry.:ehp2.
+:eol.
+:p.
+or
+:ol compact.
+:li.Select :hp2.Cancel.:ehp2.
+:li.Start again using a new target directory.
+:eol.
+
+.**********************************************************************
+.*  EPFIE151: xxxx A communication error %4 occurred. (General help)
+.**********************************************************************
+:h2 name=IHM151 res=151.Help for EPFIE151
+:p.
+:hp7.Explanation:ehp7.
+:p.
+The installation and maintenance utility detected an error while
+communicating with the host.
+:p.
+:hp7.Response:ehp7.
+:ol compact.
+:li.Check the state of the host session.
+:li.Select :hp2.Retry.:ehp2.
+:eol.
+:p.
+For more information on this error code, refer to the :hp1.OS&slash.2
+User's Guide:ehp1. and look up the corresponding TRANSxxx returncode.
+:p.
+If the error persists, contact the product service representative.
+
+.**********************************************************************
+.*  EPFIE152: 'x' is not a valid host session. (General help)
+.**********************************************************************
+:h2 name=IHM152 res=152.Help for EPFIE152
+:p.
+:hp7.Explanation:ehp7.
+:p.
+The host session selected in the Host session
+list box on the Open host catalog window is not valid.
+:p.
+:hp7.Response:ehp7.
+:ol compact.
+:li.Ensure that the specified host session is active.
+:li.Try the operation again.
+:eol.
+:p.
+or
+:ol compact.
+:li.Select :hp2.Open Catalog-Host:ehp2. from the File menu.
+:li.Open the product catalog again using a different host session.
+:eol.
+
+.**********************************************************************
+.*  EPFIE153: Session 'xxxx' is busy. (General help)
+.**********************************************************************
+:h2 name=IHM153 res=153.Help for EPFIE153
+:p.
+:hp7.Explanation:ehp7.
+:p.
+The host session being used for file transfer is already transferring a file
+or is being used by another session.
+:p.
+:hp7.Response:ehp7.
+:ol compact.
+:li.Wait until the host session is no longer busy.
+:li.Select :hp2.Retry:ehp2. to try the operation again.
+:eol.
+
+.**********************************************************************
+.*  EPFIE155: An error occurred on the host while accessing the file
+.*            'filename'. (General help)
+.**********************************************************************
+:h2 name=IHM155 res=155.Help for EPFIE155
+:p.
+:hp7.Explanation:ehp7.
+:p.
+EHLLAPI reported a system error.  This can be due to a
+number of communications problems, such as the controller is not working or
+the cable was unplugged.
+:p.
+:hp7.Response:ehp7.
+:p.
+Check your communications setup, and try the install or update again.
+:p.
+If the error persists,
+start the system again, and try the install or update again.
+
+.**********************************************************************
+.*  EPFIE156: Host session 'x' is disconnected. Check the host window and the
+.*           workstation/host cable connections. (General help)
+.**********************************************************************
+:h2 name=IHM156 res=156.Help for EPFIE156
+:p.
+:hp7.Explanation:ehp7.
+:p.
+The window the host session runs in is active, but the workstation is not
+connected to the host.
+:p.
+:hp7.Response:ehp7.
+:ol.
+:li.Ensure that host communication is established and that the host is
+ready to accept input.
+:li.Try the operation again.
+:eol.
+
+.**********************************************************************
+.*  EPFIE157: Cannot add 'xxxxxxxx' to the CONFIG.SYS file. (General help)
+.**********************************************************************
+:h2 name=IHM157 res=157.Help for EPFIE157
+:p.
+:hp7.Explanation:ehp7.
+:p.
+An error occurred while the installation and maintenance utility tried
+to add the specified path
+to the operating system configuration file (CONFIG.SYS).
+:p.
+:hp7.Response:ehp7.
+:ol.
+:li.Select :hp2.OK:ehp2. to allow the installation or update to continue.
+:li.Add the proper paths to the CONFIG.SYS file.  See the
+product installation instructions for more information.
+:p.
+You can find a backup of the original CONFIG.SYS file
+in CONFIG.BAK, in the drive and path where
+the product was installed.
+:eol.
+
+.*******************************************************
+.*  EPFIE158: Cannot add the 'xxxxxxxxxxxxxx' group to the
+.*            Desktop Manager. (General help)
+.*****************************************************
+:h2 name=IHM158 res=158.Help for EPFIE158
+:p.
+:hp7.Explanation:ehp7.
+:p.
+An error occurred when the installation and maintenance utility tried
+to add the specified folder to the
+Workplace Shell.:link refid=tm1 reftype=fn.*:elink.
+:p.
+:hp7.Response:ehp7.
+:p.
+Select :hp2.OK:ehp2. to continue transferring the files.
+:p.
+You can add the group to the Workplace Shell
+after installation is complete.
+
+.******************************************************
+.*  EPFIE159: Cannot add the 'xxxxxxxxxxxxxxx' program to the Workplace`
+.*            shell. (General help)
+.*********************************************************
+:h2 name=IHM159 res=159.Help for EPFIE159
+:p.
+:hp7.Explanation:ehp7.
+:p.
+An error occurred when the installation and maintenance utility tried
+to add the specified program name to the
+Workplace Shell.:link refid=tm1 reftype=fn.*:elink.
+The program name may already exist in the designated folder.
+:p.
+:hp7.Response:ehp7.
+:p.
+Select :hp2.OK:ehp2. to continue adding the remaining files.
+:p.
+You can add the program to the Workplace Shell
+after installation is complete.
+Refer to the OS&slash.2:link refid=tm1 reftype=fn.*:elink.
+documentation for information on adding programs to
+the Workplace Shell.
+
+.**********************************************************************
+.*  EPFIQ160: The service level you have selected to update is the same as
+.*            the service level already installed on your workstation.  Do you want
+.*            to continue? (General help)
+.**********************************************************************
+:h2 name=IHM160 res=160.Help for EPFIQ160
+:p.
+:hp7.Explanation:ehp7.
+:p.
+The service level of the selected product is the same as the
+service level of the product already installed on your workstation.
+:p.
+The product has already been updated to the most recent service level.
+It is not necessary to update the product again.
+:p.
+:hp7.Response:ehp7.
+:p.
+Select one of the following&colon.
+:dl tsize=5 break=none compact.
+:dt.:hp2.Yes:ehp2.
+:dd.Continues to update the product
+:dt.:hp2.No:ehp2.
+:dd.Cancels the update
+:edl.
+
+.**********************************************************************
+.*  EPFIE161: EPFIE161: Incorrect host session or host operating system
+.*            specified. (General help)
+.**********************************************************************
+:h2 name=IHM161 res=161.Help for EPFIE161
+:p.
+:hp7.Explanation:ehp7.
+:p.
+The operating system of the host session specified in the Open
+host catalog window does not match the operating system you are using.
+:p.
+:hp7.Response:ehp7.
+:p.
+From the Open host catalog window, ensure that the host session
+and host operating system match.  Then try the operation again.
+
+.*********************************************************************
+.*EPFIE162 You do not have write access to the path you specified.
+.***********************************************************
+:h2 name=IHM162 res=162.Help for EPFIE162
+:P.
+:hp7.Explanation:ehp7.
+:p.
+You do not have authorization to write to the drive you specified.
+:p.
+:hp7.Response:ehp7.
+:p.
+Change the drive and try again or contact your system administrator for authorization.
+
+.**********************************************************************
+.*  EPFIE163: Out of memory. To release memory, end programs or allow memory
+.*            paging to your hard disk. (General help)
+.**********************************************************************
+:h2 name=IHM163 res=163.Help for EPFIE163
+:p.
+:hp7.Explanation:ehp7.
+:p.
+The system requires additional system resources or system memory
+for this installation program.
+:p.
+:hp7.Response:ehp7.
+:ol.
+:li.Select :hp2.Cancel:ehp2. to cancel the entire operation.
+:li.End any unnecessary applications, and exit any unnecessary sessions.
+:li.Try again.
+:eol.
+
+.**********************************************************************
+.*  EPFIE165: Cannot execute 'programname(DOS return code: xxx)
+.*            (General help)
+.**********************************************************************
+:h2 name=IHM165 res=165.Help for EPFIE165
+:p.
+:hp7.Explanation:ehp7.
+:p.
+The installation and maintenance utility is not able to execute the
+specified program.
+:p.
+If this executable file is part of the installation product, it must be
+in the same directory as all the other installation and maintenance utility files.
+:p.
+:hp7.Response:ehp7.
+:ol.
+:li.Select :hp2.Cancel:ehp2. to remove the message box and return to the
+previous window.
+:p.For more information on the DOS return code reported, refer
+to the :hp1.OS/2 2.0 Toolkit Control Program Reference:ehp1..
+:li.Exit the installation program.
+:li.Change to the directory that holds the installation executable files.
+:li.Start the installation program again.
+:eol.
+:p.
+or
+:ol.
+:li.Select :hp2.Cancel:ehp2. to remove
+the message box and return to the previous window.
+:li.Add the directory containing the installation executable files to
+the path statement in the CONFIG.SYS file.
+:li.Start the system again.
+:li.Start the installation program again.
+:eol.
+
+.**********************************************************************
+.*  EPFIE166: The catalog file contains too many package entries.
+.*            (General help)
+.**********************************************************************
+:h2 name=IHM166 res=166.Help for EPFIE166
+:p.
+:hp7.Explanation:ehp7.
+:p.
+The catalog file at the source contains too many products.  No more
+than 80 product packages are allowed in the catalog file.
+:p.
+:hp7.Response:ehp7.
+:p.
+:hp5.Users:ehp5.
+:ol compact.
+:li.Select :hp2.Cancel:ehp2. to remove the message box.
+:li.Contact your system administrator.
+:eol.
+:p.
+:hp5.System Administrators:ehp5.
+:p.
+Do one of the following&colon.
+:ul.
+:li.Edit the catalog file on the host, and delete unnecessary products.
+:li.Split the catalog file into two or more catalog files.
+:eul.
+
+.**********************************************************************
+.* EPFIE167: The catalog file 'filename' cannot be found on the host. Contact
+.*           your system administrator. (General help)
+.**********************************************************************
+:h2 name=IHM167 res=167.Help for EPFIE167
+:p.
+:hp7.Explanation:ehp7.
+:p.
+The installation and maintenance utility cannot find the catalog file at
+the source.  This could be because&colon.
+:ul.
+:li.The specified file does not exist.
+:li.You do not have access to the MVS data sets, the VM mini disks, the LAN
+drives, or the correct diskettes that contain the catalog file.
+:eul.
+:p.
+:hp7.Response:ehp7.
+:p.
+Select :hp2.Cancel:ehp2. to remove the message box and return to
+the previous window.
+:p.
+Do one of the following&colon.
+:ul.
+:li.Contact your system administrator if the specified file
+does not exist at the source.
+:li.Access the MVS data sets, the VM mini disks, the LAN drives, or the
+correct diskettes that contain the catalog.
+:eul.
+
+.**********************************************************************
+.* EPFIE168: The catalog file ('filename') is not valid.
+.*           Contact your system administrator. (General help)
+.**********************************************************************
+:h2 name=IHM168 res=168.Help for EPFIE168
+:p.
+:hp7.Explanation:ehp7.
+:p.
+The installation and maintenance utility encountered a syntax error
+while parsing the specified catalog file.
+:p.
+:hp7.Response:ehp7.
+:p.
+:hp5.Users:ehp5.
+:ol.
+:li.Select :hp2.Cancel:ehp2. to remove the message box and return to the
+Open window.
+:li.Ensure that the catalog file name specified on the Open window is
+a valid catalog file name.
+:li.If the error persists, report the problem to your system administrator.
+:eol.
+:p.
+:hp5.System administrators:ehp5.
+:ol.
+:li.Fix the syntax error in the source copy of the host configuration file.
+:li.Select :hp2.Cancel:ehp2. to remove the message box and return to the
+Open window.
+:li.Try :hp2.Open:ehp2. again.
+:eol.
+
+.**********************************************************************
+.*  EPFIF169: Cannot download 'filename'. There are too many workstation files open.
+.*            (General help)
+.**********************************************************************
+:h2 name=IHM169 res=169.Help for EPFIF169
+:p.
+:hp7.Explanation:ehp7.
+:p.
+The maximum number of open files allowed by the system has been exceeded.
+Transferring the specified file requires opening a new file.
+:p.
+:hp7.Response:ehp7.
+:ol.
+:li.Close any applications that use a large number of files.
+:li.Try the operation again.
+:eol.
+:p.
+If the error persists,
+start the system again and restart the installation program.
+
+.**********************************************************************
+.*  EPFIE171: A data transfer error occurred while downloading 'filename'.
+.*            (General help)
+.**********************************************************************
+:h2 name=IHM171 res=171.Help for EPFIE171
+:p.
+:hp7.Explanation:ehp7.
+:p.
+Too many transmission errors have occurred during the file transfer.
+:p.
+This situation can be caused by a faulty communication line.
+:p.
+:hp7.Response:ehp7.
+:p.
+Try the operation again.  If the error persists, call a service person
+to check the communications channel.
+
+.**********************************************************************
+.* EPFIE172: The host session is locked. Switch to the host session and issue
+.*           a reset. (General help)
+.**********************************************************************
+:h2 name=IHM172 res=172.Help for EPFIE172
+:p.
+:hp7.Explanation:ehp7.
+:p.
+The host is waiting for you to issue a reset.  Communication cannot
+proceed unless you issue a reset or the timeout interval
+expires.
+:p.
+:hp7.Response:ehp7.
+:ol compact.
+:li.Switch to the host session.
+:li.Issue a reset.
+:li.Try the operation again.
+:eol.
+
+.**********************************************************************
+.*  EPFIQ173: You have aborted in the middle of an update.  Your current
+.*            version of the product is not operable.  Do you want to restore
+.*            the previous service level? (General help)
+.**********************************************************************
+:h2 name=IHM173 res=173.Help for EPFIQ173
+:p.
+:hp7.Explanation:ehp7.
+:p.
+The installation and maintenance utility transferred only part of the
+files specified in the package file that are necessary to update the
+product.  You cannot use the product as it is.
+:p.
+:hp7.Response:ehp7.
+:p.
+Select one of the following&colon.
+:dl tsize=2 break=all compact.
+:dt.:hp2.Yes:ehp2.
+:dd.Restores the product to the state it was in before
+the update began.  Select :hp2.Yes:ehp2. if you do not plan to try the
+update again.
+:dt.:hp2.No:ehp2.
+:dd.Leaves the files as they are.  Select :hp2.No:ehp2. if you plan to
+try the update again.  This saves time when you run the installation or
+update again.
+:edl.
+
+.**********************************************************************
+.*  EPFIQ174:  Do you want to exit the ISPF/PDF Tool Installation Utility?
+.*             (General help)
+.**********************************************************************
+:h2 name=IHM174 res=174.Help for EPFIQ174
+:p.
+:hp7.Explanation:ehp7.
+:p.
+You have requested to exit the installation and maintenance utility.
+:p.
+:hp7.Response:ehp7.
+:p.
+Select one of the following&colon.
+:dl tsize=5 break=none compact.
+:dt.:hp2.Yes:ehp2.
+:dd.Exits the utility
+:dt.:hp2.No:ehp2.
+:dd.Returns you to the main window without exiting
+:edl.
+
+.**********************************************************************
+.*  EPFIF175:  Out of semaphore resources.  to release resources, end
+.*             unneeded programs that use semaphores.
+.* (General help)
+.**********************************************************************
+:h2 name=IHM175 res=175.Help for EPFIF175
+:p.
+:hp7.Explanation:ehp7.
+:p.
+The installation and maintenance utility failed due to insufficient system
+resources.
+:p.
+:hp7.Response:ehp7.
+:p.
+Close any unnecessary applications, and select :hp2.Retry.:ehp2.
+:p.
+Select :hp2.Cancel:ehp2. if you want to leave the application.
+
+.**********************************************************************
+.*  EPFIE176:  Not enough Presentation Manager resources to proceed with
+.*             operation. (General help)
+.**********************************************************************
+:h2 name=IHM176 res=176.Help for EPFIE176
+:p.
+:hp7.Explanation:ehp7.
+:p.
+The installation and maintenance utility failed to create a
+Presentation Manager:link refid=tm1 reftype=fn.*:elink.
+window.
+This error could be caused by insufficient system resources
+or a lack of available memory.
+:p.
+:hp7.Response:ehp7.
+:ul compact.
+:li.Select :hp2.Cancel.:ehp2.
+:li.Cancel any unnecessary applications and close any unnecessary sessions.
+:li.Try the operation again.
+:eul.
+
+.**********************************************************************
+.*  EPFII177:  The action you requested has completed.  You
+.*             must restart your operating system.  (General help)
+.**********************************************************************
+:h2 name=IHM177 res=177.Help for EPFII177
+:p.
+:hp7.Explanation:ehp7.
+:p.The action you requested has completed.
+You must restart your operating system.
+:p.
+:hp7.Response:ehp7.
+:p.Shut down and restart your system.
+
+.**********************************************************************
+.*  EPFII178:  The action you requested has stopped.  You must restart
+.*             your operating system and retry the action. (General help)
+.**********************************************************************
+:h2 name=IHM178 res=178.Help for EPFII178
+:p.
+:hp7.Explanation:ehp7.
+:p.The action you requested has stopped.
+You must restart your operating system and retry the requested action.
+:p.
+:hp7.Response:ehp7.
+:ul.
+:li.Respond to any other messages from the application.
+:li.Shut down and restart your system.
+:li.Retry the action that stopped.
+:eul.
+
+.**********************************************************************
+.*  EPFIE180:An error occurred while downloading the product description file
+.*           '%1' from the host.           (General help)
+.**********************************************************************
+:h2 name=IHM180 res=180.Help for EPFIE180
+:p.
+:hp7.Explanation:ehp7.
+:p.
+The product description file is not available at the source, or the file name
+specified by the PKGDESCRFILE keyword in the catalog file is incorrect.
+:p.
+:hp7.Response:ehp7.
+:p.
+:hp5.Users:ehp5.
+:p.
+Ensure that you have access to the appropriate VM mini disks, MVS data sets,
+LAN drives, or diskettes and select one of the following&colon.
+:dl tsize=2 break=all compact.
+:dt.:hp2.Retry:ehp2.
+:dd.Attempts to transfer the product description file again
+:dt.:hp2.Cancel:ehp2.
+:dd.Removes the message box and returns to the main window
+:edl.
+:p.
+:hp5.System administrators:ehp5.
+:p.Ensure that the file name specified by the PKGDESCRFILE keyword in the
+catalog file is correct and that the file exists at the source.
+
+.**********************************************************************
+.*  EPFIQ181: You will not be able to restore the product to the previous
+.*            service level since the 'Save a backup version' option was
+.*            not selected.  Do you want to continue?  (General help)
+.**********************************************************************
+:h2 name=IHM181 res=181.Help for EPFIQ181
+:p.
+:hp7.Explanation:ehp7.
+:p.
+If you have not selected the :hp2.Save a backup version:ehp2. option, then
+you cannot restore the product to the previous service level after the
+Update is completed.  Also, if you
+do not select this option, and an unrecoverable error occurs during the
+update, the product will not be restored to a stable service level.
+:p.
+Select the :hp2.Save a backup version:ehp2. option unless workstation disk
+space is limited.  Using this option guarantees that the product can be
+restored to a stable service level if an error occurs.
+:p.
+:hp7.Response:ehp7.
+:p.Select one of the following&colon.
+:dl tsize=2 break=all compact.
+:dt.:hp2.Yes:ehp2.
+:dd.Continues with the update without saving a backup version
+:dt.:hp2.No:ehp2.
+:dd.Removes the message box and returns you to the Update window
+where you can select the :hp2.Save a backup version:ehp2. option
+:edl.
+
+.**********************************************************************
+.*  EPFII182:   NO HELP FOR THIS MESSAGE
+.*   -       A product description is not available for this package
+.**********************************************************************
+
+.**********************************************************************
+.*  EPFIE183:  An error was found in the parameters of a user exit.
+.*             The exit parameters were: 'xxxxxx'. (General help)
+.**********************************************************************
+:h2 name=IHM183 res=183.Help for EPFIE183
+:p.
+:hp7.Explanation:ehp7.
+:p.
+One or more of the parameters specified is not valid for a user exit.
+A problem occurred when parsing the argument variables.
+:p.
+:hp7.Response:ehp7.
+:p.
+:hp5.Users:ehp5.
+:p.
+Tell the system administrator that there is a problem in the package file
+of the selected product.
+:p.
+:hp5.System administrators:ehp5.
+:p.
+Examine the specified exit parameters, and correct any errors in the
+product's package file.
+
+.**********************************************************************
+.*  EPFIQ184:  Installation of the 'xxx' component requires that the
+.*             'xxx' component also be installed.  Do you want to install
+.*             the 'yyy' component? (General help)
+.**********************************************************************
+:h2 name=IHM184 res=184.Help for EPFIQ184
+:p.
+:hp7.Explanation:ehp7.
+:p.
+One of the selected components cannot operate correctly unless
+you also install another component.
+:p.
+:hp7.Response:ehp7.
+:p.
+:p.Select one of the following&colon.
+:dl tsize=2 break=all compact.
+:dt.:hp2.Yes:ehp2.
+:dd.Installs the component required for correct operation
+:dt.:hp2.No:ehp2.
+:dd.Removes the message box and returns you to the
+Install&hyphen.directories window
+:edl.
+
+.***********************************************************************
+.* EPFIQ185:   Drive '%1' does not contain enough space to install the
+.*             product.  Do you want to continue?
+.***********************************************************************
+:h2 name=IHM185 res=185.Help for EPFIQ185
+:p.
+:hp7.Explanation:ehp7.
+:p.The specified drive in the File directory
+field does not contain enough free disk space to
+hold the product that you are attempting to install.
+:p.
+:hp7.Response:ehp7.
+:p.
+:p.Select one of the following&colon.
+:dl tsize=2 break=all compact.
+:dt.:hp2.Yes:ehp2.
+:dd.Ignores the warning and continues with
+the installation.  This can result in an unsuccessful installation
+because of the lack of free disk space.
+:dt.:hp2.No:ehp2.
+:dd.Removes the message box and returns to the
+Install&hyphen.directories window.  After returning,
+perform one of the following actions&colon.
+:ol.
+:li.Select a new drive to install the product on by changing the drive
+specification in the File directory field.  To try to find
+a disk with enough space, select the
+:hp2.Disk space:ehp2. push button.
+:li.If the product contains components, select fewer components
+and select the :hp2.Install:ehp2. push button again.
+:nt.
+Only the selected components are installed.
+:ent.
+:eol.
+:edl.
+
+.**********************************************************************
+.* EPFIQ186: Your CONFIG.SYS file will not be automatically updated.
+.*           After the installation or update is complete, you should manually
+.*           update your CONFIG.SYS file with the information found in the
+.*           CONFIG.ADD file.  Do you want to continue?
+.**********************************************************************
+:h2 name=IHM186 res=186.Help for EPFIQ186
+:p.
+:hp7.Explanation:ehp7.
+:p.
+You selected to not have the CONFIG.SYS file automatically
+updated.  If the product you are installing or updating requires
+changes in the CONFIG.SYS file, the product will not run
+correctly after the installation or update is complete unless
+you make the necessary changes and restart your system.
+:p.
+:hp7.Response:ehp7.
+:p.
+:p.Select one of the following&colon.
+:dl tsize=2 break=all compact.
+:dt.:hp2.Yes:ehp2.
+:dd.Installs the product without updating the CONFIG.SYS file.  When
+the product installation or update has successfully completed,
+you must manually update the CONFIG.SYS file, if this is required by the
+product, before it can be run.
+:p.
+The information that must be added to the CONFIG.SYS will be written to
+a file named CONFIG.ADD in the same directory as your current CONFIG.SYS.
+You should replace your current CONFIG.SYS with the CONFIG.ADD file.
+:dt.:hp2.No:ehp2.
+:dd.Removes the message box and returns to the
+previous window where you can select the :hp2.Update CONFIG.SYS:ehp2.
+option and then restart the installation or update.
+:edl.
+
+.**********************************************************************
+.* EPFIE187: An product specific installation error has occurred.
+.*           The return code is %1.
+.**********************************************************************
+:h2 name=IHM187 res=187.Help for EPFIE187
+:p.
+:hp7.Explanation:ehp7.
+:p.
+An error occurred while running a routine provided by the product
+you are installing, updating, or restoring.
+:p.
+:hp7.Response:ehp7.
+:p.
+Record the return code and select :hp2.Cancel:ehp2. to exit the
+installation or update.  Refer to the installation instructions
+of the product that you are installing for more information about
+the return code.
+:p.
+If the error persists, contact your system administrator or your
+product service representative.
+
+.**********************************************************************
+.* EPFIE188: The host file '%2' is in use or cannot be accessed.
+.**********************************************************************
+:h2 name=IHM188 res=188.Help for EPFIE188
+:p.
+:hp7.Explanation:ehp7.
+:p.
+An error occurred while attempting to access the file at the source.
+One of the following conditions can cause this error&colon.
+:ul.
+:li.Another program or user is accessing the file or the data set
+containing the file.
+:li.The specified file or data set does not exist at the source.
+:eul.
+:p.
+:hp7.Response:ehp7.
+:ol.
+:li.If a host is the source, switch to the host emulator window and
+check the host screen for any error messages.
+:li.Ensure that the specified file or data set exists.
+:li.Return to the workstation session, and try the operation again by
+selecting the :hp2.Retry:ehp2. push button.
+:eol.
+:p.
+If the error persists, wait until the
+host file is not in use, and try the operation again.
+
+.**********************************************************************
+.* EPFIE189: Cancelling the update has left the product in an unstable state.
+.*           After cancelling this message you should either update the
+.*           product again or delete the product.
+.**********************************************************************
+:h2 name=IHM189 res=189.Help for EPFIE189
+:p.
+:hp7.Explanation:ehp7.
+:p.
+You did not select :hp2.Save a backup version:ehp2. and
+the update failed. Therefore, the installation and maintenance
+utility cannot restore the product to a stable service level.
+:p.
+:hp7.Response:ehp7.
+:p.
+Do not attempt to run the product until you successfully restore it to
+a stable state.
+:ol.
+:li.Select :hp2.Cancel:ehp2. to remove this error message.
+:li.Return to the main window and then try to update the product again.
+:li.If the error persists, delete the product and install it again.
+:eol.
+:eh1.
+
+.**********************************************************************
+.* EPFIE190: An error occurred while attempting to access the workstation printer.
+.**********************************************************************
+:h2 name=IHM190 res=190.Help for EPFIE190
+:p.
+:hp7.Explanation:ehp7.
+:p.
+The system cannot complete the print operation because of a workstation
+printer error.  This error can be caused by any of the following&colon.
+:ul compact.
+:li.Insufficient available disk space
+:li.The printer is off line
+:li.The OS&slash.2 :link refid=tm1 reftype=fn.*:elink.
+Print Manager is not running
+:nt.
+The Print Manager must be active and a workstation printer must be
+associated with LPT1 in order for the print operation to work.
+:ent.
+:eul.
+:p.
+:hp7.Response:ehp7.
+:ol.
+:li.Select :hp2.Cancel:ehp2. to remove this error message.
+:li.Ensure that the OS&slash.2 Print Manager is set up properly and is
+running.  If the Print Manager is not running, start it and try the
+operation again.
+:li.Check the OS&slash.2 Print Manager for additional information
+regarding this error.
+:eol.
+.**********************************************************************
+.* EPFIE191: Drive '%1' is not ready.
+.**********************************************************************
+:h2 name=IHM191 res=191.Help for EPFIE191
+:p.
+:hp7.Explanation:ehp7.
+:p.
+The operation cannot be completed because the specified drive
+could not be accessed.
+This error could be caused by any of the
+following:
+:ul compact.
+:li.The specified drive is a diskette drive and a disk needs to be
+inserted.
+:li.The drive is disconnected from the machine.
+:eul.
+:p.
+:hp7.Response:ehp7.
+:p.
+:ol.
+:li.Ensure that a disk is in the specified drive and that the
+drive is connected.
+:li.Select the :hp2.Retry:ehp2. push button to try the operation again.
+:eol.
+.**********************************************************************
+.* EPFII192: Insert a disk in drive '%1'.  Select OK when ready.
+.**********************************************************************
+:h2 name=IHM192 res=192.Help for EPFII192
+:p.
+:hp7.Explanation:ehp7.
+:p.A drive other than the default drive needs to be accessed.  This
+requires a disk change.
+:p.
+:hp7.Response:ehp7.
+:p.
+Insert the required disk into the drive and select :hp2.OK:ehp2..
+If the required disk is already in the drive, simply
+select :hp2.OK:ehp2..
+
+.**********************************************************************
+.* EPFIE193: The filename ('%2') is not valid.
+.**********************************************************************
+:h2 name=IHM193 res=193.Help for EPFIE193
+:p.
+:hp7.Explanation:ehp7.
+:p.The specified file name is not a valid
+OS&slash.2:link refid=tm1 reftype=fn.*:elink. file name or it does not
+exist on the source drive.  Wildcard characters are not allowed in
+installation file names.
+:p.
+:hp7.Response:ehp7.
+:p.
+If this error occurred during an open operation:
+:ol.
+:li.Select the :hp2.Cancel:ehp2. push button on this error message box.
+:li.Ensure that the file name entered in the Filename field
+of the Open drive catalog or Open host catalog
+window is valid.
+:li.Try the open operation again.
+:eol.
+:p.
+If this error occurred during another operation&colon.
+:ol.
+:li.Reopen the current catalog by selecting :hp2.Open catalog:ehp2. from
+the File menu.
+:li.Try the operation again.
+:li.If the error persists, contact your system administrator and report the
+problem.  There is probably an error in the catalog or package files that
+the installation and maintenance utility is reading.
+:eol.
+:p.
+:hp5.System administrators:ehp5.
+:p.
+This error can occur if you are using a file name that contains a drive
+specification in the HOSTLOC, PACKAGEFILE, or PKGDESCRFILE keywords
+in the catalog file or in the FILE-SOURCE or INCLUDE-NAME keywords in the package file.
+The file names specified in these keywords should
+NOT contain drive letters.  Examples of valid keywords&colon.
+:xmp.
+packagefile = 'drive&colon. \wsp2\epfipkg.pkg;
+               vm&colon. epfipkg enuepf12 *'
+pkgdescfile = 'drive&colon. \wsp2\epfidesc.dsc;
+               vm&colon. epfidesc enuepf12 *'
+hostloc     = 'drive&colon. \wsp2\; vm&colon. ;'
+source      = 'drive&colon. file.exe; vm: file exebin *'
+:exmp.
+
+.**********************************************************************
+.* EPFIE195: A cyclic redundancy check (CRC) error occurred while
+.*                    transferring '%2'.
+.**********************************************************************
+:h2 name=IHM195 res=195.Help for EPFIE195
+:p.
+:hp7.Explanation:ehp7.
+:p.An error has occurred that affects the data integrity of the file being
+transferred.  The source files may be corrupted.  The
+installation or update cannot complete successfully
+unless this problem is fixed.
+:p.
+:hp7.Response:ehp7.
+:p.
+:ol.
+:li.Select the :hp2.Retry:ehp2. push button to retry the file transfer.
+:li.If the error persists, then the source files are most likely in error.
+Contact your product service representative to obtain a new set of
+source files.
+:eol.
+
+.**********************************************************************
+.* EPFIE196: An abnormal error occurred while a executing %1.
+.**********************************************************************
+:h2 name=IHM196 res=196.Help for EPFIE196
+:p.
+:hp7.Explanation:ehp7.
+:p.
+An error occurred while unpacking a compressed file.
+The installation or update cannot complete successfully
+unless this problem is fixed.
+:p.
+:hp7.Response:ehp7.
+:p.
+:ol.
+:li.Select the :hp2.Retry:ehp2. push button to retry the unpack operation.
+:li.If the error persists then the product is probably corrupted
+or in error.
+Contact your product service representative to obtain a new set of
+installation files or diskettes.
+:eol.
+
+.**********************************************************************
+.* EPFIE197: An error occurred while unpacking %3 (return code: %2).
+.**********************************************************************
+:h2 name=IHM197 res=197.Help for EPFIE197
+:p.
+:hp7.Explanation:ehp7.
+:p.
+An error occurred while unpacking a compressed file.
+The installation or update cannot complete successfully
+unless this problem is fixed.
+:p.
+:hp7.Response:ehp7.
+:p.
+:ol.
+:li.Select the :hp2.Retry:ehp2. push button to retry the unpack operation.
+:li.If the error persists then the product is probably corrupted
+or in error.
+Contact your product service representative to obtain a new set of
+installation files or diskettes.
+:eol.
+
+.**********************************************************************
+.* EPFIE198: '%1' could not be found within the specified PACK file.
+.**********************************************************************
+:h2 name=IHM198 res=198.Help for EPFIE198
+:p.
+:hp7.Explanation:ehp7.
+:p.
+A file needed for the installation or update was not found within
+the appropriate compressed file.
+This error could be caused by any of the following:
+:ul.
+:li.When the compressed file was created, the specified file was
+not included.
+:li.An error exists within the product's package file.
+Most likely, the FILE entry that corresponds to the
+specified file contains a
+value for the PACKID keyword that does not match the correct
+PACK file.
+:eul.
+:p.
+:hp7.Response:ehp7.
+:p.
+:hp5.Users&colon.:ehp5.
+:p.
+Report the error to your system administrator.
+:p.
+:hp5.Package file builders&colon.:ehp5.
+:ol.
+:li.Examine the FILE entry that corresponds to the
+specified file and fix any errors that are found.
+:li.If no errors are found in the package file, rebuild the compressed
+file.  Make sure that the specified file is included in
+the compressed file.
+:li.Try the operation again.
+:eol.
+
+.**********************************************************************
+.* EPFIE199: A PACKFILE entry that corresponds to the PACKID ('%1') was
+.*          not found.
+.**********************************************************************
+:h2 name=IHM199 res=199.Help for EPFIE199
+:p.
+:hp7.Explanation:ehp7.
+:p.
+An error exists in the product's package file.
+The FILE entry that corresponds to the specified file contains
+an invalid PACKID.
+:p.
+:hp7.Response:ehp7.
+:p.
+:hp5.Users&colon.:ehp5.
+:p.
+Report the error to your system administrator.
+:p.
+:hp5.Package file builders&colon.:ehp5.
+:ol.
+:li.Examine the FILE entry that corresponds to the
+specified file and correct any errors that are found.  Make
+sure that a PACKFILE entry exists that matches the PACKID specified
+in the FILE entry.
+:li.Try the operation again.
+:eol.
+
+.**********************************************************************
+.* EPFIE200: The PACKFILE ('%3') could not be found.
+.**********************************************************************
+:h2 name=IHM200 res=200.Help for EPFIE200
+:p.
+:hp7.Explanation:ehp7.
+:p.
+The installation and maintenance utility cannot find a specified PACK
+file on the source system.  This could be because the file is not
+present on the source system or the package file contains an error.
+:p.
+:hp7.Response:ehp7.
+:p.
+:hp5.Users:ehp5.
+:ol.
+:li.Select one of the following&colon.
+:dl tsize=8 break=none compact.
+:dt.:hp2.Cancel:ehp2.
+:dd.Cancels the file transfer
+:dt.:hp2.Retry:ehp2.
+:dd.Issues the transfer commands again
+:edl.
+:li.Contact your system administrator if the problem persists.
+:eol.
+:p.
+:hp5.System administrators:ehp5.
+:ol.
+:li.Check the SOURCE keyword of the PACKFILE entry type that corresponds
+to the specified file to ensure that the file name is correct.
+:li.If the package file is correct, ensure that the file exists
+on the source system.
+:li.Try the operation again.
+:eol.
+
+.**********************************************************************
+.* EPFIE201: The opened catalog contains only updates to product(s) that
+.*           are not currently installed.  You must install the product(s)
+.*           before these updates can be applied.
+.**********************************************************************
+:h2 name=IHM201 res=201.Help for EPFIE201
+:p.
+:hp7.Explanation:ehp7.
+:p.
+The catalog that was opened does not contain any new products.  It
+contains only program fixes for other product(s).  Before these fixes
+can be applied, you must install the product(s).
+:p.
+:hp7.Response:ehp7.
+:p.
+If you want to apply these fixes, you must first install the
+product(s).
+If you have already
+installed the product(s), it is possible that the application profile file
+has been corrupted or deleted.  If this is the case, you
+must install the products again.  When doing this installation, specify the
+same directories where the products were originally installed.
+
+.**********************************************************************
+.* EPFIE203: An invalid value was specified for the '%1' command line option.
+.**********************************************************************
+:h2 name=IHM203 res=203.Help for EPFIE203
+:p.
+:hp7.Explanation:ehp7.
+:p.The command line option you specified is valid, but the
+value specified (the part on the right-hand side of the equal sign)
+is not valid.
+:p.
+:hp7.Response:ehp7.
+:p.
+Correct the :link reftype=hd res=2041.command line option:elink. value
+and try the operation again.
+
+.**********************************************************************
+.* EPFIE204: An invalid command line option (%1) was specified.
+.**********************************************************************
+:h2 name=IHM204 res=204.Help for EPFIE204
+:p.
+:hp7.Explanation:ehp7.
+:p.An unknown command line option was specified.
+:p.
+:hp7.Response:ehp7.
+:p.
+Enter the correct :link reftype=hd res=2041.command line
+option:elink. and try the operation again.
+
+.**********************************************************************
+.* Help for command line parameters.
+.**********************************************************************
+:h2 res=2041.Command line parameters
+:p.
+Use the EPFINSTS command followed by one or more of the following
+parameters at the OS/2 ready prompt.
+:p.
+If the value of any of the parameters
+contains spaces, you must use double quotes to enclose the value.
+:p.
+The parameters can be specified in any order.
+:dl tsize=10 break=all.
+:dthd.Parameter
+:ddhd.Description
+.*
+:dt.&slash.A=:hp1.action:ehp1.
+:dd.Specifies the action to be performed.
+:p.
+If this parameter
+is present with a valid value, the main installation utility window is not
+displayed.  In this case, windows are displayed directly
+on the OS&slash.2:link refid=tm1 reftype=fn.*:elink. Workplace Shell.
+:p.
+If you do not use this parameter, the
+installation and maintenance utility starts normally with all windows displayed.
+Values can be upper or lower case.
+Valid values for this parameter are:
+:dl.
+:dt.:hp2.d:ehp2. :dd.For delete
+:dt.:hp2.i:ehp2. :dd.For install
+:dt.:hp2.r:ehp2. :dd.For restore
+:dt.:hp2.u:ehp2. :dd.For update
+:edl.
+:p.Use of this parameter requires that the /P parameter also be specified.
+.*
+:dt.&slash.C=:hp1.catfilename:ehp1.
+:dd.Specifies the name and location of the catalog file.
+:p.
+If the catalog file is located on a host system, the host session ID must
+precede the catalog file name.
+:p.
+If the catalog file is located on a diskette, LAN, or AS/400 Shared folder,
+a drive and directory must precede the catalog file name.
+:p.
+The following are examples of the &slash.C parameter for each source&colon.
+:dl tsize=5 break=all.
+:dt.Drive
+:dd.&slash.C=Z&colon.\EPFICAT.CAT
+:dt.MVS
+:dd.&slash.C=B&colon.EPF.V1R1M0.SEPFBENU(EPFICAT)
+:dt.VM
+:dd.&slash.C="B&colon.EPFICAT ENUEPF11 *"
+:dt.VSE
+:dd.&slash.C=B&colon.LIB.SIBLIB.MEMBERNAME.MEMBERTYPE
+:edl.
+:p.If this parameter is present, the specified catalog file is automatically opened.
+.*
+:dt.&slash.G&colon.:hp1.include path:ehp1.
+:dd.Specifies the drive and path of the general response files that are included
+by the specific response file.
+:p.The installation and maintenance utility sets the EPFIGENRESPDIR installation
+variable to the include path.
+:p.Example&colon.
+:xmp.
+   /G&colon.L&colon.\XYZ
+:exmp.
+.*
+:dt.&slash.L=:hp1.xpos:ehp1.,:hp1.ypos:ehp1.
+:dd.Specifies the initial x and y coordinates of the Installation
+and Maintenance window on the desktop relative to the lower&hyphen.left
+corner of the screen.
+:p.If this parameter is
+specified, all previously saved default positions are overridden.
+.*
+:dt.&slash.L1&colon.:hp1.error log:ehp1.
+:dd.Specifies the drive, path, and file name of the destination of the error log file.
+:p.The installation and maintenance utility sets the EPFIERRORLOG installation
+variable to the error log.
+:p.
+If drive and path are not specified, the drive and path where EPFINSTS.EXE
+is running is used.
+If file name is not specified, errors are logged to EPFINSTS.OUT.
+:p.Example&colon.
+:xmp.
+   /L1&colon.C&colon.\ABC\ERROR.LOG
+:exmp.
+.*
+:dt.&slash.L2&colon.:hp1.history log:ehp1.
+:dd.Specifies the drive, path, and file name of the destination of the history log file.
+:p.The installation and maintenance utility sets the EPFIHISTORYLOG installation
+variable to the history log.
+:p.
+If drive and path are not specified, the drive and path where EPFINSTS.EXE
+is running is used.
+:p.
+If this parameter is not specified, no history log is maintained.
+:p.Example&colon.
+:xmp.
+   /L2&colon.C&colon.\ABC\HISTORY.LOG
+:exmp.
+.*
+:dt.&slash.L3&colon.  &slash.L4&colon.  &slash.L5&colon.:hp1.log files:ehp1.
+:dd.
+Each of these parameters can contain a drive, path, and file name of a log file.
+They are preserved in installation variables EPFIL3LOG, EPFIL4LOG, and EPFIL5LOG
+for your use.
+.*
+:dt.&slash.P=:hp1.prodname:ehp1.
+:dd.Specifies the name of the product on which the action is performed.
+:p.
+If the product name contains spaces, it must be enclosed in double quotes (").
+:p.
+Sample valid product name specifications:
+:sl compact.
+:li.&slash.P="Product name with spaces"
+:li.&slash.P=productname
+:esl.
+.*
+:dt.&slash.R&colon.:hp1.response file:ehp1.
+:dd.Specifies the drive, path, and file name of the specific response file.
+:p.The installation and maintenance utility sets the EPFIRESPFILE installation
+variable to the response file.
+:p.Example&colon.
+:xmp.
+   /R&colon.L&colon.\XYZ\RESPONSE.DAT
+:exmp.
+.*
+:dt.&slash.O=:hp1.source environment:ehp1.
+:dd.Specifies the source environment (origin) of the installation or update.
+Valid values for this parameter are&colon.
+:ul compact.
+:li.DRIVE
+:li.MVS
+:li.VM
+:li.VSE
+:eul.
+:p.This parameter is ignored for a delete or restore action.
+.*
+:dt.&slash.S&colon.:hp1.source location:ehp1.
+:dd.Specifies the drive and path that contain the source files to be installed.
+:p.The installation and maintenance utility sets the EPFISOURCEDIR installation
+variable to the source location.
+:p.Specifying this parameter sets the &slash.S parameter to DRIVE and overrides
+the value of the HOSTLOC keyword in the product's catalog file.
+:p.If this parameter is not specified the value of the HOSTLOC keyword is not
+overridden.
+:p.Example&colon.
+:xmp.
+   /S&colon.L&colon.\XYZ
+:exmp.
+.*
+:dt.&slash.T&colon.:hp1.install target directory:ehp1.
+:dd.Specifies the drive and path of that the product files are installed into.
+:p.This parameter only affects the value of the FILE directory (directory corresponding to the
+FILELABEL keyword).
+:p.The installation and maintenance utility sets the EPFITARGETDIR installation
+variable to the install target directory.
+:p.Example&colon.
+:xmp.
+   /T&colon.C&colon.\IBB
+:exmp.
+.*
+:dt.&slash.TU&colon.:hp1.update target CONFIG.SYS directory:ehp1.
+:dd.Specifies the drive and path of the target CONFIG.SYS to be updated.
+:p.The installation and maintenance utility sets the EPFITARGETCNF installation
+variable to the update CONFIG.SYS target directory.
+:p.If this parameter is not specified the CONFIG.SYS files are updated as specified
+in the product's package file.
+:p.Example&colon.
+:xmp.
+   /TU&colon.C&colon.\
+:exmp.
+.*
+:dt./X
+:dd.Specifies that the action is unattended.
+:p.
+When you specify this parameter no progress indication is shown.
+:p.
+If information needed for the action to complete is not specified,
+an error occurs.
+If you specify /L1&colon., all error messages
+are logged to the error log file specified.  If /L1&colon. is not specified,
+error messages are logged to the EPFINSTS.OUT file.
+:p.
+If this parameter is not specified, the user will be prompted for
+any information that is needed for the action to complete.
+In this attended mode of operation, progress indication is shown, and
+error messages are displayed to the user in message boxes.
+:edl.
+
+.**********************************************************************
+.* Help for response file parameters
+.**********************************************************************
+:h2 res=2042.Response file parameters
+:p.In general, the format for parameters within a response file
+is :hp1.parameter = value:ehp1..
+:p.Only one parameter can be
+specified per line and parameters can occur in any order.
+:p.
+The following parameters are valid in an installation
+response file.
+:dl tsize=11 break=all.
+:dthd.Parameter
+:ddhd.Description
+:dt.aux:hp1.n:ehp1.
+:dd.Specifies the new default path for the auxiliary directory where
+:hp1.n:ehp1. is any number between 1 and 18. (Thus there are
+18 possible auxiliary directories: AUX1, AUX2,...AUX18.)
+Use this parameter only for an install action.
+:dt.comp
+:dd.Specifies a component within the product for which the operation
+is to be performed.  Use multiple comp parameters
+to specify more than one component.  Invalid components are
+ignored.
+:dt.cfgupdate
+:dd.Specifies whether the CONFIG.SYS file is automatically
+updated.  Valid values for this parameter are AUTO
+(automatically update CONFIG.SYS) or MANUAL
+(do not update CONFIG.SYS).
+This parameter is used only for install or update actions
+and is ignored if any other action is specified.
+:dt.copy
+:dd.Specifies the source and target files for a copy process.
+The format of this parameter is&colon.
+:xmp.
+  COPY = from_filespec to_filespec
+:exmp.
+:p.
+Where :hp1.from_filespec:ehp1. is the source file and
+:hp1.to_filespec:ehp1. is the target file.  If the to_filespec
+already exists, it is overwritten.  If either file specification
+is not valid, the copy is not performed.
+:dt.deletebackup
+:dd.Specifies whether to delete only the backup versions of the
+product or to delete the entire product.
+Valid values for this parameter are YES
+or NO.  This parameter is used only for a delete action
+and is ignored if any other action is specified.
+:dt.file
+:dd.Specifies the FILE directory that the product is to be installed
+into.  This parameter is used only for an install action and is
+ignored if any other action is specified.
+:dt.include
+:dd.Specifies the which general response files to include with a specific
+response file.
+The format of this parameter is&colon.
+:xmp.
+  INCLUDE = filespec
+:exmp.
+:p.
+Where :hp1.filespec:ehp1. is the general response file to be
+included.  If the file specification contains any global characters
+(&asterisk. or ?), the first file found which matches the
+specification is included.  If the specification is not valid,
+no general response file is included.
+:p.
+The following search order is used to find the general response files
+specified.
+:ol compact.
+:li.The fully qualified file specification, if specified with :hp1.filespec:ehp1.
+:li.The current directory
+:li.The file name together with the /G&colon. invocation parameter
+:li.Each directory in the PATH environment variable
+:li.Each directory in the DPATH environment variable
+:eol.
+:dt.overwrite
+:dd.Specifies whether to automatically overwrite files during
+installation.  Valid values for this parameter are YES
+or NO.
+This parameter is used only for an install action
+and is ignored if any other action is specified.
+:dt.savebackup
+:dd.Specifies whether to save a backup version of the product
+when it is updated.
+Valid values for this parameter are YES
+or NO.  This parameter is used only for an update action
+and is ignored if any other action is specified.
+:dt.userexit
+:dd.Specifies the name of a user exit that you want started.
+The format of this parameter is&colon.
+:xmp.
+  USEREXIT = filespec
+:exmp.
+:p.
+Where :hp1.filespec:ehp1. is the name of a user exit.
+If the file specification contains any global characters
+(&asterisk. or ?), the first executable found which matches the
+specification is started.  If the specification is not valid,
+no user exit is started.
+:p.
+The following search order is used to find the specified user exit.
+:ol compact.
+:li.The fully qualified file specification, if specified with :hp1.filespec:ehp1.
+:li.The current directory
+:li.Each directory in the PATH environment variable
+:li.Each directory in the DPATH environment variable
+:eol.
+:dt.work
+:dd.Specifies the WORK directory that will be used during product
+installation.  This parameter is used only for an install action and is
+ignored if any other action is specified.
+:edl.
+
+.**********************************************************************
+.* EPFIE205: %1 has already been installed.  You cannot install a
+.*           product twice.
+.**********************************************************************
+:h2 name=IHM205 res=205.Help for EPFIE205
+:p.
+:hp7.Explanation:ehp7.
+:p.
+The installation that was requested cannot
+be performed because the specified product has already been installed.
+A product cannot be installed more than once on a workstation.
+:p.
+:hp7.Response:ehp7.
+:p.
+To install a new version of the product, you must first delete the current
+version.  Refer to the product's documentation for further information.
+:p.
+If you are attempting to apply a program fix, use the Update action.
+
+.**********************************************************************
+.* EPFIE206: An invalid response file parameter was found on line %3 of %2.
+.**********************************************************************
+:h2 name=IHM206 res=206.Help for EPFIE206
+:p.
+:hp7.Explanation:ehp7.
+:p.
+An unrecognized parameter was found within the specified response file.
+:p.
+:hp7.Response:ehp7.
+:p.
+Enter the correct
+:link reftype=hd res=2042.response file parameters:elink.
+and try the operation again.
+
+.**********************************************************************
+.* EPFIE207: An invalid value for a response file parameter was found
+.*           on line %3 of %2.
+.**********************************************************************
+:h2 name=IHM207 res=207.Help for EPFIE207
+:p.
+:hp7.Explanation:ehp7.
+:p.
+The response file parameter specified is valid, but the
+value specified (on the right-hand side of the equal sign)
+is not valid.
+:p.
+:hp7.Response:ehp7.
+:p.
+Correct the
+:link reftype=hd res=2042.response file parameters:elink.
+and try the operation again.
+
+.**********************************************************************
+.* EPFIE208: The response file contains
+.*           more than 100 component specifications.
+.**********************************************************************
+:h2 name=IHM208 res=208.Help for EPFIE208
+:p.
+:hp7.Explanation:ehp7.
+:p.
+More than 100 component parameters exist within the response file.
+A maximum of 100 component parameters are allowed.
+:p.
+:hp7.Response:ehp7.
+:p.
+Remove unneeded component parameters from the response file
+and try the operation again.
+
+.**********************************************************************
+.* EPFIE209: Currently unused
+.**********************************************************************
+
+.**********************************************************************
+.* EPFIE210: The product name specified with the /p parameter ('%1') could
+.*           not be found within the product catalog list.
+.**********************************************************************
+:h2 name=IHM210 res=210.Help for EPFIE210
+:p.
+:hp7.Explanation:ehp7.
+:p.The requested operation cannot be performed because the product name
+specified is not valid.  The product name specified as the value of
+the &slash.p parameter must exactly match the product name as it appears
+in the product list.  If the product name contains spaces then
+it must be enclosed within double quotes (").
+:p.
+Sample valid product name specifications:
+:sl compact.
+:li.&slash.p="Product name with spaces"
+:li.&slash.p=productname
+:esl.
+:p.
+:hp7.Response:ehp7.
+:p.
+Correct the &slash.p parameter and try the operation again.
+
+.**********************************************************************
+.* EPFIE211: A product name is required to perform the requested action,
+.*           but one was not specified.
+.**********************************************************************
+:h2 name=IHM211 res=211.Help for EPFIE211
+:p.
+:hp7.Explanation:ehp7.
+:p.
+The operation requested from the command line options cannot be
+performed without the &slash.p parameter.  A product name must be specified
+when performing an install, update, restore, or delete.
+:p.
+:hp7.Response:ehp7.
+:p.
+Add a &slash.p parameter to specify a product name and try the
+operation again.
+
+.**********************************************************************
+.* EPFIE212: The requested action could not be performed in a unattended mode.
+.*           Additional command line options or response file information
+.*           must be specified.
+.**********************************************************************
+:h2 name=IHM212 res=212.Help for EPFIE212
+:p.
+:hp7.Explanation:ehp7.
+:p.The &slash.x command line option specified that a
+completely unattended installation be performed, but
+not enough information was specified.
+In order for the operation to complete successfully, all the
+information needed to complete the operation must be specified on the
+command line or in the response file.
+:p.
+:hp7.Response:ehp7.
+:p.
+:ol.
+:li.Try the command again omitting the &slash.x parameter.
+This allows the installation and maintenance utility to prompt for the
+missing information.
+:li.After seeing what information is missing, specify this
+missing information using
+:link reftype=hd res=2041.command line options:elink.
+and :link reftype=hd res=2042.response file parameters:elink..
+:li.Try the command again using the &slash.x parameter.
+:li.If the operation is not successful, repeat this procedure starting
+from step 1.
+:eol.
+
+.**********************************************************************
+.* EPFIE213: %1 cannot be updated because it is not installed.
+.**********************************************************************
+:h2 name=IHM213 res=213.Help for EPFIE213
+:p.
+:hp7.Explanation:ehp7.
+:p.
+The update operation requested from the command line options cannot
+be performed because the specified product is not installed.
+A product cannot be updated unless it has been installed.
+:p.
+:hp7.Response:ehp7.
+:p.
+If you want to update the product, you must first install it.
+Refer to the documentation for your product for further
+information on installation.
+
+.**********************************************************************
+.* EPFIE214: %1 cannot be deleted because it is not installed.
+.**********************************************************************
+:h2 name=IHM214 res=214.Help for EPFIE214
+:p.
+:hp7.Explanation:ehp7.
+:p.
+The delete operation requested from the command line options cannot
+be performed because the specified product is not installed.
+A product cannot be deleted unless it has been installed.
+:p.
+:hp7.Response:ehp7.
+:p.
+If you have
+installed the product, it is possible that the application profile file
+has been corrupted or deleted.  If this is the case, you
+must install the product again and then delete it.  When doing this second
+installation, specify the
+same directories where the product was originally installed.  The
+installation will go very quickly since no files will need to
+be transferred.
+
+.**********************************************************************
+.* EPFIE215: %1 cannot be restored.  This may be because the product has
+.*           not yet been installed and updated.
+.**********************************************************************
+:h2 name=IHM215 res=215.Help for EPFIE215
+:p.
+:hp7.Explanation:ehp7.
+:p.
+The restore operation requested from the command line options
+cannot be performed because the specified product has not been installed
+and updated.
+A product cannot be restored unless it has been installed and then
+updated at least once
+(with the :hp2.Save a backup version:ehp2. option selected).
+
+.**********************************************************************
+.* EPFIQ216: Deletion of the '%1' component requires that the '%2' component
+.*           also be deleted.  Do you want to delete the '%2'?
+.**********************************************************************
+:h2 name=IHM216 res=216.Help for EPFIQ216
+:p.
+:hp7.Explanation:ehp7.
+:p.
+A selected component (or component backup) cannot be deleted because
+another component is dependent upon it.
+:p.
+:hp7.Response:ehp7.
+:p.
+Select one of the following&colon.
+:dl tsize=5 break=all compact.
+:dt.:hp2.Yes:ehp2.
+:dd.Deletes the dependent component.
+:dt.:hp2.No:ehp2.
+:dd.Exits the error message box and returns you to the
+Delete window.  You can cancel the selection of the
+specified component and try the deletion again.
+:edl.
+
+.**********************************************************************
+.* EPFIE218: The requested action cannot be performed because a
+.*           Communications Manager DLL cannot be found.
+.**********************************************************************
+:h2 name=IHM218 res=218.Help for EPFIE218
+:p.
+:hp7.Explanation:ehp7.
+:p.
+The requested action requires the HLLAPI interface to
+Communications Manager, but the HLLAPI DLL (ACS3EHAP.DLL) cannot
+be loaded.
+
+:p.
+:hp7.Response:ehp7.
+:p.
+:ol.
+:li.Ensure that you have Communications Manager installed, including
+the HLLAPI programming interfaces.
+:li.If HLLAPI is installed, ensure that the LIBPATH statement in
+your CONFIG.SYS file is set so that it contains the path where the
+HLLAPI DLL is located.  If a change is required to the CONFIG.SYS
+file, you must restart your workstation in order to activate the
+change.
+:li.Try the operation again.
+:eol.
+
+.**********************************************************************
+.* EPFIE219: A catalog or package file '%3' has been included by
+.*           another catalog or package file more than once.
+.**********************************************************************
+:h2 name=IHM219 res=219.Help for EPFIE219
+:p.
+:hp7.Explanation:ehp7.
+:p.
+A catalog or package file has been recursively included by another
+catalog or package file, causing an infinite loop.
+:p.
+The simplest example of this problem is a product that contains
+two package files, A and B.  If package file A includes package file B
+and package file B includes package file A, then an infinite loop
+results.
+:p.
+:hp7.Response:ehp7.
+:p.
+Remove the INCLUDE entry that is causing this problem
+from the catalog or package file and try the operation again.
+
+
+.**********************************************************************
+.* EPFIE220: A /O command line option must be specified.
+.**********************************************************************
+:h2 name=IHM220 res=220.Help for EPFIE220
+:p.
+:hp7.Explanation:ehp7.
+:p.
+The &slash.o command line option must be specified if the
+&slash.c command line option is used.  The &slash.o option
+specifies the source of the open operation (VM, MVS, VSE, or Drive)
+and is required to correctly perform the open operation.
+:p.
+:hp7.Response:ehp7.
+:p.
+Specify the source of the operation by using the /o
+:link reftype=hd res=2041.command line option:elink. and
+then try the operation again.
+
+.**********************************************************************
+.* EPFIE223: The requested operation could not be performed because
+.*           Installation and Maintenance is missing information about the
+.*           selected product.
+.**********************************************************************
+:h2 name=IHM223 res=223.Help for EPFIE223
+:p.
+:hp7.Explanation:ehp7.
+:p.
+Most likely the selected product was installed using a previous version
+of the installation and maintenance utility.  The current version of the installation
+and maintenance utility requires additional information to complete the
+requested operation.
+:p.
+:hp7.Response:ehp7.
+:p.
+To obtain the additional information, open the catalog that the selected
+product is in.
+After the open is complete, select the product and try the
+operation again.
+.****************************************************************
+.* EPFIE224: Only a drive may be entered for the '%1' entry.
+.****************************************************************
+:h2 name=IHM224 res=224.Help for EPFIE224
+:p.
+:hp7.Explanation:ehp7.
+:p.
+You can only enter a drive letter followed
+by a colon (for example, C&colon.).
+:p.
+:hp7.Response:ehp7.
+:ul.
+:li.Correct the entry.
+:li.Try the operation again.
+:eul.
+:eh1.
+
+.**********************************************************************
+.* EPFIE225: The temporary directory for deferred installation files could
+.*           not be created. (%1)
+.**********************************************************************
+:h2 name=IHM225 res=225.Help for EPFIE225
+:p.
+:hp7.Explanation:ehp7.
+:p.
+A temporary directory to hold deferred installation files cannot be
+created.  This can occur for the following reasons:
+:ul.
+:li.The drive is not recognized.
+This can be caused if a file with
+a High Performance File System &lparen.HPFS&rparen. name or extension is
+transferred to a drive formatted with the FAT file system.
+:li.Another application is using the drive.
+:eul.
+:p.
+:hp7.Response:ehp7.
+:ol.
+:li.Try one of the following:
+:ul.
+:li.Select a different drive.
+:li.Format the drive.
+:li.Wait until the other application is finished.
+:eul.
+:li.Try the operation again.
+:eol.
+:eh1.
+
+.**********************************************************************
+.* EPFIE226: An error occurred writing information to the deferred
+.*           installation command file. (%1)
+.**********************************************************************
+:h2 name=IHM226 res=226.Help for EPFIE226
+:p.
+:hp7.Explanation:ehp7.
+:p.
+The deferred installation command file cannot be written to.
+Another program might be using this file, or there is no more disk space on
+the boot drive.
+:p.
+:hp7.Response:ehp7.
+:ol compact.
+:li.Check the disk space.
+:li.Close any program using the file.
+:li.Try the operation again.
+:eol.
+:eh1.
+
+.**********************************************************************
+.* EPFIE227: An error occurred completing the deferred installation
+.*           preparation.
+.**********************************************************************
+:h2 name=IHM227 res=227.Help for EPFIE227
+:p.
+:hp7.Explanation:ehp7.
+:p.
+The deferred installation preparation failed because CONFIG.SYS is a
+read-only file or there is not enough disk space on the boot drive.
+:p.
+:hp7.Response:ehp7.
+:ol compact.
+:li.Ensure that your CONFIG.SYS is not a read-only file.
+:li.Remove some files from the boot drive.
+:li.Try the operation again.
+:eol.
+
+.**********************************************************************
+.* EPFIE232: The syntax of an expression within the package file is invalid.
+.*           The expression in error is: '%1'.
+.**********************************************************************
+:h2 name=IHM232 res=232.Help for EPFIE232
+:p.
+:hp7.Explanation:ehp7.
+:p.
+The specified expression is not valid.  This could be for one of the
+following reasons:
+:ul compact.
+:li.Parentheses are mismatched.  Either a left parenthesis exists without a
+matching right parenthesis or vice versa.
+:li.The syntax of the expression is not correct.  An operator may be missing
+an operand, or an operand may exist without an operator.
+:li.Evaluation of the expression causes a division by zero to occur.
+:eul.
+:p.
+:hp7.Response:ehp7.
+:ol compact.
+:li.Correct the expression within the package file.
+:li.Try the operation again.
+:eol.
+
+.**********************************************************************
+.* EPFIE233: An expression within the package file contains an operand
+.*           type conflict.  One or more of the operands within the
+.*           following expression do not have the same type: '%1'.
+.**********************************************************************
+:h2 name=IHM233 res=233.Help for EPFIE233
+:p.
+:hp7.Explanation:ehp7.
+:p.
+One of the operators in the specified expression has operands of different
+types.  All operators require that the operands be of the same type.
+Examples of expressions that contain operand type conflicts are:
+:xmp.
+ "string" == 123
+ "string" / "string"
+ ("string" == "string") &amp.&amp. "string2"
+:exmp.
+:p.
+:hp7.Response:ehp7.
+:ol compact.
+:li.Correct the expression within the package file.
+:li.Try the operation again.
+:eol.
+
+.**********************************************************************
+.* EPFIE234: Cannot create the '%1' object on the Workplace Shell.  The
+.*           setup string parameter was '%2'
+.**********************************************************************
+:h2 name=IHM234 res=234.Help for EPFIE234
+:p.
+:hp7.Explanation:ehp7.
+:p.
+The CREATEWPSOBJECT installation exit could not create the specified
+object.  The object may already exist on the desktop.
+:p.
+:hp7.Response:ehp7.
+:ol compact.
+:li.Specify 'R' for the replace parameter in the package file.
+:li.Verify that the parameters in the setup string are valid for the
+object class for which you are creating an instance.
+:li.Try the operation again.
+:eol.
+
+.**********************************************************************
+.* EPFIW235: A back-level version of the operating system has been
+.*           found.
+.**********************************************************************
+:h2 name=IHM235 res=235.Help for EPFIW235
+:p.
+:hp7.Explanation:ehp7.
+:p.
+Without the current level of OS/2 2.0 installed, your product
+installation may cause your workstation to hang.
+:p.
+:hp7.Response:ehp7.
+:p.
+Install the current version of OS/2 (CSD XR06055 or above).
+
+:euserdoc.
+

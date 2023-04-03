@@ -1,0 +1,5 @@
+dubsamp
+dubsamp.exe /NOI
+dubsamp.map
+os2386.lib dublink.lib;
+

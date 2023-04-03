@@ -1,0 +1,31 @@
+/********************************************************
+* IPF.LXL - load macro for IPF (Help Panel) files       *
+*                                                       *
+* This macro is invoked by LPEX when a file with an     *
+* extension of .DOC is edited (unless the /asis or      *
+* /nopro options are used. It sets up the GML parser    *
+* and fonts for a colour display.                       *
+*                                                       *
+*          Copyright IBM Corporation 1989               *
+*                                                       *
+********************************************************/
+trace o
+
+'set actionbar.~Tags.~Artwork ipfart'
+'set actionbar.~Tags.~Example ipfxmp'
+'set actionbar.~Tags.~Figure ipffig'
+'set actionbar.~Tags.~Footnote ipffn'
+'set actionbar.~Tags.~Heading ipfhead'
+'set actionbar.~Tags.Lin~k ipflink'
+'set actionbar.~Tags.~List.~Ordered_list ipfol'
+'set actionbar.~Tags.~List.~Definition_list ipfdl'
+'set actionbar.~Tags.~List.~Simple_list ipfsl'
+'set actionbar.~Tags.~List.~Parameter_list ipfparm'
+'set actionbar.~Tags.~List.~Unordered_list ipful'
+'set actionbar.~Tags.~Note ipfnote'
+'set actionbar.~Tags.~Paragraph ipfparg'
+'set actionbar.~Tags.~Table ipftable'
+
+'SET ACTIONBAR.~Help.~IPF_help 6 START VIEW IPFC20'
+'SET HELP. 16137'
+

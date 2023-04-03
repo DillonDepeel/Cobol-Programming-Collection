@@ -1,0 +1,82 @@
+
+
+DLLAPI - Dynamic Link Library
+
+
+DESCRIPTION:
+
+The sample has a dynamic link library (DLL) file and an executable (EXE)
+file. The DLL provides the 32-bit API function that is called by the
+EXE file. The EXE calls the function with invalid pointer parameters,
+followed by a call with valid pointer parameters.
+
+TASK:
+
+The DLL uses protected memory to protect its shared data, and
+exception management to validate the API's pointer parameters,
+handling the errors returned.  Support PM functions in DLLs that
+can be invoked from other executables.
+
+CONCEPT/FEATURE:
+
+Demonstrates how to write and use a dynamic link library (DLL).
+The EXE file demonstrates how to handle a divide-by-zero exception.
+
+SAMPLE LOCATION:
+
+Inside the OS/2 Sample Programs (which is inside the VisualAge C++ 
+Samples folder).
+
+Note:This sample is not provided in project form.
+
+SOURCE FILE LOCATION:
+
+X:\ibmcpp\samples\toolkit\os2\dllapi
+where X: is the drive you installed the samples and document component
+of VisualAge C++ for OS/2.
+
+
+HOW TO RUN THE SAMPLE:
+
+-From your OS/2 desktop:
+ Double-click on the sample's icon.
+
+-From an OS/2 command prompt:
+ To start a non-WorkPlace Shell sample program from an OS/2 command
+ prompt, type the name of the executable file and press Enter.  If you
+ have edited source code of a sample program and want to recompile,
+ link, and run the files, use the NMAKE tool.  Your output is the
+ executable file. For information about the NMAKE utility,
+ see the OS/2 Tools Reference.
+
+
+SOFTWARE/HARDWARE PREREQUISITES:
+
+- IBM VisualAge C++
+- OS/2 Warp
+- IBM or compatible 386 and up.
+
+REQUIRED FILES      DESCRIPTIONS
+
+  dlapi_dg.c        Dialog Procedures for user defined dialogs
+  dlapi_hp.c        Help Manager interface routines
+  dlapi_in.c        Initiaization/Exit routines
+  dllapi.c          Main routine
+  dllapi.def        Link import/export definition file
+  dllapi.dlg        Dialog resource file
+  dllapi.exe
+  dllapi.h          
+  dllapi.hlp        Help resource file
+  dllapi.ico
+  dllapi.ipf        Input for IPF compiler
+  dllapi.mak        MakeMake generated makefile
+  dllapi.rc
+  dllcomm.h
+  dllib.c           Display file routines like SearchFile() ReadFile()
+  dllib.def         Link definition file
+  dllib.dll
+  dllib.h
+  readme            This file
+
+
+

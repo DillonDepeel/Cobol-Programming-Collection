@@ -1,0 +1,8 @@
+/********************************************************
+* LXL.LXL - load macro for LXL files (LPEX load files). *
+* See LX.LXL for full details.                          *
+********************************************************/
+trace o
+
+'MACRO LX.LXL'
+

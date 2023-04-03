@@ -1,0 +1,122 @@
+
+
+TEMPLATE - Application Template
+
+
+DESCRIPTION:
+
+ TEMPLATE demonstrates the structure common to all Presentation Manager
+ applications.  This sample program shows how to structure an application that
+ has more than one source file.  It includes an initialization file,
+ which is used and then discarded, the resident code, and the
+ non-resident code that is loaded only when needed.
+
+TASK:
+
+ Structure an application with more than one source file.
+
+CONCEPT/FEATURE:
+
+ TEMPLATE demonstrates how to:
+
+ - Create a standard window
+ - Load resources from a resource file
+ - Create a dialog box and a button control
+ - Display a message box
+ - Open a file
+ - Close a file
+ - Print text
+ - Paint a window
+ - Process a message from a menu
+ - Run a thread in the background
+ - Exit a process.
+
+ Help files are provided by the Information Presentation Facility.
+
+SAMPLE LOCATION:
+
+ Inside the PM Sample Programs inside the main VisualAge C++ for OS/2
+ folder on your OS/2 desktop.
+
+ Note: This sample is not provided in project form.
+
+SOURCE FILE LOCATION:
+
+ X:\ibmcpp\samples\toolkit\pm\template
+
+ where X: is the drive you installed the samples and document component
+ of VisualAge C++ for OS/2.
+
+
+HOW TO RUN THE SAMPLE:
+
+
+-From your OS/2 desktop:
+ Double-click on the sample's icon.
+
+-From an OS/2 command prompt:
+ To start a non-WorkPlace Shell sample program from an OS/2 command
+ prompt, type the name of the executable file and press Enter.  If you
+ have edited source code of a sample program and want to recompile,link,
+ and run the files, use the NMAKE tool. Your output is the executable
+ file.  For information about the NMAKE utility, see the
+ OS/2 Tools Reference.
+
+
+SOFTWARE/HARDWARE PREREQUISITES:
+
+- IBM VisualAge C++
+- OS/2 Warp
+- IBM or compatible 386 and up.
+
+
+REQUIRED FILES      DESCRIPTIONS 
+
+  dlg.c             Sample dialog procedure
+  dlg.h
+  dlg.ipf
+  dlg.obj
+  edit.c            Template for WM_COMMAND responses from an edit menu
+  edit.ipf
+  edit.obj
+  file.c            Template for WM_COMMAND responses from a file menu
+  file.ipf
+  file.obj
+  funchead.c        "boiler plate"
+  head.c            "boiler plate"
+  help.c            Routines to interface with the Help Manager
+  help.h
+  help.ipf
+  help.obj
+  help.rc
+  init.c            Initialization routines
+  init.obj
+  main.c            main() entry point
+  main.h
+  main.ico
+  main.obj
+  main.rc           resource compiler input
+  main.res
+  menu.ipf
+  pnt.c             Window painting routines
+  pnt.obj
+  prodinfo.bmp
+  readme            this file
+  temphelp.mak      MakeMake generated makefile for .hlp
+  temphelp.mak.txt
+  template.def
+  template.dlg      Dialog resources
+  template.exe      Sample executable
+  template.hlp      Help resource file
+  template.ipf
+  template.mak      MakeMake generated makefile
+  template.mak.txt
+  template.map
+  thrd.c            thread support routines
+  thrd.obj
+  user.c            User message response routines
+  user.obj
+  xtrn.h
+
+
+

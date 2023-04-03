@@ -1,0 +1,20 @@
+/**************************************************
+* IPF.LXL - load macro for IPF (Help Panel) files *
+* See DOC.LXL for full details.                   *
+***************************************************/
+trace o
+
+'purge'
+'Msg setting up IPF controls'
+'set actionbar.~Tags.~Help ipfhelp'
+'set actionbar.~Insert.~Skeleton ipfskel'
+'set actionbar.~Insert.~Artwork ipfart'
+'set actionbar.~Insert.~Figure ipffig'
+'set actionbar.~Insert.~Link ipflink' 
+'set actionbar.~Insert.~Footnote ipffn'
+'set actionbar.~Insert.~Note ipfnote'
+'set actionbar.~Insert.~Parameter_list ipfparm'
+'set actionbar.~Insert.~Example ipfxmp' 
+'set actionbar.~Insert.~Heading ipfhead'
+'msg '
+

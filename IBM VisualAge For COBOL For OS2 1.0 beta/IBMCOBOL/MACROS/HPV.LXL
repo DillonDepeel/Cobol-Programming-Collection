@@ -1,0 +1,5 @@
+/* HPV.LXL - LPEX language-sensitive profile for C++ VB header files. */
+trace o
+
+'MACRO C.LXL'
+

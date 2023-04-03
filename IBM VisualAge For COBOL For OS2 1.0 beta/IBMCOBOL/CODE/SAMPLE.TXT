@@ -1,0 +1,22 @@
+The CODE editor lets you edit source for programming languages.
+It uses language editing features (such as syntax checking,
+language sensitive help, and token highlighting) to help
+you edit each specific programming language.
+
+In this exercise, you will use the editor to edit basic text.
+
+By the end of the exercise, you will be able to:
+
+- Type in text, and get text from other files
+- Use text blocking to copy, cut, and paste text.
+- Mark lines of text, and find these marks again.
+- Use some of the editing shortcut keys.
+- Find specific text strings.
+- Go to particular line numbers.
+- Open more than one view of a file.
+- Be introduced to some basic editor commands.
+- Use the macro log to recover previous commands.
+
+You will be able to apply what you learn here to
+editing real programming source in later exercises.
+

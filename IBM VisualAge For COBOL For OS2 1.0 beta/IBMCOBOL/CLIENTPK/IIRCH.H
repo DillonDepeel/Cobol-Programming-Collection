@@ -1,0 +1,299 @@
+/*
+********************************************************************
+**                        SOFTWARE INSTALLER
+** 5621-434 (C) COPYRIGHT IBM CORP. 1989, 1995. ALL RIGHTS RESERVED.
+**               LICENSED MATERIALS - PROPERTY OF IBM
+********************************************************************
+*/
+
+/*******************************************************************
+**  Filename:    IIRCH.H
+**  Description: Header file for IIRC.RC.
+********************************************************************/
+
+#define INST_BITMAP1            1400
+#define INST_BITMAP2            1401
+#define INST_BITMAP3            1402
+#define INST_BITMAP4            1403
+#define INST_BITMAP5            1404
+#define INST_BITMAP6            1405
+#define INST_BITMAP7            1406
+#define INST_BITMAP8            1407
+#define INST_BITMAP9            1408
+#define INST_BITMAP10           1409
+#define INST_BITMAP11           1410
+#define INST_BITMAP12           1411
+#define INST_BITMAP13           1412
+#define INST_BITMAP14           1413
+#define INST_BITMAP15           1414
+#define INST_BITMAP16           1415
+#define INST_BITMAP17           1416
+#define INST_BITMAP18           1417
+#define INST_BITMAP19           1418
+#define INST_BITMAP20           1419
+#define INST_BITMAP21           1420
+#define INST_BITMAP22           1421
+#define INST_BITMAP23           1422
+#define INST_BITMAP24           1423
+#define INST_BITMAP25           1424
+#define INST_BITMAP26           1425
+#define INST_BITMAP27           1426
+#define INST_BITMAP28           1427
+#define INST_BITMAP29           1428
+#define INST_BITMAP30           1429
+#define INST_BITMAP31           1430
+#define INST_BITMAP32           1431
+#define INST_BITMAP33           1432
+#define INST_BITMAP34           1433
+#define INST_BITMAP35           1434
+#define INST_BITMAP36           1435
+#define INST_BITMAP37           1436
+#define INST_BITMAP38           1437
+#define INST_BITMAP39           1438
+#define INST_BITMAP40           1439
+#define INST_BITMAP41           1440
+#define INST_BITMAP42           1441
+#define INST_BITMAP43           1442
+#define INST_BITMAP44           1443
+#define INST_BITMAP45           1444
+#define INST_BITMAP46           1445
+#define INST_BITMAP47           1446
+#define INST_BITMAP48           1447
+#define INST_BITMAP49           1448
+#define INST_BITMAP50           1449
+#define INST_BITMAP51           1450
+#define INST_BITMAP52           1451
+#define INST_BITMAP53           1452
+#define INST_BITMAP54           1453
+#define INST_BITMAP55           1454
+#define INST_BITMAP56           1455
+#define INST_BITMAP57           1456
+#define INST_BITMAP58           1457
+#define INST_BITMAP59           1458
+#define INST_BITMAP60           1459
+#define INST_BITMAP61           1460
+#define INST_BITMAP62           1461
+#define INST_BITMAP63           1462
+#define INST_BITMAP64           1463
+#define INST_BITMAP65           1464
+#define INST_BITMAP66           1465
+#define INST_BITMAP67           1466
+#define INST_BITMAP68           1467
+#define INST_BITMAP69           1468
+#define INST_BITMAP70           1469
+#define INST_BITMAP71           1470
+#define INST_BITMAP72           1471
+#define INST_BITMAP73           1472
+#define INST_BITMAP74           1473
+#define INST_BITMAP75           1474
+#define INST_BITMAP76           1475
+#define INST_BITMAP77           1476
+#define INST_BITMAP78           1477
+#define INST_BITMAP79           1478
+#define INST_BITMAP80           1479
+#define INST_BITMAP81           1480
+#define INST_BITMAP82           1481
+#define INST_BITMAP83           1482
+#define INST_BITMAP84           1483
+#define INST_BITMAP85           1484
+#define INST_BITMAP86           1485
+#define INST_BITMAP87           1486
+#define INST_BITMAP88           1487
+#define INST_BITMAP89           1488
+#define INST_BITMAP90           1489
+#define INST_BITMAP91           1490
+#define INST_BITMAP92           1491
+#define INST_BITMAP93           1492
+#define INST_BITMAP94           1493
+#define INST_BITMAP95           1494
+#define INST_BITMAP96           1495
+#define INST_BITMAP97           1496
+#define INST_BITMAP98           1497
+#define INST_BITMAP99           1498
+#define INST_BITMAP100          1499
+
+#define EXIT_BUTTON_COORDS      1600
+#define INST_WINDOW_SIZE        1601
+#define INST_WINDOW_TITLETEXT   1602
+#define INST_START_PD_TEXT      1603
+#define INST_BACKGROUND_COLOR   1604
+
+/******************************************************************/
+/* These INST_BITMAP?_COORDS resource IDs must be sequential !!   */
+/******************************************************************/
+#define INST_BITMAP1_COORDS     1620
+#define INST_BITMAP2_COORDS     1621
+#define INST_BITMAP3_COORDS     1622
+#define INST_BITMAP4_COORDS     1623
+#define INST_BITMAP5_COORDS     1624
+#define INST_BITMAP6_COORDS     1625
+#define INST_BITMAP7_COORDS     1626
+#define INST_BITMAP8_COORDS     1627
+#define INST_BITMAP9_COORDS     1628
+#define INST_BITMAP10_COORDS    1629
+#define INST_BITMAP11_COORDS    1630
+#define INST_BITMAP12_COORDS    1631
+#define INST_BITMAP13_COORDS    1632
+#define INST_BITMAP14_COORDS    1633
+#define INST_BITMAP15_COORDS    1634
+#define INST_BITMAP16_COORDS    1635
+#define INST_BITMAP17_COORDS    1636
+#define INST_BITMAP18_COORDS    1637
+#define INST_BITMAP19_COORDS    1638
+#define INST_BITMAP20_COORDS    1639
+#define INST_BITMAP21_COORDS    1640
+#define INST_BITMAP22_COORDS    1641
+#define INST_BITMAP23_COORDS    1642
+#define INST_BITMAP24_COORDS    1643
+#define INST_BITMAP25_COORDS    1644
+#define INST_BITMAP26_COORDS    1645
+#define INST_BITMAP27_COORDS    1646
+#define INST_BITMAP28_COORDS    1647
+#define INST_BITMAP29_COORDS    1648
+#define INST_BITMAP30_COORDS    1649
+#define INST_BITMAP31_COORDS    1650
+#define INST_BITMAP32_COORDS    1651
+#define INST_BITMAP33_COORDS    1652
+#define INST_BITMAP34_COORDS    1653
+#define INST_BITMAP35_COORDS    1654
+#define INST_BITMAP36_COORDS    1655
+#define INST_BITMAP37_COORDS    1656
+#define INST_BITMAP38_COORDS    1657
+#define INST_BITMAP39_COORDS    1658
+#define INST_BITMAP40_COORDS    1659
+#define INST_BITMAP41_COORDS    1660
+#define INST_BITMAP42_COORDS    1661
+#define INST_BITMAP43_COORDS    1662
+#define INST_BITMAP44_COORDS    1663
+#define INST_BITMAP45_COORDS    1664
+#define INST_BITMAP46_COORDS    1665
+#define INST_BITMAP47_COORDS    1666
+#define INST_BITMAP48_COORDS    1667
+#define INST_BITMAP49_COORDS    1668
+#define INST_BITMAP50_COORDS    1669
+#define INST_BITMAP51_COORDS    1670
+#define INST_BITMAP52_COORDS    1671
+#define INST_BITMAP53_COORDS    1672
+#define INST_BITMAP54_COORDS    1673
+#define INST_BITMAP55_COORDS    1674
+#define INST_BITMAP56_COORDS    1675
+#define INST_BITMAP57_COORDS    1676
+#define INST_BITMAP58_COORDS    1677
+#define INST_BITMAP59_COORDS    1678
+#define INST_BITMAP60_COORDS    1679
+#define INST_BITMAP61_COORDS    1680
+#define INST_BITMAP62_COORDS    1681
+#define INST_BITMAP63_COORDS    1682
+#define INST_BITMAP64_COORDS    1683
+#define INST_BITMAP65_COORDS    1684
+#define INST_BITMAP66_COORDS    1685
+#define INST_BITMAP67_COORDS    1686
+#define INST_BITMAP68_COORDS    1687
+#define INST_BITMAP69_COORDS    1688
+#define INST_BITMAP70_COORDS    1689
+#define INST_BITMAP71_COORDS    1690
+#define INST_BITMAP72_COORDS    1691
+#define INST_BITMAP73_COORDS    1692
+#define INST_BITMAP74_COORDS    1693
+#define INST_BITMAP75_COORDS    1694
+#define INST_BITMAP76_COORDS    1695
+#define INST_BITMAP77_COORDS    1696
+#define INST_BITMAP78_COORDS    1697
+#define INST_BITMAP79_COORDS    1698
+#define INST_BITMAP80_COORDS    1699
+#define INST_BITMAP81_COORDS    1700
+#define INST_BITMAP82_COORDS    1701
+#define INST_BITMAP83_COORDS    1702
+#define INST_BITMAP84_COORDS    1703
+#define INST_BITMAP85_COORDS    1704
+#define INST_BITMAP86_COORDS    1705
+#define INST_BITMAP87_COORDS    1706
+#define INST_BITMAP88_COORDS    1707
+#define INST_BITMAP89_COORDS    1708
+#define INST_BITMAP90_COORDS    1709
+#define INST_BITMAP91_COORDS    1710
+#define INST_BITMAP92_COORDS    1711
+#define INST_BITMAP93_COORDS    1712
+#define INST_BITMAP94_COORDS    1713
+#define INST_BITMAP95_COORDS    1714
+#define INST_BITMAP96_COORDS    1715
+#define INST_BITMAP97_COORDS    1716
+#define INST_BITMAP98_COORDS    1717
+#define INST_BITMAP99_COORDS    1718
+#define INST_BITMAP100_COORDS   1719
+
+/******************************************************************/
+/* These INFO1_* resource IDs must be sequential !!               */
+/******************************************************************/
+#define INFO1_DISPLAY           1850
+#define INFO1_TITLE             1851
+#define INFO1_COORDS            1852
+#define INFO1_FILE              1853
+#define INFO1_TEXT1             1854
+#define INFO1_TEXT2             1855
+#define INFO1_TEXT3             1856
+#define INFO1_TEXT4             1857
+#define INFO1_TEXT5             1858
+#define INFO1_TEXT6             1859
+#define INFO1_TEXT7             1860
+#define INFO1_TEXT8             1861
+#define INFO1_TEXT9             1862
+#define INFO1_TEXT10            1863
+
+/******************************************************************/
+/* These INFO2_* resource IDs must be sequential !!               */
+/******************************************************************/
+#define INFO2_DISPLAY           1880
+#define INFO2_TITLE             1881
+#define INFO2_COORDS            1882
+#define INFO2_FILE              1883
+#define INFO2_TEXT1             1884
+#define INFO2_TEXT2             1885
+#define INFO2_TEXT3             1886
+#define INFO2_TEXT4             1887
+#define INFO2_TEXT5             1888
+#define INFO2_TEXT6             1889
+#define INFO2_TEXT7             1890
+#define INFO2_TEXT8             1891
+#define INFO2_TEXT9             1892
+#define INFO2_TEXT10            1893
+
+#define INSTALL_IMU             1951
+#define INST_SOURCES            1952
+#define MVS_BASE_3Q             1953
+#define MVS_NLS_3Q              1954
+#define VM_BASE_TYPE            1955
+#define VM_NLS_TYPE             1956
+#define VSE_BASE_Q              1957
+#define VSE_NLS_Q               1958
+
+#define MVS_RES_DLL_SOURCE      1959
+#define MVS_RES_MSG_SOURCE      1960
+#define MVS_RES_HLP_SOURCE      1961
+#define VSE_RES_DLL_SOURCE      1962
+#define VSE_RES_MSG_SOURCE      1963
+#define VSE_RES_HLP_SOURCE      1964
+#define VM_RES_DLL_SOURCE       1965
+#define VM_RES_MSG_SOURCE       1966
+#define VM_RES_HLP_SOURCE       1967
+
+#define INST_DESTINATION        1970
+#define SOURCE_DIALOG_POS       1971
+#define DRIVE_DIALOG_POS        1972
+#define MVS_DIALOG_POS          1973
+#define MVS_SOURCE_DSN          1974
+#define VSE_DIALOG_POS          1975
+#define VSE_SOURCE_NAME         1976
+#define VM_DIALOG_POS           1977
+#define VM_SOURCE_MINIDISK      1978
+#define PROGRESS_DIALOG_POS     1979
+
+#define STARTPARM_CATALOG_DRIVE 1990
+#define STARTPARM_CATALOG_MVS   1991
+#define STARTPARM_CATALOG_VM    1992
+#define STARTPARM_CATALOG_VSE   1994
+#define STARTPARM_PRODUCT       1995
+#define STARTPARM_ACTION        1996
+#define STARTPARM_POSITION      1997
+#define STARTPARM_RESPFILE      1998
+

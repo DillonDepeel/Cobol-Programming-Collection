@@ -1,0 +1,21 @@
+/******************************************************************************
+ * SEU Prefix command messages                                                *
+ *                                                                            *
+ * This routine is called by SEUCMD.LX to get translatable information.       *
+ *                                                                            *
+ * Returns a message with appropriate substitution.                           *
+ *                                                                            *
+ ******************************************************************************/
+
+ARG MSGNO INSERT
+
+MSG.1 = 'Could not locate source for 'INSERT'.'
+MSG.2 = 'Could not locate matching 'INSERT'.'
+MSG.3 = 'This is not an exclude group header.'
+MSG.4 = '----- 1 data record excluded -----'
+MSG.5 = '----- 'INSERT' data records excluded -----'
+MSG.6 = 'Target of 'INSERT' is contained within 'INSERT' block.'
+
+RETURN MSG.MSGNO
+
+

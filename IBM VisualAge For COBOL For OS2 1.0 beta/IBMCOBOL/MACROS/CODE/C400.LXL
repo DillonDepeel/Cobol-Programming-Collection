@@ -1,0 +1,15 @@
+/* C400.LXL - IBM LPEX language-sensitive editor profile for ILE C/400   */
+
+'MACRO DFT400.LXL'      /* 400 initial settings */
+'MACRO C.LXL'           /* C language settings */
+
+'SET ACTIONBAR.~Actions.C~ompile. 2'
+'SET HELP. 16084'
+'SET ACTIONBAR.~Actions.C~ompile.~Prompt... SAVEALL PROMPT START EVFLCLES "%FILENAME%"'
+'SET HELP. 16084'
+'SET ACTIONBAR.~Actions.C~ompile.~No_prompt SAVEALL PROMPT START EVFLCLES "%FILENAME%" /P N'
+'SET GROUP. REMOTE'
+'SET HELP. 16084'
+/* extra tools */
+'MACRO NAVIG.LX'
+

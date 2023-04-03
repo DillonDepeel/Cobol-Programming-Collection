@@ -1,0 +1,8 @@
+/* Insert a Simple List */
+trace o    
+'insert .* min - :OL. '
+'insert :OL COMPACT DBHI=?? DBSCALE=?? DINGBAT=''?'' PREFIX=????.'
+'insert :LI.'
+'insert :EOL.'
+'insert .*'
+

@@ -1,0 +1,79 @@
+/* zoom in or out on a subroutine                       */
+/* format : SUBZOOM HIDE | SHOW. If no parms, then SHOW */
+ 
+/* get parameters */
+arg mode
+               
+/* reset prefix command, if there was one */
+'set prefixentry'
+ 
+/* if not parm, then set to default */
+if (mode = "") then
+   mode = 'SHOW'
+ 
+/* determine if this is an RPG document, as its the only type we support */
+'extract DOCTYPE'
+identifier = "FUNCTION"         /* default - for C and CPP and CXX */
+if (DOCTYPE = 'RPG' | DOCTYPE = 'IRP' | DOCTYPE = 'VPG') then
+   identifier = "SUBROUTINE"
+if (DOCTYPE = 'CBL' | DOCTYPE = 'ICB') then
+   identifier = "DIVISIONS"
+ 
+/* extrac the CLASS of the current line to see if we are on a subroutine */
+'extract CLASS'
+if ((pos(identifier, CLASS) > 0) | (pos("ACTSUBS",CLASS) > 0)) then do
+   /* get classes and add SUBZOOM if its not already a CLASS  */
+   /* also get number of lines in the file. Used below        */
+   'extract CLASSES ELEMENTS'
+   if (pos("SUBZOOM", CLASSES) = 0) then do
+      'set CLASSES 'CLASSES' SUBZOOM'
+   end
+ 
+   /* show/hide the subroutine statement line */
+   if (mode = "SHOW") then
+      'SET CLASS 'CLASS' SUBZOOM'
+   else do
+       /* delete SUBZOOM class */
+       parse var CLASS pre 'SUBZOOM' post
+       'SET CLASS 'pre' 'post
+   end
+ 
+   /* get current line number and save it to restore position when done */
+   'extract ELEMENT INTO CURLINE'
+ 
+   /* loop until the next subroutine, or end of file, showing or */
+   /* hiding each line.                                          */
+   done = 0
+   do until ((ELEMENT >= ELEMENTS) | (done = 1))
+      'NEXT'         /* go to next line */
+ 
+      /* get current line number and contents */
+      'extract ELEMENT CONTENT CLASS'
+ 
+      /* if class=subroutine, then we are on the last line of the routine */
+      if ((pos(identifier, CLASS) > 0) | (pos("ACTSUBS", CLASS) > 0)) then
+         done = 1
+ 
+      /* if we get here then its a line within the current routine */
+      /* show/hide the subroutine statement line */
+      if (mode = "SHOW") then
+         'SET CLASS 'CLASS' SUBZOOM'
+      else do
+          /* delete SUBZOOM class */
+          parse var CLASS pre 'SUBZOOM' post
+          'SET CLASS 'pre' 'post
+      end
+   end  /* end of do while loop */
+ 
+   /* show only the SUBZOOM class (ie. expanded routines and subroutines */
+   if (DOCTYPE = 'VPG') then
+     'set INCLUDE SUBROUTINE ACTSUBS SUBZOOM'
+   else
+     'set INCLUDE 'identifier' SUBZOOM'
+ 
+   /* reset row to the row we were originally on */
+   'FIND ELEMENT 'CURLINE
+end
+else
+   msg "Cursor is not on the beginning of a subroutine"
+

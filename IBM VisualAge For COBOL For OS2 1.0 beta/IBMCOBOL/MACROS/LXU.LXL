@@ -1,0 +1,8 @@
+/*************************************************************
+* LXU.LXL - load macro for LXU files (LPEX user load files). *
+* See LX.LXL for full details.                               *
+*************************************************************/
+trace o
+
+'MACRO LX.LXL'
+

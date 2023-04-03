@@ -1,0 +1,35 @@
+       PROCESS QUOTE LIB PGMNAME(MIXED) THREAD TRUNC(OPT)
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID.    "componentName" RECURSIVE.
+       AUTHOR.
+       INSTALLATION.
+       DATE-WRITTEN.
+       DATE-COMPILED.
+       SECURITY.
+
+       ENVIRONMENT DIVISION.
+       CONFIGURATION SECTION.
+      * SOURCE-COMPUTER.
+      * OBJECT-COMPUTER.
+       SPECIAL-NAMES.
+       INPUT-OUTPUT SECTION.
+       FILE-CONTROL.
+       I-O-CONTROL.
+
+       DATA DIVISION.
+       FILE SECTION.
+       WORKING-STORAGE SECTION.
+       01  VDE-RC              PIC S9(9) USAGE COMP.
+           COPY RETURNCD.
+           COPY VACCESS.
+      * LOCAL-STORAGE SECTION.
+       LINKAGE SECTION.
+           COPY componentName.
+           COPY VEVENTS.
+
+       PROCEDURE DIVISION USING CommandLine-Data.
+           GOBACK.
+
+       END PROGRAM "componentName".
+
+

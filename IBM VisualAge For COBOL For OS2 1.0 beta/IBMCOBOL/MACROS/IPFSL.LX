@@ -1,0 +1,8 @@
+/* Insert a Simple List */
+trace o    
+'insert .*'
+'insert :sl compact prefix=????.'
+'insert :li.'
+'insert :esl.'
+'insert .*'
+

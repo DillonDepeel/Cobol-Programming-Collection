@@ -1,0 +1,89 @@
+
+
+PRINT - Printer
+
+
+DESCRIPTION:
+
+ This program demonstrates how to display and print ascii
+ text, metafiles and bitmaps.  It also shows how to use
+ the standard file dialog and the standard font dialog,
+ how to display and change printer properties and how to
+ display and select printer queues.
+
+TASK:
+
+ Display and print text, metafiles, and bitmaps.
+
+CONCEPT/FEATURE:
+
+ Demonstrates how to:
+ - Query and display a system printer configuration
+ - Interact with the printer drivers to change job properties
+ - Query and display available printer and screen fonts
+ - Print from an asynchronous thread
+
+
+SAMPLE LOCATION:
+
+ Inside the PM Sample Programs folder (which is inside the VisualAge C++ 
+ Samples folder).
+
+ Note: This sample is not provided in project form.
+
+SOURCE FILE LOCATION:
+
+ X:\ibmcpp\samples\toolkit\pm\print
+
+ where X: is the drive you installed the samples and document component
+ of VisualAge C++ for OS/2.
+
+
+HOW TO RUN THE SAMPLE:
+
+-From your OS/2 desktop:
+ Double-click on the sample's icon.
+
+-From an OS/2 command prompt:
+ To start a non-WorkPlace Shell sample program from an OS/2 command
+ prompt, type the name of the executable file and press Enter.  If you
+ have edited source code of a sample program and want to recompile,link,
+ and run the files, use the NMAKE tool. Your output is the executable
+ file.  For information about the NMAKE utility, see the
+ OS/2 Tools Reference.
+
+
+SOFTWARE/HARDWARE PREREQUISITES:
+
+- IBM VisualAge C++
+- OS/2 Warp
+- IBM or compatible 386 and up.
+
+
+REQUIRED FILES     DESCRIPTIONS
+
+  pmassert.h        assert that display debug info in a message box
+  prtcreat.c        Initialization functions
+  prtmenu.c         routines to respond to menu selections
+  prtobj.c          Object Window procedure
+  prtpage.c         Routines to  display page setup dialog
+  prtprint.c        Routine to allow selection of print queues
+  prtprof.c         Save and restore settings in a *.ini file
+  prtsamp.bmp
+  prtsamp.c         Main() entry point
+  prtsamp.dlg
+  prtsamp.exe
+  prtsamp.h
+  prtsamp.hlp       Help resource file
+  prtsamp.ico
+  prtsamp.ipf
+  prtsamp.mak
+  prtsamp.met
+  prtsamp.rc
+  prtsamp.txt
+  prtsdlg.h
+  prtshlp.h
+  readme            This file
+
+
+

@@ -1,0 +1,55 @@
+
+CODEC - Compressor/Decompressor Sample
+
+
+DESCRIPTION:
+
+ CODEC illustrates how to write a CODEC procedure to include compression  and
+ decompression routines in your multimedia applications.  A CODEC proced  ure
+ operates on data within a file or buffer.
+
+TASK:
+
+ Compress/decompress data within a file or buffer.
+
+CONCEPT/FEATURE:
+
+ Illustrates how to write a procedure to include 
+ compression/decompression routines in a multimedia application.
+
+SAMPLE LOCATION:
+
+ Inside the MM Sample Programs inside the main VisualAge C++ for OS/2
+ folder on your OS/2 desktop.
+
+ Note:This sample is not provided in project form.
+
+SOURCE FILE LOCATION:
+
+ X:\ibmcpp\samples\toolkit\mm\codec
+
+ where X: is the drive you installed the samples and document component
+ of VisualAge C++ for OS/2.
+
+
+HOW TO RUN THE SAMPLE:
+
+-From your OS/2 desktop:
+ Double-click on the sample's icon.
+
+-From an OS/2 command prompt:
+ To start a non-WorkPlace Shell sample program from an OS/2 command
+ prompt, type the name of the executable file and press Enter.  If you
+ have edited source code of a sample program and want to recompile,link,
+ and run the files, use the NMAKE tool. Your output is the executable
+ file.  For information about the NMAKE utility, see the
+ OS/2 Tools Reference.
+
+
+SOFTWARE/HARDWARE PREREQUISITES:
+
+
+- IBM VisualAge C++
+- OS/2 Warp
+- IBM or compatible 386 and up.
+

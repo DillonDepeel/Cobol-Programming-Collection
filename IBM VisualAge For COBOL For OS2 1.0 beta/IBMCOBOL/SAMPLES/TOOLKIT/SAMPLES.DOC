@@ -1,0 +1,773 @@
+  SAMPLE PROGRAMS
+  _______________
+
+
+  This file describes the sample programs available with the Developer's
+  Toolkit.  Most sample programs are written in C language and demonstrate the
+  use of the functions of the control program (base OS/2 operating system), the
+  Presentation Manager (PM) interface, the Multimedia (MM) interface, and the
+  Workplace Shell (WPS).  Each sample program serves as a template that can be
+  easily modified for your own purposes.  Most samples contain the overhead
+  routines necessary to create a Presentation Manager application, as well as
+  stubs for the basic menu items that all applications should have.  There are
+  many comments within the source code that clarify technical information.
+
+  Names of the sample programs below correspond to their Toolkit subdirectory
+  names.
+
+
+  STARTING A SAMPLE PROGRAM
+  _________________________
+
+  FROM THE DESKTOP
+
+  When installed, all sample programs, with the exception of the bidirectional
+  samples, some of the Multimedia samples and some of the WPS samples, appear in
+  the sample programs folders in the Toolkit folder.  To start a sample program,
+  select the Toolkit folder, select the folder representing the type of samples
+  you wish to execute, then select the appropriate sample program.
+
+  FROM AN OS/2 COMMAND PROMPT
+
+  To start a non-WPS sample program from an OS/2 command prompt, type the name
+  of the executable file and press Enter.  If you have edited source code of a
+  sample program and want to recompile, link, and run the files, use the NMAKE
+  tool.  Your output is the executable file.  For information about the NMAKE
+  utility, see the OS/2 Tools Reference.
+
+
+
+  C REXX Sample Programs
+  ______________________
+
+  CALLREXX - The REXX Interpreter Invocation Sample
+  =================================================
+  This sample demonstrates how a C-language application calls a REXX
+  application.  To run the REXX application BACKWARD.FNC, CALLREXX.C issues
+  RexxStart.  RexxStart calls the REXX interpreter and passes it a parameter
+  string.  BACKWARD.FNC returns a result string to the C-language application.
+
+
+  DEVINFO - The REXX Variable Pool Interface Sample
+  =================================================
+  This program issues DosDevConfig and returns the data in a collection of
+  compound variables when all available items are requested, or a single
+  variable when only one item is requested.  This is a REXX subcommand handler
+  and Variable Pool example.  This sample can be run in an OS/2 full-screen
+  session, an OS/2 text-window session, or in PMREXX.
+
+  PMREXX - The Presentation Manager REXX Interface Sample
+  =======================================================
+  This sample provides a Presentation Manager window in which the user can
+  display the output from a REXX procedure or from any programs called by the
+  REXX procedure.  The window has an entry field into which the user can type.
+
+  REXXCALC - The Presentation Manager REXX Calculator Sample
+  ==========================================================
+  This application illustrates the steps required to develop enhanced
+  applications.
+
+  REXXUTIL - The REXX Utility Functions Sample
+  ============================================
+  REXXUTIL demonstrates a set of external functions packaged in a dynamic link
+  library, including:
+
+  - Use of OS/2 system functions in REXX external functions.
+  - Techniques for passing large amounts of data to a REXX program using REXX
+    compound variables as arrays.
+
+  REXXUTIL can be run in an OS/2 full-screen session, an OS/2 window
+  session, or in PMREXX.
+
+  RXMACDLL - The External Functions in REXX Macrospace Sample
+  ===========================================================
+  This sample demonstrates the macrospace interface with two C-language
+  programs: MACRO.C and RXNLSINF.C, which are compiled into two separate dynamic
+  link libraries.
+
+  MACRO.C contains REXX external functions, which perform REXX macrospace
+  operations.  RXNLSINF.C contains a REXX external function that provides
+  information related to National Language Support (for example, as a currency
+  symbol and separator).  RXMACDLL.CMD uses MACRO.DLL to load NLSMONEY.CMD into
+  the macrospace and calls NLSMONEY.CMD several times to format currency
+  amounts.  NLSMONEY.CMD formats the amounts according to the specifications
+  provided by RXNLSINF.DLL.
+
+  RXMACDLL can be run in an OS/2 full-screen session, an OS/2 window session, or
+  in PMREXX.
+
+
+
+  Bidirectional (BIDI) Language Support Sample Programs
+  _____________________________________________________
+
+  These samples demonstrate the use of the Bidirectional Language support
+  available in the Arabic and Hebrew versions of OS/2.  There are two sets of
+  samples provided: one set for the Arabic language and the other set for the
+  Hebrew language.  For both languages, there are two samples.
+
+  STYLE - PM Controls Sample
+  ==========================
+  This is a sample program that demonstrates the Bidirectional Language support
+  features of PM controls and other system components.
+
+  TELDIR - Telephone Directory Sample
+  ===================================
+  This program is a simple bilingual telephone directory application which
+  demonstrate how language and orientation selections can be set dynamically by
+  a "BIDI-aware" application.
+
+  Note that the Arabic versions of these samples require the Arabic version of
+  OS/2 in order to run, and the Hebrew versions of the samples require the
+  Hebrew version of OS/2 to run.
+
+
+
+  OS/2 Sample Programs
+  ____________________
+
+  CONSOLIO - The Console I/O Sample
+  =================================
+
+  CONSOLIO demonstrates how to call video (Vio), keyboard (Kbd), and mouse (Mou)
+  16-bit function from a 32-bit code segment.  This sample program displays
+  earth worms aimlessly moving about the screen.  Each worm is a separate thread
+  with a unique color combination and movement pattern.  When one worm
+  encounters another worm, the color attribute of the worm is set to red.  The
+  user can add or delete worms using the keyboard or mouse.
+
+
+  DLLAPI - The Dynamic Link Library Sample
+  ========================================
+
+  DLLAPI demonstrates how to write and use a dynamic link library (DLL).  The
+  sample has a DLL file and an executable (EXE) file.  The DLL provides the
+  32-bit API function that is called by the EXE file.
+
+  The DLL uses protected memory on its shared data, and exception management to
+  validate the pointer parameters for a 32-bit API function.  The EXE file
+  demonstrates how to handle a divide-by-zero exception, and calls the function
+  with invalid pointer parameters, followed by a call with valid pointer
+  parameters.
+
+
+  EAEDIT - The Extended Attributes Editor
+  =======================================
+
+  The Extended Attributes Editor demonstrates a multithreaded application that
+  retrieves, modifies, or sorts files by their extended attribute value.
+  Included in this sample program are Presentation Manager procedures for dialog
+  boxes and a standard client window.  The sample lets the user select an
+  extended attribute file name from a list, or enter a new name in an entry
+  field.  The user can select the extended attribute type from a table.
+
+
+  HANOI - The Multithreaded Sample (Towers of Hanoi)
+  ==================================================
+
+  HANOI demonstrates a multithreaded application with the familiar "towers of
+  Hanoi" puzzle.  When the sample program is started, the user sees three poles
+  (A, B, and C).  Initially, pole A has on it a stack of disks starting with the
+  largest disks on the bottom and succeeding smaller disks on the top.  The main
+  thread handles the Presentation Manager interface and lets the user start or
+  stop the Hanoi routine.  It also lets the user reset the number of working
+  disks.  The second thread is created when START is selected from the Options
+  menu.  This thread starts the recursive execution of the Hanoi algorithm, runs
+  in the background, and moves and paints the disks.  All disks end up on pole
+  C.
+
+
+  NPIPE - The Named Pipes Sample
+  ==============================
+
+  NPIPE demonstrates two-way communication between two unrelated processes using
+  named pipe functions.  This sample program implements the game of tic-tac-toe
+  with two executable files, CLINPIPE.EXE (the client) and SVRNPIPE.EXE (the
+  server).  The server is the computer, and the client is the user.  For
+  example, the client will:
+
+  -   Connect to the server and acknowledge successful connection (START_MSG).
+  -   Notify the server through a pipe when it wishes to begin play (YOU_FIRST
+      or CLIENT_MOVE).
+  -   Notify the server when it wishes to quit (CLIENT_QUIT).
+  -   Send the server a valid move when requested by the server (CLIENT_MOVE).
+
+  In turn, the server will:
+
+  -   Upon the initial request of a client to play, connect a pipe to the
+      client through which play will be executed (START_MSG).
+  -   Be able to play with many clients simultaneously.
+  -   Notify the client of the server's move, and request a valid move from the
+      client (SERVER_MOVE).
+  -   Notify the client of game-end (WIN_SERVER, WIN_CLIENT, WIN_DRAW).
+
+
+  QUEUES - The Interprocess Communication Queue Sample
+  ====================================================
+
+  QUEUES demonstrates interprocess communications (IPC) using the 32-bit queue
+  component.  It consists of two executable programs, SVRQUEUE.EXE and
+  CLIQUEUE.EXE.
+
+  SVRQUEUE creates an IPC queue; a named, shared-memory buffer for queue
+  elements; and a shared, named, mutex (mutual exclusive) semaphore.  After
+  initializing the queue, SVRQUEUE starts a thread to read from the queue,
+  prints the contents of the messages read from the queue, and terminates at the
+  user's request.
+
+  CLIQUEUE opens the queue and accesses the shared-memory element buffer and
+  mutex semaphore, and starts a thread to write to the queue.  CLIQUEUE requests
+  a string of data from the user, allocates a shared-memory element from the
+  buffer, puts the string in the shared-memory element, then uses an event
+  semaphore to direct the thread to write the element to the queue.  CLIQUEUE
+  terminates at the user's request.
+
+
+  SEMAPH - The Semaphore Sample
+  =============================
+
+  SEMAPH demonstrates the use of mutex and event semaphores.  In the sample,
+  several threads share access to the same resource.  A mutex semaphore is used
+  to guarantee that only one thread has access to the resource at a time.  An
+  event semaphore is used to signal the thread to give up the resource.  The
+  event semaphore can be posted by the user, or run in auto mode, in which case
+  the event semaphore will be posted at fixed time intervals.  A mutex semaphore
+  is used to check for a stop event or for a user signal to give up the
+  resource.
+
+  Each thread can display as a different colored square; similarly, the resource
+  can display as a rectangle, the color of which is that of the first thread
+  that owns it.
+
+
+  SORT - The Multithreaded Sample (Sorting Algorithm)
+  ===================================================
+
+  SORT demonstrates the use of multiple threads by performing multiple sorts at
+  the same time.  Each sorting algorithm runs from a separate thread.  The main
+  thread is used to handle the main window's messages, while the routine that
+  updates the display is run from another thread.
+
+
+  TIMESERV - The Timer Services Sample
+  ====================================
+
+  TIMESERV demonstrates how to use and implement window timers and
+  system-resource timers.  This sample program displays both an analog and
+  digital clock.  To simulate elapsed seconds, the main Presentation Manager
+  thread repeatedly sets a one-second window timer that updates the current
+  time.  TIMESERV features an audible and visual alarm that the user can set.
+  When the time expires, the sample makes use of the DOS timer services and
+  notifies the user by sounding an alarm and displaying a message box.
+
+
+  VMM - The Virtual Memory Management Sample
+  ==========================================
+
+  VMM demonstrates the use of virtual memory by using new memory-management
+  functions to allocate and set the attributes of memory.  Users can read or
+  write data into memory and reset the attributes using a dialog box.  The
+  memory manager protects or opens the virtual memory to read or write
+  operations according to the different attributes of each memory block.  To
+  free memory, the user enters the address of the memory.
+
+
+
+  Presentation Manager Sample Programs
+  ____________________________________
+
+  BMPSAMP - The Bitmap Manipulation Sample
+  ========================================
+
+  BMPSAMP demonstrates the use of bitmaps in a graphics application.  BMPSAMP
+  provides a jigsaw puzzle based on the decomposition of an arbitrary bitmap
+  loaded from a file.  The user can jumble the pieces, then drag them with a
+  mouse.  The image can be made smaller, larger, scrolled horizontally, or
+  scrolled vertically.
+
+
+  CLIPBRD - The Clipboard Sample
+  ==============================
+
+  CLIPBRD demonstrates how to provide a Presentation Manager interface to the
+  clipboard.  Initially, CLIPBRD displays a standard window with a bit map.  The
+  user can cut and paste data in this window, using the system clipboard as an
+  intermediate storage area.
+
+
+  CONTROLS - The Presentation Manager Controls Sample
+  ===================================================
+
+  CONTROLS demonstrates a Presentation Manager application that conforms with
+  Common User Access* requirements and implements the following new controls:
+
+  -   Container
+  -   Notebook
+  -   Slider
+  -   Spin button
+  -   Value set.
+
+  This sample program also demonstrates secondary windows, such as dialog and
+  message boxes.  The program lets the user edit and save text files.  Help, in
+  IPF format, also is provided.
+
+  The code in CONTROLS is structured so that the addition of a new function is
+  handled in an efficient manner.  For example, to add a new command to an
+  existing menu, you need only add the command to the resource file, then add
+  the appropriate message-processing routines to the STY_USER.C file.
+
+
+  DIALOG - The Introductory Dialog Box Sample
+  ===========================================
+
+  DIALOG demonstrates how to associate a dialog box with a standard window.  The
+  dialog box is defined as a dialog template in a resource file.  This sample
+  program also demonstrates how to implement an entry field, pushbutton
+  controls, and message boxes.  Message boxes are only displayed for error
+  conditions.
+
+
+  DRAGDROP - The Direct Manipulation (Dragdrop) Sample
+  ====================================================
+
+  DRAGDROP demonstrates how to move files between directories with the dragging
+  techniques of direct manipulation.  This sample program creates a list box
+  that contains a scrollable list of the current directory.
+
+  To change the current directory, select the WINDOW option and enter the new
+  directory name and press Enter.  The sample program must be started twice so
+  there are two running instances of the sample.  Then, using a mouse, the user:
+
+  -   Changes the directory file list in the first sample.
+  -   Selects a file name from the second sample.
+  -   Drags the file name (with mouse button 2) to the directory in
+      the first sample.
+  -   Drops the file name on the directory in the first sample.
+
+  The file is now moved to the chosen directory of the first sample.
+
+
+  GRAPHICS - The Non-retained Graphics Sample
+  ===========================================
+
+  GRAPHICS demonstrates how to use default viewing transformation functions of
+  the Presentation Manager.  It also demonstrates how to use an asynchronous
+  drawing thread.  The sample program lets the user load metafiles using a
+  dialog box.  The dialog box has a help pushbutton.  When the help pushbutton
+  is activated, it provides instructions on loading a metafile from another
+  directory.  The user also can print a metafile or graphic circle.
+
+
+  IPF - The Information Presentation Facility Sample
+  ==================================================
+
+  IPF demonstrates how to use the Information Presentation Facility to create an
+  online document.  This sample program features customized windows that display
+  text, graphics, and animation.
+
+  Two files are associated with this sample:
+
+  -   The IPF online document (.INF) file
+  -   The OS/2 dynamic link library (.DLL) file.
+
+  The .INF file is the compiled IPF tag document.  The source contains tagging
+  that defines different types of windows.  Tags that control the format and
+  display of text also are included in this file.
+
+  The .DLL file is the compiled OS/2 C language source for the code object that
+  is called when the .INF file is read during run time.  A series of bit maps
+  used for animation are included in the DLL.
+
+
+  PALETTE - The Palette Manager Sample
+  ====================================
+
+  PALETTE demonstrates the creation of a window using a custom palette and
+  animation.  The user can display an IBM logo or OS/2 logo.  When run on a
+  system having a fully populated XGA adapter, the sample shows a palette
+  animation technique from a second thread of execution.
+
+
+  PORTING - The Presentation Manager 16-bit to 32-bit Porting Sample
+  ==================================================================
+
+  PORTING demonstrates how to migrate from an existing OS/2 16-bit application
+  to a 32-bit application.  This program also demonstrates how to display an
+  image using the GpiImage function.  The image data comes from a file the user
+  must select using the standard File Open dialog procedure.
+
+
+  PRINT - The Printer Sample
+  ==========================
+
+  PRINT demonstrates how to display and print text, metafiles, and bit maps.  It
+  also demonstrates how to:
+
+  -   Query and display a system printer configuration
+  -   Interact with the printer drivers to change job properties
+  -   Query and display available printer and screen fonts
+  -   Print from an asynchronous thread
+
+
+  STDWND - The Standard Window Sample
+  ===================================
+
+  STDWND demonstrates how to create and display a standard window that conforms
+  to Common User Access* requirements.  This sample program also demonstrates
+  how to use resources defined in a resource script file.  Initially, STDWND
+  displays a standard window with the text "Hello."  The menu bar contains the
+  OPTIONS choice.  If the choice is selected, the resulting menu contains three
+  choices that each paint a different text string in the window.  This sample
+  also shows how to overwrite the "ctrl C" key combination.
+
+
+  TEMPLATE - The Application Template Sample
+  ==========================================
+
+  TEMPLATE demonstrates the structure common to all Presentation Manager
+  applications.  This sample program shows how to structure an application that
+  has more than one source file.  It includes an initialization file, which is
+  used and then discarded, the resident code, and the non-resident code that is
+  loaded only when needed.
+
+  TEMPLATE also demonstrates how to:
+
+  -   Create a standard window
+  -   Load resources from a resource file
+  -   Create a dialog box and a button control
+  -   Display a message box
+  -   Open a file
+  -   Close a file
+  -   Print text
+  -   Paint a window
+  -   Process a message from a menu
+  -   Run a thread in the background
+  -   Exit a process.
+
+  Help files are provided by the Information Presentation Facility.
+
+
+
+  Workplace Shell Sample Programs
+  _______________________________
+
+  BROWSE - The Workplace Shell ASCII/Hex File Browser
+  ===================================================
+
+  The BROWSE sample displays file system objects in a hexadecimal or text format
+  in a Presentation Manager window.  Open a view of an object in the default
+  format (hexadecimal) by dropping a file system object on the Browse-O-Matic
+  icon or by double clicking the left mouse button and entering the name of a
+  file to view.
+
+  A view of an object can be opened in either hex or text format by selecting
+  the Open Text View or Open Hex View from the Open menu by clicking the right
+  mouse button once on the Browse-O-Matic icon.  The default view format can be
+  changed in the settings menu page by selecting the Open menu, Settings, Menu
+  notebook tab, ~Open in Available menus, Settings..., Default action, and
+  selecting ~Settings, Open ~Hex View, or Open ~Text View.
+
+
+  CAR - The Workplace Shell WPDataFile Subclass C Sample
+  WPCAR - The Workplace Shell WPDataFile Subclass C++ Sample
+  ==========================================================
+
+  CAR and WPCAR demonstrate how to create a Workplace Shell object using basic
+  object-oriented programming techniques and the System Object Model (SOM),
+  including:
+
+  -   Initializing an object
+  -   Adding settings pages to an object
+  -   Saving and restoring the state of an object
+  -   Modifying object context menus (adding and deleting menu items)
+  -   Querying of object class data
+  -   Processing context menu items
+  -   Implementing settings page dialog processing.
+
+
+  TEXTFLDR - The Text Only Folder Sample
+  ======================================
+
+  The TEXTFLDR sample allows only Plain Text objects to be placed in the folder.
+  Objects that are not Plain Text are rejected.  Objects are considered to be
+  Plain Text if the Associated Type in the Settings is set to Plain Text.  If no
+  type is set, the folder checks the first 500 bytes.  If any characters are
+  control- or extended- ASCII characters, the object is rejected.
+
+
+  WPSTUTOR - The Workplace Shell Tutorial Sample
+  ==============================================
+
+  The WPSTUTOR sample displays the order in which object methods are invoked by
+  the Workplace Shell.  As a method for the sample object class is executed, the
+  method's name and a description of its function are displayed in a
+  Presentation Manager window.  The sample saves its title and the icon title
+  backwards.
+
+  This object class subclasses the WPDataFile class.  Most Workplace Shell
+  instance and class methods are overridden so that information about the
+  methods can be displayed to the user.
+
+  This sample is designed to be more of a tutorial for Workplace Shell
+  programming than a programming example.
+
+  NOTE:  The SHOWDESC.EXE file should be renamed to SHOWDESC.BAK (or something
+  other than SHOWDESC.EXE) to turn off the sample.  Rename the file back to
+  SHOWDESC.EXE to turn the sample back on.
+
+  WSFILE - The Workplace Shell File and Folder Sample
+  ===================================================
+
+  The WSFILE sample displays, creates and installs Workplace objects of two
+  classes: WSFILE and WSFOLDER.  Class WSFILE is a subclass of the WPDataFile
+  class, and class WSFOLDER is a subclass of class WPFolder.  The sample
+  allows you to create a Workplace Shell folder on your desktop.  To do this,
+  run the command file called INSTALL.CMD, providing the specification of the
+  drive on which your OS/2 Warp system was installed.  For example, enter
+  INSTALL C:
+
+  The example folder which you create contains a WSFILE object and a WSFOLDER
+  object.  You can drag the WSFILE object onto the WSFOLDER object and drop it
+  into the folder.
+
+
+  Multimedia Sample Programs
+  __________________________
+
+  ADMCT - The Waveform Audio Media Control Driver Sample
+  ======================================================
+
+  ADMCT is an example of a Media Control Driver (MCD) that demonstrates how to
+  control a streaming device.  Streaming devices use the services of the
+  Sync/Stream Manager (SSM) of OS/2 multimedia to control the data stream from a
+  source location to a target location.
+
+
+  ASYMREC - The Asymmetric Recording Sample
+  =========================================
+
+  ASYMREC illustrates how to include asymmetric recording function in your
+  multimedia application.  Modules include source code extracted from the Video
+  IN Recorder application, which enables frame-step recording using Ultimotion
+  compression techniques.
+
+
+  AVCINST - The AVC I/O Procedure Installation Sample
+  ===================================================
+
+  AVCINST illustrates how an application can install and remove a I/O procedure
+  to use multimedia input/output (MMIO) file services.  The AVC I/O Procedure
+  Installation Sample is a simple PM application that allows you to install or
+  deinstall the audio AVC I/O procedure, AVCAPROC.DLL.
+
+
+  CAPSAMP - The Caption Sample Application
+  ========================================
+
+  CAPSAMP and the Caption Utility APIs (in the CAPDLL subdirectory) are part of
+  the sample captioning system provided with the Toolkit.  CAPSAMP demonstrates
+  how captioning can be integrated into applications using caption files in
+  conjunction with the Caption Utility APIs.
+
+
+  CAPTION - The Caption Creation Utility
+  ======================================
+
+  The Caption Creation Utility program is part of the sample captioning system
+  provided with the Toolkit.  The Caption Creation Utility program enables a
+  user to synchronize an audio file with a text file.
+
+  NOTE:  This concept can be extended beyond audio and text to apply to many
+  possibilities, such as synchronizing audio and video, or synchronizing video
+  and text.
+
+
+  CASECONV - The Case Converter I/O Procedure
+  ===========================================
+
+  CASECONV provides a simple example of how to write a file format I/O procedure
+  (without illustrating the use of data translation).  This sample performs case
+  conversion of text.
+
+
+  CDMCIDRV - The CD Audio Media Control Driver Sample
+  ===================================================
+
+  CDMCIDRV is an example of an MCD that demonstrates how to control a
+  nonstreaming device.  Nonstreaming devices stream data within the device.
+
+
+  CF - Install Control Files
+  ==========================
+
+  CF contains control file templates you can utilize when installing a program
+  using MINSTALL.
+
+
+  CLOCK - The Memory Playlist Sample
+  ==================================
+
+  CLOCK illustrates the use of the memory playlist feature of OS/2 multimedia.
+  The memory playlist feature provides for easy manipulation of multimedia in
+  memory to create unique effects based on user input or other dynamic events.
+
+
+  CODEC - The Compressor/Decompressor Sample
+  ======================================
+
+  CODEC illustrates how to write a CODEC procedure to include compression and
+  decompression routines in your multimedia applications.  A CODEC procedure
+  operates on data within a file or buffer.
+
+
+  DIVE - The DIVE (Direct Interface Video Extensions) Sample
+  ==========================================================
+
+  Direct Interface Video Extensions (DIVE) provide optimized blitting
+  performance for motion video subsystems and applications that perform rapid
+  screen updates in the OS/2 PM and full-screen environments.  Using DIVE
+  interfaces, applications can either write directly to video memory or use the
+  DIVE blitter.  The DIVE blitter will take advantage of acceleration hardware
+  when present and applicable to the function being performed.
+
+
+  DUET1 - The Waveaudio With Waveaudio Sample
+  ===========================================
+
+  The DUET sample programs illustrate the OS/2 multimedia concept of device
+  grouping and integrating multimedia into an application's help information.
+  DUET1 illustrates the concepts of grouping two streaming devices.
+
+
+  DUET2 - The Waveaudio With CD-Audio Sample
+  ==========================================
+
+  The DUET sample programs illustrate the OS/2 multimedia concept of device
+  grouping and integrating multimedia into an application's help information.
+  DUET2 demonstrates how one of the devices in the multimedia device group can
+  be a non-streaming device.
+
+
+  FSSHT - The File System Stream Handler
+  ======================================
+
+  FSSHT contains a sample file system stream handler.
+
+
+  MCDTBL - Media Control Driver Command Tables
+  ============================================
+
+  Before an MCD can interpret a string command, the MDM must use a command table
+  to change the string into an equivalent procedural command.  Represented as
+  resources to the driver, command tables are created using the RCDATA type of
+  resource.  The resource number of the RCDATA block is the device type number.
+  MCDTBL contains command tables for each of the following devices:
+
+  - CD-ROM/XA
+  - CD Audio
+  - Wave Audio
+  - Sequencer
+  - Digital Video
+  - Amp Mixer
+  - Videodisc
+
+  If you want to support device-specific messages, you must create a
+  device-specific command table.
+
+
+  MCDTEMP - The Media Control Driver Template
+  ===========================================
+
+  MCDTEMP provides a basic template to write an MCD.  Refer to the ADMCT and
+  CDMCIDRV subdirectories for specific streaming or MMIO samples.
+
+
+  MCISPY - The MCISpy Sample
+  ==========================
+
+  MCISPY monitors media control interface messages that are exchanged between
+  applications and the OS/2 multimedia subsystem.  In addition to teaching you
+  about multimedia messages, MCISPY also serves as a powerful debugging aid.
+
+
+  MCISTRNG - The Media Control Interface String Test Sample
+  =========================================================
+
+  MCISTRNG serves as a powerful testing and debugging tool that enables
+  developers writing media drivers to control their devices at the application
+  level.  The String Test Sample illustrates how an application uses the
+  interpretive string interface provided by the media control interface.  It
+  also illustrates how notification messages are returned from the media drivers
+  to the application.
+
+
+  MMBROWSE - The Image Browser Sample
+  ===================================
+
+  MMBROWSE illustrates how to use the Multimedia I/O subsystem (MMIO) to install
+  I/O procedures for various image formats and then convert these image formats
+  to OS/2 bitmaps.
+
+
+  MMIOPROC - The M-Motion I/O Procedure Sample
+  ============================================
+
+  MMIOPROC provides an example of how to write an I/O procedure for use with
+  image file formats.  This sample enables file format transparency for M-Motion
+  still video files and illustrates the use of data translation.
+
+
+  MOVIE - The Movie Sample Application
+  ====================================
+
+  MOVIE demonstrates device control of a software motion video device.  It also
+  illustrates how to cut, copy, paste, and delete movie data from an
+  application.  A movie can be played in an application-defined window or in the
+  system default window provided by the software motion video subsystem.
+
+  NOTE:  If you have installed the diskette version of the Toolkit, you must
+  copy MACAW.AVI (or any other AVI file) from \MMOS2\MOVIES to the
+  \TOOLKIT\SAMPLES\MM\MOVIE subdirectory and rename it MOVIE.AVI.
+
+
+  RECORDER - The Audio Recorder Sample
+  ====================================
+
+  RECORDER illustrates the concept of recording audio through the media control
+  interface and how to query a device to find out the recording capabilities.
+  RECORDER also illustrates how to change the audio recording and audio device
+  properties, such as bits per sample, samples per second, input level, and
+  input source.
+
+
+  SHORTCF - Control File Templates
+  ================================
+
+  SHORTCF contains a simple example of control file templates you can utilize
+  when installing a program using MINSTALL.
+
+
+  SHRCFILE - Stream Handler Resource File Example
+  ===============================================
+
+  SHRCFILE provides a sample stream handler resource file.
+
+
+  ULTIEYES - The Non-Linear Video Sample
+  ======================================
+
+  ULTIEYES demonstrates the use of non-linear video by displaying segments from
+  a movie clip in response to input from the mouse.
+
+
+  ULTIMOIO - The Ultimotion I/O Procedure Sample
+  ==============================================
+
+  The Ultiomotion I/O procedure provides a detailed example of what you need to
+  consider when writing I/O procedures for software motion video file formats.
+  ULTIMOIO includes CODEC support and illustrates how to integrate common and
+  file-format-specific code to support multiple I/O procedures.
+
+
+  *Common User Access is a trademark of IBM Corporation.
+

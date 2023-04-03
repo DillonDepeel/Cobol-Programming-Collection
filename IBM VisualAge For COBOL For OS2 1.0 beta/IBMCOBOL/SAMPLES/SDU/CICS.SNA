@@ -1,0 +1,149 @@
+*****************************************************************************
+* Copyright (c) IBM Corporation 1993  -  All Rights Reserved                *
+*                                                                           *
+*                                                                           *
+* Sample Network Definition for CICS                                        *
+* ----------------------------------                                        *
+*                                                                           *
+* This is a SAMPLE of network definitions for a CICS system                 *
+* for use with IBM Distributed FileManager (DFM/2) for OS/2.                *
+*                                                                           *
+*****************************************************************************
+*                                                                           *
+* DFM/2 (program no. 5648-020)                                              *
+* Version: 1.0                                                              *
+* Release: 1.0                                                              *
+*                                                                           *
+* DISCLAIMER OF WARRANTIES:                                                 *
+* The following is a sample created by IBM Corporation. It is not part of   *
+* any standard or IBM product and is provided to you solely for the purpose *
+* of assisting you in the definition of your environment.                   *
+* It is provided "AS IS", without warranty of any kind. IBM shall not be    *
+* liable for any damages arising out of your use of this sample code, even  *
+* if they have been advised of the possiblity of such damages.              *
+* BUT STILL:                                                                *
+* If you have a proposal about how to make this sample more useful          *
+* we would appreciate your comments.                                        *
+*****************************************************************************
+* CHANGE ACTIVITY                                                           *
+* Flag Reason      Level    Date   Origin    Comments                       *
+* ------------------------------------------------------------------------- *
+*                           930402 Mueller  : Initial Release               *
+* IBM Deutschland Entwicklung GmbH, Boeblingen, Germany       GMU at SDFVM1 *
+*****************************************************************************
+*****************************************************************************
+*                                                                           *
+* Modify the values as needed.                                              *
+* ==> Locate all '%....%' variables (strings starting and ending with '%')  *
+*     and replace them with the appropriate values for your environment.    *
+*     Note: The %..% notation has been used here as in OS/2 .cmd files.     *
+*     However, there is NO automatic replacement of these variables,        *
+*     you have to do it manually.                                           *
+*                                                                           *
+*****************************************************************************
+
+*
+*   In CICS the following has to be created for each OS/2 system via RDO
+*   - a CONNECTION entry in the CSD
+*   - a SESSION    entry in the CSD
+*********************************************************************
+*
+*********************************************************************
+* The parameters for the CONNECTION are :
+*********************************************************************
+*
+ CONNECTION(OS2C)   GROUP(XXXX)  DESCRIPTION()
+                    CONNECTION-IDENTIFIERS
+                                 NETNAME(%os2_lu_name%) INDSYS()
+                    REMOTE-ATTRIBUTES
+                                    REMOTESYSTEM()     REMOTENAME()
+                    CONNECTION-PROPERTIES
+                                    ACCESSMETHOD(VTAM) PROTOCOL(APPC)
+                                    SINGLESESS(NO)     DATASTREAM(USER)
+                                    RECORDFORMAT(U)
+                    OPERATIONAL-PROPERTIES
+                                    AUTOCONNECT(NO)    INSERVICE(YES)
+                    SECURITY
+                                    SECURITYNAME()     ATTACHSEC(LOCAL)
+                                    BINDPASSWORD()     BINDSECURITY(NO)
+*********************************************************************
+* The parameters for the CONNECTION are :
+*********************************************************************
+*
+ SESSIONS(OS2SES)   GROUP(XXXX)     DESCRIPTION()
+                    SESSION-IDENTIFIERS
+                                    CONNECTION(OS2C)       SESSNAME()             NETNAMEQ()
+                                    MODENAME(APPCLU62)
+                    SESSION-PROPERTIES
+                                    PROTOCOL(APPC)         MAXIMUM(16,0)          RECEIVEPFX()
+                                    RECEIVECOUNT()         SENDPFX()              SENDCOUNT()
+                                    SENDSIZE(256)          RECEIVESIZE(256)       SESSPRIORITY(0)
+                    PRESET-SECURITY
+                                    USERID()
+                    OPERATIONAL-PROPERTIES
+                                    AUTOCONNECT(NO)        BUILDCHAIN(YES)        USERAREALEN(0)
+                                    IOAREALEN(0,0)         RELREQ(NO)             DISCREQ(NO)
+                                    NEPCLASS(0)
+                    RECOVERY
+
+                                    RECOVOPTION(SYSDEFAULT)
+                                    RECOVNOTIFY(NONE)
+*
+*
+*********************************************************************
+* in SYS1.VTAMLST the following definition is needed:
+*********************************************************************
+XYZ12    VBUILD TYPE=SWNET,                                            *
+               MAXNO=12,                                               *
+               MAXGRP=5
+*
+* For each of the linked OS/2 systems, the following specifications
+* are needed:
+*
+%os2_node_name%   PU    ADDR=01,                                       *
+                  IDBLK=05D,IDNUM=%os2_node_ID%,                       *
+                  DISCNT=NO,                                           *
+                  MAXDATA=265,                                         *
+                  MAXOUT=1,                                            *
+                  MAXPATH=2,                                           *
+                  MODETAB=MODAPPC,                                     *
+                  VPACING=0,                                           *
+                  PACING=0,                                            *
+                  SECNET=YES,                                          *
+                  PUTYPE=2
+*
+*
+%os2_lu_name%  LU    LOCADDR=0
+*
+*********************************************************************
+* and in the mode table MODAPPC :
+*********************************************************************
+*
+APPCLU62 MODEENT LOGMODE=APPCLU62,FMPROF=X'13',TSPROF=X'07',           *
+               COS=INTERACT,ENCR=B'0000',                              *
+               PRIPROT=X'B0',SECPROT=X'B0',COMPROT=X'D0B1',            *
+               RUSIZES=X'8585',PSERVIC=X'060200000000000000000300'
+
+
+
+*****************************************************************************
+* Notes:
+********
+*
+%os2_node_name%   You find the node name for each of the linked PS/2s
+                  in the node definitions file for the
+                  OS/2 ES Communication Manager
+                  (this is the xxx.NDF file normally residing in c:\cmlib\appn)
+                  in the DEFINE_LOCAL_CP statement
+                  as the last parameter in the FQ_CP_NAME specification.
+%os2_node_ID%     You find the node ID for each of the linked PS/2s
+                  in the node definitions file for the
+                  OS/2 ES Communication Manager
+                  in the DEFINE_LOCAL_CP statement.
+%os2_lu_name%     You find logical unit name(s) for each of the linked PS/2s
+                  in the node definitions file for the
+                  OS/2 ES Communication Manager
+                  in DEFINE_LOCAL_LU statement(s), or one is generated from
+                  the FQ_CP_NAME parameter in the DEFINE_LOCAL_CP statement.
+*****************************************************************************
+

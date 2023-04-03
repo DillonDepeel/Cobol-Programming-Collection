@@ -1,0 +1,20 @@
+/* set up menu items for browser */
+'SET ACTIONBAR.~Browser.Show_~Inheritance_Graph BRS GRAPH CLASSES'
+'SET ACTIONBAR.~Browser.List_All_~Classes BRS LIST CLASSES'
+'SET ACTIONBAR.~Browser.List_All_Fi~les BRS LIST FILES'
+'SET ACTIONBAR.~Browser.~Edit_Definition.~No_prompt BRS EDIT'
+'SET ACTIONBAR.~Browser.~Edit_Definition.~Prompt BRS EDIT PROMPT'
+'SET ACTIONBAR.~Browser.List_~Members_With_Inheritance.~No_prompt BRS LIST MEMBERS'
+'SET ACTIONBAR.~Browser.List_~Members_With_Inheritance.~Prompt BRS LIST MEMBERS PROMPT'
+'SET ACTIONBAR.~Browser.List_~Defined_Objects.~No_prompt BRS LIST OBJECTS'
+'SET ACTIONBAR.~Browser.List_~Defined_Objects.~Prompt BRS LIST OBJECTS PROMPT'
+'SET ACTIONBAR.~Browser.List_Expanded_~Type_definition.~No_prompt BRS LIST TYPEDEF'
+'SET ACTIONBAR.~Browser.List_Expanded_~Type_definition.~Prompt BRS LIST TYPEDEF PROMPT'
+'SET ACTIONBAR.~Browser.Graph_~All_Base_&_Derived_Classes.~No_prompt BRS GRAPH DERIVATION'
+'SET ACTIONBAR.~Browser.Graph_~All_Base_&_Derived_Classes.~Prompt BRS GRAPH DERIVATION PROMPT'
+'SET ACTIONBAR.~Browser.Graph_Caller~s_&_Callees.~No_prompt BRS GRAPH FUNCTIONS'
+'SET ACTIONBAR.~Browser.Graph_Caller~s_&_Callees.~Prompt BRS GRAPH FUNCTIONS PROMPT'
+'SET ACTIONBAR.~Browser.Graph_All_I~ncluders_&_Includees.~No_prompt BRS GRAPH INCLUDES'
+'SET ACTIONBAR.~Browser.Graph_All_I~ncluders_&_Includees.~Prompt BRS GRAPH INCLUDES PROMPT'
+
+

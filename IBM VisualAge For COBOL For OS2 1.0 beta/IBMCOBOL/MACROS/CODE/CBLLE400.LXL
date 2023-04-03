@@ -1,0 +1,133 @@
+/***************************************************************************/
+/* CBLLE400.LXL -  LANGUAGE SENSITIVE EDITOR PROFILE FOR ILE COBOL/400     */
+/***************************************************************************/
+TRACE OFF
+
+/* CALL DEFAULT AS/400 PROFILE */
+'LXR DFT400.LXL'
+
+/* this is an ILE COBOL file */
+'SET DOCTYPE ICB'
+
+/* COBOL classes - DO NOT MODIFY!! Parser must be kept in synch */
+'SET CLASSES CODE FWDLINK BWDLINK SKIPLINK BLANK ERROR COMMENT ',
+'DIRECTIVE DIVISION SECTION AREAA AREAB PREPROCESSOR'
+
+'SET RULERTEXT ----+-*A-1-B--+----2----+----3----+----4----+----5' ||,
+               '----+----6----+----7--|-+----8'
+'SET RULER ON'
+
+/* ----------------------------------------------------------------------- */
+/* Populate pull-down items with COBOL-unique items, and assign fast-path  */
+/* key assignments. Also, enable help for each of these pull-down items:   */
+/* ----------------------------------------------------------------------- */
+'SET ACTIONBAR.~Options.Automatic_~indenting... 2 EVFECBL4 AIDLG'
+'SET HELP. 16093'
+'SET ACTIONBAR.~Options.~Language_editing. 7'
+'SET HELP. 16099'
+'SET ACTIONBAR.~Options.~Language_editing.~Token_highlighting EVFECBL4 TOKOPT'
+'EXTRACT ACTIONBARID.~Options.~Language_editing.~Token_highlighting INTO ID3'
+'SET HELP. 16100'
+'SET ACTIONBAR.~Options.~Language_editing.Automatic_~indenting EVFECBL4 AIOPT'
+'EXTRACT ACTIONBARID.~Options.~Language_editing.Automatic_~indenting INTO ID4'
+'SET HELP. 16101'
+'SET ACTIONBAR.~Options.~Language_editing.~Syntax_checking EVFECBL4 ILESYOPT'
+'EXTRACT ACTIONBARID.~Options.~Language_editing.~Syntax_checking INTO ID5'
+'SET HELP. 16102'
+'SET ACTIONBAR.~Options.~Language_editing.~Lexical_errors EVFECBL4 LEOPT'
+'EXTRACT ACTIONBARID.~Options.~Language_editing.~Lexical_errors INTO ID22'
+'SET HELP. 16108'
+'SET ACTIONBAR.~Actions.SEPARATOR 1'
+'SET ACTIONBAR.~Actions.~Syntax_check_selection 2 SUBMIT READ STOP "Syntax check selection" EVFECBL4 ILESYSEL'
+'EXTRACT ACTIONBARID.~Actions.~Syntax_check_selection INTO ID7'
+'SET HELP. 16081'
+'SET ACTIONBAR.~Actions.Syntax_check_~file 3 SUBMIT READ STOP "Syntax check file" EVFECBL4 ILESYFILE'
+'EXTRACT ACTIONBARID.~Actions.Syntax_check_~file INTO ID8'
+'SET HELP. 16082'
+'SET ACTIONBAR.~Actions.~Verify_program. 4'
+'SET HELP. 16083'
+'SET ACTIONBAR.~Actions.~Verify_program.~Prompt... EVFBIPV CBLOD ',
+'SUBMIT READ STOP "Verifying" EVFBIPV CBLPV'
+'SET HELP. 16083'
+'SET ACTIONBAR.~Actions.~Verify_program.~No_prompt\tCtrl+V ',
+'SUBMIT READ STOP "Verifying" EVFBIPV CBLPV'
+'SET HELP. 16083'
+'SET ACTIONBAR.~Actions.SEPARATOR 5'
+'SET ACTIONBAR.~Actions.C~ompile. 6'
+'SET HELP. 16084'
+'SET ACTIONBAR.~Actions.C~ompile.~Prompt... 0 SAVEALL PROMPT START EVFLCLES "%FILENAME%"'
+'SET HELP. 16084'
+'SET ACTIONBAR.~Actions.C~ompile.~No_prompt\tCtrl+C SAVEALL PROMPT START EVFLCLES "%FILENAME%" /P N'
+'SET HELP. 16084'
+'SET GROUP. REMOTE'
+'SET ACTIONBAR.~Actions.~Debug. 7'
+'SET HELP. 16086'
+'SET ACTIONBAR.~Actions.~Debug.~Prompt... 0 START CODEDT /EQACCMDLE /P "%FILENAME%"'
+'SET HELP. 16086'
+'SET ACTIONBAR.~Actions.~Debug.~No_Prompt...\tCtrl+D 1 START CODEDT /EQACCMDLE /N /P "%FILENAME%"'
+'SET HELP. 16086'
+'SET GROUP. REMOTE'
+'SET ACTIONBAR.~View.SEPARATOR 2'
+'SET ACTIONBAR.~View.~Comments 3 ;INCLUDE COMMENT ;EXCLUDE'
+'SET HELP. 16055'
+'SET GROUP. COMMENT'
+'SET ACTIONBAR.~View.Di~visions 4 ;INCLUDE DIVISION SECTION ;EXCLUDE'
+'SET HELP. 16055'
+'SET GROUP. DIVISION SECTION'
+'SET ACTIONBAR.~View.~Outline 5 ;INCLUDE AREAA ;EXCLUDE'
+'SET HELP. 16055'
+'SET GROUP. AREAA'
+'SET ACTIONBAR.~Help.ILE_COBO~L/400_help 6 EVFECBL4 ILELANGHELP'
+'EXTRACT ACTIONBARID.~Help.ILE_COBO~L/400_help INTO ID20'
+'SET HELP. 16137'
+'SET ACTIONBAR.~View.S~QL_and_CICS 6 ;INCLUDE PREPROCESSOR ;EXCLUDE'
+'SET HELP. 16055'
+'SET GROUP. PREPROCESSOR'
+                                                /* AUTOINDENT NEW LINE     */
+'SET SYNONYM.OPENLINE MULT ;PRIMITIVE ENDLINE;SPLITJOIN SPLIT;PRIMITIVE NEWLINE;EVFECBL4 AINEW'
+                                                /* AUTOINDENT EXISTING LINE*/
+'SET SYNONYM.NEWLINE EVFECBL4 AIEXIST'
+
+'SET ACTION.F1 EVFECBL4 ILEHELP'                /* HELP ON TOKEN AT CURSOR */
+
+                                                /* COMPILE ACCELERATOR KEY */
+'SET ACTION.C-C SAVEALL PROMPT START EVFLCLES "%FILENAME%" /P N'
+'SET ACTION.C-D START CODEDT /EQACCMDLE /N /P "%FILENAME%"'
+
+MENUIDSTR = ID3 ID4 ID22 ID5 ID7 ID8 ID20
+DROP ID3 ID4 ID5 ID7 ID8 ID20 ID22
+
+                                                /* SETUP FULL PARSE COMMAND*/
+'SET FULLPARSE  SUBMIT READ STOP "Tokenize file" EVFECBL4 ALL'
+'SET PARSER     EVFECBL4 PARSE'                 /* SETUP INCREMENTAL PARSE */
+
+
+                                                /* INITIAL FONTS SETTINGS  */
+'SET FONT.!  BLACK/WHITE                    "Default style"'
+'SET FONT._  BLACK/WHITE                    "Layout spaces"'
+'SET FONT.E  RED/WHITE                      "Error token"'
+'SET FONT.S  BRIGHT CYAN/WHITE              "Sequence number"'
+'SET FONT.I  BRIGHT GREEN/WHITE             "Indicator area"'
+'SET FONT.D  UNDERLINE CYAN/WHITE           "Compiler directive"'
+'SET FONT.C  ITALIC BRIGHT GREEN/WHITE      "Comment"'
+'SET FONT.B  BLACK/WHITE                    "Separator"'
+'SET FONT.U  BRIGHT BLUE/WHITE              "User defined"'
+'SET FONT.T  BLUE/WHITE                     "Pseudo-text"'
+'SET FONT.N  BLUE/WHITE                     "Numeric literal"'
+'SET FONT.L  BRIGHT PINK/WHITE              "Nonnumeric literal"'
+'SET FONT.P  BLUE/WHITE                     "Picture string"'
+'SET FONT.H  PINK/WHITE                     "Preprocessor string"'
+'SET FONT.R  BLACK/WHITE                    "SAA reserved word"'
+'SET FONT.K  CYAN/WHITE                     "COBOL/400 reserved word"'
+'SET FONT.X  BLUE/WHITE                     "EXTACCDSP reserved word"'
+
+'SET BASEFONT !'                                /* BASEFONT= DEFAULT STYLE */
+
+'SET TABS 7 8 12 EVERY 4'                       /* INITIAL TAB SETTINGS    */
+
+'EVFECBL4 INIT' MENUIDSTR                       /* INITILIAZE LS COMPONENT */
+'SET INSERTING OFF'                             /* REPLACE MODE            */
+'TRIGGER FULLPARSE'                             /* INITIAL FULL PARSE      */
+
+'LXR NAVIG.LX'
+

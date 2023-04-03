@@ -1,0 +1,250 @@
+/********************************************************
+* EPM.LX: EPM/LPEX editor profile.                       *
+*                                                        *
+* This LX profile is called whenever the key behavior    *
+* for EPM is called. It sets up any defaults (including  *
+* key definitions and mouse actions required to make your*
+* LPEX session behave like an EPM session.               *
+*                                                        *
+* 2 different Mouse button 1 definitions are provided.   *
+* See 'Mouse button assignments' below for details on    *
+* the two different definitions available.               *
+* The default mouse button 1 action is for the mouse to  *
+* use stream marking.                                    *
+*                                                        *
+* To have the EPM/LPEX profile saved, and invoked        *
+* automatically, use the Save key behavior option from
+* the key behavior option.                               *
+*                                                        *
+*         COPYRIGHT IBM CORPORATION 1989, 1994           *
+********************************************************/
+
+/* Function key assignments */
+/* F1 = help key in OS/2 PM */
+'SET ACCELERATOR.LP_SAVE F2' /* save & continue */
+'SET ACCELERATOR.LP_CLOSEVIEW F3' /* quit, prompt if file has changed */
+'SET ACTION.F4 FILE'   /* save & quit */
+'SET ACTION.F5 DIALOG OPEN' /* open a file */
+/* F6 = OS/2 SHELL window defined below  */
+'SET ACTION.F7 RENAME' /* call the rename.lx macro */
+'SET ACTION.F8 DIALOG OPEN'   /* open a file  */
+'SET ACTION.F9 UNDO'          /* undo the last action */
+/* F10 = SWITCH TO THE ACTION BAR IN OS/2 PM */
+'SET ACCELERATOR.LP_PREVFILE F11' /* go to the previous file  */
+'SET ACCELERATOR.LP_NEXTFILE F12'  /* go to the next file */
+
+/* Alt key + function key assignments */
+/* A-F4  = CLOSE WINDOW IN OS/2 PM */
+/* A-F5  = RESTORE WINDOW IN OS/2 PM */
+/* A-F7  = move window in OS/2 PM */
+/* A-F8  = size window in OS/2 PM */
+/* A-F9  = MINIMIZE WINDOW IN OS/2 PM */
+/* A-F10 = MAXIMIZE WINDOW IN OS/2 PM */
+
+/* Control + function key assignments */
+'SET ACTION.C-F1 ;BLOCK MARK WORD ;BLOCK UPPER; BLOCK CLEAR'
+/* word to uppercase */
+'SET ACTION.C-F2 ;BLOCK MARK WORD; BLOCK LOWER; BLOCK CLEAR'
+/* word to lowercase */
+'SET ACCELERATOR.LP_UPPER C-F3'       /* selection to uppercase */
+'SET ACCELERATOR.LP_LOWER C-F4'        /* selection to lowercase  */
+'SET ACTION.C-F5 ;BLOCK MARK WORD; BLOCK FIND; BLOCK CLEAR'
+        /* cursor to beginning of word  */
+'SET ACTION.C-F6 ;BLOCK MARK WORD; BLOCK FIND END; BLOCK CLEAR'
+       /* cursor to end of word  */
+'SET ACTION.C-F7 BLOCK SHIFT LEFT 1'  /* shift selection 1 left */
+'SET ACTION.C-F8 BLOCK SHIFT RIGHT 1' /* shift selection 1 right */
+
+/* Shift key + function key assignments  */
+'SET ACTION.S-F1 SCROLL SCREEN LEFT'
+'SET ACTION.S-F2 SCROLL SCREEN RIGHT'
+'SET ACTION.S-F3 SCROLL SCREEN UP'
+'SET ACTION.S-F4 SCROLL SCREEN DOWN'
+'SET ACTION.S-F5' /* set to null */
+'SET ACTION.S-F7' /* set to null */
+'SET ACTION.S-F8' /* set to null */
+'SET ACTION.S-F9' /* set to null */
+
+/* Mouse button assignments  */
+
+/* Use the mouse action definitions below if you prefer the                  */
+/* mouse button 1 (left button) to mark a block or rectangle.                */
+/* The marked area is not deleted when you type, nor is the block unmarked   */
+/* when you move the cursor.                                                 */
+/* Behaviour with these actions is similar to the mouse button 1 behaviour   */
+/* when you use Advanced Marking in EPM.                                     */
+/* 'SET ACTION.BUTTON1DOUBLE ;BLOCK CLEAR'                                   */
+/* 'SET ACTION.BUTTON1DOWN   ;PRIMITIVE SETCURSOR; PRIMITIVE SETPOINTER'     */
+/* 'SET ACTION.BUTTON1DRAG   ;PRIMITIVE SETCURSOR; BLOCK MARK RECTANGLE'     */
+
+/* Use the mouse action definitions below if you prefer the                  */
+/* mouse button 1 (left button) to mark a stream.                            */
+/* The marked area is deleted when you type or when hit the backspace        */
+/* or delete key.                                                            */
+/* The marked area is unmarked when you move the cursor.                     */
+/* Behaviour with these actions is similar to the mouse button 1 behaviour   */
+/* when you use Stream Editing and CUA or basic marking in EPM.              */
+'SET ACTION.BUTTON1DOUBLE PRIMITIVE SELECTWORD'
+'SET ACTION.BUTTON1DOWN ;PRIMITIVE SETCURSOR; PRIMITIVE SETPOINTER'
+'SET ACTION.BUTTON1DRAG PRIMITIVE SELECTDRAG'
+
+'SET ACTION.BUTTON2DOUBLE ;BLOCK CLEAR; PRIMITIVE SETCURSOR; PRIMITIVE SELECTWORD'
+'SET ACTION.BUTTON2DOWN   ;BLOCK CLEAR; PRIMITIVE SETCURSOR; PRIMITIVE SETPOINTER'
+'SET ACTION.BUTTON2DRAG   ;PRIMITIVE SETCURSOR;  BLOCK MARK ELEMENT'
+
+'SET ACTION.C-BUTTON2DOUBLE ;BLOCK CLEAR: PRIMITIVE SETCURSOR; PRIMITIVE SELECTWORD'
+'SET ACTION.C-BUTTON1DOUBLE ;PRIMITIVE SETCURSOR; PRIMITIVE SETPOINTER'
+'SET ACTION.C-BUTTON1DOWN PRIMITIVE SELECTDRAG'
+'SET ACTION.C-BUTTON1DRAG PRIMITIVE SELECTDRAG'
+
+'SET ACTION.S-BUTTON1DOWN ;PRIMITIVE SETCURSOR;BLOCK MARK'
+'SET ACTION.S-BUTTON1DRAG' /* set to null */
+'SET ACTION.S-BUTTON2DOWN' /* set to null */
+'SET ACTION.S-BUTTON2DRAG' /* set to null */
+
+
+/* Alt key assignments    */
+'SET ACCELERATOR.LP_OVERLAY A-A' /* adjust selected area */
+'SET ACCELERATOR.LP_MARKRECT A-B' /* mark a rectangle */
+'SET ACCELERATOR.LP_COPY A-C'  /* copy block  */
+'SET ACCELERATOR.LP_DELETE A-D' /* delete block */
+'SET ACTION.A-E BLOCK FIND END' /* cursor to end of selected area */
+'SET ACTION.A-F FILLCHAR' /* fill marked block with specified character - call filelchar.lx */
+'SET ACTION.A-G' /* set to null */
+'SET ACTION.A-H' /* set to null */
+'SET ACTION.A-I' /* set to null */
+'SET ACTION.A-J SPLITJOIN JOIN' /* join with line following */
+'SET ACTION.A-K' /* set to null */
+'SET ACCELERATOR.LP_MARKLINE A-L' /* mark line */
+'SET ACCELERATOR.LP_MOVE A-M' /* move block */
+'SET ACTION.A-N GETNAME' /*get file name at cursor - call getname.lx */
+'SET ACCELERATOR.LP_OVERLAY A-O'/* overlay block  */
+'SET ACTION.A-P' /* set to null  */
+'SET ACTION.A-Q' /* set to null */
+'SET ACTION.A-R' /* set to null */
+'SET ACTION.A-S SPLITJOIN SPLIT' /* split line at the cursor */
+'SET ACTION.A-T' /* set to null  */
+'SET ACCELERATOR.LP_UNMARK A-U' /* clear block */
+'SET ACTION.A-V' /* set to null */
+'SET ACTION.A-W PRIMITIVE SELECTWORD' /* mark word */
+'SET ACTION.A-X' /* set to null */
+'SET ACTION.A-Y BLOCK FIND'  /* cursor to beginning of mark */
+'SET ACCELERATOR.LP_MARKCHAR A-Z' /* block marking, character mode */
+'SET ACTION.A-0' /* set to null */
+'SET ACTION.A-1 OPENCUR' /* open the file named on the current line - call opencur.lx */
+
+/* Alt + keyboard assignments */
+'SET ACCELERATOR.LP_UNDO A-BACKSPACE'  /* undo last line  */
+'SET ACTION.A-END' /* set to null */
+'SET ACTION.A-HOME' /* set to null */
+'SET ACTION.A-INS'  /* set to null */
+'SET ACTION.A-LEFT' /* set to null */
+'SET ACTION.A-RIGHT'  /* set to null */
+
+/* control key assignments     */
+'SET ACTION.C-A'                          /* set to null */
+'SET ACTION.C-B QUERY MARKLIST'           /* query marks set */
+'SET ACTION.C-D PRIMITIVE DELETEWORD'     /* delete word */
+'SET ACTION.C-E ;PRIMITIVE SELECTEND ; BLOCK DELETE' /* delete to end-of-line */
+'SET ACCELERATOR.LP_FINDNEXT C-F'         /* find next  */
+'SET ACTION.C-G '                         /* set to null */
+'SET ACTION.C-H'                          /* set to null */
+'SET ACCELERATOR.LP_ISSUECMD C-I'         /* invoke command dialog */
+'SET ACTION.C-J'                          /* set to null */
+'SET ACTION.C-K ;BLOCK CLEAR; BLOCK MARK ELEMENT; BLOCK COPY'  /* duplicate the curent line */
+'SET ACTION.C-L CURCMD'                   /* execute current line */
+'SET ACTION.C-M DIALOG MARKNAME'          /* set a mark or bookmark  */
+'SET ACTION.C-N GODOC'            /* go to previous document */
+'SET ACCELERATOR.LP_OPENEDIT C-O' /* invoke open dialog */
+'SET ACTION.C-P GODOC NEXT'       /* go to next document */
+'SET ACTION.C-Q' /* set to null */
+'SET ACTION.C-R RECORD /INVERSE'  /* start/stop recording keystrokes */
+'SET ACCELERATOR.LP_FINDCHANGE C-S'        /* invoke find dialog   */
+'SET ACTION.C-T RECORD /P'        /* playback recorded keystrokes   */
+'SET ACTION.C-U UNDO'             /* undo  */
+'SET ACTION.C-V' /* set to null */
+'SET ACTION.C-W' /* set to null */
+'SET ACTION.C-X' /* set to null */
+'SET ACTION.C-Y DIALOG FONTS'     /* invoke fonts/colours dialog */
+'SET ACTION.C-Z' /* set to null */
+'SET ACTION.C-6 PRIMITIVE INSERTCHAR ª'    /* insert a not character */
+'SET ACTION.C-9 PRIMITIVE INSERTCHAR "{"'  /* insert a left brace */
+'SET ACTION.C-0 PRIMITIVE INSERTCHAR "}"'  /* insert a right brace */
+'SET ACTION.C-TAB PRIMITIVE INSERTCHAR 	'  /* insert a tab character */
+
+/* Control + keyboard assigments */
+'SET ACTION.C-END BOTTOM'/* cursor to bottom of file */
+'SET ACTION.C-HOME TOP'  /* cursor to top of file */
+'SET ACCELERATOR.LP_CLIPCOPY C-INS' /* clip marked block */
+'SET ACTION.C-LEFT  PRIMITIVE WORDLEFT' /* move to previous word */
+'SET ACTION.C-PGDN' /* set to null */
+'SET ACTION.C-PGUP' /* set to null */
+'SET ACTION.C-RIGHT PRIMITIVE WORDRIGHT' /* move to next word */
+
+/* Shift + keyboard assignments  */
+'SET ACTION.S-DOWN        PRIMITIVE SELECTDOWN'
+'SET ACTION.S-END         PRIMITIVE SELECTEND'
+'SET ACTION.S-HOME        PRIMITIVE SELECTHOME'
+'SET ACCELERATOR.LP_CLIPPASTE S-INS'
+'SET ACTION.S-LEFT        PRIMITIVE SELECTLEFT'
+'SET ACTION.S-PGDN'  /* set to null */
+'SET ACTION.S-PGUP'  /* set to null */
+'SET ACTION.S-RIGHT       PRIMITIVE SELECTRIGHT'
+'SET ACTION.S-UP          PRIMITIVE SELECTUP'
+
+/* Control + Shift + keyboard assignments */
+'SET ACTION.C-S-DOWN'           /* set to null */
+'SET ACTION.C-S-END  END'       /* move to end of file */
+'SET ACTION.C-S-HOME TOP'       /* move to top of file */
+'SET ACTION.C-S-LEFT      PRIMITIVE WORDLEFT' /* move left to previous word */
+'SET ACTION.C-S-PGDN'           /* set to null */
+'SET ACTION.C-S-PGUP'           /* set to null */
+'SET ACTION.C-S-RIGHT     PRIMITIVE WORDRIGHT' /* move right to next word */
+'SET ACTION.C-S-UP'             /* set to null */
+
+/* Set backspace, delete, escape and enter key assignments  */
+'SET ACTION.ENTER SPLITLINE'
+'SET ACTION.A-ENTER SPLITLINE'
+'SET ACTION.C-ENTER SPLITLINE'
+'SET ACTION.S-ENTER SPLITLINE'
+
+'SET ACTION.PADENTER SPLITLINE'
+
+'SET ACTION.BACKSPACE BACK2'
+'SET ACTION.C-BACKSPACE DELETE'   /* delete entire line */
+'SET ACTION.C-S-BACKSPACE DELETE' /* delete entire line */
+
+'SET ACTION.DEL DELETE2'
+'SET ACTION.C-DEL PRIMITIVE TRUNCATE'/* delete to end of line */
+'SET ACCELERATOR.LP_CLIPCUT S-DEL'
+
+'SET ACTION.ESC PRIMITIVE TOGGLECOMMAND' /* Esc invokes the command dialog */
+
+/* rubout characters continuously across lines from cursor */
+'SET INSERTING ON'       /* inserting mode as default  */
+'SET FOCUS.TOP 0'
+'SET FOCUS.BOTTOM 0'
+
+/* Set-up window pull-down for OS/2 shell */
+'SET ACTIONBAR.~Windows.OS/2_command_shell\tF6 LX "OS/2 command shell" /dt SHL'
+
+/* set up options pull-down correctly  */
+'EXTRACT VIEWNUM'
+'EXTRACT VIEWLIST'
+do while(viewlist \= '')
+   'GOVIEW NOACT VIEWNUM 'subword(viewlist,1,1)
+
+   'SET MENUCHECK.LP_LPEXKEYS  OFF'
+   'SET MENUCHECK.LP_EPMKEYS   ON'
+   'SET MENUCHECK.LP_SEUKEYS   OFF'
+   'SET MENUCHECK.LP_XEDITKEYS OFF'
+   'SET MENUCHECK.LP_ISPFKEYS  OFF'
+   'SET MENUCHECK.LP_CUSTOMIZE OFF'
+   'SET PREFIXSHOW OFF'
+   viewlist = delword(viewlist,1,1)
+end
+'GOVIEW NOACT VIEWNUM 'VIEWNUM
+
+'EXTRACT DOCNUM INTO DOCNUM'
+"SET GLOBAL.DOC" || DOCNUM || " 'MACRO EPM'"
+

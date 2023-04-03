@@ -1,0 +1,108 @@
+
+ Symbolic dump of ADL-Space
+ Space class  3035 ADLDCLSPC 
+       length 00000485 
+
+
+00000000:  len 000c   class: 004f          SPCANC  next 0000000c  free 00000000 
+0000000c:  len 0020   class: 3002      ADLDECLARE  next 0000002c  name 00000000  attributes 00000000  defaults 00000244  constants 00000000  subtypes 00000000  of 000003bd 
+0000002c:  len 0020   class: 3002      ADLDECLARE  next 00000000  name 00000000  attributes 00000000  defaults 0000004c  constants 00000000  subtypes 00000000  of 00000175 
+0000004c:  len 0014   class: 304f      ADLDEFAULT  next 00000060  name 00000000  attributes 000000c7  type 0000016f 
+00000060:  len 0014   class: 304f      ADLDEFAULT  next 00000000  name 00000000  attributes 00000074  type 000000c1 
+00000074:  len 000c   class: 3034        ADLCCSID  next 00000080  value 000000b9 
+00000080:  len 000c   class: 303e       ADLMAXALC  next 0000008c  value 000000b4 
+0000008c:  len 000c   class: 303b       ADLMAXLEN  next 00000098  value 000000ac 
+00000098:  len 000c   class: 300c      ADLUNITLEN  next 00000000  value 000000a4 
+000000a4:  len 0008   class: 3056       ADLLITINT  value 00000008 
+000000ac:  len 0008   class: 3056       ADLLITINT  value 00000001 
+000000b4:  len 0005   class: 305e      ADLLITBOOL  value TRUE 
+000000b9:  len 0008   class: 3056       ADLLITINT  value 00000000 
+000000c1:  len 0006   class: 000c          CODPNT  value  3013      ADLCHARSFX 
+000000c7:  len 000c   class: 3028       ADLBYTRVS  next 000000d3  value 0000016a 
+000000d3:  len 000c   class: 302c      ADLCOMPLEX  next 000000df  value 00000165 
+000000df:  len 000c   class: 302d        ADLCNSTR  next 000000eb  value 00000160 
+000000eb:  len 000c   class: 305f          ADLFIT  next 000000f7  value 00000158 
+000000f7:  len 000c   class: 3041    ADLPRECISION  next 00000103  value 00000150 
+00000103:  len 000c   class: 3043        ADLRADIX  next 0000010f  value 00000148 
+0000010f:  len 000c   class: 3044        ADLSCALE  next 0000011b  value 00000140 
+0000011b:  len 000c   class: 3023       ADLSGNCNV  next 00000127  value 00000138 
+00000127:  len 000c   class: 304a       ADLSIGNED  next 00000000  value 00000133 
+00000133:  len 0005   class: 305e      ADLLITBOOL  value TRUE 
+00000138:  len 0008   class: 3056       ADLLITINT  value 00000001 
+00000140:  len 0008   class: 3056       ADLLITINT  value 00000000 
+00000148:  len 0008   class: 3056       ADLLITINT  value 00000002 
+00000150:  len 0008   class: 3056       ADLLITINT  value 0000001f 
+00000158:  len 0008   class: 3056       ADLLITINT  value 00000000 
+00000160:  len 0005   class: 305e      ADLLITBOOL  value FALSE 
+00000165:  len 0005   class: 305e      ADLLITBOOL  value FALSE 
+0000016a:  len 0005   class: 305e      ADLLITBOOL  value FALSE 
+0000016f:  len 0006   class: 000c          CODPNT  value  3014       ADLBINARY 
+00000175:  len 001c   class: 301b     ADLSEQUENCE  next 00000000  name 00000191  attributes 00000000  when 00000000 fldsiz 00000199  of 000001a1 
+00000191:  len 0008   class: 303c           ADLID  value "CREC" 
+00000199:  len 0008   class: 303f       ADLFLDSIZ  value 00000030 
+000001a1:  len 0018   class: 3013      ADLCHARSFX  next 000001b9  name 00000208  attributes 00000214  when 00000000  fldsiz 0000023c 
+000001b9:  len 0018   class: 3014       ADLBINARY  next 00000000  name 000001d1  attributes 000001db  when 00000000  fldsiz 00000200 
+000001d1:  len 000a   class: 303c           ADLID  value "NUMBER" 
+000001db:  len 000c   class: 3041    ADLPRECISION  next 000001e7  value 000001f8 
+000001e7:  len 000c   class: 3028       ADLBYTRVS  next 00000000  value 000001f3 
+000001f3:  len 0005   class: 305e      ADLLITBOOL  value TRUE 
+000001f8:  len 0008   class: 3056       ADLLITINT  value 0000000f 
+00000200:  len 0008   class: 303f       ADLFLDSIZ  value 00000010 
+00000208:  len 000c   class: 303c           ADLID  value "INITIALS" 
+00000214:  len 000c   class: 303b       ADLMAXLEN  next 00000220  value 00000234 
+00000220:  len 000c   class: 3034        ADLCCSID  next 00000000  value 0000022c 
+0000022c:  len 0008   class: 3056       ADLLITINT  value 00000352 
+00000234:  len 0008   class: 3056       ADLLITINT  value 00000004 
+0000023c:  len 0008   class: 303f       ADLFLDSIZ  value 00000020 
+00000244:  len 0014   class: 304f      ADLDEFAULT  next 00000258  name 00000000  attributes 00000367  type 000003b7 
+00000258:  len 0014   class: 304f      ADLDEFAULT  next 00000000  name 00000000  attributes 0000026c  type 00000361 
+0000026c:  len 000c   class: 302c      ADLCOMPLEX  next 00000278  value 0000035c 
+00000278:  len 000c   class: 302d        ADLCNSTR  next 00000284  value 00000357 
+00000284:  len 000c   class: 305f          ADLFIT  next 00000290  value 0000034f 
+00000290:  len 000c   class: 3041    ADLPRECISION  next 0000029c  value 00000347 
+0000029c:  len 000c   class: 3044        ADLSCALE  next 000002a8  value 0000033f 
+000002a8:  len 000c   class: 3046       ADLSGNLOC  next 000002b4  value 00000337 
+000002b4:  len 000c   class: 3047       ADLSGNMNS  next 000002c0  value 0000030a 
+000002c0:  len 000c   class: 3048       ADLSGNPLS  next 000002cc  value 000002dd 
+000002cc:  len 000c   class: 304a       ADLSIGNED  next 00000000  value 000002d8 
+000002d8:  len 0005   class: 305e      ADLLITBOOL  value TRUE 
+000002dd:  len 0014   class: 300b          ADLCNS  next 00000000  name 00000000  attributes 000002f1  value 00000305 
+000002f1:  len 000c   class: 302b       ADLLENGTH  next 00000000  value 000002fd 
+000002fd:  len 0008   class: 3056       ADLLITINT  value 00000001 
+00000305:  len 0005   class: 305b       ADLLITHEX  value "c0" 
+0000030a:  len 0014   class: 300b          ADLCNS  next 00000000  name 00000000  attributes 0000031e  value 00000332 
+0000031e:  len 000c   class: 302b       ADLLENGTH  next 00000000  value 0000032a 
+0000032a:  len 0008   class: 3056       ADLLITINT  value 00000001 
+00000332:  len 0005   class: 305b       ADLLITHEX  value "d0" 
+00000337:  len 0008   class: 3056       ADLLITINT  value 00000000 
+0000033f:  len 0008   class: 3056       ADLLITINT  value 00000000 
+00000347:  len 0008   class: 3056       ADLLITINT  value 0000000f 
+0000034f:  len 0008   class: 3056       ADLLITINT  value 00000000 
+00000357:  len 0005   class: 305e      ADLLITBOOL  value FALSE 
+0000035c:  len 0005   class: 305e      ADLLITBOOL  value FALSE 
+00000361:  len 0006   class: 000c          CODPNT  value  3017       ADLPACKED 
+00000367:  len 000c   class: 3034        ADLCCSID  next 00000373  value 000003af 
+00000373:  len 000c   class: 3001      ADLJUSTIFY  next 0000037f  value 000003a7 
+0000037f:  len 000c   class: 302b       ADLLENGTH  next 0000038b  value 0000039f 
+0000038b:  len 000c   class: 300c      ADLUNITLEN  next 00000000  value 00000397 
+00000397:  len 0008   class: 3056       ADLLITINT  value 00000008 
+0000039f:  len 0008   class: 3056       ADLLITINT  value 00000001 
+000003a7:  len 0008   class: 3056       ADLLITINT  value 00000000 
+000003af:  len 0008   class: 3056       ADLLITINT  value 00000000 
+000003b7:  len 0006   class: 000c          CODPNT  value  3011         ADLCHAR 
+000003bd:  len 001c   class: 301b     ADLSEQUENCE  next 00000000  name 000003d9  attributes 00000000  when 00000000 fldsiz 000003e5  of 000003ed 
+000003d9:  len 000c   class: 303c           ADLID  value "COBOLREC" 
+000003e5:  len 0008   class: 303f       ADLFLDSIZ  value 00000030 
+000003ed:  len 0018   class: 3011         ADLCHAR  next 00000405  name 00000443  attributes 0000044f  when 00000000  fldsiz 00000477 
+00000405:  len 0018   class: 3017       ADLPACKED  next 00000000  name 0000041d  attributes 00000427  when 00000000  fldsiz 0000043b 
+0000041d:  len 000a   class: 303c           ADLID  value "NUMBER" 
+00000427:  len 000c   class: 3041    ADLPRECISION  next 00000000  value 00000433 
+00000433:  len 0008   class: 3056       ADLLITINT  value 00000005 
+0000043b:  len 0008   class: 303f       ADLFLDSIZ  value 00000018 
+00000443:  len 000c   class: 303c           ADLID  value "INITIALS" 
+0000044f:  len 000c   class: 302b       ADLLENGTH  next 0000045b  value 0000046f 
+0000045b:  len 000c   class: 3034        ADLCCSID  next 00000000  value 00000467 
+00000467:  len 0008   class: 3056       ADLLITINT  value 000001f4 
+0000046f:  len 0008   class: 3056       ADLLITINT  value 00000003 
+00000477:  len 0008   class: 303f       ADLFLDSIZ  value 00000018 
+

@@ -1,0 +1,19 @@
+REM="Korean text"
+REM="(C) Copyright IBM Corporation 1989"
+
+NOTE="éı: "
+CAUTION="éıé~: "
+WARNING="ÜáÜã: "
+OLCHARS=abcdefghijklmnopqrstuvwxyz
+OLCLOSE1=.
+OLCLOSE2=)
+ULITEMID1=o
+ULITEMID2=-
+ULITEMID3=•
+GRAMMAR
+WORDS=0 - 9 + A - Z + a - z
+WORDS=ÇO - ÇX + Ç` - Çy + ÇÅ - Çö
+EGRAMMAR
+CGRAPHICFONTFACENAME=MINCHO
+CGRAPHICFONTWIDTH=6
+CGRAPHICFONTHEIGHT=12

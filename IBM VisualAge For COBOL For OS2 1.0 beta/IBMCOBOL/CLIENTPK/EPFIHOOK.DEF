@@ -1,0 +1,32 @@
+;/***************************************************************************/
+;/*                                                                         */
+;/*                          OCO SOURCE MATERIALS                           */
+;/*                                                                         */
+;/*                            IBM CONFIDENTIAL                             */
+;/*                                                                         */
+;/*                       (IBM CONFIDENTIAL-RESTRICTED                      */
+;/*         when combined with the AGGREGATED OCO SOURCE MODULES            */
+;/*                         for this LICENSED PROGRAM.)                     */
+;/*                                                                         */
+;/***************************************************************************/
+;
+;/* The module definition file supplies extra information about the program */
+;/* module to the LINKER.                                                   */
+
+LIBRARY EPFIHOOK
+
+DESCRIPTION 'SOFTWARE INSTALLER V1.3 5621-434 (C) COPYRIGHT IBM CORP 1989, 1995. ALL RIGHTS RESERVED. LICENSED MATERIALS - PROPERTY OF IBM.'
+
+STUB 'OS2STUB.EXE'
+
+CODE LOADONCALL
+DATA NONSHARED
+
+HEAPSIZE  2048
+STACKSIZE 25000
+
+;/* Do not change the name of the EXPORTS function */
+EXPORTS
+        EPFIHOOK1
+        EPFIHOOK2
+

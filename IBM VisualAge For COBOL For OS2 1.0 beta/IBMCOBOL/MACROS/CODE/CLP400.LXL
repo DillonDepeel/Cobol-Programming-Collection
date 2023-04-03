@@ -1,0 +1,102 @@
+/********************************************************
+* CLP400.LXL - LOAD MACRO FOR CLP FILES                 *
+*                                                       *
+* THIS MACRO IS INVOKED BY LPEX WHEN A FILE WITH A      *
+* EXTENSION OF .CLP IS EDITED (UNLESS THE /ASIS OR/NOPRO*
+* OPTIONS ARE USED. IT SETS UP THE C EMPHASIS PARSER    *
+* AND FONTS FOR A COLOUR DISPLAY.                       *
+*                                                       *
+*          COPYRIGHT I B M CORPORATION 1989             *
+*                                                       *
+* SAH/04.12.89/CUSTOMIZED FOR ECD TESTING               *
+*                                                       *
+********************************************************/
+
+/* CALL DEFAULT AS/400 PROFILE */
+'LXR DFT400.LXL'
+
+/* SET FONTS FOR CLP PARSER */
+
+'SET FONT.A  BLACK/WHITE                 "Alphanumerics"'
+'SET FONT.B  BRIGHT GREEN/WHITE          "Built-ins"'
+'SET FONT.C  CYAN/WHITE                  "Comments"'
+'SET FONT.E  WHITE/BRIGHT RED            "Errors"'
+'SET FONT.G  UNDERLINE BRIGHT BLUE/WHITE "Language construct"'
+'SET FONT.I  GREEN/WHITE                 "Literals"'
+'SET FONT.K  CYAN/WHITE                  "Keywords"'
+'SET FONT.L  BRIGHT GRAY/WHITE           "Labels"'
+'SET FONT.M  BRIGHT BLUE/WHITE           "Commands"'
+'SET FONT.N  RED/WHITE                   "Numerials"'
+'SET FONT.P  BROWN/WHITE                 "Parameters"'
+'SET FONT.S  BLUE/WHITE                  "Special symbols"'
+'SET FONT.V  MAGENTA/WHITE               "Special values"'
+'SET FONT._  BLACK/WHITE                 "Layout space"'
+
+'SET DOCTYPE CLP'
+'SET CLASSES SPACE MESSAGE ERROR COMMENT CODE CONTROL CONTINUATION'
+'SET PARSER EVFLCL'
+'SET FULLPARSE SUBMIT READ STOP "Parsing file" EVFLCL ALL'
+
+'SET LSTYPE.EVFZERL RENT UI LSYNC EVFZERL 1'
+
+'SET ACTION.C-C SAVEALL PROMPT START EVFLCLES "%FILENAME%" /P N'
+'SET ACTION.C-D START CODEDT /EQACCMDLE /N /P "%FILENAME%"'
+'SET ACTION.F4  EVFLCL PROMPT'
+'SET ACTION.F1  EVFLCL COMMANDHELP'
+
+'SET ACTIONBAR.~Edit.SEPARATOR 6 ;'
+'SET ACTIONBAR.~Edit.Pro~mpt\tF4 7 EVFLCL PROMPT'
+'SET GROUP. WRITEABLE'
+'SET HELP. 16036'
+
+'SET ACTIONBAR.~Actions.SEPARATOR 1 ;'
+'SET ACTIONBAR.~Actions.~Syntax_check_selection 2 SUBMIT READ STOP "Syntax check selection" EVFLCL BLOCK'
+'SET HELP. 16081'
+'SET ACTIONBAR.~Actions.Syntax_check_~file 3 SUBMIT READ STOP "Syntax check file" EVFLCL FILE'
+'SET HELP. 16082'
+'SET ACTIONBAR.~Actions.SEPARATOR 4'
+'SET ACTIONBAR.~Actions.C~ompile. 5'
+'SET HELP. 16084'
+'SET ACTIONBAR.~Actions.C~ompile.~Prompt... SAVEALL PROMPT START EVFLCLES "%FILENAME%"'
+'SET HELP. 16084'
+'SET ACTIONBAR.~Actions.C~ompile.~No_prompt\tCtrl+C SAVEALL PROMPT START EVFLCLES "%FILENAME%" /P N'
+'SET GROUP. REMOTE'
+'SET HELP. 16084'
+'SET ACTIONBAR.~Actions.~Debug. 6'
+'SET HELP. 16086'
+'SET ACTIONBAR.~Actions.~Debug.~Prompt... START CODEDT /EQACCMDLE /P "%FILENAME%"'
+'SET HELP. 16086'
+'SET ACTIONBAR.~Actions.~Debug.~No_prompt\tCtrl+D START CODEDT /EQACCMDLE /N /P "%FILENAME%"'
+'SET GROUP. REMOTE'
+'SET HELP. 16086'
+
+'SET ACTIONBAR.~Options.~Language_editing. 7'
+'SET HELP. 16099'
+'SET ACTIONBAR.~Options.~Language_editing.~Token_highlighting EVFLCL TOKEN'
+'SET HELP. 16100'
+'SET ACTIONBAR.~Options.~Language_editing.~Syntax_checking EVFLCL SYNTAX'
+'SET HELP. 16102'
+
+'SET ACTIONBAR.~View.~Control 2 ;INCLUDE CONTROL;SET EXCLUDE'
+'SET GROUP. CONTROL'
+'SET HELP. 16056'
+'SET ACTIONBAR.~View.C~omments 3 ;INCLUDE COMMENT;SET EXCLUDE'
+'SET GROUP. COMMENT'
+'SET HELP. 16056'
+
+'EXTRACT ACTIONBARID.~Options.~Language_editing.~Token_highlighting INTO ID_TH'
+'SET GLOBAL.CLP_TOK_MENU_ID' ID_TH
+'EXTRACT ACTIONBARID.~Options.~Language_editing.~Syntax_checking INTO ID_SC'
+'SET GLOBAL.CLP_SYN_MENU_ID' ID_SC
+
+'SET TABS 14 25 27 EVERY 8'
+
+'SET GLOBAL.CLP_TOKEN_HILITE 1'
+'SET GLOBAL.CLP_AUTO_SYNTAX 1'
+
+'EVFLCL INIT'
+'TRIGGER FULLPARSE'
+
+/* set language specific prefix commands */
+'SET ACTIONPREFIX.P ;SET PREFIXENTRY;EVFLCL PROMPT'
+

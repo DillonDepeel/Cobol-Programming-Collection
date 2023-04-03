@@ -1,0 +1,111 @@
+
+
+BMPSAMP - Bitmap Manipulation
+
+
+DESCRIPTION:
+
+This sample provides a jigsaw puzzle, based on a decomposition of an
+arbitrary bitmap loaded from a file.  The user can jumble the pieces,
+then drag them individually by means of the mouse.  The image can be
+made larger or smaller, scrolled up/down or left/right.
+
+ JIGSAW uses GpiBitBlt with clip paths to create a collection of picture
+ fragments which are the puzzle pieces.  In earlier versions of the
+ program, each of these pieces was associated with a single retain-mode
+ graphics segment.  The retain-mode technique, however, proved to be
+ too slow, so subsequent versions of the program used retain-mode APIs
+ for fewer and fewer operations.  The current version eliminates
+ retain-mode graphics altogether.  Instead, the drawing data for each
+ piece is stored in _SEGLIST data structure defined in JIGSAW.H.
+ This structure contains all the data needed to draw a piece, including
+ pointers to the previous and next pieces.  The _SEGLIST nodes are
+ arranged in drawing priority order, so the picture can be reconstructed
+ by traversing the list in sequence, drawing each piece as its
+ corresponding structure is encountered.  Where the comments in the
+ rest of the program refer to a "segment," they are simply referring to
+ a piece of the puzzle as defined by a record in this data structure.
+
+ To retain responsiveness to user requests, the real work is done in a
+ second thread, with work requests transmitted from the main thread in
+ the form of messages.  This arrangement makes it possible for the user
+ to override lengthy drawing operations with a higher-priority request
+ (eg. program termination, magnification change, etc.).
+
+ Individual pieces are made to "move" by changing their model transforms.
+ Scrolling and zooming of the whole picture is done by changing the
+ default viewing transform.  The points in model space associated with
+ each piece (control points for the bounding curve, corners of the
+ bounding box, etc.) are converted via GpiConvert into points in device
+ space prior to use with GpiBitBlt, etc.
+
+TASK:
+
+ Use of bitmaps in a jigsaw puzzle.
+
+CONCEPT/FEATURE:
+
+ Sample illustrates the use of the Graphical Programming Interface in 
+ a graphics application.
+
+SAMPLE LOCATION:
+
+ Inside the PM Sample Programs folder (which is inside the VisualAge C++ 
+ Samples folder).
+
+Note: This sample is not provided in project form.
+
+SOURCE FILE LOCATION:
+
+ X:\ibmcpp\samples\toolkit\pm\bmpsamp
+ where X: is the drive you installed the samples and document component
+ of VisualAge C++ for OS/2.
+
+
+HOW TO RUN THE SAMPLE:
+
+-From your OS/2 desktop:
+ Double-click on the sample's icon.
+
+-From an OS/2 command prompt:
+ To start a non-WorkPlace Shell sample program from an OS/2 command
+ prompt, type the name of the executable file and press Enter.  If you
+ have edited source code of a sample program and want to recompile,link,
+ and run the files, use the NMAKE tool. Your output is the executable
+ file.  For information about the NMAKE utility, see the
+ OS/2 Tools Reference.
+
+
+SOFTWARE/HARDWARE PREREQUISITES:
+
+
+- IBM VisualAge C++
+- OS/2 Warp
+- IBM or compatible 386 and up.
+
+
+REQUIRED FILES      DESCRIPTIONS
+
+  cheap.dlg         Dialog resource
+  globals.c         Global definitions
+  globals.h         Global declarations
+  jighelp.c         Help Manager Interface routines
+  jighelp.h
+  jighelp.rc        resource file
+  jigsaw.c          Main() entry point
+  jigsaw.def        link definitions
+  jigsaw.dlg        dialog resources
+  jigsaw.exe        sample executable
+  jigsaw.h
+  jigsaw.hlp
+  jigsaw.ico
+  jigsaw.ipf
+  jigsaw.mak        MakeMake generated makefile
+  jigsaw.rc
+  misc.c            Miscellaneous support functions
+  procs.c           Support functions for window procedures
+  readme            This file
+  statwnd.dlg
+  yosemite.bmp
+
+

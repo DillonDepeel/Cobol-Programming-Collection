@@ -1,0 +1,12 @@
+/* This macros provides the user with a dialog to change */
+/* the name of the current file, the file is not saved and */
+/* the syntax of the rename is not checked */
+'set lineread.title Rename File'
+'set lineread.prompt Enter new name:'
+'lineread 255'
+'extract lastkey'
+if lastkey = "ENTER" then do 
+'extract lastline'
+'set name' lastline
+end
+

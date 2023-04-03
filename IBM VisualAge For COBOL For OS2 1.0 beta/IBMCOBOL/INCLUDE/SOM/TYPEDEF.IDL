@@ -1,0 +1,65 @@
+//
+//   COMPONENT_NAME: somi
+//
+//   ORIGINS: 27
+//
+//
+//   10H9767, 10H9769  (C) COPYRIGHT International Business Machines Corp. 1992,1994
+//   All Rights Reserved
+//   Licensed Materials - Property of IBM
+//   US Government Users Restricted Rights - Use, duplication or
+//   disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+//
+//  TypeDef: CORBA Interface for typedef definitions
+//  See CORBA 7.5.8, p.137
+#ifndef typedef_idl
+#define typedef_idl
+#include <containd.idl>
+#include <somcls.idl>
+// CORBA 7.5.8, p.137
+interface TypeDef : Contained
+{
+    struct TypeDescription {
+	Identifier    name;
+	RepositoryId  id;
+	RepositoryId  defined_in;
+	TypeCode      type;
+    };
+    // The inherited describe method returns an instance of this
+    // (TypeDescription) structure in the "value" member of the
+    // Description structure defined in the Contained interface.
+    attribute TypeCode type;
+    // The TypeCode of the receiving object.  The memory used to hold
+    // the TypeCode is contained in the receiving object, which retains
+    // ownership.  Hence, do not free the returned TypeCode.  If you want
+    // to obtain a separate copy, use the TypeCode_copy operation.
+#ifdef __SOMIDL__
+  implementation {
+      releaseorder: _get_type,_set_type;
+      callstyle = idl;
+      majorversion = 2;
+      minorversion = 1;
+      filestem = typedef;
+      dllname = "somir.dll";
+      passthru C_h =
+	""
+	"    #include <somtcnst.h>"
+	"    #include <somir.h>"
+	"    #include <containd.h>"
+	"";
+      passthru C_xh =
+	""
+	"    #include <somtcnst.xh>"
+	"    #include <somir.xh>"
+	"    #include <containd.xh>"
+	"";
+      type: nodata;
+      somInit: override;
+      somUninit: override;
+      somDumpSelf: override;
+      somDumpSelfInt: override;
+      describe: override;
+  };
+#endif /* __SOMIDL__ */
+};
+#endif	/* typedef_idl */

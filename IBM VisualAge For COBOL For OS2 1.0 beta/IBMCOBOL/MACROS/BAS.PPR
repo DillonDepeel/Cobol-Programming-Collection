@@ -1,0 +1,667 @@
+ *I
+ *Parser Profile for BASIC Compiler/2
+ *v2.11
+ *lines beginning with a space are ignored 
+ * (c) Copyright IBM Corporation 1993
+ * By: Tom Flemming, February 1989
+lists
+ *first list all the things we will define to allow parser to reserve space
+ 
+states inter goto mcomment data qdata endcheck cmdline string meta comment cstring spill default
+ *the last state listed is the default state at start of new element
+ 
+symbols goto next ll label rsubs underscore data din cn any rcommand rfunction number punctuation quote comment squote variable meta all qin other int qcomment virgule special def
+ *symbols to be recognized
+ 
+ 
+classes space label code comment meta error
+ *the order if this list is important. The last item is scanned
+ *first. Particularly so for exclusive classes
+ 
+states 
+ 
+ *now define all the parser states 
+ *state names are signif. to 2 chars only, as are symbol names.
+
+ *the default state at start of line. 
+      
+state default
+fonts special S def S rcommand R rsubs F goto R comment I data R label L
+changes rsubs cmdline rcommand cmdline label inter goto goto data data comment mcomment special cmdline def cmdline
+unknown cmdline
+end 
+  
+ *changes tell us where to go when certain symbols appear-
+ *here a label symbol tells us to enter the cmdline state
+ *unknown cmdline tells us to enter that state when an unknown symbol appears 
+state inter
+fonts special S def S
+changes special cmdline def cmdline
+unknown cmdline
+end
+
+state cmdline
+fonts rfunction F rcommand R goto R number N punctuation P quote Q comment I qcomment I data R variable V other E
+ *in parsing we work from left to right until we successfully match a symbol
+changes quote string comment mcomment qcomment mcomment data data goto goto
+ *states and symbols may have the same names.
+unknown spill
+ *an unknown would be an underscore at end of line. unknowns
+ *are not parsed so the spill handler gets a look to see what it is.
+end
+ *all state definitions must end with 'end'
+ 
+state string
+fonts quote Q qin Q
+ *fall out on success 
+ *close quotes.
+changes quote cmdline
+ *close quotes means back to the command line.
+end
+ 
+state mcomment
+ *when we find REM, ', we need to decide if it's going to be metacommand or comment
+fonts meta M
+changes meta meta
+unknown comment
+end
+ 
+state meta
+fonts meta M squote Q int N
+ *we can have metacommands, or expressions integer& single-quoted
+changes squote cstring
+unknown comment
+ *if we find a non-meta bit, it's a comment.
+end
+ 
+state comment 
+fonts all C
+ *comment on to the end
+end
+ 
+state cstring 
+fonts squote Q any Q
+changes squote meta
+end
+ 
+state spill 
+ *if an underscore is found we come here 
+fonts underscore E any P
+changes underscore endcheck 
+end
+ 
+state endcheck
+fonts
+unknown cmdline
+endl E P
+return cmdline
+end
+ *the return command tells the parser to go to cmdline state at the next line
+ 
+state data
+ *in data statements, anything goes except a colon, unless it's in quotes.
+fonts quotes Q cn P din D
+changes quotes qdata cn cmdline
+end
+ 
+state qdata
+fonts quote Q qin Q
+changes quote data
+end
+ 
+state goto 
+ *recognizes Linenumbers, Labels, commas,  and NEXT (for RESUME NEXT)
+fonts next R ll G virgule P
+changes next cmdline
+unknown cmdline
+end
+ 
+symbols
+ 
+ *now we define the symbol classes mapped to fonts in the font commands above
+ *first a linenumber or label
+symbol label
+form 
+{[$,'.']}({'  '})':'
+#
+ 
+symbol ll
+form
+{[$,'.']}
+ 
+symbol next
+alphalist upper single $('.')
+NEXT
+ 
+symbol int
+form
+#
+ 
+symbol underscore
+form
+'_'
+ 
+ *form is followed by lines of form parser definitions in special parser code
+ *Parser code:
+ *the following symbols represent items in the string being parsed:
+ *symbol:            represents:
+         $             a word of alphanumeric characters, any case.
+         &             a word of alphabetic chars, any case.
+         <             a word of lower case.
+         >             a word of upper case.
+         #             a word of digits.
+         A             single capital
+         a             single miniscule
+         .             any character
+         0             a single digit
+         !             a word consisting of any characters except \0 or \n, 
+                       but including spaces; ie the rest of the line.
+         ~'x'          any character except x.
+         /'xy'         a word of any characters, delimited by x or y, or the
+                       end of a line.
+ 
+ *literals are presented in '' with the escape sequence for ' being ''.
+ *case-folded literals are specified by the start sequence (space)> in
+  single quotes, then the literal in upper-case. Eg:
+  ' >REM' gives a literal of REM ignoring case.
+  Thus a space at the beginning of a '' sequence is ignored; to start with
+  a space use two spaces; to start with ' >' use '  >'.
+ 
+ *Logic: the parser works down the line seeing if it matches the form.
+         as soon as it fails, it drops out and tries with the next line 
+         until there are no more lines. Then it returns a fail.
+         If it succeeds on any line (ie gets to the end) it returns a
+         success, ignoring further lines. So ordering is important to ensure
+         the maximum length is parsed (eg '3.2' might succeed as '3')
+ *NOTE:  special symbols /'xy' and ! always succeed, so care must be taken
+         when using them to order symbols containing them in the fonts list 
+         of a state in such a way as to avoid unconditional looping.
+ 
+         The following symbols act as logical operators: 
+    (<form>,<form>,....) 
+         This is 'optional'. The () must contain at least one form.
+         The parser keeps trying forms until one works, then skips to the
+         end of the bracket, omitting the others. If none works, it carries
+         on anyway.
+    [<form>,<form>,....]
+         This is 'choose 1'. As before but if none works, it fails the whole
+         line.
+    {<form>}
+         This is 'repeat at least once'. <form> is tried once. If it fails, 
+         the whole line fails. If it succeeds, then the parser keeps trying
+         <form> until it does fail, then carries on with the rest of the line.
+ *So, complex maps can be built, Eg:
+         
+         ['A','B','C']('+','-')#
+         will succeed when the string is one of the letters A,B,C followed
+         by an optional + or - (but not both) and a compulsory word of at 
+         least one and maybe more digits.
+ 
+ *Brackets can be nested, Eg:
+         #(['E','D']('+','-')#)
+         provides for an integer with double precision exponent.
+         There must be a number, and if there is anymore it must start
+         with 'E' or 'D', but not both, followed by optional sign mark
+         and compulsory exponent.
+         Note that this will parse '3' as well as '3E-24' since follow-on
+         exponent is optional.
+ 
+ * or,   [A,a]({[$,#]})
+         allows a name which starts with a letter, of any case, followed by
+         an optional string of as many letters and full-stops as you like.
+         Z would succeed, as would Za. and s.hello.john, but .Z would fail.
+ 
+ ** Note:However, the parser does not backtrack. If a line fails on which
+ **      some options have already been processed, it does not go back and 
+ **      try the other options again, it goes on to the next line.
+ 
+ *No breaks for comments are allowed in form lists or other lists- they are
+         taken as end of list markers.
+ 
+symbol any
+form
+.
+ *any character
+ 
+symbol all
+form
+!
+ 
+symbol other
+form
+~'_'
+ 
+symbol din
+form
+/'":'
+ 
+symbol data
+alphalist upper single $('.')
+DATA
+ 
+symbol cn
+form
+':'
+ 
+symbol virgule
+form
+','
+
+ *symbols can also be defined in terms of lists of strings The parser compares
+ *the string it has with the strings in the list, and if it finds a match, that
+ *symbol is returned as found. There are two sorts of list:
+ 
+ *alphalist: for words (generally). A parser form is provided at the top of
+             the list, which the parser uses to extract a notional 'word' 
+             from the text. It then searches for a match to this word in the
+             list. The word must be identical- excess characters will fail.
+ 
+ *sizelist:  for symbols, embedded words. The parser goes through the list
+             comparing each entry with its own length of characters from the
+             text. This allows tokens without identifiable separators to be
+             checked. Precedence is given to longer entries.
+ 
+ * an alphalist must be listed in full ascii order, low to high
+ * a sizelist is arranged in ascii order of first characters, then in 
+   size order, longest to shortest, ie azz comes before ab comes before b.  
+ 
+ *both types of lists must be have a size specifier, 'large' or 'small',
+ *to indicate the amount of memory to be reserved. 'large' lists can have up
+ *to 200 entries, 'small' ones up to 50.
+ *alphalists can also have size 'single', and only 1 entry.
+ 
+ *preceding the size specifier is an optional case specifier, upper, which
+ *causes all characters to be compared with list entries to be put into 
+ *upper case before comparisons.
+ 
+ *any size of alphalist, and small sizelists, can be Hashed, for speed.
+ *Hashing is specified by giving two characters, the lowest and the 
+ *highest ASCII values of the first characters of the words in the list,
+ *before the case specifier, or size specifier if there is no case.
+ 
+ *the list declarator ('alpha-' or 'sizelist') is followed by the size
+  specifier, then in the case of an alphalist, the parser form.
+symbol goto 
+alphalist upper small $('.')
+GOSUB
+GOTO
+RESTORE
+RESUME
+RETURN
+ 
+symbol special
+alphalist upper small $('.')
+DECLARE
+FUNCTION
+SUB
+ 
+symbol def
+form
+' >DEF FN'
+ 
+symbol rcommand
+alphalist AW upper large $('.')
+ABSOLUTE
+ACCESS
+ALIAS
+ANY
+APPEND
+AS
+BASE
+BEEP
+BINARY
+BLOAD
+BSAVE
+BYVAL
+CALL
+CALLS
+CASE
+CDECL
+CHAIN
+CHDIR
+CIRCLE 
+CLEAR 
+CLOSE
+CLS
+COLOR
+COM
+COMMON
+CONTATN
+DECLARE
+DEF
+DEFDBL
+DEFINT
+DEFLNG
+DEFSNG
+DEFSTR
+DIM
+DO
+DOUBLE
+DRAW
+ELSE
+ELSEIF
+END
+ENDIF
+ENVIRON
+ERASE
+ERROR
+EXIT
+FIELD
+FILES
+FOR
+FUNCTION
+GET
+IF
+INPUT
+INTEGER
+IOCTL
+IS
+KEY
+KILL
+LEN
+LET
+LINE
+LIST
+LOCATE
+LOCK
+LONG
+LOOP
+LPRINT
+LSET
+MKDIR
+NAME
+NEXT
+OFF
+ON
+OPEN
+OPTION
+OUT
+OUTPUT
+PAINT
+PEN
+PLAY
+POKE
+PRESET
+PRINT
+PSET
+PUT  
+RANDOM
+RANDOMIZE
+READ
+REDIM
+RESET
+RMDIR
+RSET
+RUN
+SCREEN
+SEEK
+SEG
+SELECT
+SHARED
+SHELL
+SIGNAL
+SINGLE
+SOUND
+STATIC
+STEP
+STOP
+STRIG
+STRING
+SUB
+SWAP
+SYSTEM
+THEN
+TO
+TROFF
+TRON
+TYPE
+UNLOCK
+UNTIL
+USING
+VIEW
+WAIT
+WEND
+WHILE
+WIDTH
+WINDOW
+WRITE
+ 
+symbol rfunction
+alphalist AX upper large $('$')('(')('.')
+ABS(
+AND
+ASC(
+ATN(
+CDBL(
+CHR$(
+CINT(
+CLNG(
+COMMAND$
+COS(
+CSNG(
+CSRLIN
+CVD(
+CVDMBF(
+CVI(
+CVL(
+CVS(
+CVSMBF(
+DATE$
+ENVIRON$(
+EOF(
+EQV
+ERDEV
+ERDEV$
+ERL
+ERR
+EXP(
+FILEATTR(
+FIX(
+FRE(
+FREEFILE
+HEX$(
+IMP
+INKEY$
+INP(
+INPUT$(
+INSTR(
+INT(
+IOCTL$(
+LBOUND(
+LCASE$(
+LEFT$(
+LEN(
+LOC(
+LOF(
+LOG(
+LPOS(
+LTRIM$(
+MID$(
+MKD$(
+MKDMBF$(
+MKI$(
+MKL$(
+MKS$(
+MKSMBF$(
+MOD
+NOT
+OCT$(
+OR
+PEEK(
+PEN(
+PMAP(
+POINT(
+POS(
+RIGHT$(
+RND
+RND(
+RTRIM$(
+SADD(
+SCREEN(
+SETMEM(
+SGN(
+SHELL(
+SIN(
+SPACE$(
+SPC(
+SQR(
+STICK(
+STR$(
+STRIG(
+STRING$(
+TAB(
+TAN(
+TIME$
+TIMER
+UBOUND(
+UCASE$(
+USR
+VAL(
+VARPTR(
+VARPTR$(
+VARSEG(
+XOR
+ 
+symbol rsubs
+ *subset of functions with only alphanum chars
+alphalist AX upper small $('.')
+AND
+CSRLIN
+EQV
+ERDEV
+ERL
+ERR
+FREEFILE
+IMP
+MOD
+NOT
+OR
+RND
+TIMER
+USR
+XOR
+  
+symbol number
+form
+[#('.'#),'.'#](['E','e','D','d']('-','+')#,'!','#','&','%')
+'&'('o','O')#('&','%')
+'&'['H','h']$('&','%')
+ *floating point, mantissa, exponent, single/double precision
+ *then octal
+ *then hex
+ 
+symbol punctuation
+sizelist !^ small
+!
+#
+$
+%
+(
+)
+*
++
+,
+-
+.
+/
+:
+;
+<=
+<>
+<
+=
+=<
+=>
+><
+>=
+>
+\
+^
+ 
+symbol quote
+form
+'"'({'  '})
+ 
+symbol qin
+form
+/'""'
+ 
+symbol qcomment
+form
+''''
+ 
+symbol comment
+alphalist upper single $('.') 
+REM
+ 
+symbol meta
+alphalist upper small '$'$(':','+','-')
+$DYNAMIC
+$INCLUDE:
+$LINESIZE:
+$LIST+
+$LIST-
+$MODULE:
+$OCODE+
+$OCODE-
+$PAGE
+$PAGEIF:
+$PAGESIZE:
+$SKIP:
+$STATIC
+$SUBTITLE:
+$TITLE:
+ 
+symbol squote
+form
+''''
+ 
+symbol variable
+form
+[A,a]({[$,'.']})('%','&','#','!','$')
+ 
+ *now define how we will allocate classes...
+classes
+ 
+ *classes have a name, the lpex classname, followed by a list of needed fonts
+ *and a list of proscribed fonts in the element to make it a member of the 
+ *class. The need list can have several possibilitties separated by ||
+ * if the class is specified as 'exclude', it will only be given when no
+ * other class has been already.
+class space exclude
+needed 
+not
+ 
+class code 
+needed F || R || V || N || P || Q
+not 
+ 
+class comment
+needed I
+not 
+  *not a comment if it's a metacommand
+ 
+class meta
+needed M
+not 
+ 
+class error
+needed E
+not 
+ 
+class label 
+needed L || S
+not
+ 
+ *there is an automatic class of open# for each state which is has a return
+ *state specified.
+ *an element is given this class if its final state is this state. # is the
+ *first two letters of the statename of the return state.
+ *There is also an automatic font of _ for spaces.
+
+end
+ *end the lot
+ *nothing except comments may come after the final 'end'
+
+ 
+

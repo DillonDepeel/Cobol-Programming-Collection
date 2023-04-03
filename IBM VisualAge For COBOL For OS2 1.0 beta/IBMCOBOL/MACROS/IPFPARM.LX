@@ -1,0 +1,9 @@
+/* Insert a Parameter List */
+trace o    
+'insert .*'
+'insert :parml tsize=10 break=all|fit|none compact.'
+'insert :pt.Term'
+'insert :pd.Definition'
+'insert :eparml.'
+'insert .*'
+

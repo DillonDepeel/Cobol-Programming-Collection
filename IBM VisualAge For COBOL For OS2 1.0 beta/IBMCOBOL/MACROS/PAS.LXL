@@ -1,0 +1,39 @@
+/* PAS.LXL - IBM LPEX language-sensitive editor profile for Pascal. */
+TRACE OFF
+
+/* Pascal document */
+'SET DOCTYPE PAS'
+
+/* initial fonts settings */
+'SET FONT.C  CYAN/WHITE                   "Comment"'
+'SET FONT.K  BRIGHT BLUE/WHITE            "Keyword"'
+'SET FONT.B  BRIGHT BLUE/WHITE            "Built-in function"'
+'SET FONT.S  BLUE/WHITE                   "Symbol"'
+'SET FONT.A  BLACK/WHITE                  "Variable/procedure name"'
+'SET FONT.N  RED/WHITE                    "Number"'
+'SET FONT.L  GREEN/WHITE                  "Literal"'
+'SET FONT.E  WHITE/BRIGHT RED             "Error"'
+'SET FONT._  BLACK/WHITE                  "Layout blanks"'
+
+/* function navigation keys */
+'SET ACTION.C-N NEXT CLASS FUNCTION'
+'SET ACTION.C-P PREV CLASS FUNCTION'
+
+/* bracket matching */
+'SET ACTION.C-M MATCH'
+
+/* invoke initial parse, set incremental parser */
+'PRPAS ALL'
+'SET PARSER PRPAS'
+
+/* view options */
+'SET ACTIONBAR.~View.SEPARATOR 2'
+'SET ACTIONBAR.~View.F~unctions\tCtrl+C 3 ;SET INCLUDE FUNCTION;SET EXCLUDE;SET VIEWNAME Functions'
+/*'SET HELP. 16059'*/
+'SET GROUP. FUNCTION'
+'SET ACTIONBAR.~View.~Errors 4 ;SET INCLUDE ERROR;SET EXCLUDE;SET VIEWNAME Errors'
+/*'SET HELP. 16059'*/
+'SET GROUP. ERROR'
+
+'SET ACTION.C-C ;SET INCLUDE FUNCTION;SET EXCLUDE;SET VIEWNAME Functions'
+

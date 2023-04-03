@@ -1,0 +1,3 @@
+/* set button 1 to rectangular block marking */
+'set action.button1drag ;primitive setcursor; block mark rectangle'
+

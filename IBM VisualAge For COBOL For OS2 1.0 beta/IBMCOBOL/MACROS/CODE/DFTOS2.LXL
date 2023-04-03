@@ -1,0 +1,19 @@
+/*****************************************************************************/
+/* DEFAULT PROFILE FOR LOCAL (OS/2) FILES.                                   */
+/*****************************************************************************/
+
+'EXTRACT PREFIXFORMAT'
+IF PREFIXFORMAT = '99999999' THEN DO
+   'SET PREFIXDISPLAYFORMAT 99999999'
+   'ISPFPRF'
+END
+IF PREFIXFORMAT = '999999XXXXXX' THEN DO
+   'SET PREFIXDISPLAYFORMAT 999999 XX/XX/XX'
+   'SEUPRF'
+END
+IF PREFIXFORMAT = '' THEN DO
+   'SET PREFIXDISPLAYFORMAT 99999'
+   'SEUPRF'
+END
+
+

@@ -1,0 +1,89 @@
+
+
+TIMESERV - Timer Services
+
+
+DESCRIPTION:
+
+This sample program displays both an analog and digital clock.  To
+simulate elapsed seconds, the main Presentation Manager thread
+repeatedly sets a one-second window timer that updates the current time.  TIMESERV
+features an audible and visual alarm that the user can set.  When the
+time expires, the sample makes use If the DOS timer services and notifies the
+user by sounding an alarm and displaying
+a message box.
+
+TASK:
+This sample uses timing services to implement a PM Based clock.
+
+CONCEPT/FEATURE:
+TIMESERV demonstrates how to use and implement window timers and
+system-resource timers.
+
+SAMPLE LOCATION:
+Inside the OS/2 Sample Programs (which is inside the VisualAge C++ 
+Samples folder).
+
+Note:This sample is not provided in project form.
+
+SOURCE FILE LOCATION:
+
+X:\ibmcpp\samples\toolkit\os2\timeserv
+where X: is the drive you installed the samples and document component
+of VisualAge C++ for OS/2.
+
+
+HOW TO RUN THE SAMPLE:
+
+-From your OS/2 desktop:
+ Double-click on the sample's icon.
+
+-From an OS/2 command prompt:
+To start a non-WorkPlace Shell sample program from an OS/2 command
+prompt, type the name of the executable file and press Enter.  If you
+have edited source code of a sample program and want to recompile,link,
+and run the files, use the NMAKE tool. Your output is the executable
+file.  For information about the NMAKE utility, see the
+OS/2 Tools Reference.
+
+
+SOFTWARE/HARDWARE PREREQUISITES:
+
+- IBM VisualAge C++
+- OS/2 Warp
+- IBM or compatible 386 and up.
+
+REQUIRED FILES     DESCRIPTIONS
+
+  alarmthd.c        Alarm services
+  alarmthd.h
+  clkdata.c         Global data definitions
+  clkdata.h         Global data declarations
+  clock.c           Main() entry point of the clock program
+  clock.def         link definitions file
+  clock.dlg         Dialog resources
+  clock.exe         executable file
+  clock.h
+  clock.hlp         Help resources
+  clock.ico
+  clock.ipf
+  clock.rc          Resource compiler input
+  dialogs.c         dialog procedures
+  dialogs.h
+  digital.c         Routines for update of the clock face
+  dlg.ipf
+  help.c            Help manager interface routines
+  help.h
+  help.ipf
+  help.rc
+  paint.c           Routines for painting the clock
+  product.dlg
+  readme            This file
+  res.h
+  settings.ipf
+  tkclock.mak          MakeMake generated make file
+  udtime.c          Miscellaneous data/time functions
+  view.ipf
+  wndproc.c         Client window window procedure
+
+

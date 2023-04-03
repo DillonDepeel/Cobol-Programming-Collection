@@ -1,0 +1,97 @@
+Print Sample Application
+------------------------
+
+This is a sample application which shows how to print text and graphics under
+OS/2. It also shows how to handle printer queues, job properties, and fonts.
+The time-consuming parts are handled by separate threads.
+
+Detailed information about this application and the how to print from
+applications can be found in "OS/2 2.0 Programming Guide Volume 3, chapter
+18".
+
+This print Sample has been updated from the 2.0 print sample. There are
+several major changes and several fixes to problems in the original sample
+or fixes where it did not match the recommendations in the programming guide.
+
+Major changes since laster version of Print Sample
+--------------------------------------------------
+
+1. Added page setup dialog (see PRTPAGE.C). The duplex option is not
+implemented. There are several changes throughout PRTOBJ.C, PRTPRINT.C
+and PRTSAMP.C to take form names and margins into account. For example there
+is some form matching between different printers and if form changes to a new
+name then an error message is displayed. If the form the user choose does
+not match the one in job properties then an error message is displayed and the
+job properties dialog shown.
+2. The print dialog has been updated to include the page selection fields (see
+PRTPRINT.C PrintDlgProc). The preview option is not implemented as it is not
+required for this sample. There are several changes in PRTPRINT.C for
+print dialog, print confirmation dialog and actual printing.
+3. Added a horizontal scroll bar. When the client window is sized, the window
+keeps in the current position rather than always homing to the top left of the
+client area.
+4. Mouse button 1 double-click in the printer setup dialog has the same effect
+as pressing the OK pushbutton (see PRTPRINT.C QueryPrintDlgProc).
+5. Added support for a command line argument. This means that the program will
+respond correctly when started from the Workplace shell from either a drag/drop
+onto the print sample or through a file association (see PRTOBJ.C ObjectWndProc)
+6. Restore the window position (see PRTPROF.C GetProfileInfo)
+7. Draw the bitmap or metafile at the top of the page instead of the bottom
+(see PRTOBJ.C PaintBitmap and PaintMetafile functions).
+
+Miscellaneous fixes made since last version of Print Sample
+-----------------------------------------------------------
+
+1. The area around the data shown on the screen used to get smaller when the
+picture was zoomed. It now is always 0.25 inch (various places).
+2. Fixed problem when a previously selected queue is no longer available (see
+PRTPRINT QueryPrintQueue).
+3. Coordinates for printer are different to screen because of hardware clip
+limits (see PRTOBJ.C CalculateDrawingArea)
+4. The number of copies in the print dialog is not saved until the user
+presses OK (see PRTPRINT.C PrintDlgProc).
+5. Check that the device name and driver data size is correct (see
+PRTPRINT.C QueryPrintQueue)
+6. Parse filename correctly if it does not contain a \ (various places)
+7. Get filetype from EA value not EA type indication (see PRTMENU.C
+GetEAFileType)
+
+
+Fixes made to meet recommendations for OS/2 Printing
+----------------------------------------------------
+
+1. Now use FORM= parameter on DevOpenDC for printer
+(see PRTPRINT ProcessUserPrint)
+2. Add WinCancelShutdown on object window (see PRTOBJ threadmain)
+3. The accelerator for printing (Shift Print Screen) has been implemented
+(see PRTSAMP.RC)
+4. All message boxes for the user have been standardized (various places).
+5. All translatable strings except for debug error messages have been put in
+PRTSAMP.RC
+6. Display and printing of bitmaps now uses GpiWCBitBlt instread of GpiBitBlt
+(see PRTOBJ.C PaintBitmap)
+7. Bitmaps are now printed with PM_Q_STD, not PM_Q_RAW (see PRTPRINT.C
+ProcessUserPrint)
+8. The same code is now used for drawing and printing bitmaps and metafiles.
+For example device independent bitmaps can now be drawn on the screen. See the
+functions PaintBitmap and PaintMetafile in PRTOBJ.C.
+9. Replaced DosExit by _endthread (see PRTOBJ.C threadmain)
+10. GpiCreatePS for now passes 0,0 as the printer PS size (see PRTPRINT.C
+ProcessUserPrint)
+
+Things you can do to improve this application
+---------------------------------------------
+
+1. Wrap text when it is outside the user define margins. This is required for
+a word-processor. The text is left clipped to show how a clip path can be used
+to enforce the user-defined margins.
+2. Allow the user to page backward through a multi-page document. This requires
+more extensive formatting on a separate thread but has the advantage that the
+user can tell exactly how large the document is and what is the current page.
+3. Allow the user to do title-bar drag/drop onto a printer.
+4. Allow the user to drag/drop a file associated with this application onto
+a printer. PRTSAMP is then called with the DM_PRINTOBJECT message.
+5. Allow for BMP files that contain an array of bitmaps.
+6. Support ICO and PTR files.
+7. Support device fonts and character positioning of a screen font according
+to the device font characteristics.
