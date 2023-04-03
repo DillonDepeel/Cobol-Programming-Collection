@@ -12,4 +12,4 @@ jobs:
       - name: Run script
         run: |
           cobc -x HiWorld.cob
-          ./HelloWorld
+          ./The-COBOL-Archive
