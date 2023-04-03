@@ -1,2 +1,17 @@
 - name: Setup COBOL
   uses: fabasoad/setup-cobol-action@v1.4.1
+name: Setup COBOL
+
+on: push
+
+jobs:
+  setup:
+    name: Setup
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@main
+      - uses: fabasoad/setup-cobol-action@main
+      - name: Run script
+        run: |
+          cobc -x HiWorld.cob
+          ./HelloWorld
