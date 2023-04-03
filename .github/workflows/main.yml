@@ -1,0 +1,2 @@
+- name: Setup COBOL
+  uses: fabasoad/setup-cobol-action@v1.4.1
