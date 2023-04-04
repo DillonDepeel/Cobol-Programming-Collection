@@ -20,6 +20,8 @@ So far, The-COBOL-Archive has managed to preserve the following programs and fil
 * Langton's Ant
 * Snake
 * TicTacToe
+* Deal/Play Cards
+
 
 ## History
 
