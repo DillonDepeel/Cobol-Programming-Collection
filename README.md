@@ -25,9 +25,9 @@ So far, The-COBOL-Archive has managed to preserve the following Cobol programs:
 Additionally, The COBOL Archive has preserved the Following Software; Written In COBOL:
 
 * [SMTP/POP3 Email Engine for COBOL](https://github.com/DillonDepeel/The-COBOL-Archive/tree/main/COBOL%20Mail) 
-  - Produced In 1999 by MarshallSoft Computing, Inc. Written for use with a Windows 3.1 computer with an intel 80x86 processor.
+  - Produced In 1999 by MarshallSoft Computing, Inc. Written for Windows 3.1 with an intel 80x86 processor.
 * [The COBOL Report Writer](https://github.com/DillonDepeel/The-COBOL-Archive/tree/main/The%20COBOL%20Report%20Writer)
-  - Produced In 2002 by Michael Coughlan. Written Calculate a salesman's Commision and Salary
+  - Produced In 2002 by Michael Coughlan. Written to calculate a salesman's Commision and Salary
 
 ## History
 
@@ -47,4 +47,11 @@ Despite its age, COBOL is still widely used in industries such as banking, finan
 
 Recently, the COVID-19 pandemic has highlighted the importance of COBOL in maintaining critical business processes. In some cases, state governments have had to mobilize retired COBOL programmers to update their unemployment insurance systems in order to cope with the surge in claims caused by the pandemic.
 
+## Thanks To:
+* @matterofact 
+  - Curating the program list For The COBOL Archive
+* @TheBigGermanGuy 
+  - Added the Extensive Information About COBOL And Wrote The Majority of this Readme
+  
+And Also To all the viewers and People who star this repository, I Appreciate Your Support!
 
