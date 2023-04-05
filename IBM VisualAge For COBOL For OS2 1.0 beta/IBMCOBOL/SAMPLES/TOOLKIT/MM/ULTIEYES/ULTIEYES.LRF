@@ -1,6 +1,0 @@
-ULTIEYES.OBJ +
-
-ultieyes.exe
-ultieyes /map /nod /noe /noi /map /packcode /packdata /exepack /align:16
-CPPOM30.LIB OS2386.LIB MMPM2.LIB
-ultieyes.def;

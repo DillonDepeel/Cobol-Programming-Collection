@@ -1,9 +1,0 @@
-NAME    vmm  WINDOWAPI
-
-DESCRIPTION 'Virtual Memory Manager Sample application'
-
-CODE    MOVEABLE
-DATA    MOVEABLE MULTIPLE
-
-HEAPSIZE  4096
-STACKSIZE 8192

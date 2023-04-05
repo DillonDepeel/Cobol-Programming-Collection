@@ -1,5 +1,0 @@
-/* Rexx Calculator multiplication processor */
-parse arg left, right                  /* get the two operands       */
-numeric digits CalcPrecision()         /* set current precision      */
-numeric form value CalcForm()          /* set current form           */
-return left * right                    /* return result              */

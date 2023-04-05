@@ -1,5 +1,0 @@
-/* CPY.LXL - LPEX language-sensitive profile for COBOL copy files. */
-trace o
-
-'MACRO CBL.LXL'
-

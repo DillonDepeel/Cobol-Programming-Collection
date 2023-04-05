@@ -1,6 +1,0 @@
-/* A macro to check all the passed menu items. */
-parse arg item
-'extract actionbarid.' || item 'into item_id'
-'set menucheck.' || item_id 'on' ;
-return ; 
-

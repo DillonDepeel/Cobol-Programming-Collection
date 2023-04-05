@@ -1,8 +1,0 @@
-/* check for user's lxu file for this doc type; if found open it */
-arg DOC
-call RxFuncAdd 'SysSearchPath', 'RexxUtil', 'SysSearchPath'
-fspec = SysSearchPath('LPATH', ''||DOC||'.lxu')
-if (fspec <> '') 
-then 'lx ' || DOC || '.lxu'    
-
-

@@ -1,8 +1,0 @@
-/* IPF Note tag   */
-'purge'   
-'insert .*'
-'insert :nt text=''Note''.'
-'insert :p.'
-'insert :ent.' 
-'insert .*'
-

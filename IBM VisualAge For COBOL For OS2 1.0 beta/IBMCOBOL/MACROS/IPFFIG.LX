@@ -1,9 +1,0 @@
-/* Insert figure   */
-trace o
-'purge' 
-'insert .*'
-'insert :fig.'   
-'insert .* insert figure here'
-'insert :figcap.'   
-'insert .*'
-

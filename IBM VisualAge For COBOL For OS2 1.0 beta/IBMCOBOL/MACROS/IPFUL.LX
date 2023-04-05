@@ -1,8 +1,0 @@
-/* Insert a Simple List */
-trace o    
-'insert .* use :ul. for default setting'
-'insert :ul compact dbhi=?? dbscale=?? dingbat='?' prefix=????.'
-'insert :li.'
-'insert :eul.'
-'insert .*'
-

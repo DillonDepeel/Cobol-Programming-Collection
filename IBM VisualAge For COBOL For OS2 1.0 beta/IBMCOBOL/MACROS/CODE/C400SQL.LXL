@@ -1,8 +1,0 @@
-/***************************************************************************/
-/* C400SQL.LXL -  LANGUAGE SENSITIVE EDITOR PROFILE FOR ILE C/400 SQL      */
-/***************************************************************************/
-TRACE OFF
-
-/* CALL ILE C PROFILE. PROFILES ARE THE SAME */
-'LXR C400.LXL'
-

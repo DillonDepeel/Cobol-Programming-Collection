@@ -1,6 +1,0 @@
-/* CCP.LXL - LPEX language-sensitive profile for COBOL source      */
-/*           files containing CICS preprocessor statements.        */
-trace o
-
-'MACRO CBL.LXL'
-

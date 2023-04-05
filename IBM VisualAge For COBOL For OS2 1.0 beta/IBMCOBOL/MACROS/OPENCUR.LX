@@ -1,5 +1,0 @@
-/* This macro opens the file named on the current line */
-/* If the file is not found a new file is created with that name */
-'extract content'
-'lx' content
-

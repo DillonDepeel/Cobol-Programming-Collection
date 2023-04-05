@@ -1,5 +1,0 @@
-/* IPF Link  */
-trace o    
-'insert .*'
-'insert :link refid=??? reftype=hd|fn.????:elink.'
-

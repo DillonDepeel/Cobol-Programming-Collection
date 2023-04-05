@@ -1,6 +1,0 @@
-/* SQB.LXL - LPEX language-sensitive profile for COBOL source      */
-/*           files containing SQL preprocessor statements.         */
-trace o
-
-'MACRO CBL.LXL'
-

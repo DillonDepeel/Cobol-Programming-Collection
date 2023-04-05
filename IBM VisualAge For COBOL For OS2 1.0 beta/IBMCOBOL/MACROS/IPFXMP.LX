@@ -1,8 +1,0 @@
-/* Insert example tags */
-'purge'
-'msg '     
-'insert .*'
-'insert :xmp.'
-'insert :exmp.'
-'insert .*'
-

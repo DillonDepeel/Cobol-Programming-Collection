@@ -1,3 +1,0 @@
-/* set button 1 to stream block marking */
-'set action.button1drag ;primitive setcursor; block mark character'
-

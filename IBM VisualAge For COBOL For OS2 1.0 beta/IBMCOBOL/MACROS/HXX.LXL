@@ -1,5 +1,0 @@
-/* HXX.LXL - LPEX language-sensitive profile for C/C++ header files. */
-trace o
-
-'MACRO C.LXL'
-
