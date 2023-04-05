@@ -9,18 +9,23 @@ COBOL, which stands for Common Business Oriented Language, is a programming lang
 
 ## Progress so far
 
-So far, The-COBOL-Archive has managed to preserve the following programs and files:
+So far, The-COBOL-Archive has managed to preserve the following Cobol programs:
 
-* Calculator
-* Calendar
-* Email Client
-* Fizz Buzz
-* Game of Life
-* HiWorld (Hello World)
-* Langton's Ant
-* Snake
-* TicTacToe
-* Deal/Play Cards
+* [Calculator](https://github.com/DillonDepeel/The-COBOL-Archive/blob/main/Calculator.cob)
+* [Calendar](https://github.com/DillonDepeel/The-COBOL-Archive/blob/main/Calendar.cob)
+* [Conway's Game of Life](https://github.com/DillonDepeel/The-COBOL-Archive/blob/main/Game%20Of%20Life.cob)
+* [Deal/Play Cards](https://github.com/DillonDepeel/The-COBOL-Archive/blob/main/Deal%20Playing%20Cards.cob)
+* [Email Client](https://github.com/DillonDepeel/The-COBOL-Archive/blob/main/Email%20Client.cob)
+* [Fizz Buzz](https://github.com/DillonDepeel/The-COBOL-Archive/blob/main/Fizz%20Buzz.cob)
+* [HiWorld (Hello World)](https://github.com/DillonDepeel/The-COBOL-Archive/blob/main/HiWorld.cob)
+* [Langton's Ant](https://github.com/DillonDepeel/The-COBOL-Archive/blob/main/Langton's%20Ant.cob)
+* [Snake](https://github.com/DillonDepeel/The-COBOL-Archive/blob/main/Snake.cob)
+* [TicTacToe](https://github.com/DillonDepeel/The-COBOL-Archive/blob/main/TicTacToe.cob)
+
+Additionally, The COBOL Archive has preserved the Following Software; Written In COBOL:
+
+* [SMTP/POP3 Email Engine for COBOL](https://github.com/DillonDepeel/The-COBOL-Archive/tree/main/COBOL%20Mail) 
+  -Produced In 1999 by MarshallSoft Computing, Inc. Written for use with a Windows 3.1 computer with an intel 80x86 processor.
 
 
 ## History
