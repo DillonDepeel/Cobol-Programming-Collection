@@ -1,4 +1,3 @@
-remote_theme: pages-themes/hacker@v0.2.0
 # The-COBOL-Archive
 
 This archive is aimed at preserving the programs and scripts from the early programming language COBOL.
