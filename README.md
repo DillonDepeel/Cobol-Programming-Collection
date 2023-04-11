@@ -19,6 +19,7 @@ So far, The-COBOL-Archive has managed to preserve the following Cobol programs:
 * [Fizz Buzz](https://github.com/DillonDepeel/The-COBOL-Archive/blob/main/Fizz%20Buzz.cob)
 * [HiWorld (Hello World)](https://github.com/DillonDepeel/The-COBOL-Archive/blob/main/HiWorld.cob)
 * [Langton's Ant](https://github.com/DillonDepeel/The-COBOL-Archive/blob/main/Langton's%20Ant.cob)
+* [Note Taker](https://github.com/DillonDepeel/The-COBOL-Archive/blob/main/Note%20Taker.cbl)
 * [Snake](https://github.com/DillonDepeel/The-COBOL-Archive/blob/main/Snake.cob)
 * [TicTacToe](https://github.com/DillonDepeel/The-COBOL-Archive/blob/main/TicTacToe.cob)
 
