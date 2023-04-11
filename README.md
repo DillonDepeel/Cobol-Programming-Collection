@@ -7,7 +7,7 @@ COBOL: The Language That Powers Business Applications Worldwide
 
 COBOL, which stands for Common Business Oriented Language, is a programming language that has been used for decades to write business software applications. Developed in the late 1950s, COBOL is still in active use today, with an estimated 200 billion lines of COBOL code in existence. In this article, we will explore the history, features, and current state of COBOL.
 
-## Progress so far
+## Progress So Far
 
 So far, The-COBOL-Archive has managed to preserve the following Cobol programs:
 
