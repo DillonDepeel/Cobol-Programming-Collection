@@ -12,6 +12,7 @@ So far, The-COBOL-Archive has managed to preserve the following Cobol programs:
 
 * [Calculator](https://github.com/DillonDepeel/The-COBOL-Archive/blob/main/Calculator.cob)
 * [Calendar](https://github.com/DillonDepeel/The-COBOL-Archive/blob/main/Calendar.cob)
+* [Checkers](https://github.com/DillonDepeel/The-COBOL-Archive/blob/main/Checkers.cbl)
 * [Conway's Game of Life](https://github.com/DillonDepeel/The-COBOL-Archive/blob/main/Game%20Of%20Life.cob)
 * [Deal/Play Cards](https://github.com/DillonDepeel/The-COBOL-Archive/blob/main/Deal%20Playing%20Cards.cob)
 * [Email Client](https://github.com/DillonDepeel/The-COBOL-Archive/blob/main/Email%20Client.cob)
