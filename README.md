@@ -22,6 +22,8 @@ So far, The-COBOL-Archive has managed to preserve the following Cobol programs:
 * [Note Taker](https://github.com/DillonDepeel/The-COBOL-Archive/blob/main/Note%20Taker.cbl)
 * [Snake](https://github.com/DillonDepeel/The-COBOL-Archive/blob/main/Snake.cob)
 * [TicTacToe](https://github.com/DillonDepeel/The-COBOL-Archive/blob/main/TicTacToe.cob)
+* [Towers of Hanoi](https://github.com/DillonDepeel/The-COBOL-Archive/blob/main/Towers%20Of%20Hanoi.cbl)
+* [99 Bottles Of Beer](https://github.com/DillonDepeel/The-COBOL-Archive/blob/main/99%20Bottles%20Of%20Beer%20Sequence.cbl)
 
 Additionally, The COBOL Archive has preserved the Following Software; Written In COBOL:
 
