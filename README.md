@@ -16,6 +16,7 @@ So far, The-COBOL-Archive has managed to preserve the following Cobol programs:
 * [Conway's Game of Life](https://github.com/DillonDepeel/The-COBOL-Archive/blob/main/Game%20Of%20Life.cob)
 * [Deal/Play Cards](https://github.com/DillonDepeel/The-COBOL-Archive/blob/main/Deal%20Playing%20Cards.cob)
 * [Email Client](https://github.com/DillonDepeel/The-COBOL-Archive/blob/main/Email%20Client.cob)
+* [Fibonacci Sequence](https://github.com/DillonDepeel/The-COBOL-Archive/blob/main/Fibonacci%20Sequence.cbl)
 * [Fizz Buzz](https://github.com/DillonDepeel/The-COBOL-Archive/blob/main/Fizz%20Buzz.cob)
 * [HiWorld (Hello World)](https://github.com/DillonDepeel/The-COBOL-Archive/blob/main/HiWorld.cob)
 * [Langton's Ant](https://github.com/DillonDepeel/The-COBOL-Archive/blob/main/Langton's%20Ant.cob)
