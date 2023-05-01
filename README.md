@@ -1,4 +1,4 @@
-# The-COBOL-Archive
+# The Cobol Program Collection
 
 This archive is aimed at preserving the programs and scripts from the early programming language COBOL.
 
@@ -36,6 +36,7 @@ So far, The-COBOL-Archive has managed to preserve the following Cobol programs:
 * [Calendar](https://github.com/DillonDepeel/The-COBOL-Program-Archive/blob/main/Cobol%20Utilities/Calendar.cob)
 * [Email Client](https://github.com/DillonDepeel/The-COBOL-Program-Archive/blob/main/Cobol%20Utilities/Email%20Client.cob)
 * [Note Taker](https://github.com/DillonDepeel/The-COBOL-Program-Archive/blob/main/Cobol%20Utilities/Note%20Taker.cbl)
+* [Phonebook Manager](https://github.com/DillonDepeel/The-Cobol-Program-Collection/blob/main/Cobol%20Utilities/Phonebook.cbl)
 
 Additionally, The COBOL Archive has preserved the Following Software; Written In COBOL:
 
