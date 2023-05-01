@@ -9,24 +9,29 @@ COBOL, which stands for Common Business Oriented Language, is a programming lang
 ## Progress So Far
 
 So far, The-COBOL-Archive has managed to preserve the following Cobol programs:
-
-* [Calculator](https://github.com/DillonDepeel/The-COBOL-Archive/blob/main/Calculator.cob)
-* [Calendar](https://github.com/DillonDepeel/The-COBOL-Archive/blob/main/Calendar.cob)
-* [Checkers](https://github.com/DillonDepeel/The-COBOL-Archive/blob/main/Checkers.cbl)
-* [Conway's Game of Life](https://github.com/DillonDepeel/The-COBOL-Archive/blob/main/Game%20Of%20Life.cob)
-* [Deal/Play Cards](https://github.com/DillonDepeel/The-COBOL-Archive/blob/main/Deal%20Playing%20Cards.cob)
-* [Email Client](https://github.com/DillonDepeel/The-COBOL-Archive/blob/main/Email%20Client.cob)
-* [Fibonacci Sequence](https://github.com/DillonDepeel/The-COBOL-Archive/blob/main/Fibonacci%20Sequence.cbl)
-* [Fizz Buzz](https://github.com/DillonDepeel/The-COBOL-Archive/blob/main/Fizz%20Buzz.cob)
-* [HiWorld (Hello World)](https://github.com/DillonDepeel/The-COBOL-Archive/blob/main/HiWorld.cob)
-* [Langton's Ant](https://github.com/DillonDepeel/The-COBOL-Archive/blob/main/Langton's%20Ant.cob)
-* [Magic Square (15 Puzzle Game)](https://github.com/DillonDepeel/The-COBOL-Archive/blob/main/Magic%20Square%20(The%2015%20Puzzle%20Game).cob)
-* [Minesweeper](https://github.com/DillonDepeel/The-COBOL-Program-Archive/blob/main/Minesweeper.cbl)
-* [Note Taker](https://github.com/DillonDepeel/The-COBOL-Archive/blob/main/Note%20Taker.cbl)
-* [Snake](https://github.com/DillonDepeel/The-COBOL-Archive/blob/main/Snake.cob)
-* [TicTacToe](https://github.com/DillonDepeel/The-COBOL-Archive/blob/main/TicTacToe.cob)
-* [Towers of Hanoi](https://github.com/DillonDepeel/The-COBOL-Archive/blob/main/Towers%20Of%20Hanoi.cbl)
-* [99 Bottles Of Beer](https://github.com/DillonDepeel/The-COBOL-Archive/blob/main/99%20Bottles%20Of%20Beer%20Sequence.cbl)
+### Cobol Example:
+* [Hello World](https://github.com/DillonDepeel/The-COBOL-Program-Archive/blob/main/Cobol%20Examples/HiWorld.cob)
+### Cobol Games:
+* [Checkers](https://github.com/DillonDepeel/The-COBOL-Program-Archive/blob/main/Cobol%20Games/Checkers.cbl)
+* [Deal/Play Cards](https://github.com/DillonDepeel/The-COBOL-Program-Archive/blob/main/Cobol%20Games/Deal%20Playing%20Cards.cob)
+* [Fizz Buzz](https://github.com/DillonDepeel/The-COBOL-Archive/blob/main/Cobol%20Games/Fizz%20Buzz.cob)
+* [Magic Square (15 Puzzle Game)](https://github.com/DillonDepeel/The-COBOL-Archive/blob/main/Cobol%20Games/Magic%20Square%20(The%2015%20Puzzle%20Game).cob)
+* [Minesweeper](https://github.com/DillonDepeel/The-COBOL-Program-Archive/blob/main/Cobol%20Games/Minesweeper.cbl)
+* [Pong](https://github.com/DillonDepeel/The-COBOL-Program-Archive/blob/main/Cobol%20Games/Pong.cbl)
+* [Snake](https://github.com/DillonDepeel/The-COBOL-Archive/blob/main/Cobol%20Games/Snake.cob)
+* [Tetris](https://github.com/DillonDepeel/The-COBOL-Program-Archive/blob/main/Cobol%20Games/Tetris.cbl)
+* [Tic Tac Toe](https://github.com/DillonDepeel/The-COBOL-Archive/blob/main/Cobol%20Games/TicTacToe.cob)
+* [Towers of Hanoi](https://github.com/DillonDepeel/The-COBOL-Archive/blob/main/Cobol%20Games/Towers%20Of%20Hanoi.cbl)
+* [99 Bottles Of Beer](https://github.com/DillonDepeel/The-COBOL-Archive/blob/main/Cobol%20Games/99%20Bottles%20Of%20Beer%20Sequence.cbl)
+### Cobol Sequences:
+* [Conway's Game of Life](https://github.com/DillonDepeel/The-COBOL-Program-Archive/blob/main/Cobol%20Simulations/Game%20Of%20Life.cob)
+* [Fibonacci Sequence](https://github.com/DillonDepeel/The-COBOL-Program-Archive/blob/main/Cobol%20Simulations/Fibonacci%20Sequence.cbl)
+* [Langton's Ant](https://github.com/DillonDepeel/The-COBOL-Program-Archive/blob/main/Cobol%20Simulations/Langton's%20Ant.cob)
+### Cobol Utilities:
+* [Calculator](https://github.com/DillonDepeel/The-COBOL-Program-Archive/blob/main/Cobol%20Utilities/Calculator.cob)
+* [Calendar](https://github.com/DillonDepeel/The-COBOL-Program-Archive/blob/main/Cobol%20Utilities/Calendar.cob)
+* [Email Client](https://github.com/DillonDepeel/The-COBOL-Program-Archive/blob/main/Cobol%20Utilities/Email%20Client.cob)
+* [Note Taker](https://github.com/DillonDepeel/The-COBOL-Program-Archive/blob/main/Cobol%20Utilities/Note%20Taker.cbl)
 
 Additionally, The COBOL Archive has preserved the Following Software; Written In COBOL:
 
