@@ -9,8 +9,12 @@ COBOL, which stands for Common Business Oriented Language, is a programming lang
 ## Progress So Far
 
 So far, The-COBOL-Archive has managed to preserve the following Cobol programs:
-### Cobol Example:
-* [Hello World](https://github.com/DillonDepeel/The-COBOL-Program-Archive/blob/main/Cobol%20Examples/Hello%20World.cob)
+### Cobol Examples:
+* [Error Hello World](https://github.com/DillonDepeel/The-COBOL-Program-Archive/blob/main/Cobol%20Examples/Error%20Hello.cob)
+* [Graphical Hello World](https://github.com/DillonDepeel/The-COBOL-Program-Archive/blob/main/Cobol%20Examples/Graphical%20Hello.cob)
+* [Line Printer Hello World](https://github.com/DillonDepeel/The-COBOL-Program-Archive/blob/main/Cobol%20Examples/Line%20Printer%20Hello.cob)
+* [Omit Newline Hello World](https://github.com/DillonDepeel/The-COBOL-Program-Archive/blob/main/Cobol%20Examples/Omit%20Newline%20Hello.cob)
+* [Standard Hello World](https://github.com/DillonDepeel/The-COBOL-Program-Archive/blob/main/Cobol%20Examples/Standard%20Hello%20World.cob)
 ### Cobol Games:
 * [Checkers](https://github.com/DillonDepeel/The-COBOL-Program-Archive/blob/main/Cobol%20Games/Checkers.cbl)
 * [Deal/Play Cards](https://github.com/DillonDepeel/The-COBOL-Program-Archive/blob/main/Cobol%20Games/Deal%20Playing%20Cards.cob)
